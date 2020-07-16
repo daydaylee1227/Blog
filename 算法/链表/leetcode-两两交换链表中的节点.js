@@ -19,7 +19,7 @@
          * 添加一个哨兵节点
          * 三个节点外加一个哨兵节点之间作指针指向变换操作
         */
-       var swapPairs = function (head) {
+    var swapPairs = function (head) {
         let newNode = new ListNode('start');
             newNode.next = head,    // 链表头节点套路操作
             tmp = newNode;          // tmp哨兵节点,这里要从newNode节点开始,并不是从head开始的 

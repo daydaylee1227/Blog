@@ -42,5 +42,5 @@
             front.next = prev
 
             return newNode.next     // 最后返回newNode.next就行,一开始我们指向了head节点
-
+            
         };
