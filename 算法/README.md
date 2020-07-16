@@ -543,6 +543,8 @@ var reverseBetween = function (head, m, n) {
 
 --------
 
+
+
 ### [K 个一组翻转链表⭐⭐⭐](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
 
 题目描述：给你一个链表，每 *k* 个节点一组进行翻转，请你返回翻转后的链表。
@@ -628,5 +630,190 @@ var reverseBetween = function (head, m, n) {
 
 好家伙，面试的时候，要我写这个，不让我画图的话，我抽象不出来💢💢
 
+[代码点这里🤭](https://github.com/daydaylee1227/Blog/blob/master/算法/链表/leetcode-K 个一组翻转链表.js)
 
 
+
+------------
+
+
+
+### [合并K个排序链表⭐⭐⭐](https://leetcode-cn.com/problems/merge-k-sorted-lists/)
+
+题目描述：合并 *k* 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
+
+> 链接：[[合并K个排序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/)](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+
+**示例:**
+
+```
+输入:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+输出: 1->1->2->3->4->4->5->6
+```
+
+
+
+------
+
+
+
+### [[回文链表]⭐](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+题目描述：请判断一个链表是否为回文链表。
+
+> 链接：[leetcode-回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+**示例:**
+
+```
+输入:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+输出: 1->1->2->3->4->4->5->6
+```
+
+**示例 1:**
+
+```
+输入: 1->2
+输出: false
+```
+
+**示例 2:**
+
+```
+输入: 1->2->2->1
+输出: true
+```
+
+解题思路：
+
+找到链表中点，然后将后半部分反转，就可以依次比较得出结论了。
+
+关键就是怎么去找中点呢？
+
+**快慢指针**
+
+这个在链表中应用太广泛了，思路就是:设置一个中间指针 mid，在一次遍历中，head 走两格，mid 走一格，当 head 取到最后一个值或者跳出时，mid 就指向中间的值。
+
+```
+let mid = head
+// 循环条件：只要head存在则最少走一次
+while(head !== null && head.next !== null) {
+    head = head.next.next // 指针一次走两格
+    mid = mid.next// 中间指针一次走一格
+}
+```
+
+![快慢指针](C:\Users\DayDay\Desktop\Blog\images\算法\链表求中间节点.jpg)
+
+
+
+遍历的时候通过迭代来反转链表，mid 之前的 node 都会被反转。
+使用迭代来反转。
+
+
+
+```
+while(head !== null && head.next !== null) {
+        pre = mid
+        mid = mid.next
+        head = head.next.next
+        pre.next = reversed
+        reversed = pre
+    }
+```
+
+
+
+例如：
+
+```
+奇数：1 -> 2 -> 3 -> 2 ->1
+遍历完成后：mid = 3->2->1
+reversed = 2->1
+```
+
+
+
+```
+偶数：1 -> 2 -> 2 ->1
+遍历完成后：mid = 2->1
+reversed = 2->1
+```
+
+完整代码:
+
+
+
+
+
+------
+
+
+
+### [[链表相交]⭐](https://leetcode-cn.com/problems/intersection-of-two-linked-lists-lcci/)
+
+题目描述：给定两个（单向）链表，判定它们是否相交并返回交点。请注意相交的定义基于节点的引用，而不是基于节点的值。换句话说，如果一个链表的第k个节点与另一个链表的第j个节点是同一节点（引用完全相同），则这两个链表相交。
+
+
+
+> 链接：[[leetcode-链表相交]](https://leetcode-cn.com/problems/intersection-of-two-linked-lists-lcci/)
+
+示例 1：
+
+```
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+输出：Reference of the node with value = 8
+输入解释：相交节点的值为 8 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,0,1,8,4,5]。在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+```
+
+示例 2：
+
+```
+输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+输出：Reference of the node with value = 2
+输入解释：相交节点的值为 2 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+```
+
+示例 3：
+
+```
+输入：intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+输出：null
+输入解释：从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+解释：这两个链表不相交，因此返回 null。
+```
+
+思路：
+
+- 设置两个指针,每条指针走完自己的路后,指向另外一个链表,那么两个节点相等的话，一定是同一个点。
+- 因为两个指针走的距离是一样的,而且每次都前进1，距离相等,速度相同,如果相等，一定是同一个点。
+
+```js
+var getIntersectionNode = function (headA, headB) {
+    let p1 = headA,
+        p2 = headB;
+    while (p1 != p2) {
+        p1 = p1 === null ? headB : p1.next
+        p2 = p2 === null ? headA : p2.next
+    }
+    return p1
+};
+```
+
+
+
+[代码点这里🤭](https://github.com/daydaylee1227/Blog/blob/master/算法/链表/leetcode-双指针求交点.js)
+
+
+
+--------
