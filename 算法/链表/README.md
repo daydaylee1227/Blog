@@ -51,31 +51,26 @@
 **链表创建**
 
 ```js
-		class ListNode {
-            constructor(val){
-                this.val = val;
-                this.next = null;
-            }
-        }
-        //单链表插入、删除、查找
+//单链表插入、删除、查找
         class LinkedList {
-            constructor() {
-                this.head = new ListNode('head')
+            constructor(val) {
+                val = val === undefined ? 'head' : val;
+                this.head = new ListNode(val)
             }
-            
+
             // 找val值节点，没有找到返回-1
-            findByVal (val) {
+            findByVal(val) {
                 let current = this.head
-                while(current !== null && current.val !== val ) {
+                while (current !== null && current.val !== val) {
                     current = current.next
                 }
                 return current ? current : -1
             }
-            
+
             // 插入节点,在值为val后面插入
-            insert (newVal, val) {
+            insert(newVal, val) {
                 let current = this.findByVal(val)
-                if(current === -1) return false
+                if (current === -1) return false
                 let newNode = new ListNode(newVal)
                 newNode.next = current.next
                 current.next = newNode
@@ -83,7 +78,7 @@
 
             // 获取值为nodeVal的前一个节点,找不到为-1,参数是val
             // 适用于链表中无重复节点
-            findNodePreByVal (nodeVal) {
+            findNodePreByVal(nodeVal) {
                 let current = this.head;
                 while (current.next !== null && current.next.val !== nodeVal)
                     current = current.next
@@ -93,7 +88,7 @@
             // 根据index查找当前节点, 参数为index
             // 可以作为比较链表是否有重复节点
 
-            findByIndex (index) {
+            findByIndex(index) {
                 let current = this.head,
                     pos = 1
                 while (current.next !== null && pos !== index) {
@@ -101,44 +96,44 @@
                     pos++
                 }
 
-                return current.next !== null ? current : -1
+                return (current && pos === index) ? current : -1
             }
 
             // 删除某一个节点,删除失败放回false
-            remove (nodeVal) {
-                if(nodeVal === 'head' && this.head.next === null) {
-                    return false; // 一个节点'head'不能删除
-                }
+            remove(nodeVal) {
+                if(nodeVal === 'head') return false
                 let needRemoveNode = this.findByVal(nodeVal)
-                if(needRemoveNode === -1) return false
+                if (needRemoveNode === -1) return false
                 let preveNode = this.findNodePreByVal(nodeVal)
-                if(nodeVal === 'head') {
-                    
-                    this.head = this.head.next.next;
-                }else
-                    preveNode.next = needRemoveNode.next
+                
+                preveNode.next = needRemoveNode.next
             }
 
 
             //遍历节点
 
-            disPlay () {
+            disPlay() {
                 let res = new Array()
                 let current = this.head
-                while( current !== null ) {
+                while (current !== null) {
                     res.push(current.val)
                     current = current.next
                 }
                 return res
             }
-            
+
             // 在链表末尾插入一个新的节点
-            push (nodeVal) {
+            push(nodeVal) {
                 let current = this.head
                 let node = new ListNode(nodeVal)
-                while(current.next !== null)
+                while (current.next !== null)
                     current = current.next
                 current.next = node
+            }
+            // 在头部插入
+            frontPush(nodeVal) {
+                let newNode = new ListNode(nodeVal)
+                this.insert(nodeVal,'head')
             }
         }
 ```
@@ -151,13 +146,16 @@
 		let demo = new LinkedList() // LinkedList {head: ListNode}
         // console.log((demo.disPlay())) 
         demo.push('1232')
-        demo.insert(123,'head');
+        demo.insert(123, 'head');
         demo.push('last value')
+        demo.frontPush('start')
+        demo.remove('head')
+        // demo.remove('last value')
         // console.log(demo.remove('head'))
-        demo.push('2132')
-        demo.insert('不存在的值','插入失败')  //return -1
-        console.log(demo.findByIndex(4))
-        console.log((demo.disPlay())) 
+        // demo.push('2132')
+        // demo.insert('不存在的值', '插入失败') //return -1
+        console.log(demo.findByIndex(1))
+        console.log((demo.disPlay()))
 ```
 
 上面的代码片段是测试用到，测试过了，基本上没有上面大问题，当然了，有些细枝末节的地方还是得注意的，比如`findByIndex`这个函数中`pos = 0` 还是 `pos  = 1`问题，取决于自己，还有的话，`remove`函数到底能不能删除'head'头节点，这都是没有准确的标准的，这个可以根据自己情况而定，
@@ -843,3 +841,37 @@ var getIntersectionNode = function (headA, headB) {
 
 
 --------
+
+
+
+## 抛砖引玉**
+
+选一部分题目出来，希望对大家算是一个抛砖引玉的过程吧，也算是对自我的总结，接下来还会继续刷题的，需要继续跟着我刷题的话，可以看看下面噢👇
+
+[GitHub点这里](https://github.com/daydaylee1227/Blog/tree/master/算法/链表)
+
+
+
+## **❤️ 感谢大家**
+
+如果你觉得这篇内容对你挺有有帮助的话：
+
+1. 点赞支持下吧，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）
+
+2. 欢迎在留言区与我分享你的想法，也欢迎你在留言区记录你的思考过程。
+
+3. 觉得不错的话，也可以看看往期文章：
+
+   [[诚意满满👍\]Chrome DevTools调试小技巧，效率➡️🚀🚀🚀](https://juejin.im/user/5ef326ab6fb9a07ebe237664/posts)
+
+   [[实用👍\]推荐一些非常棒的前端网站](https://juejin.im/post/5f0dce476fb9a07e5b62d134)
+
+   [[干货👍\]从详细操作js数组到浅析v8中array.js](https://juejin.im/post/5f02e7725188252e8272cd47)
+
+   [[1.2W字👍\]写给女友的秘籍-浏览器工作原理（上）篇](https://juejin.im/post/5f007d32f265da22b64936bf)
+
+   [[1.1W字\]写给女友的秘籍-浏览器工作原理（渲染流程）篇](https://juejin.im/post/5f05d12a5188252e8406e37b)
+
+   [[建议👍\]再来100道JS输出题酸爽继续（共1.8W字+巩固JS基础）](https://juejin.im/post/5efb4ca5f265da23016c5c80)
+
+   [[诚意满满✍\]带你填一些JS容易出错的坑](https://juejin.im/post/5f0884c9e51d453462004fae)
