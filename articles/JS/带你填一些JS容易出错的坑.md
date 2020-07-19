@@ -4,6 +4,359 @@
 
 > 漫漫编程路，总有一些坑让你泪流满面。
 
+题目主要来自看到过的易错题，还有经典的**44道 JavaScript Puzzlers!**，出自[原文链接](http://javascript-puzzlers.herokuapp.com/)
+
+
+
+### 变量提升
+
+```
+var name = 'World!';
+(function () {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+```
+
+在 JavaScript中， Fun 和 var 会被提升
+
+相当于
+
+```
+var name = 'World!';
+(function () {
+    var name;
+    if (typeof name === 'undefined') {
+        name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+})();
+```
+
+巩固一下：
+
+```
+	var str = 'World!';   
+    (function (name) {
+    if (typeof name === 'undefined') {
+        var name = 'Jack';
+        console.log('Goodbye ' + name);
+    } else {
+        console.log('Hello ' + name);
+    }
+    })(str);
+    答案：Hello World 因为name已经变成函数内局部变量
+```
+
+### 最大整数
+
+```
+var END = Math.pow(2, 53);
+var START = END - 100;
+var count = 0;
+for (var i = START; i <= END; i++) {
+    count++;
+}
+console.log(count);
+```
+
+一个知识点:[Infinity](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity)
+
+```
+在 JS 里, Math.pow(2, 53) == 9007199254740992 是可以表示的最大值. 最大值加一还是最大值. 所以循环不会停.
+```
+
+### 稀疏数组与密数组
+
+```
+var ary = [0,1,2];
+ary[10] = 10;
+ary.filter(function(x) { return x === undefined;});
+```
+
+执行结果如何呢？
+
+做这个题目，你需要了解稀疏数组和密集数组
+
+- [译 JavaScript中的稀疏数组与密集数组](http://www.cnblogs.com/ziyunfei/archive/2012/09/16/2687165.html)
+- [Array/filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+看过源码的同学应该知道，filter源码中，会去判断数组的这个索引值是不是数组的一个属性，有兴趣的同学可以看看我写的这篇关于数组的：[[干货👍]从详细操作js数组到浅析v8中array.js](https://juejin.im/post/5f02e7725188252e8272cd47)
+
+```
+0 in ary; => true
+3 in ary; => false
+10 in ary; => true
+也就是说 从 3 - 9 都是没有初始化的'坑'!, 这些索引并不存在与数组中. 在 array 的函数调用的时候是会跳过这些'坑'的.
+```
+
+所以答案就是[]
+
+### 浮点运算
+
+```
+var two   = 0.2
+var one   = 0.1
+var eight = 0.8
+var six   = 0.6
+[two - one == one, eight - six == two]
+```
+
+你认为结果是多少呢？面试遇到这个问题，应该怎么回答呢？
+
+```
+[true,false]
+```
+
+可以看看这些文章：
+
+- [探寻 JavaScript 精度问题以及解决方案](https://juejin.im/post/5bb474166fb9a05cfc54e94d#heading-4)
+- [从0.1+0.2=0.30000000000000004再看JS中的Number类型](https://juejin.im/post/5a6fce10f265da3e261c3c71#heading-0)
+
+### Switch
+
+```
+function showCase(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase(new String('A'));
+```
+
+运行结果如何呢？
+
+```
+switch 是严格比较, String 实例和 字符串不一样.
+答案自然是'Do not know' 
+所以一般情况下,写switch语句，也建议写default
+```
+
+String("A")
+
+```
+function showCase2(value) {
+    switch(value) {
+    case 'A':
+        console.log('Case A');
+        break;
+    case 'B':
+        console.log('Case B');
+        break;
+    case undefined:
+        console.log('undefined');
+        break;
+    default:
+        console.log('Do not know!');
+    }
+}
+showCase2(String('A'));
+```
+
+运行结果呢？
+
+```
+答案：Case A
+解析：String('A')就是返回一个字符串
+
+```
+
+### %运算符
+
+
+
+```
+function isOdd(num) {
+    return num % 2 == 1;
+}
+function isEven(num) {
+    return num % 2 == 0;
+}
+function isSane(num) {
+    return isEven(num) || isOdd(num);
+}
+var values = [7, 4, '13', -9, Infinity];
+values.map(isSane);
+
+```
+
+运行的结果如何呢？
+
+```
+答案：[true, true, true, false, false]
+解析：%如果不是数值会调用Number（）去转化
+     '13' % 2       // 1
+      Infinity % 2  //NaN  Infinity 是无穷大
+      -9 % 2        // -1
+巩固： 9 % -2        // 1   余数的正负号随第一个操作数
+```
+
+### 数组的原型是什么
+
+```
+Array.isArray( Array.prototype )
+```
+
+这段代码的执行结果？
+
+```
+答案：true
+解析：Array.prototype是一个数组
+数组的原型是数组，对象的原型是对象，函数的原型是函数
+```
+
+### 宽松相等 == 
+
+```
+[]==[]
+```
+
+答案是什么呢
+
+```
+答案：false
+解析：两个引用类型， ==比较的是引用地址
+```
+
+### == 和 !优先级
+
+```
+[]== ![] 
+```
+
+结果是什么呢？
+
+```
+(1)! 的优先级高于== ，右边Boolean([])是true,取返等于 false
+(2)一个引用类型和一个值去比较 把引用类型转化成值类型，左边0
+(3)所以 0 == false  答案是true
+```
+
+### 数字与字符串相加减
+
+```
+'5' + 3
+'5' - 3
+```
+
+结果是多少呢？
+
+```
+答案：53  2
+解析：加号有拼接功能，减号就是逻辑运算
+巩固：typeof (+"1")   // "number" 对非数值+—常被用来做类型转换相当于Number()
+```
+
+### 一波骚操作  + - + + + - + 
+
+```
+1 + - + + + - + 1
+```
+
+结果是多少呢
+
+```
+答案：2
+解析：+-又是一元加和减操作符号，就是数学里的正负号。负负得正哈。 
+巩固： 一元运算符还有一个常用的用法就是将自执行函数的function从函数声明变成表达式。
+      常用的有 + - ～ ！ void
+      + function () { }
+      - function () { }
+      ~ function () { }
+      void function () { }
+```
+
+### 又是稀疏数组？ Array.prototype.map()
+
+```
+var ary = Array(3);
+ary[0]=2
+ary.map(function(elem) { return '1'; });
+```
+
+输出结果是多少呢？
+
+```
+稀疏数组
+
+题目中的数组其实是一个长度为3, 但是没有内容的数组, array 上的操作会跳过这些未初始化的'坑'.
+
+所以答案是 ["1", undefined × 2]
+```
+
+这里贴上 Array.prototype.map 的 polyfill.
+
+```
+Array.prototype.map = function(callback, thisArg) {
+
+        var T, A, k;
+
+        if (this == null) {
+            throw new TypeError(' this is null or not defined');
+        }
+
+        var O = Object(this);
+        var len = O.length >>> 0;
+        if (typeof callback !== 'function') {
+            throw new TypeError(callback + ' is not a function');
+        }
+        if (arguments.length > 1) {
+            T = thisArg;
+        }
+        A = new Array(len);
+        k = 0;
+        while (k < len) {
+            var kValue, mappedValue;
+            if (k in O) {
+                kValue = O[k];
+                mappedValue = callback.call(T, kValue, k, O);
+                A[k] = mappedValue;
+            }
+            k++;
+        }
+        return A;
+    };
+```
+
+JS是如何存储
+
+```
+var a = 111111111111111110000,
+b = 1111;
+a + b;
+```
+
+这段代码的执行结果？
+
+```
+答案：11111111111111111000
+解析：在JavaScript中number类型在JavaScript中以64位（8byte）来存储。
+这64位中有符号位1位、指数位11位、实数位52位。
+2的53次方时，是最大值。
+其值为：9007199254740992（0x20000000000000）。
+超过这个值的话，运算的结果就会不对.
+```
+
+
+
+
+
 
 
 ### [1,2,5,10].sort()
@@ -562,12 +915,14 @@ console.log(firstEven);
 
 **答案 1 4**
 
-### 三元运算符
+### 三元运算符优先级
 
 ```
 var val = 'smtg';
 console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
 ```
+
+这段代码的执行结果？
 
 ```
 答案：Something
@@ -633,6 +988,26 @@ foo.name = "bar";
 解析：null代表空对象指针，所以typeof判断成一个对象。可以说JS设计上的一个BUG
      instanceof 实际上判断的是对象上构造函数，null是空当然不可能有构造函数
 巩固：null == undefined //true    null === undefined //flase
+```
+
+### [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+
+```
+答案：Error
+解析：Math.pow (x , y)  x 的 y 次幂的值
+     reduce（fn,total）
+     fn (total, currentValue, currentIndex, arr) 
+         如果一个函数不传初始值，数组第一个组默认为初始值.
+         [3,2,1].reduce(Math.pow)
+         Math.pow(3,2) //9
+         Math.pow(9,1) //9
+
+巩固题,可以做一做：
+	 [].reduce(Math.pow)       //空数组会报TypeError
+     [1].reduce(Math.pow)      //只有初始值就不会执行回调函数，直接返回1
+     [].reduce(Math.pow,1)     //只有初始值就不会执行回调函数，直接返回1
+     [2].reduce(Math.pow,3)    //传入初始值，执行回调函数，返回9
+
 ```
 
 
