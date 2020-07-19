@@ -560,7 +560,82 @@ console.log(firstEven);
 
 留给你们思考，我可是第一遍就做错了(；′⌒`)
 
-// 1 4
+**答案 1 4**
+
+### 三元运算符
+
+```
+var val = 'smtg';
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
+```
+
+```
+答案：Something
+解析：字符串连接比三元运算有更高的优先级 
+     所以原题等价于 'Value is true' ? 'Somthing' : 'Nonthing' 
+     而不是 'Value   is' + (true ? 'Something' : 'Nonthing')
+巩固：
+    1 || fn() && fn()   //1  
+    1 || 1 ? 2 : 3 ;    //2  
+```
+
+### 原型
+
+```
+var a = {}, b = Object.prototype;
+[a.prototype === b, Object.getPrototypeOf(a) === b] 
+```
+
+执行结果是多少呢
+
+```
+答案：false, true
+解析：Object 的实例是 a，a上并没有prototype属性
+     a的__poroto__ 指向的是Object.prototype，也就是Object.getPrototypeOf(a)。a的原型对象是b
+```
+
+### 原型II
+
+```
+function f() {}
+var a = f.prototype, b = Object.getPrototypeOf(f);
+a === b         
+```
+
+这段代码的执行结果？
+
+```
+答案：false
+解析：a是构造函数f的原型 ： {constructor: ƒ}
+b是实例f的原型对象 ： ƒ () { [native code] }
+```
+
+### 函数名称
+
+```
+function foo() { }
+var oldName = foo.name;
+foo.name = "bar";
+[oldName, foo.name]     
+```
+
+代码执行结果是什么？
+
+```
+答案：["foo", "foo"]
+解析：函数的名字不可变.
+```
+
+### [typeof null, null instanceof Object]
+
+```
+答案：["object", false]
+解析：null代表空对象指针，所以typeof判断成一个对象。可以说JS设计上的一个BUG
+     instanceof 实际上判断的是对象上构造函数，null是空当然不可能有构造函数
+巩固：null == undefined //true    null === undefined //flase
+```
+
+
 
 
 
