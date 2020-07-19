@@ -2,9 +2,177 @@
 
 ### 前言
 
-> 漫漫编程路，总有一些坑让你泪流满面。
+> 大家好，我叫TianTian，一个爱瞎折腾，爱算法的Acmer爱好者，梳理一些比较好的JS题目，复习完还是收获很大，分享给大家❤️
 
 题目主要来自看到过的易错题，还有经典的**44道 JavaScript Puzzlers!**，出自[原文链接](http://javascript-puzzlers.herokuapp.com/)
+
+
+
+**[stackoverflow](https://stackoverflow.com/questions)** 这上面有很多Questions不错的，可以好好补一补基础
+
+
+
+> JS易错题暂时很长一段时间就不更新啦，TypeScript都出来了，TS真香
+>
+> ➡️给个小建议，可以先看完第一题，要是没有问题的话，后面的基本上也可以跳过
+
+
+
+[GitHub仓库点这里](https://github.com/daydaylee1227/Blog/blob/master/articles/JS/%E5%B8%A6%E4%BD%A0%E5%A1%AB%E4%B8%80%E4%BA%9BJS%E5%AE%B9%E6%98%93%E5%87%BA%E9%94%99%E7%9A%84%E5%9D%91.md)
+
+开始吧👇
+
+
+
+### `.` VS `= ` 操作符优先级
+
+```
+		let a = {n : 1};
+        let b = a;
+        a.x = a = {n: 2};
+
+        
+        console.log(a.x)
+        console.log(b.x)
+```
+
+输出是什么呢？
+
+真的想明白了吗？
+
+<details><summary><b>答案</b></summary>
+<p>
+
+
+undefined 
+
+-----
+
+{ n : 2}
+
+</p>
+</details>
+
+### 你真的了解作用域吗
+
+```
+		var a = 0,  
+            b = 0;
+        function A(a) {
+            A = function (b) {
+                console.log(a + b++)
+            }
+            console.log(a++)
+        }
+        A(1)
+        A(2)
+```
+
+留给你们思考，我可是第一遍就做错了(；′⌒`)
+
+**答案 1 4**
+
+可以好好想一想，你会茅塞顿开的。
+
+
+
+### 类数组的length
+
+```js
+		var obj = {
+            "2" : 3,
+            "3" : 4,
+            "length" : 2,
+            "splice" : Array.prototype.splice,
+            "push" : Array.prototype.push
+        }
+        obj.push(1)
+        obj.push(2)
+        console.log(obj)
+```
+
+这段代码的执行结果？
+
+```
+答案：Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
+```
+
+![](C:\Users\DayDay\Desktop\Blog\images\js\类数组length.PNG)
+
+```
+解释就是第一次使用push,obj对象的push方法设置obj[2] = 1,obj.length++
+
+解释就是第一次使用push,obj对象的push方法设置obj[3] = 2,obj.length++
+
+使用console.log()方法输出的时候，因为obj上有length属性和splice方法，故将其作为数组输出打印
+
+打印时因为数组未设置下标为0和1的值，故打印的结果就是empty，主动获取obj[0] = undefined
+
+```
+
+
+
+### 非匿名自执行函数，函数名只读
+
+```js
+		var b = 10;
+        (function b(){
+            // 'use strict'
+            b = 20
+            console.log(b)
+        })()
+```
+
+输出的结果是什么？
+
+```
+Function b
+```
+
+```
+- 如标题一样，非匿名自执行函数，函数名不可以修改，严格模式下会TypeError，
+- 非严格模式下，不报错，修改也没有用。
+- 查找变量b时,立即执行函数会有内部作用域，会先去查找是否有b变量的声明，有的话，直接复制
+- 确实发现具名函数Function b(){} 所以就拿来做b的值
+- IIFE的函数内部无法进行复制(类似于const)
+```
+
+### 非匿名自执行函数 II
+
+```
+		var b = 10;
+        (function b(){
+            // 'use strict'
+            var b = 20
+            console.log(window.b) 
+            console.log(b)
+        })()
+```
+
+输出是多少呢？
+
+```
+10
+20
+// 访问b变量的时候,发现var b = 20;在当前作用域中找到了b变量，于是把b的值作为20
+```
+
+### 非匿名自执行函数 III
+
+```
+		var b = 10;
+        (function b(){
+            console.log(b)
+            b = 5
+            console.log(window.b)
+            var b = 20
+            console.log(b)
+        })()
+```
+
+输出的结果是多少呢？
+
+这个问题应该不难，就留给你们思考吧
 
 
 
@@ -179,8 +347,6 @@ showCase2(String('A'));
 
 ### %运算符
 
-
-
 ```
 function isOdd(num) {
     return num % 2 == 1;
@@ -334,7 +500,7 @@ Array.prototype.map = function(callback, thisArg) {
     };
 ```
 
-JS是如何存储
+### JS是如何存储
 
 ```
 var a = 111111111111111110000,
@@ -353,9 +519,258 @@ a + b;
 超过这个值的话，运算的结果就会不对.
 ```
 
+### 数组比较大小
+
+```
+var a = [1, 2, 3],
+    b = [1, 2, 3],
+    c = [1, 2, 4]
+a ==  b
+a === b
+a >   c
+a <   c
+```
+
+这段代码的执行结果？
+
+```
+答案：false, false, false, true
+解析：相等（==）和全等（===）还是比较引用地址
+     引用类型间比较大小是按照字典序比较，就是先比第一项谁大，相同再去比第二项。
+```
+
+### 三元运算符优先级
+
+```
+var val = 'smtg';
+console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
+```
+
+这段代码的执行结果？
+
+```
+答案：Something
+解析：字符串连接比三元运算有更高的优先级 
+     所以原题等价于 'Value is true' ? 'Somthing' : 'Nonthing' 
+     而不是 'Value   is' + (true ? 'Something' : 'Nonthing')
+巩固：
+    1 || fn() && fn()   //1  
+    1 || 1 ? 2 : 3 ;    //2  
+```
+
+### 原型
+
+```
+var a = {}, b = Object.prototype;
+[a.prototype === b, Object.getPrototypeOf(a) === b] 
+```
+
+执行结果是多少呢
+
+```
+答案：false, true
+解析：Object 的实例是 a，a上并没有prototype属性
+     a的__poroto__ 指向的是Object.prototype，也就是Object.getPrototypeOf(a)。a的原型对象是b
+```
+
+### 原型II
+
+```
+function f() {}
+var a = f.prototype, b = Object.getPrototypeOf(f);
+a === b         
+```
+
+这段代码的执行结果？
+
+```
+答案：false
+解析：a是构造函数f的原型 ： {constructor: ƒ}
+b是实例f的原型对象 ： ƒ () { [native code] }
+```
+
+### 函数名称
+
+```
+function foo() { }
+var oldName = foo.name;
+foo.name = "bar";
+[oldName, foo.name]     
+```
+
+代码执行结果是什么？
+
+```
+答案：["foo", "foo"]
+解析：函数的名字不可变.
+```
+
+### [typeof null, null instanceof Object]
+
+```
+答案：["object", false]
+解析：null代表空对象指针，所以typeof判断成一个对象。可以说JS设计上的一个BUG
+     instanceof 实际上判断的是对象上构造函数，null是空当然不可能有构造函数
+巩固：null == undefined //true    null === undefined //flase
+```
+
+### [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
+
+```
+答案：Error
+解析：Math.pow (x , y)  x 的 y 次幂的值
+     reduce（fn,total）
+     fn (total, currentValue, currentIndex, arr) 
+         如果一个函数不传初始值，数组第一个组默认为初始值.
+         [3,2,1].reduce(Math.pow)
+         Math.pow(3,2) //9
+         Math.pow(9,1) //9
+
+巩固题,可以做一做：
+	 [].reduce(Math.pow)       //空数组会报TypeError
+     [1].reduce(Math.pow)      //只有初始值就不会执行回调函数，直接返回1
+     [].reduce(Math.pow,1)     //只有初始值就不会执行回调函数，直接返回1
+     [2].reduce(Math.pow,3)    //传入初始值，执行回调函数，返回9
+```
+
+### replace
+
+```
+"1 2 3".replace(/\d/g, parseInt)
+```
+
+输出是什么呢？
+
+```
+答案："1 NaN 3"
+解析：replace() 回调函数的四个参数:
+      1、匹配项  
+      2、与模式中的子表达式匹配的字符串  
+      3、出现的位置  
+      4、stringObject 本身 。
+如果没有与子表达式匹配的项，第二参数为出现的位置.所以第一个参数是匹配项，第二个参数是位置
+ parseInt('1', 0)
+ parseInt('2', 2)  //2进制中不可能有2
+ parseInt('3', 4)
+```
+
+### eval用法
+
+```
+function f() {}
+var parent = Object.getPrototypeOf(f);
+f.name // ?
+parent.name // ?
+typeof eval(f.name) // ?
+typeof eval(parent.name) //  ?  
+
+```
 
 
 
+这段代码的执行结果？
+
+```
+答案："f", "Empty", "function", error
+解析：f的函数名就是f
+     parent是f原型对象的名字为"" ,
+     先计算eval(f.name) 为 f,f的数据类型是function
+     eval(parent.name) 为undefined, "undefined"
+```
+
+
+
+### new  Date()
+
+```
+var a = new Date("2014-03-19"),
+b = new Date(2014, 03, 19);
+[a.getDay() === b.getDay(), a.getMonth() === b.getMonth()]
+```
+
+这段代码的执行结果？
+
+```
+答案：[false, false]
+解析： var a = new Date("2014-03-19")    //能够识别这样的字符串，返回想要的日期
+      Wed Mar 19 2014 08:00:00 GMT+0800 (CST)
+      b = new Date(2014, 03, 19);       //参数要按照索引来
+      Sat Apr 19 2014 00:00:00 GMT+0800 (CST)
+      月是从0索引，日期是从1 
+      getDay()是获取星期几
+      getMonth()是获取月份所以都不同
+巩固： [a.getDate() === b.getDate()] //true
+```
+
+
+
+### new  Date() II
+
+```
+var a = Date(0);
+var b = new Date(0);
+var c = new Date();
+[a === b, b === c, a === c]
+```
+
+这段代码的执行结果？
+
+```
+答案：[false, false, false]
+解析：当日期被作为构造函数调用时，它返回一个相对于划时代的对象（JAN 01 1970）。
+当参数丢失时，它返回当前日期。当它作为函数调用时，它返回当前时间的字符串表示形式。
+a是字符串   a === b // 数据类型都不同，肯定是false
+b是对象     b === c // 引用类型，比的是引用地址
+c也是对象   a === c // 数据类型都不同，肯定是false
+```
+
+
+
+### new  Date() III
+
+```
+var a = new Date("epoch")
+```
+
+你认为结果是多少呢？
+
+```
+答案：Invalid Date {}
+解析：您得到“无效日期”，这是一个实际的日期对象（一个日期的日期为true）。但无效。这是因为时间内部保持为一个数字，在这种情况下，它是NA。
+      在chrome上是undefined 
+      正确的是格式是var d = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+```
+
+
+
+### Function.length
+
+```
+var a = Function.length,
+b = new Function().length
+a === b
+```
+
+这段代码的执行结果是？
+
+
+
+```
+答案：false
+解析：首先new在函数带（）时运算优先级和.一样所以从左向右执行
+     new Function() 的函数长度为0
+巩固：function fn () {
+         var a = 1;
+      }
+      console.log(fn.length) 
+      //0 fn和new Function()一样
+```
+
+
+
+
+
+> 要是看过往期的这篇文章[[诚意满满✍]带你填一些JS容易出错的坑](https://juejin.im/post/5f0884c9e51d453462004fae) 就可以给我点个赞👍关注一下啦，下面的内容都是这篇文章的内容。
 
 
 
@@ -759,8 +1174,6 @@ console.log(newList.push(4))
 
 
 
-### 7.13更新一波
-
 
 
 ### 自动分号插入
@@ -894,132 +1307,6 @@ console.log(firstEven);
 
 
 
-### 7.19更新一波
-
-### 你真的了解作用域吗
-
-```
-		var a = 0,  
-            b = 0;
-        function A(a) {
-            A = function (b) {
-                console.log(a + b++)
-            }
-            console.log(a++)
-        }
-        A(1)
-        A(2)
-```
-
-留给你们思考，我可是第一遍就做错了(；′⌒`)
-
-**答案 1 4**
-
-### 三元运算符优先级
-
-```
-var val = 'smtg';
-console.log('Value is ' + (val === 'smtg') ? 'Something' : 'Nothing');
-```
-
-这段代码的执行结果？
-
-```
-答案：Something
-解析：字符串连接比三元运算有更高的优先级 
-     所以原题等价于 'Value is true' ? 'Somthing' : 'Nonthing' 
-     而不是 'Value   is' + (true ? 'Something' : 'Nonthing')
-巩固：
-    1 || fn() && fn()   //1  
-    1 || 1 ? 2 : 3 ;    //2  
-```
-
-### 原型
-
-```
-var a = {}, b = Object.prototype;
-[a.prototype === b, Object.getPrototypeOf(a) === b] 
-```
-
-执行结果是多少呢
-
-```
-答案：false, true
-解析：Object 的实例是 a，a上并没有prototype属性
-     a的__poroto__ 指向的是Object.prototype，也就是Object.getPrototypeOf(a)。a的原型对象是b
-```
-
-### 原型II
-
-```
-function f() {}
-var a = f.prototype, b = Object.getPrototypeOf(f);
-a === b         
-```
-
-这段代码的执行结果？
-
-```
-答案：false
-解析：a是构造函数f的原型 ： {constructor: ƒ}
-b是实例f的原型对象 ： ƒ () { [native code] }
-```
-
-### 函数名称
-
-```
-function foo() { }
-var oldName = foo.name;
-foo.name = "bar";
-[oldName, foo.name]     
-```
-
-代码执行结果是什么？
-
-```
-答案：["foo", "foo"]
-解析：函数的名字不可变.
-```
-
-### [typeof null, null instanceof Object]
-
-```
-答案：["object", false]
-解析：null代表空对象指针，所以typeof判断成一个对象。可以说JS设计上的一个BUG
-     instanceof 实际上判断的是对象上构造函数，null是空当然不可能有构造函数
-巩固：null == undefined //true    null === undefined //flase
-```
-
-### [ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]
-
-```
-答案：Error
-解析：Math.pow (x , y)  x 的 y 次幂的值
-     reduce（fn,total）
-     fn (total, currentValue, currentIndex, arr) 
-         如果一个函数不传初始值，数组第一个组默认为初始值.
-         [3,2,1].reduce(Math.pow)
-         Math.pow(3,2) //9
-         Math.pow(9,1) //9
-
-巩固题,可以做一做：
-	 [].reduce(Math.pow)       //空数组会报TypeError
-     [1].reduce(Math.pow)      //只有初始值就不会执行回调函数，直接返回1
-     [].reduce(Math.pow,1)     //只有初始值就不会执行回调函数，直接返回1
-     [2].reduce(Math.pow,3)    //传入初始值，执行回调函数，返回9
-
-```
-
-
-
-
-
-
-
-### 持续更新中
-
-有不错的题目，或者是JS中容易出错的坑，掘金网友可以提出来❤️，我会更新的啦🆗
-
 
 
 ## ❤️ 感谢大家
@@ -1042,4 +1329,4 @@ foo.name = "bar";
 
    [[建议👍]再来100道JS输出题酸爽继续（共1.8W字+巩固JS基础）](https://juejin.im/post/5efb4ca5f265da23016c5c80)
 
-   [[诚意满满✍]带你填一些JS容易出错的坑](https://juejin.im/post/5f0884c9e51d453462004fae)
+   [「算法与数据结构」链表的9个基本操作](https://juejin.im/post/5f107425e51d4534a2088f82)
