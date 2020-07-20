@@ -307,3 +307,143 @@ export default {
 
 
 
+到这里第一天的任务以及完成，代码已经上传到GitHub上的一个分支，有兴趣的跨域Clone
+
+![Day1展示效果](C:\Users\DayDay\Desktop\Blog\images\vue-daymusic\day1-骨架展示效果.gif)
+
+
+
+
+
+### 小小总结：
+
+webpack配置别名:
+
+1. 进入webpack.base.cong.js文件
+
+2. resolve中alias属性添加别名
+
+   ```javascript
+   alias: {
+         '@': resolve('src'),
+         'common': resolve('src/common'),
+         'components': resolve('src/components'),
+         'base': resolve('src/base'),
+         'api': resolve('src/api')
+       }
+   
+   function resolve(dir) {
+     return path.join(__dirname, '..', dir)
+   } 
+   
+   
+   ```
+
+
+
+**vue stylus 中使用@import 引入路径问题**
+
+```text
+<style  lang="stylus">     
+//使用相对路径可以正确导入 
+@import '../assets/css/index.styl';     
+//使用 @路径引入 报错     
+@import '@/assets/css/index.styl'; </style>
+```
+
+解决方案
+
+```text
+ @import '~@/assets /css/index.styl'
+```
+
+原理：CSS loader 会把把非根路径的url解释为相对路径， 加~前缀才会解释成模块路径。
+
+
+
+**组件注册使用**
+
+需要注意的就是组件的驼峰命名，MHeader –>> m-header
+
+```
+第一步
+import MHeader from 'components/m-header/m-header'
+第二步
+export default {
+  components: {
+    MHeader,
+    Tab
+  }
+}
+第三步
+<m-header></m-header>
+```
+
+**router-link** 声明式
+
+tag属性表示渲染成什么标签，默认是a标签
+
+to表示目标路由连接
+
+active-class 默认值: `"router-link-active"` 激活后使用的class类名
+
+
+
+**router-view**
+
+渲染路径匹配到的视图组件
+
+
+
+**router.push(...) 编程式导航**
+
+
+
+**路由**
+
+默认的是hash模式，使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。
+
+如果不想要很丑的 hash，我们可以用路由的 **history 模式**，这种模式充分利用 `history.pushState` API 来完成 URL 跳转而无须重新加载页面。
+
+
+
+```
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)  //Vue注册Router
+```
+
+
+
+**路由使用**
+
+```
+import Recommend from '@/components/recommend/recommend'
+import Rank from '@/components/rank/rank'
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      redirect: '/recommend'
+    },
+    {
+      path: '/',
+      name: 'Recommend',
+      component: Recommend
+    },
+  ]
+})
+```
+
+
+
+------
+
+
+
+
+
+
+
+## 推荐页面开发
+
