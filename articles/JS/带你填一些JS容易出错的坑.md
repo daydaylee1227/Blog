@@ -463,7 +463,7 @@ ary.map(function(elem) { return '1'; });
 
 题目中的数组其实是一个长度为3, 但是没有内容的数组, array 上的操作会跳过这些未初始化的'坑'.
 
-所以答案是 ["1", undefined × 2]
+所以答案是 ["1", empty × 2]
 ```
 
 这里贴上 Array.prototype.map 的 polyfill.
