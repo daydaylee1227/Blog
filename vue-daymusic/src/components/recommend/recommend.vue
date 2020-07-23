@@ -55,8 +55,9 @@ export default {
       getRecommend().then((res)=>{
           console.log(res)
           if(res.code === ERR_OK){
-            console.log(res.data.slider)
+            
             this.recommends = res.data.slider
+            console.log(this.recommends.length)
           }
       })
     },
