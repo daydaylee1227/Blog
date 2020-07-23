@@ -422,3 +422,69 @@ this.slider = new BScroll(this.$refs.slider, {
 "better-scroll": "^0.1.15"
 ```
 
+接下来就是动态的去获取设备的宽度，然后设置响应容器的宽
+
+**先看看div标签**👇
+
+```
+<div class="slider" ref="slider">
+    <div class="slider-group" ref="sliderGroup">
+      <slot>
+      </slot>
+    </div>
+    <div class="dots">
+      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots" :key="item.id"></span>
+    </div>
+  </div>
+```
+
+然后是方法👇
+
+```
+methods: {
+      _setSliderWidth(isResize) {
+        this.children = this.$refs.sliderGroup.children
+
+        let width = 0
+        let sliderWidth = this.$refs.slider.clientWidth
+        for (let i = 0; i < this.children.length; i++) {
+          let child = this.children[i]
+          addClass(child, 'slider-item')
+
+          child.style.width = sliderWidth + 'px'
+          width += sliderWidth
+        }
+        if (this.loop && !isResize) {
+          width += 2 * sliderWidth
+        }
+        console.log(this.children.length)
+        console.log(width)
+        this.$refs.sliderGroup.style.width = width + 'px'
+      },
+      _initSlider() {
+        this.slider = new BScroll(this.$refs.slider, {
+          scrollX: true,
+          scrollY: false,
+          momentum: false,
+          snap: true,
+          snapLoop: this.loop,
+          snapThreshold: 0.3,
+          snapSpeed: 400
+        })
+
+        this.slider.on('scrollEnd', () => {
+          let pageIndex = this.slider.getCurrentPage().pageX
+          if (this.loop) {
+            pageIndex -= 1
+          }
+          this.currentPageIndex = pageIndex
+
+          if (this.autoPlay) {
+            clearTimeout(this.timer)
+            this._play()
+          }
+        })
+      },
+```
+
+在使用better-scroll插件的时候，需要将sliderGroup的宽度设置为n+2个子元素的宽度，这样子才可以实现无缝的轮播效果。
