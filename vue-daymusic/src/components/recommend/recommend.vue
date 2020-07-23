@@ -57,7 +57,7 @@ export default {
           if(res.code === ERR_OK){
             
             this.recommends = res.data.slider
-            console.log(this.recommends.length)
+            console.log(this.recommends)
           }
       })
     },
