@@ -385,3 +385,40 @@ export const ERR_OK = 0
 
 最后通过调用recommend.js写好的数据接口，拿到5条数据后，我们开始写轮播图板块。
 
+**轮播图借用第三方插件better-scroll**
+
+```
+npm install better-scroll -S
+```
+
+使用方法👇
+
+```vue
+<template>
+  <div class="slider" ref="slider">
+    <div class="slider-group" ref="sliderGroup">
+      <slot></slot>
+    </div>
+    <div class="dots"></div>
+  </div>
+</template>
+
+this.slider = new BScroll(this.$refs.slider, {
+        scrollX: true,
+        scrollY: false,
+        momentum: false,
+        snap: true,
+        snapLoop: this.loop, // 表示轮播
+        snapThreshold: 0.3,
+        snapSpeed: 400,
+});
+```
+
+为什么轮播图实现不了无缝轮播，
+
+解决的办法就是减低版本，最新版本不知道为什么使用不了
+
+```
+"better-scroll": "^0.1.15"
+```
+
