@@ -340,3 +340,48 @@ export function param(data) {
 
 
 
+接下来就是在api文件下，封装数据请求的代码
+
+我们通过QQ音乐首页面，打开调试工具，然后通过NetWork控制面板，找到请求地址路径
+
+
+
+```
+//recommend.js文件
+
+import jsonp from 'common/js/jsonp'
+import {commonParams, options} from './config'
+
+export function getRecommend() {
+    const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
+
+    const data = Object.assign({},commonParams, {
+        platform: 'h5',
+        uin: 0,
+        needNewCode: 1
+    }) 
+    return jsonp(url, data, options)
+}
+
+```
+
+我们看看config.js文件的配置信息
+
+```
+export const commonParams = {
+    g_tk: 1928093487,
+    inCharset: 'utf-8',
+    outCharset: 'utf-8',
+    notice: 0,
+    format: 'jsonp'
+}
+
+export const options = {
+    param: 'jsonpCallback'
+}
+
+export const ERR_OK = 0
+```
+
+最后通过调用recommend.js写好的数据接口，拿到5条数据后，我们开始写轮播图板块。
+
