@@ -45,7 +45,7 @@
         if (this.autoPlay) {
           this._play()
         }
-      }, 200)
+      }, 20)
 
       window.addEventListener('resize', () => {
         if (!this.slider) {
@@ -74,6 +74,7 @@
         if (this.loop && !isResize) {
           width += 2 * sliderWidth
         }
+        console.log(this.children.length)
         console.log(width)
         this.$refs.sliderGroup.style.width = width + 'px'
       },
