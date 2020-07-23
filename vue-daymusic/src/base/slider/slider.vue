@@ -1,13 +1,9 @@
 <template>
   <div class="slider" ref="slider">
     <div class="slider-group" ref="sliderGroup">
-      <slot>
-
-      </slot>
+      <slot></slot>
     </div>
-    <!-- <div class="dots">
-      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots"></span>
-    </div>-->
+    <div class="dots"></div>
   </div>
 </template>
 
@@ -38,17 +34,34 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this._setSliderWidth()
-      this._initSlider()
-    }, 200);
+      
+      this._setSliderWidth();
+      this._initSlider();
+    }, 16.8);
   },
   methods: {
+    // _setSliderWidth(isResize) {
+    //   this.children = this.$refs.sliderGroup.children;
+
+    //   let width = 0;
+    //   let sliderWidth = this.$refs.slider.clientWidth;
+    //   for (let i = 0; i < this.children.length; i++) {
+    //     let child = this.children[i];
+    //     addClass(child, "slider-item");
+
+    //     child.style.width = sliderWidth + "px";
+    //     width += sliderWidth;
+    //   }
+    //   if (this.loop && !isResize) {
+    //     width += 2 * sliderWidth;
+    //   }
+    //   this.$refs.sliderGroup.style.width = width + "px";
+    // },
     _setSliderWidth() {
       let slider = this.$refs.slider,
         sliderGroup = this.$refs.sliderGroup,
         width = 0,
         sliderWidth = slider.clientWidth;
-      console.log(sliderWidth,slider)
       this.children = sliderGroup.children;
       for (let i = 0; i < this.children.length; i++) {
         let child =  this.children[i]
@@ -56,14 +69,13 @@ export default {
         child.style.width = sliderWidth + 'px'
         width += sliderWidth
       }
+      // 如果这个loop为true的话,克隆两倍的宽度,这样子的话，无缝轮播
       if(this.loop){
         width += 2 * sliderWidth
       }
       sliderGroup.style.width = width + 'px';
     },
-    _initSlider(){
-
-    }
+    _initSlider() {},
   },
   // data() {
   //   return {

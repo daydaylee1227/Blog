@@ -6,7 +6,7 @@
           <slider>
             <div v-for="item in recommends" :key="item.id">
               <a :href="item.linkUrl">
-                <img class="needsclick" @load="loadImage" :src="item.picUrl">
+                <img class="needsclick"  :src="item.picUrl">
               </a>
             </div>
           </slider>
@@ -35,13 +35,16 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import Scroll from 'base/scroll/scroll'
   import Slider from 'base/slider/slider'
   import {getRecommend} from 'api/recommend'
   import {ERR_OK} from 'api/config'
 export default {
+  name: 'recommend',
   data(){
     return {
       recommends : [],
+      discList : []
     }
   },
   created(){
@@ -58,9 +61,10 @@ export default {
       })
     },
   },
-  components : [
+  components : {
     Slider,
-  ]
+    Scroll,
+  }
 }
 </script>
 

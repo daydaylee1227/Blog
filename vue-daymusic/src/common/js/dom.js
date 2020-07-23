@@ -2,13 +2,13 @@
 
 // 判断某个el是否具有className
 export function hasClass(el, className){
-    console.log(el,className)
+    
     let reg = new RegExp('(^\\s)'+ className + '(\\s|$)')
     return reg.test(el.className)
 }
 
 export function addClass(el, className){
-    console.log(el,className)
+
     if(hasClass(el,className))  return 
     let newClass = el.className.split(' ')
     newClass.push(className)
