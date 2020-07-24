@@ -750,3 +750,4 @@ Vue.use(VueLazyload,{
 ```
 
 给你需要点击事件的元素设置一个class属性，needsclick，这样子就不会阻止点击事件了
+
