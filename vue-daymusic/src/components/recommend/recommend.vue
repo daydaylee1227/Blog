@@ -1,5 +1,6 @@
 <template>
   <div class="recommend" ref="recommend">
+    <!-- 传递一个data给scroll组件,组件收到数据的变化,就会去更新refresh -->
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
         <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
@@ -8,6 +9,7 @@
               <a :href="item.linkUrl">
                 <!-- 监听load事件的原因就是保证scroll组件可以正确计算高度,这样子保证能滑到最低步 -->
                 <img class="needsclick"  :src="item.picUrl" @load="loadImage">
+                <!-- class='needclick' 监听这个dom,这样子默认就不会阻止点击点击事件 -->
               </a>
             </div>
           </slider>
@@ -17,7 +19,7 @@
           <ul>
             <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" :key="index">
               <div class="icon">
-                <img width="60" height="60" :src="item.imgurl">
+                <img width="60" height="60" v-lazy="item.imgurl">
               </div>
               <div class="text">
                 <h2 class="name" v-html="item.creator.name"></h2>
@@ -53,6 +55,7 @@ export default {
     this._getDiscList();
   },
   methods:{
+    //获取轮播图的数据
     _getRecommend(){
       getRecommend().then((res)=>{
           if(res.code === ERR_OK){
@@ -63,6 +66,7 @@ export default {
     selectItem(){
 
     },
+    // 获取热门歌单的数据
     _getDiscList() {
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
@@ -72,6 +76,7 @@ export default {
           console.log(1232)
         })
     },
+    // 给IMG绑定一个事件
     loadImage(){
       // 判断图片是否加载完毕,加载完毕的话,获取scroll组件,重新去refresh,重新计算宽高
       if(!this.loadImag){

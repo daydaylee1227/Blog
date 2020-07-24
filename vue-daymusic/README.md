@@ -711,3 +711,42 @@ function getDiscList() {
 - 监听图片的加载是否完成
 - @load=“loadImage“ 一旦完成的话，就获取重新去refresh一下scroll组件，重新去渲染一遍。
 
+
+
+### vue-lazyload图片懒加载
+
+[点这里](https://github.com/hilongjw/vue-lazyload)
+
+```
+$ npm i vue-lazyload -S
+```
+
+然后就是注册到vue中
+
+```
+import Vue from 'vue'
+import App from './App.vue'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
+// or with options
+Vue.use(VueLazyload,{
+  loading : require('base/loading/loading.gif')
+})
+//导入loading图片
+```
+
+最后通过👇
+
+```
+<img width="60" height="60" v-lazy="item.imgurl">
+```
+
+
+
+### better-scroll与fastclick点击事件冲突
+
+```
+<img class="needsclick"  :src="item.picUrl" @load="loadImage">
+```
+
+给你需要点击事件的元素设置一个class属性，needsclick，这样子就不会阻止点击事件了
