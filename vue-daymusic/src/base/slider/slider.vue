@@ -5,7 +5,7 @@
       </slot>
     </div>
     <div class="dots">
-      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots" :key="item.id"></span>
+      <span class="dot" :class="{active: currentPageIndex === index }" v-for="(item, index) in dots" ></span>
     </div>
   </div>
 </template>
@@ -74,8 +74,6 @@
         if (this.loop && !isResize) {
           width += 2 * sliderWidth
         }
-        console.log(this.children.length)
-        console.log(width)
         this.$refs.sliderGroup.style.width = width + 'px'
       },
       _initSlider() {
@@ -88,14 +86,16 @@
           snapThreshold: 0.3,
           snapSpeed: 400
         })
-
+       // BScroll实例对象会派发一个事件,每次滚动完成后,都会获得这个事件的下标
         this.slider.on('scrollEnd', () => {
           let pageIndex = this.slider.getCurrentPage().pageX
-          if (this.loop) {
+          if (this.loop) {   // 无缝滚动的话,需要下标减一  这是因为默认会在前面添加一个元素
             pageIndex -= 1
           }
           this.currentPageIndex = pageIndex
-
+          
+          // 判断是否是无限滚动的效果,是的话
+          // 每次先清除定时器,然后重新去滚动
           if (this.autoPlay) {
             clearTimeout(this.timer)
             this._play()
@@ -104,13 +104,18 @@
       },
       _initDots() {
         this.dots = new Array(this.children.length)
+        
       },
       _play() {
         let pageIndex = this.currentPageIndex + 1
         if (this.loop) {
+          // 如果是无限轮播的话,就需要加1
           pageIndex += 1
         }
+        // 实现轮播的效果
         this.timer = setTimeout(() => {
+          // slider实例上面有个goToPage(indexX,indexY,400)方法
+          // 分别表示x,y跳转的位置,400表示的是时间间隔
           this.slider.goToPage(pageIndex, 0, 400)
         }, this.interval)
       }
