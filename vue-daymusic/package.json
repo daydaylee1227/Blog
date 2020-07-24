@@ -16,7 +16,8 @@
     "fastclick": "^1.0.6",
     "jsonp": "0.2.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "axios": "^0.16.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -33,6 +34,7 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "express": "^4.14.1",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",

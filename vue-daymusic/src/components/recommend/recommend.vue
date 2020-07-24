@@ -13,17 +13,17 @@
         </div>
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
-          <!-- <ul>
-            <li @click="selectItem(item)" v-for="item in discList" class="item" >
+          <ul>
+            <li @click="selectItem(item)" v-for="(item, index) in discList" class="item" >
               <div class="icon">
-                <img width="60" height="60" v-lazy="item.imgurl">
+                <img width="60" height="60" :src="item.imgurl">
               </div>
               <div class="text">
                 <h2 class="name" v-html="item.creator.name"></h2>
                 <p class="desc" v-html="item.dissname"></p>
               </div>
             </li>
-          </ul> -->
+          </ul>
         </div>
       </div>
       <!-- <div class="loading-container" v-show="!discList.length">
@@ -37,7 +37,7 @@
 <script type="text/ecmascript-6">
   import Scroll from 'base/scroll/scroll'
   import Slider from 'base/slider/slider'
-  import {getRecommend} from 'api/recommend'
+  import {getRecommend, getDiscList} from 'api/recommend'
   import {ERR_OK} from 'api/config'
 export default {
   name: 'recommend',
@@ -49,17 +49,27 @@ export default {
   },
   created(){
     this._getRecommend();
+    this._getDiscList();
   },
   methods:{
     _getRecommend(){
       getRecommend().then((res)=>{
-          console.log(res)
           if(res.code === ERR_OK){
-            
             this.recommends = res.data.slider
-            console.log(this.recommends)
           }
       })
+    },
+    selectItem(){
+
+    },
+    _getDiscList() {
+        getDiscList().then((res) => {
+          if (res.code === ERR_OK) {
+            this.discList = res.data.list
+          }
+        },(err) => {
+          console.log(1232)
+        })
     },
   },
   components : {

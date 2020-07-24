@@ -13,6 +13,13 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
+// 设置请求代理 --start
+const axios = require('axios')
+const express = require('express')
+const app = express()
+const apiRouters = express.Router()
+
+
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -42,6 +49,23 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(apiRouters) {
+      // 完成代理的工作
+      apiRouters.get('/api/getDiscList', (req, res) => {
+        var url = "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg";
+        axios.get(url, {
+          headers: {
+            'referer': 'https://c.y.qq.com/',
+            'host': 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
     }
   },
   plugins: [

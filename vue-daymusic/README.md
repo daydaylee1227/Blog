@@ -1,4 +1,4 @@
-# vue-daymusic
+## vue-daymusic
 
 > 音乐播放器
 
@@ -385,7 +385,7 @@ export const ERR_OK = 0
 
 最后通过调用recommend.js写好的数据接口，拿到5条数据后，我们开始写轮播图板块。
 
-### 轮播图
+### 轮播图slider
 
 
 
@@ -587,3 +587,78 @@ this.slider.refresh() 重新去刷新slider，重新去计算。
 
 ----
 
+
+
+### 完成热门歌单推荐
+
+通过QQ音乐，发现响应头中的HOST：c.yy.qq.com,要求的话，就是请求的数据必须是这个网站，那么就不能使用到这个数据请求接口了吗？
+
+解决方案：后端请求代理
+
+
+
+**使用express中间件**
+
+在最新的webpack配置中，找到webpack.dev.conf.js文件
+
+我们先来看看webpack官方文档下**[点这里](https://webpack.js.org/configuration/dev-server/#devserverbefore)**
+
+**devServer.before**
+
+function (app, server, compiler)
+
+提供在服务器内部在所有其他中间件之前执行自定义中间件的功能。这可以用于定义自定义处理程序，例如：
+
+**webpack.config.js**
+
+```javascript
+module.exports = {
+  //...
+  devServer: {
+    before: function(app, server, compiler) {
+      app.get('/some/path', function(req, res) {
+        res.json({ custom: 'response' });
+      });
+    }
+  }
+};
+```
+
+所以我们可以根据这个需求，完成我们的中间件
+
+
+
+**配置请求代理**
+
+```
+// 设置请求代理 --start
+const axios = require('axios')
+const express = require('express')
+const app = express()
+const apiRouters = express.Router()
+
+// 在devServer配置中间件
+devServer:{
+	before(apiRouters) {
+      // 完成代理的工作
+      apiRouters.get('/api/getDiscList', (req, res) => {
+        var url = "https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg";
+        axios.get(url, {
+          headers: {
+            'referer': 'https://c.y.qq.com/',
+            'host': 'c.y.qq.com'
+          },
+          params: req.query
+        }).then((response) => {
+          res.json(response.data)
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+    }
+}
+```
+
+
+
+配置好中间件后，我们如何获取我们需要的数据呢？

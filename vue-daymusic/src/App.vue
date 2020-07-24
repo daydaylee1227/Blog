@@ -2,7 +2,11 @@
   <div id="app">
     <m-header></m-header>
     <tab></tab>
+    <keep-alive>  
+      <!-- 缓存组件,好处在于避免了组件的重新的渲染 -->
     <router-view></router-view>
+    </keep-alive>
+    
   </div>
 </template>
 
