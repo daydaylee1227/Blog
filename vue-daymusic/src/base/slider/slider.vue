@@ -104,7 +104,6 @@
       },
       _initDots() {
         this.dots = new Array(this.children.length)
-        
       },
       _play() {
         let pageIndex = this.currentPageIndex + 1
