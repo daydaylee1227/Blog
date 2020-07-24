@@ -61,6 +61,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
           },
           params: req.query
         }).then((response) => {
+          // 获取的是josn数据
+          console.log(response.data)
           res.json(response.data)
         }).catch((err) => {
           console.log(err)

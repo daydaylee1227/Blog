@@ -663,7 +663,7 @@ devServer:{
 
 配置好中间件后，我们如何获取我们需要的数据呢？
 
-
+接下来，我们看如何获取到数据👇
 
 ```
 function getDiscList() {
@@ -690,3 +690,4 @@ function getDiscList() {
 
 ```
 
+通过axios.get(url,{params:data}) 返回是一个Promise对象，这样子的话，中间件会代理，然后通过中间件请求数据。
