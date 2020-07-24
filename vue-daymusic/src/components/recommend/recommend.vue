@@ -47,12 +47,23 @@ export default {
   data(){
     return {
       recommends : [],
-      discList : []
+      discList : [],
     }
   },
   created(){
     this._getRecommend();
     this._getDiscList();
+    
+  },
+  mounted(){
+    var that = this;
+    console.log(this)
+    window.addEventListener('resize',() => { 
+        
+        if(!this.$refs.scroll) return 
+        this.$refs.scroll.refresh()
+        // 页面的视口发生变化的话,重新去计算better-scroll
+    })
   },
   methods:{
     //获取轮播图的数据
@@ -63,7 +74,7 @@ export default {
           }
       })
     },
-    selectItem(){
+    selectItem(item){
 
     },
     // 获取热门歌单的数据
@@ -73,7 +84,7 @@ export default {
             this.discList = res.data.list
           }
         },(err) => {
-          console.log(1232)
+          // console.log(1232)
         })
     },
     // 给IMG绑定一个事件
@@ -81,6 +92,7 @@ export default {
       // 判断图片是否加载完毕,加载完毕的话,获取scroll组件,重新去refresh,重新计算宽高
       if(!this.loadImag){
         this.loadImag = true
+        // console.log(this.$refs.scroll)
         this.$refs.scroll.refresh();
       }
     }
