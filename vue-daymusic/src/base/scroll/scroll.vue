@@ -44,10 +44,14 @@
       }, 20)
     },
     methods: {
+      // 初始化Scroll
       _initScroll() {
+        // 判断是否初始化
         if (!this.$refs.wrapper) {
           return
         }
+
+        // 调用Scroll实例
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
           click: this.click
@@ -80,7 +84,7 @@
       enable() {
         this.scroll && this.scroll.enable()
       },
-      refresh() {
+      refresh() {  // 刷新scroll,重新计算高度
         this.scroll && this.scroll.refresh()
       },
       scrollTo() {

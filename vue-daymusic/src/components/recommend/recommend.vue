@@ -6,7 +6,8 @@
           <slider>
             <div v-for="item in recommends" :key="item.id">
               <a :href="item.linkUrl">
-                <img class="needsclick"  :src="item.picUrl">
+                <!-- 监听load事件的原因就是保证scroll组件可以正确计算高度,这样子保证能滑到最低步 -->
+                <img class="needsclick"  :src="item.picUrl" @load="loadImage">
               </a>
             </div>
           </slider>
@@ -71,6 +72,13 @@ export default {
           console.log(1232)
         })
     },
+    loadImage(){
+      // 判断图片是否加载完毕,加载完毕的话,获取scroll组件,重新去refresh,重新计算宽高
+      if(!this.loadImag){
+        this.loadImag = true
+        this.$refs.scroll.refresh();
+      }
+    }
   },
   components : {
     Slider,

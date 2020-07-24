@@ -691,3 +691,23 @@ function getDiscList() {
 ```
 
 通过axios.get(url,{params:data}) 返回是一个Promise对象，这样子的话，中间件会代理，然后通过中间件请求数据。
+
+
+
+
+
+### Scroll组件
+
+**完成了热门歌单推荐数据的获取，接下来就是要增加一个scroll组件**
+
+因为获取到热门的数据很多，所以需要做的就是增加一个scroll组件,可以滑动。
+
+对应的就是在base/scroll/scroll.vue创建一个组件，然后new Scroll()实例。
+
+#### 有时候滑不到列表的最底部？
+
+这个原因就是scroll组件中有个slider组件，slider组件中也是使用better-scroll完成互动的效果，这个组件的渲染过程是通过数据去获取的，获取**数据的过程是异步的**，所以需要监听一个事件，判断是否加载完毕，加载完毕的话，重新去refresh，重新去计算宽高。
+
+- 监听图片的加载是否完成
+- @load=“loadImage“ 一旦完成的话，就获取重新去refresh一下scroll组件，重新去渲染一遍。
+
