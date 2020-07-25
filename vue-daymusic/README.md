@@ -786,4 +786,3 @@ _getSingerList() 获取到相应页面的数据
 
 
 ### listview组件开发
-

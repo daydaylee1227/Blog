@@ -51,7 +51,7 @@
           return
         }
 
-        // 调用Scroll实例
+        // 调用Scroll实例,表现可以滑动
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
           click: this.click
@@ -78,6 +78,7 @@
           })
         }
       },
+
       disable() {
         this.scroll && this.scroll.disable()
       },
@@ -87,10 +88,13 @@
       refresh() {  // 刷新scroll,重新计算高度
         this.scroll && this.scroll.refresh()
       },
+
       scrollTo() {
+        // 代理better-scroll的scrollTo方法
         this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
       },
       scrollToElement() {
+        // 代理better-scroll的scrollToElement方法
         this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
       }
     },

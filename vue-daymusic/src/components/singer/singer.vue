@@ -1,12 +1,12 @@
 <template>
   <div class="singer" ref="singer">
-    歌手
-    <!-- <list-view @select="selectSinger" :data="singers" ref="list"></list-view> -->
+    <list-view @select="selectSinger" :data="singers" ref="list"></list-view>
     <router-view></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+import ListView from 'base/listview/listview'
 import { getSingerList } from "api/singer";
 import { ERR_OK } from "api/config";
 import Singer from "common/js/singer";
@@ -22,6 +22,9 @@ export default {
     this._getSingerList();
   },
   methods: {
+    select(){
+
+    },
     // 获取数据,调用对应api接口数据
     _getSingerList() {
       getSingerList().then((res) => {
@@ -68,21 +71,27 @@ export default {
       // 数据合并排序
       let hot = [],
         ret = [];
-      for(let key in map){
-        let val = map[key]
-        if(val.title.match(/[a-zA-Z]/)){
-          ret.push(val)
-        }else if(val.title === HOT_NAME){
-          hot.push(val)
+      for (let key in map) {
+        let val = map[key];
+        if (val.title.match(/[a-zA-Z]/)) {
+          ret.push(val);
+        } else if (val.title === HOT_NAME) {
+          hot.push(val);
         }
       }
       // 对ret字段排序，完成A,B,C,D升序
-      ret.sort((a,b) => {
-        return a.title.charCodeAt(0) - b.title.charCodeAt(0)
-      })
-      return hot.concat(ret)
+      ret.sort((a, b) => {
+        return a.title.charCodeAt(0) - b.title.charCodeAt(0);
+      });
+      return hot.concat(ret);
     },
+    selectSinger(){
+
+    }
   },
+  components : {
+    ListView,
+  }
 };
 </script>
 

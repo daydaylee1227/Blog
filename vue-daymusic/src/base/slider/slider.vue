@@ -1,4 +1,7 @@
+
+
 <template>
+<!-- 水平方向上滚动,完成了基本的轮播图组件,实现了无缝轮播的效果 -->
   <div class="slider" ref="slider">
     <div class="slider-group" ref="sliderGroup">
       <slot>

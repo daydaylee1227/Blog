@@ -4,6 +4,7 @@
     <scroll ref="scroll" class="recommend-content" :data="discList">
       <div>
         <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
+          <!-- 滚动轮播图组件 -->
           <slider>
             <div v-for="item in recommends" :key="item.id">
               <a :href="item.linkUrl">
