@@ -200,7 +200,7 @@ export default {
       // 当滚动到底部，且-newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2;
     },
-    // 判断这个diff偏移值,然后找到相应的DOM元素经行
+    // 判断这个diff偏移值,然后找到相应的DOM元素进行偏移
     diff(newVal) {
       let fixedTop =
         newVal > 0 && newVal < TITLE_HEIGHT ? newVal - TITLE_HEIGHT : 0;
