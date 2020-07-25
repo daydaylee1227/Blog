@@ -80,7 +80,8 @@ export default {
       });
     },
     
-    // 完成左上角的title
+
+    // 完成左上角的title实时更新
     fixedTitle() {
       // 当滚动的时候,避免和title为'热门字段重合'
       if (this.scrollY > 0) {
@@ -91,6 +92,7 @@ export default {
         ? this.data[this.currentIndex].title
         : "";
     },
+
   },
   data() {
     return {
@@ -191,13 +193,14 @@ export default {
         let height2 = listHeight[i + 1];
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i;
-          this.diff = height2 + newY;
+          this.diff = height2 + newY; // 每次去更新这个偏移值
           return;
         }
       }
       // 当滚动到底部，且-newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2;
     },
+    // 判断这个diff偏移值,然后找到相应的DOM元素经行
     diff(newVal) {
       let fixedTop =
         newVal > 0 && newVal < TITLE_HEIGHT ? newVal - TITLE_HEIGHT : 0;
