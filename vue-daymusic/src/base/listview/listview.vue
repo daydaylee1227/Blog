@@ -47,12 +47,12 @@
       </ul>
     </div>
     <!-- 这个内容就是左上角的区域显示图标 -->
-    <!-- <div class="list-fixed" ref="fixed" v-show="fixedTitle">
+    <div class="list-fixed" ref="fixed" v-show="fixedTitle">
       <div class="fixed-title">{{fixedTitle}}</div>
     </div>
     <div v-show="!data.length" class="loading-container">
       <loading></loading>
-    </div>-->
+    </div>
   </scroll>
 </template>
 
@@ -79,11 +79,14 @@ export default {
         return group.title.substr(0, 1);
       });
     },
-
+    
+    // 完成左上角的title
     fixedTitle() {
+      // 当滚动的时候,避免和title为'热门字段重合'
       if (this.scrollY > 0) {
         return "";
       }
+      // 判断是否存在,undefined时就是空
       return this.data[this.currentIndex]
         ? this.data[this.currentIndex].title
         : "";
@@ -127,6 +130,7 @@ export default {
 
       this._scrollTo(anchorIndex);
     },
+    //重新去计算DOM
     refresh() {
       this.$refs.listview.refresh();
     },
@@ -153,11 +157,14 @@ export default {
       if (!index && index !== 0) {
         return;
       }
+      // 处理的这个是边界值
       if (index < 0) {
         index = 0;
       } else if (index > this.listHeight.length - 2) {
         index = this.listHeight.length - 2;
       }
+      // 这个作用就是单击右侧的相应字母,把scroll距离计算出来,这样子就会高亮显示
+
       this.scrollY = -this.listHeight[index];
       // 表示点击右侧的快速列表,跳转到相应的scrollElement中
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0);
