@@ -1,14 +1,16 @@
 <template>
   <!-- 将该listview组件中的数据传给scroll组件 -->
   <!-- 将当前listview组件中的数据传给scroll组件 -->
+
   <scroll
+    @scroll="scroll"
     :listen-scroll="listenScroll"
     :probe-type="probeType"
     :data="data"
     class="listview"
     ref="listview"
   >
-  <!-- 这ref指向问题就是更加方便的拿到DOM元素,也是为了更加方便的通过index指向获取对应位置的滚动 -->
+    <!-- 这ref指向问题就是更加方便的拿到DOM元素,也是为了更加方便的通过index指向获取对应位置的滚动 -->
     <ul>
       <li v-for="(group,index) in data" class="list-group" ref="listGroup" :key="index">
         <h2 class="list-group-title">{{group.title}}</h2>
@@ -33,7 +35,7 @@
       @touchstart="onShortcutTouchStart"
       @touchmove.stop.prevent="onShortcutTouchMove"
     >
-    <!-- data-index方便获取一个列表中的index -->
+      <!-- data-index方便获取一个列表中的index -->
       <ul>
         <li
           v-for="(item, index) in shortcutList"
@@ -50,7 +52,7 @@
     </div>
     <div v-show="!data.length" class="loading-container">
       <loading></loading>
-    </div> -->
+    </div>-->
   </scroll>
 </template>
 
@@ -58,7 +60,6 @@
 import Scroll from "base/scroll/scroll";
 import Loading from "base/loading/loading";
 import { getData } from "common/js/dom";
-
 
 const TITLE_HEIGHT = 30;
 const ANCHOR_HEIGHT = 18;
@@ -96,6 +97,7 @@ export default {
     };
   },
   created() {
+      // 当probeType值为3的话,会在momentum时都会派发scroll事件,默认值为0,不派发事件
     this.probeType = 3;
     this.listenScroll = true;
     this.touch = {};
@@ -107,11 +109,11 @@ export default {
     },
     // 这个是监听touchstart事件
     onShortcutTouchStart(e) {
-        // 获取到右侧的列表索引值
+      // 获取到右侧的列表索引值
       let anchorIndex = getData(e.target, "index");
       let firstTouch = e.touches[0];
-      this.touch.y1 = firstTouch.pageY;   // 计入一开始y轴上的位置
-      this.touch.anchorIndex = anchorIndex;   // 保存了每次点击的锚点
+      this.touch.y1 = firstTouch.pageY; // 计入一开始y轴上的位置
+      this.touch.anchorIndex = anchorIndex; // 保存了每次点击的锚点
       this._scrollTo(anchorIndex);
     },
     // 监听的是TouchMove事件
@@ -128,10 +130,12 @@ export default {
     refresh() {
       this.$refs.listview.refresh();
     },
+    // 这个事件就是scroll派发出来的,观测这个滚动的位置,也就是y轴的距离
     scroll(pos) {
       this.scrollY = pos.y;
     },
     _calculateHeight() {
+      // 这个方法就是计算每个listGroup高度
       this.listHeight = [];
       const list = this.$refs.listGroup;
       let height = 0;
@@ -145,7 +149,7 @@ export default {
     // 左侧根据左侧下标索引,跳转到相应位置
 
     _scrollTo(index) {
-    // 对index判断,以及数据优化
+      // 对index判断,以及数据优化
       if (!index && index !== 0) {
         return;
       }
@@ -159,12 +163,14 @@ export default {
       this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0);
     },
   },
+  //数据发生变化的话,直接重新去计算
   watch: {
     data() {
       setTimeout(() => {
         this._calculateHeight();
       }, 20);
     },
+    // 每次去watch这个滚动的距离,
     scrollY(newY) {
       const listHeight = this.listHeight;
       // 当滚动到顶部，newY>0
@@ -185,6 +191,7 @@ export default {
       // 当滚动到底部，且-newY大于最后一个元素的上限
       this.currentIndex = listHeight.length - 2;
     },
+
     diff(newVal) {
       let fixedTop =
         newVal > 0 && newVal < TITLE_HEIGHT ? newVal - TITLE_HEIGHT : 0;
