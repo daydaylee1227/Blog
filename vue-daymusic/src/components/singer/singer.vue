@@ -8,8 +8,27 @@
 
 <script type="text/ecmascript-6">
 
+  import {getSingerList} from 'api/singer'
+  import {ERR_OK} from 'api/config'
 export default {
 
+      data(){
+        return {
+            singers: []
+        }
+      },
+      created(){
+          this._getSingerList()
+      },
+      methods:{
+        // 获取数据,调用对应api接口数据
+        _getSingerList(){
+            getSingerList().then((res) => {
+              this.singers = res.list;
+              console.log(res.data)
+            })
+        },
+      }
 }
 </script>
 
