@@ -757,3 +757,33 @@ Vue.use(VueLazyload,{
 
 ## 歌手页面开发
 
+### singer.vue页面
+
+页面布局以及获取到相应QQ音乐数据的接口
+
+```
+_getSingerList() 获取到相应页面的数据
+```
+
+唯一区别就是返回的数据不是我们按照字母大小返回的怎么办呢？
+
+
+
+### 歌手数据的处理以及Singer类封装
+
+我们需要的数据是按照一定顺序完成的，比如热门歌手，比如按照字母来排序！所以我们需要对数据经行处理
+
+原本歌手数据👇
+
+![原本歌手数据](C:\Users\DayDay\Desktop\Blog\images\vue-daymusic\原本歌手数据.png)
+
+杂乱无章，也不是我们想要的，我们看看处理后的数据👇
+
+![歌手页面数据处理](C:\Users\DayDay\Desktop\Blog\images\vue-daymusic\歌手页面数据处理.png)
+
+通过singer.vue中methods的_normalizeSinger方法完成对原有数据的处理。
+
+
+
+### listview组件开发
+
