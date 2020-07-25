@@ -13,6 +13,7 @@ export function addClass(el, className) {
     el.className = newClass.join(' ')
 }
 
+// 获取或者是设置属性为name的值
 export function getData(el, name, val) {
     const prefix = 'data-'
     if (val) {
@@ -40,6 +41,8 @@ let vendor = (() => {
 
     return false
 })()
+
+
 
 export function prefixStyle(style) {
     if (vendor === false) {

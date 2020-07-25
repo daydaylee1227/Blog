@@ -8,6 +8,7 @@
     class="listview"
     ref="listview"
   >
+  <!-- 这ref指向问题就是更加方便的拿到DOM元素,也是为了更加方便的通过index指向获取对应位置的滚动 -->
     <ul>
       <li v-for="(group,index) in data" class="list-group" ref="listGroup" :key="index">
         <h2 class="list-group-title">{{group.title}}</h2>
@@ -24,7 +25,7 @@
         </uL>
       </li>
     </ul>
-    
+
     <!-- 下面是快速路口 -->
     <!--  touchstart Bscroll封装好的，onShortcutTouchStart这个事件获取的是索引值-->
     <div
@@ -44,12 +45,12 @@
       </ul>
     </div>
     <!-- 这个内容就是左上角的区域显示图标 -->
-    <div class="list-fixed" ref="fixed" v-show="fixedTitle">
+    <!-- <div class="list-fixed" ref="fixed" v-show="fixedTitle">
       <div class="fixed-title">{{fixedTitle}}</div>
     </div>
     <div v-show="!data.length" class="loading-container">
       <loading></loading>
-    </div>
+    </div> -->
   </scroll>
 </template>
 
@@ -109,15 +110,16 @@ export default {
         // 获取到右侧的列表索引值
       let anchorIndex = getData(e.target, "index");
       let firstTouch = e.touches[0];
-      this.touch.y1 = firstTouch.pageY;
-      this.touch.anchorIndex = anchorIndex;
-
+      this.touch.y1 = firstTouch.pageY;   // 计入一开始y轴上的位置
+      this.touch.anchorIndex = anchorIndex;   // 保存了每次点击的锚点
       this._scrollTo(anchorIndex);
     },
     // 监听的是TouchMove事件
     onShortcutTouchMove(e) {
       let firstTouch = e.touches[0];
       this.touch.y2 = firstTouch.pageY;
+      // 滚动的两个差值 也就是y轴上的偏移
+      // 除以每个高度，这样子的话，就知道偏移了几个锚点
       let delta = ((this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT) | 0;
       let anchorIndex = parseInt(this.touch.anchorIndex) + delta;
 
@@ -140,7 +142,10 @@ export default {
         this.listHeight.push(height);
       }
     },
+    // 左侧根据左侧下标索引,跳转到相应位置
+
     _scrollTo(index) {
+    // 对index判断,以及数据优化
       if (!index && index !== 0) {
         return;
       }

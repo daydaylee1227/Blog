@@ -57,9 +57,13 @@
           click: this.click
         })
 
+        // 判断是否需要监听滚动事件,需要的话，调用scroll实例上面的方法
         if (this.listenScroll) {
           let me = this
           this.scroll.on('scroll', (pos) => {
+            // me指的就是实例
+            // 通过监听scroll事件,有一个回调,pos是一个对象,有x,y轴的具体距离
+            // 去派发一个scroll事件,这样子外部也就是父组件可以拿到我们的pos
             me.$emit('scroll', pos)
           })
         }
