@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     select(){
-
+      
     },
     // 获取数据,调用对应api接口数据
     _getSingerList() {
@@ -85,8 +85,11 @@ export default {
       });
       return hot.concat(ret);
     },
-    selectSinger(){
-
+    selectSinger(singer){
+      // console.log(singer.id)
+        this.$router.push({
+          path: `/singer/${singer.id}`
+        })
     }
   },
   components : {

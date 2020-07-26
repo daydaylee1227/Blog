@@ -1167,3 +1167,37 @@ if (this.listenScroll) {
 
 
 
+
+
+## 歌手详情页开发
+
+### 完成子路由的配置
+
+```
+    {
+      path: '/singer',
+      name: 'Singer',
+      component: Singer,
+      children: [
+        {
+          path: '/:id',
+          component: SingerDetail
+        }
+      ]
+    }
+```
+
+这样子的话，表示传入的id是动态的！
+
+利用编程式导航跳转👇
+
+```
+selectSinger(singer){
+      // console.log(singer.id)
+        this.$router.push({
+          path: `/singer/${singer.id}`
+        })
+    }
+```
+
+listview向外派发一个点击事件，这样子的话singer组件就可以通过这个事件的名称拿到对于的singer类型数据！
