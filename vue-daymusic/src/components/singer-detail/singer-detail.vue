@@ -1,8 +1,8 @@
 <template>
   <transition name="slide">
     
-    <div style="color:red;">
-      12312312
+    <div style="" class="xt">
+
     </div>
     <!-- <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list> -->
   </transition>
@@ -34,6 +34,7 @@
     },
     created() {
       // this._getDetail()
+      console.log(123412)
     },
     methods: {
       // _getDetail() {
@@ -70,4 +71,13 @@
 
   .slide-enter, .slide-leave-to
     transform: translate3d(100%, 0, 0)
+  .xt
+    position:fixed
+    top: 0
+    left:0
+    right:0
+    bottom:0
+    z-index :100
+    background :red
+
 </style>
