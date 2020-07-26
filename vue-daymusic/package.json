@@ -19,7 +19,8 @@
     "vue-router": "^3.0.1",
     "axios": "^0.16.1",
     "vue-lazyload": "1.0.3",
-    "vuex": "^2.3.1"
+    "vuex": "^2.3.1",
+    "good-storage": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

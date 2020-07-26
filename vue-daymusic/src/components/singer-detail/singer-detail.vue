@@ -2,7 +2,7 @@
   <transition name="slide">
     
     <div style="" class="xt">
-
+      1232
     </div>
     <!-- <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list> -->
   </transition>
@@ -13,7 +13,7 @@
   // import {getSingerDetail} from 'api/singer'
   // import {ERR_OK} from 'api/config'
   // import {createSong} from 'common/js/song'
-  // import {mapGetters} from 'vuex'
+  import {mapGetters} from 'vuex'
 
   export default {
     computed: {
@@ -23,9 +23,10 @@
       // bgImage() {
       //   return this.singer.avatar
       // },
-      // ...mapGetters([
-      //   'singer'
-      // ])
+      ...mapGetters([
+        'singer'
+        // 这个时候就是类似于直接拿到数据，this.singer就存在这个数据了
+      ])
     },
     data() {
       return {
@@ -34,7 +35,7 @@
     },
     created() {
       // this._getDetail()
-      console.log(123412)
+      // console.log(this.singer)
     },
     methods: {
       // _getDetail() {
