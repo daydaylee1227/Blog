@@ -84,7 +84,10 @@
       this.listenScroll = true
     },
     mounted() {
+      // 图片的高度
       this.imageHeight = this.$refs.bgImage.clientHeight
+
+      //求的是layer偏移的最大距离
       this.minTransalteY = -this.imageHeight + RESERVED_HEIGHT
       // 获取照片的高度
       this.$refs.list.$el.style.top = `${this.imageHeight}px`
@@ -125,6 +128,10 @@
     },
     watch: {
       // 监听Y轴上的偏移
+      // 完成了跟随滚动的效果,也就是向上滑动,效果很好,会遮盖这个图片,文字也会隐藏
+      // 文字隐藏的原因就是利用图片的z-index层级高于文字
+      // 当向上滚动的效果不是很多的时候,我们就是修改图片的样式,核心点就是修改图片的样式
+      
       scrollY(newVal) {
         let translateY = Math.max(this.minTransalteY, newVal)
         let scale = 1
@@ -141,12 +148,16 @@
         this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
         this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
         this.$refs.filter.style[backdrop] = `blur(${blur}px)`
+
+        // 这样子的话,就避免了文字滚动出去后还会看见的效果
         if (newVal < this.minTransalteY) {
           zIndex = 10
           this.$refs.bgImage.style.paddingTop = 0
           this.$refs.bgImage.style.height = `${RESERVED_HEIGHT}px`
           this.$refs.playBtn.style.display = 'none'
         } else {
+          // 这样子的话,也就是下面的song-list没有遮住图片的话,需要给它设置宽高比
+
           this.$refs.bgImage.style.paddingTop = '70%'
           this.$refs.bgImage.style.height = 0
           this.$refs.playBtn.style.display = ''
