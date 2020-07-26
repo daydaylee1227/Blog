@@ -1245,3 +1245,54 @@ export default new Vuex.Store({
 
 最后在main.js文件中导入index.js文件，挂载到vue实例上。
 
+
+
+### mapMutations VS mapGetters
+
+这个两个vuex提供的语法糖怎么去使用呢？
+
+**mapMutations** 
+
+```
+import { mapMutations } from "vuex";
+
+methods: {
+    ...mapMutations({
+      setSinger: "SET_SINGER",
+    }),
+  },
+```
+
+这个setSinger,就是新的函数名称，SET_SINGER就是你自己定义在mutations中的方法名
+
+**mapGetters**
+
+```
+import {mapGetters} from 'vuex'
+
+computed: {
+      ...mapGetters([
+        'singer'
+        // 这个时候就是类似于直接拿到数据，this.singer就存在这个数据了
+      ])
+    },
+```
+
+这个singer就是你vuex仓库中存的变量类型
+
+
+
+### music-list
+
+
+
+```
+singr-detail.vue
+<template>
+  <transition name="slide">
+    <music-list :title="title" :bg-image="bgImage" :songs="songs"></music-list>
+  </transition>
+</template>
+```
+
+该组件singer-detail.vue组件向子组件传递三个参数，一个是title，背景图，还有歌曲的列表

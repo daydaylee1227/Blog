@@ -3,6 +3,7 @@ import {ERR_OK} from 'api/config'
 import {Base64} from 'js-base64'
 
 export default class Song {
+  // 歌曲id 歌曲的mid duration歌曲长度 
   constructor({id, mid, singer, name, album, duration, image, url}) {
     this.id = id
     this.mid = mid
@@ -10,8 +11,8 @@ export default class Song {
     this.name = name
     this.album = album
     this.duration = duration
-    this.image = image
-    this.url = url
+    this.image = image  //歌曲图片
+    this.url = url      //歌曲请求的路径
   }
 
   getLyric() {
@@ -32,13 +33,15 @@ export default class Song {
   }
 }
 
+// 创建一个Song的对象
+
 export function createSong(musicData) {
   return new Song({
     id: musicData.songid,
     mid: musicData.songmid,
     singer: filterSinger(musicData.singer),
     name: musicData.songname,
-    album: musicData.albumname,
+    album: musicData.albumname,   //专辑名称
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
     url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
