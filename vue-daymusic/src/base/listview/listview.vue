@@ -41,7 +41,7 @@
           v-for="(item, index) in shortcutList"
           :data-index="index"
           class="item"
-          :class="{'current':currentIndex===index}"
+          :class="{'current':currentIndex === index}"
           :key="index"
         >{{item}}</li>
       </ul>
