@@ -14,9 +14,30 @@
 
 
 
-## HTTP协议
+## HTTP协议优缺点
 
-**HTTP就是一个用文本格式描述报文头并用双换行分隔报文头和内容，在TCP基础上实现的请求-响应模式的双向通信协议。**
+超文本传输协议，**HTTP 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范**。
+
+### HTTP 特点
+
+1. 灵活可扩展。一个是语法上只规定了基本格式，空格分隔单词，换行分隔字段等。另外一个就是传输形式上不仅可以传输文本，还可以传输图片，视频等任意数据。
+2. 请求-应答模式，通常而言，就是一方发送消息，另外一方要接受消息，或者是做出相应等。
+3. 可靠传输，HTTP是基于TCP/IP，因此把这一特性继承了下来。
+4. 无状态，这个分场景回答即可。
+
+### HTTP 缺点
+
+1. **无状态**，有时候，需要保存信息，比如像购物系统，需要保留下顾客信息等等，另外一方面，有时候，无状态也会减少网络开销，比如类似直播行业这样子等，这个还是分场景来说。
+2. **明文传输**，即协议里的报文(主要指的是头部)不使用二进制数据，而是文本形式。这让HTTP的报文信息暴露给了外界，给攻击者带来了便利。
+3. **队头阻塞**，当http开启长连接时，共用一个TCP连接，当某个请求时间过长时，其他的请求只能处于阻塞状态，这就是队头阻塞问题。
+
+
+
+
+
+-------
+
+
 
 
 
@@ -53,7 +74,7 @@ RFC 规定 HTTP 的状态码为**三位数**，第一个数字定义了响应的
 - 302 found，临时性重定向，表示资源临时被分配了新的 URL。
 - 303 see other，表示资源存在着另一个 URL，应使用 GET 方法获取资源。
 - 304 not modified，当协商缓存命中时会返回这个状态码。
-- 307 temporary redirect，临时重定向，和302含义相同
+- 307 temporary redirect，临时重定向，和302含义相同,不会改变method
 
 
 
@@ -121,7 +142,7 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 - DELETE：          请求服务器删除对应所标识的资源
 - TRACE：            请求服务器回送收到的请求信息，主要用于测试或诊断
 - CONNECT：      建立连接隧道，用于代理服务器
-- OPTIONS：        列出可对资源实行的请求方法，用来跨域请求
+- OPTIONS：       列出可对资源实行的请求方法，用来跨域请求
 
 
 
@@ -129,7 +150,7 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 
 
 
-## GET 和 POST 的区别
+## 谈一谈GET 和 POST 的区别
 
 本质上，只是语义上的区别，GET 用于获取资源，POST 用于提交资源。
 
@@ -180,7 +201,7 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## URL 编码
+### URL 编码
 
 - URL 只能使用 [ASCII 字符集](https://www.w3school.com.cn/tags/html_ref_ascii.asp)来通过因特网进行发送。
 - 由于 URL 常常会包含 ASCII 集合之外的字符，URL 必须转换为有效的 ASCII 格式。
@@ -213,7 +234,7 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## HTTP代理
+## 谈一谈HTTP代理
 
 
 
@@ -221,7 +242,7 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## 队头阻塞问题
+## 谈一谈队头阻塞问题
 
 
 
@@ -233,7 +254,13 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## HTTP数据传输
+## 谈一谈HTTP数据传输
+
+
+
+
+
+
 
 
 
@@ -241,7 +268,19 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
+
+
+
+
+
+
 ## HTTPS与HTTP
+
+
+
+
+
+
 
 
 
@@ -256,3 +295,4 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 ## 参考
 
 - [图解 HTTP 缓存](https://juejin.im/post/5eb7f811f265da7bbc7cc5bd)
+- [看完这篇HTTP，跟面试官扯皮就没问题](https://juejin.im/post/5e1870736fb9a02fef3a5dcb#heading-40)了
