@@ -14,6 +14,10 @@
 
 
 
+## HTTP协议
+
+
+
 
 
 ## HTTP 状态码知道哪些？分别什么意思？
@@ -86,7 +90,40 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 
 
 
-HTTP 缓存有哪几种？
+## HTTP 缓存有哪几种？
+
+需要详细的了解 ETag、Cache-Control、Expires 的异同
+
+答题要点：
+
+- ETag 是通过对比浏览器和服务器资源的特征值（如MD5）来决定是否要发送文件内容，如果一样就只发送 304（not modified）
+- Expires 是设置过期时间（绝对时间），但是如果用户的本地时间错乱了，可能会有问题
+- Cache-Control: max-age=3600 是设置过期时长（相对时间），跟本地时间无关。
+
+我在我之前的那一篇中已经详细的说过了，[点这里传送门聊一聊浏览器缓存](https://juejin.im/post/5f184aade51d4534aa4ad7c0#heading-40)
+
+
+
+------
+
+
+
+## 说一说HTTP 的请求方法？
+
+`http/1.1`规定了以下请求方法(注意，都是大写):
+
+- GET 请求获取Request-URI所标识的资源
+- POST 在Request-URI所标识的资源后附加新的数据
+- HEAD 请求获取由Request-URI所标识的资源的响应消息报头
+- PUT 请求服务器存储一个资源，并用Request-URI作为其标识
+- DELETE 请求服务器删除Request-URI所标识的资源
+- TRACE 请求服务器回送收到的请求信息，主要用于测试或诊断
+- CONNECT 保留将来使用
+- OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
+
+
+
+
 
 ## GET 和 POST 的区别
 
@@ -108,3 +145,28 @@ HTTP 缓存有哪几种？
 
 -----------
 
+## 说一说URL组成
+
+
+
+## 对Accept系列字段理解
+
+## HTTP代理
+
+
+
+## 队头阻塞问题
+
+## HTTP数据传输
+
+
+
+## HTTPS与HTTP
+
+## HTTP/1.0 与HTTP/1.1
+
+
+
+## 参考
+
+- [图解 HTTP 缓存](https://juejin.im/post/5eb7f811f265da7bbc7cc5bd)
