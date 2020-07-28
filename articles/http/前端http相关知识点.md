@@ -16,6 +16,8 @@
 
 ## HTTP协议
 
+**HTTP就是一个用文本格式描述报文头并用双换行分隔报文头和内容，在TCP基础上实现的请求-响应模式的双向通信协议。**
+
 
 
 
@@ -112,16 +114,18 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 
 `http/1.1`规定了以下请求方法(注意，都是大写):
 
-- GET 请求获取Request-URI所标识的资源
-- POST 在Request-URI所标识的资源后附加新的数据
-- HEAD 请求获取由Request-URI所标识的资源的响应消息报头
-- PUT 请求服务器存储一个资源，并用Request-URI作为其标识
-- DELETE 请求服务器删除Request-URI所标识的资源
-- TRACE 请求服务器回送收到的请求信息，主要用于测试或诊断
-- CONNECT 保留将来使用
-- OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
+- GET：                请求获取Request-URI所标识的资源
+- POST：              在Request-URI所标识的资源后附加新的数据
+- HEAD：             请求获取由Request-URI所标识的资源的响应消息报头
+- PUT：                请求服务器存储一个资源，并用Request-URI作为其标识（修改数据）
+- DELETE：          请求服务器删除对应所标识的资源
+- TRACE：            请求服务器回送收到的请求信息，主要用于测试或诊断
+- CONNECT：      建立连接隧道，用于代理服务器
+- OPTIONS：        列出可对资源实行的请求方法，用来跨域请求
 
 
+
+---------
 
 
 
@@ -145,23 +149,105 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 
 -----------
 
-## 说一说URL组成
+
+
+## 谈一谈你对URL理解
+
+统一资源定位符的简称，Uniform Resource Locator，常常被称为网址，是因特网上标准的资源地址。
+
+### 组成
+
+通用的格式：scheme://host[:port]/path/…/?query#anchor
+
+
+
+| 名称         | 功能                                                         |
+| ------------ | :----------------------------------------------------------- |
+| scheme       | 访问服务器以获取资源时要使用哪种协议，比如：http，https 和 FTP 等 |
+| host         | HTTP 服务器的 IP 地址或者域名                                |
+| port         | HTTP 服务器的默认端口是 80，HTTPS默认端口是443，这种情况下端口号可以省略，如果使用了别的端口，必须指明。不同的端口，你可以认为是不同的应用程序。 |
+| path         | 访问资源的路径                                               |
+| query-string | 发给 http 服务器的数据                                       |
+| anchor       | 锚点                                                         |
+
+举个例子👇
+
+```
+https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
+```
+
+这个URL中，https就是协议，www.baidu.com就是域名，默认端口是443，/s就是请求的path，`tn=baidu&bar=&wd=TianTian`这个就是query
+
+
+
+## URL 编码
+
+- URL 只能使用 [ASCII 字符集](https://www.w3school.com.cn/tags/html_ref_ascii.asp)来通过因特网进行发送。
+- 由于 URL 常常会包含 ASCII 集合之外的字符，URL 必须转换为有效的 ASCII 格式。
+- URL 编码使用 "%" 其后跟随两位的十六进制数来替换非 ASCII 字符。
+- URL 不能包含空格。URL 编码通常使用 + 来替换空格。
+
+举个例子👇
+
+`天天`转换为有效的ASCII格式就是`%CC%EC%CC%EC`
+
+
+
+-------
 
 
 
 ## 对Accept系列字段理解
 
+
+
+
+
+
+
+
+
+------------
+
+
+
+
+
 ## HTTP代理
+
+
+
+----------
 
 
 
 ## 队头阻塞问题
 
+
+
+
+
+------
+
+
+
+
+
 ## HTTP数据传输
 
 
 
+-------------
+
+
+
 ## HTTPS与HTTP
+
+
+
+-------
+
+
 
 ## HTTP/1.0 与HTTP/1.1
 
