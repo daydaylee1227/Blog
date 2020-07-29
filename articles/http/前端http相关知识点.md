@@ -14,7 +14,7 @@
 
 
 
-## HTTP协议优缺点
+## 谈一谈HTTP协议优缺点
 
 超文本传输协议，**HTTP 是一个在计算机世界里专门在两点之间传输文字、图片、音频、视频等超文本数据的约定和规范**。
 
@@ -38,6 +38,20 @@
 -------
 
 
+
+## HTTP/1.0 与HTTP/1.1
+
+
+
+
+
+
+
+
+
+
+
+-----------------------
 
 
 
@@ -111,9 +125,53 @@ Access-Control-Allow-Methods →GET,HEAD,PUT,PATCH,POST,DELETE
 
 
 
+## 介绍一下Connection为keep-alive表示什么
+
+### 什么是keep-alive
+
+我们知道HTTP协议采用“请求-应答”模式，当使用普通模式，即非KeepAlive模式时，每个请求/应答客户和服务器都要新建一个连接，完成 之后立即断开连接（HTTP协议为无连接的协议）；
+
+当使用Keep-Alive模式（又称持久连接、连接重用）时，Keep-Alive功能使客户端到服 务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive功能避免了建立或者重新建立连接。
 
 
-## HTTP 缓存有哪几种？
+
+### 为什么要使用keep-alive
+
+keep-alive技术的创建目的，能在多次HTTP之前重用同一个TCP连接，从而减少创建/关闭多个 TCP 连接的开销（包括响应时间、CPU 资源、减少拥堵等），参考如下示意图（来源：维基百科）：
+
+![](C:\Users\DayDay\Desktop\Blog\images\http\keep-alive-demonstration.svg)
+
+
+
+
+
+### 客户端如何开启
+
+在HTTP/1.0协议中，默认是关闭的，需要在http头加入"Connection: Keep-Alive”，才能启用Keep-Alive；
+
+```
+Connection: keep-alive
+```
+
+http 1.1中默认启用Keep-Alive，如果加入"Connection: close “，才关闭。
+
+```
+Connection: close
+```
+
+目前大部分浏览器都是用http1.1协议，也就是说默认都会发起Keep-Alive的连接请求了，所以是否能完成一个完整的Keep- Alive连接就看服务器设置情况。
+
+
+
+
+
+---------------
+
+
+
+
+
+## 介绍HTTP 缓存策略
 
 这个跟之前的浏览器缓存原理一样，我直接拿我之前梳理过的吧。
 
@@ -417,9 +475,11 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## 谈一谈HTTPS与HTTP关系
+## 介绍一下HTTPS和HTTP区别
 
 
+
+## 介绍一个HTTPS工作原理
 
 
 
@@ -431,11 +491,15 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 
 
-## HTTP/1.0 与HTTP/1.1
+
 
 
 
 ## 参考
 
+- [听说『99% 的人都理解错了 HTTP 中 GET 与 POST 的区别』？？](https://zhuanlan.zhihu.com/p/25028045)
+- [如何理解HTTP响应的状态码？](https://harttle.land/2015/08/15/http-status-code.html#header-11)
+- [HTTP 响应代码 | MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
 - [图解 HTTP 缓存](https://juejin.im/post/5eb7f811f265da7bbc7cc5bd)
-- [看完这篇HTTP，跟面试官扯皮就没问题](https://juejin.im/post/5e1870736fb9a02fef3a5dcb#heading-40)了
+- [看完这篇HTTP，跟面试官扯皮就没问题了](https://juejin.im/post/5e1870736fb9a02fef3a5dcb#heading-40)
+- [HTTP keep-alive 二三事](https://lotabout.me/2019/Things-about-keepalive/)
