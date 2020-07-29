@@ -98,18 +98,55 @@
                     this.addListener(type, G);
                 }
             }
-            // 模拟new 的实现
-            function _new() {
-                let obj = {};
-                const [constructor, ...args] = [...arguments];
-                obj.__proto__ = constructor.prototype;
-                let result = constructor.apply(obj, args);
-                if (result && typeof result === 'function' || typeof result === 'object') {
-                    return result;
-                }
+            Function.prototype.MYcall = function (context, ...args) {
+                // 执行上下文都保证是对象类型，如果不是就是window
+                context = Object(context) || window;
+                // 创建一个额外的变量当做context的属性
+                const fn = Symbol();
+                // 给这个fn属性赋值为当前的函数
+                context[fn] = this;
+                // 执行函数把...args传入
+                const result = context[fn](...args);
+                // 删除使用过的fn属性
+                delete context[fn];
+                // 返回函数执行结果
+                return result;
+            };
 
-                return obj;
+
+            // 实现call
+            Function.prototype.mycall = function () {
+                let [thisArg, ...args] = [...arguments]
+                thisArg = Object(thisArg) || window
+                let fn = Symbol()
+                thisArg[fn] = this
+                let result = thisArg[fn](...args)
+                delete thisArg[fn]
+                return result
             }
+            // 实现apply
+            Function.prototype.myapply = function () {
+                let [thisArg, args] = [...arguments];
+                thisArg = Object(thisArg)
+                let fn = Symbol()
+                thisArg[fn] = this;
+                let result = thisArg[fn](...args);
+                delete thisArg.fn;
+                return result;
+            }
+
+            let cc = {
+                a: 1
+            }
+
+            function demo(x1, x2) {
+                console.log(typeof this, this.a, this)
+                console.log(x1, x2)
+            }
+            demo.apply(cc, [2, 3])
+            demo.myapply(cc, [2, 3])
+            demo.call(cc,33,44)
+            demo.mycall(cc,33,44)
             // function debounce(fn, delay) {
             //     let timer = null
             //     return function (...args) {
