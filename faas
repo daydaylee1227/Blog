@@ -1,0 +1,599 @@
+[33mcommit 392fa3f03e5f92416b45416ac2562afc299bff71[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 22:59:46 2020 +0800
+
+    完成HTTP协议优缺点
+
+[33mcommit 5b99997914d860def259f6d18785b161932e4b5f[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 20:58:57 2020 +0800
+
+    完成URL知识点更新
+
+[33mcommit d954ae1650f965307c15408f8149a54283cf9acb[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 20:30:20 2020 +0800
+
+    完成HTTP请求方法
+
+[33mcommit 272ea3bfdc6defe488758d924ed1ef709cf71999[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 18:27:49 2020 +0800
+
+    POST与GET区别
+
+[33mcommit d1faede074362edba5787e21b938a64408d2f356[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 17:39:48 2020 +0800
+
+    完成常见的状态码
+
+[33mcommit 4293ff3c56558937e2f8162dc28f1e983df07aa8[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 14:58:40 2020 +0800
+
+    完成flex布局
+
+[33mcommit 26371c4e4cb26ea17ef59d1ee962899a164dfd09[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 11:44:31 2020 +0800
+
+    完成flex布局的更新
+
+[33mcommit 4d5e504ad0ae88c6cde761830d06ba404f9ac869[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 28 10:05:35 2020 +0800
+
+    完成常见的状态码
+
+[33mcommit 3792fb5d94dcf3ab2762039cdc834f7b9db70e56[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 22:52:12 2020 +0800
+
+    函数的节流与防抖
+
+[33mcommit 80089f61aa876e0832263c2bf0c30659335a0de6[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 22:30:13 2020 +0800
+
+    手写AJAX
+
+[33mcommit 3be4dc4ff863616d6797df93e53d658a890fdb35[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 22:22:28 2020 +0800
+
+    完成三列布局
+
+[33mcommit dbfcfa8672ba6ce7283068a957034476bda9f7e6[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 19:20:02 2020 +0800
+
+    完成三栏布局
+
+[33mcommit 6fe0b7da341f0eedcaf3707307d53284c88c52c1[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 18:52:57 2020 +0800
+
+    两栏布局更新
+
+[33mcommit 1c4000451d7426bc60bf835bd760fb3129556464[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 18:25:17 2020 +0800
+
+    完成水平垂直局中文档
+
+[33mcommit 27fc8751a2cf1a177ab9d2b6a1b5f397330575d5[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 14:40:05 2020 +0800
+
+    更新数据
+
+[33mcommit c1b4d0b72987da13dbc9105df4cc44cc3058f6c1[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 14:36:08 2020 +0800
+
+    '完成vue项目的说明'
+
+[33mcommit b510486f242e4adad8d7ae81041b0e7864d222c0[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 27 10:19:05 2020 +0800
+
+    '完成BFC更新‘
+
+[33mcommit dac8fa7d84ce55cfd346145575f5f1428d0c0374[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 20:23:26 2020 +0800
+
+    更新说明文档
+
+[33mcommit 1aa491a34fe7fc33fa70f4ff7428d0e38ef4e226[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 18:33:39 2020 +0800
+
+    完成song-list列表的更新
+
+[33mcommit 1be8db35d12d2750b278cd2721e42d606a1b7d2d[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 17:02:25 2020 +0800
+
+    完成了基本vuex数据导入
+
+[33mcommit f3889e1f200749f264843cc49067a429ddccf085[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 12:03:28 2020 +0800
+
+    更新完,说明文档
+
+[33mcommit 898898ff4643b691ceaf2cbcf2fc6e34e266e4e3[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 10:40:52 2020 +0800
+
+    vuex引入
+
+[33mcommit 86c232c268b7f417649f6623e725811691be846c[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 10:03:27 2020 +0800
+
+    singer组件中子路由的配置
+
+[33mcommit 818354c6bee158339496839f1cbb47223e2e4e69[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 26 00:08:08 2020 +0800
+
+    '完成文档说明'
+
+[33mcommit 32710cb35dc39a435fdac66389fa2475f71b8a67[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 23:56:47 2020 +0800
+
+    修改元素的偏移
+
+[33mcommit 3ec9bcdafa4f707500affe15d9d24fa7503cee69[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 23:44:22 2020 +0800
+
+    完成左上角title实时更新
+
+[33mcommit 48c5e2591d1c7c33acf65c38c452e44e816a164f[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 23:17:00 2020 +0800
+
+    完成说明文件
+
+[33mcommit 46dbdfface02b10cda58925fb9d28ba7a73d9d93[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 19:36:23 2020 +0800
+
+    更新左右联动效果
+
+[33mcommit dbce451e0bd0ceae914100a2299efd4541f2d832[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 17:47:49 2020 +0800
+
+    监听scroll滚动事件
+
+[33mcommit 7598877496ab1125352bb97ae4c1d8ab1a89b5e0[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 16:33:11 2020 +0800
+
+    完成了快速路口点击的跳转工作
+
+[33mcommit ac8ba1b75d5bcc48bb064c312d7705cdb7c6a3af[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 10:06:25 2020 +0800
+
+    对歌手页面就行数据处理
+
+[33mcommit 380aeec5b5e02115f6d435c93dd293fa89b5a497[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 25 09:05:25 2020 +0800
+
+    完成singer.vue页面数据的获取
+
+[33mcommit 1f053e59f93fb5f9dcadd13f878403d6996a681b[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 22:34:14 2020 +0800
+
+    完成热门歌曲加载的loading
+
+[33mcommit 86508c967fd1beaa6a5f43b6017429a3949177f7[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 22:16:18 2020 +0800
+
+    窗口更新的话,完成scroll组件重新计算
+
+[33mcommit 9ae4fc953edf6950203b1d67632f55db02617635[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 21:40:19 2020 +0800
+
+    完成图片懒加载效果
+
+[33mcommit 186dc9a6df83f6f15644d19956f5d0a308f54a7e[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 20:49:05 2020 +0800
+
+    监听slider中的IMG加载,加载完成重新去调用scroll组件中的refresh方法,重新去计算
+
+[33mcommit 086d5e17ad1e3cbfab9fd087aef1373d087cb76a[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 20:15:15 2020 +0800
+
+    更新webpacl.dev.conf.js
+
+[33mcommit a77b144bc1c37e0af0d65c2f880bc2847c9e1594[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 19:34:05 2020 +0800
+
+    更新README
+
+[33mcommit 1dbb40e6893ec43de9294f9cdc175b0f59f7ce27[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 18:23:55 2020 +0800
+
+    完成获取最热表单的数据
+
+[33mcommit aae91fa92ca3a3f7c63826795c35076222272426[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 10:39:01 2020 +0800
+
+    实现轮播图的完美效果
+
+[33mcommit 0520614b77b72b3a9797f381547ab09f21a792d7[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 24 09:54:42 2020 +0800
+
+    完成基本的轮播图效果
+
+[33mcommit 07c0c346d511e6646533fdc10a65c8ec15ac4d76[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 23:55:48 2020 +0800
+
+    无缝轮播的原理,怎么解决的
+
+[33mcommit d19abe080a4d3110dd1f4f9e77c6ace054124842[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 23:51:55 2020 +0800
+
+    更新笔记
+
+[33mcommit 828c0be21ff5311a2c8b6b761c52aefc91697b28[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 23:49:52 2020 +0800
+
+    完成小按钮的功能
+
+[33mcommit b46218cf729fe50d7879ef56b0add86988b4a8bd[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 23:38:43 2020 +0800
+
+    解决了轮播图的效果问题，降低版本
+
+[33mcommit b08434671d5a526e635b667952c18165f50a56c2[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 23:05:07 2020 +0800
+
+    实现不了轮播图
+
+[33mcommit 17d770fbd227026452afb9d64a3b114c3ee07fa2[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 19:25:49 2020 +0800
+
+    轮播图效果完成
+
+[33mcommit 3558971ac7c76e26ec680bcdbc40408abc5f5c7e[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 18:36:18 2020 +0800
+
+    完成轮播图部分项目更新
+
+[33mcommit c8c790a778aeaff7a1f4ef976f8423b434fe7a24[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 15:57:48 2020 +0800
+
+    '提交第二天的任务'
+
+[33mcommit e2f952e511d57b7415efe5109537d4f352813f3d[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 23 09:04:23 2020 +0800
+
+    '完成浏览器查缺补漏'
+
+[33mcommit afbaf59c1a48eda8adbb589cc88d18c00e333483[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 22 22:17:40 2020 +0800
+
+    完成排版上的更新
+
+[33mcommit 39ce8c3f444a09e23452a0da8c7f0ba512cad251[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 22 22:12:20 2020 +0800
+
+    完成浏览器的渲染阶段知识点
+
+[33mcommit a0a9b3f8a2852bc837bb24b58d26a7e2ade2289b[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 22 12:33:34 2020 +0800
+
+    '完成主页更新'
+
+[33mcommit 881d73aa8f6a27f15c09ce88101417eed83ba304[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 22 12:30:11 2020 +0800
+
+    '完成数据的更新'
+
+[33mcommit 3949bff1c8080a37e26c67f583c2837867dae77c[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 22:14:27 2020 +0800
+
+    '完成跨域更新'
+
+[33mcommit f920f7dcabc7e84883dce8074fcac54ac8b53c73[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 21:53:38 2020 +0800
+
+    '完成WebSocket更新'
+
+[33mcommit 5548958c9e7594fcb30a9c2c559d2dc87f6d699e[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 21:34:01 2020 +0800
+
+    '完成jsonp的更新'
+
+[33mcommit 8f9f539f3e31e3519344770136dc39a7036fc486[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 21:29:35 2020 +0800
+
+    '完成跨域的更新'
+
+[33mcommit a9b62e998d914253a6a69f5104adaa733ccb07a4[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 18:10:33 2020 +0800
+
+    '完成图片的缓存'
+
+[33mcommit 3b2e299f5b01d7c52ee86b022742abf2a5e826fc[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Tue Jul 21 11:51:36 2020 +0800
+
+    '完成JS易错题的更新'
+
+[33mcommit 0011afd09eede8619700fdb762ec0cda2002f414[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 20 22:58:41 2020 +0800
+
+    '更新数据'
+
+[33mcommit 0102b86b77afdcf7525042b0318a6088936f884d[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 20 21:38:02 2020 +0800
+
+    '更新好易错题'
+
+[33mcommit 3234c776d01dbfa313bbb429b25f382d5eb8a04f[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 20 21:18:00 2020 +0800
+
+    '完成rAF'
+
+[33mcommit f9fe7c0df53f450d522c76ef758e19b8311c8768[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 20 20:09:09 2020 +0800
+
+    '完成数据的更新'
+
+[33mcommit eb36aa2246376718cdba7cb245e6d1f88a521c41[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 20 15:43:10 2020 +0800
+
+    vue-daymusic
+
+[33mcommit 196168c03ab406b3907c26411b92223367bb0b6a[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 19 19:34:20 2020 +0800
+
+    更新README首页
+
+[33mcommit e2998b2b7127208c5bde22eaaaa29afb0f5a50d5[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 19 17:38:47 2020 +0800
+
+    最后更新JS面试题
+
+[33mcommit c283387993ee62a5876749c69fa946f4dbab3c13[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 19 13:50:34 2020 +0800
+
+    JS易错题完成更新部分
+
+[33mcommit e4479410c27dd35fab524f25ea5081c96de3a517[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 19 13:02:25 2020 +0800
+
+    更新易错js
+
+[33mcommit f3f731ec15d49466f140519d8d3decbf8686e9f9[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 19 12:13:19 2020 +0800
+
+    更新错题
+
+[33mcommit fb7ed754eee3c329af8b2a9d0a583ba81b70a02a[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 18 22:00:29 2020 +0800
+
+    跨域梳理
+
+[33mcommit 40ebcc61fd806a21ce2f2501936ae59ae194909a[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 18 17:21:06 2020 +0800
+
+    完成CSRF概念整理
+
+[33mcommit 3c517478767d17aae2ff0e2f09fafbcb3180b788[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 18 11:56:13 2020 +0800
+
+    更新XSS攻击完善
+
+[33mcommit 2eb85fff9ecb0355883600e4677674ff577a3fd3[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 17 17:28:15 2020 +0800
+
+    更新LinkNode中问题
+
+[33mcommit 07407bf9b6420ec1afd2fa35d667f8ff46e3ff0a[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Fri Jul 17 08:33:19 2020 +0800
+
+    更新数据
+
+[33mcommit 708add761f65342b103a68d7636c46f336730bbd[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 23:27:40 2020 +0800
+
+    更新REAMDE
+
+[33mcommit eb6df97c5aa90351bc7ecd6b2ca495dc1c94d48c[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 23:18:43 2020 +0800
+
+    Readme更新
+
+[33mcommit bf58bee4854972b8357ede08cabcf56ba801a72b[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 23:06:26 2020 +0800
+
+    回文链表
+
+[33mcommit cc6d0d4bfc4ea63571160439d9222524f3280a62[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 21:29:19 2020 +0800
+
+    k个一维数组转链表
+
+[33mcommit dd0bddefffb4fcbc398d76a9d8f7108956c30973[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 19:55:02 2020 +0800
+
+    更新题目
+
+[33mcommit 1c8b8627987cb7f488a127bcd141fb8818e8dcc5[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 17:26:29 2020 +0800
+
+    更新反转链表
+
+[33mcommit 4184469464337ec350ff84633977c05dd468212f[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 15:22:20 2020 +0800
+
+    更新题目-链表
+
+[33mcommit dc1fcad42104accae4b9e635316288439229095d[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Thu Jul 16 14:55:26 2020 +0800
+
+    加入新链表题目
+
+[33mcommit 76d3440e3b70d9582b7f27546eefb827a1d023d6[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 15 23:44:31 2020 +0800
+
+    链表更新
+
+[33mcommit 0c627fa6aabb6aaca725cfc16c2c72a57b5c7266[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 15 21:50:04 2020 +0800
+
+    链表三个题目小结
+
+[33mcommit c323b2681e6bfc460e1982f66cf99265af67690d[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 15 14:53:45 2020 +0800
+
+    完成网站的更新
+
+[33mcommit e23c461304adf56a12403b55527c4829a00e4d1c[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 13 11:24:55 2020 +0800
+
+    带你重新认识Chrome调试工具
+
+[33mcommit 710d4d6c555357ca9556e7f9171dba041574a9e1[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 13 11:22:51 2020 +0800
+
+    更新JS易错的题
+
+[33mcommit 04fb539658ebd66f75f5f58f57cb3815a2f31a8c[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sun Jul 12 09:09:47 2020 +0800
+
+    one+div
+
+[33mcommit a43413e2a8659fa4bbabd07668c82d8106eaaa97[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 8 23:23:29 2020 +0800
+
+    更新图片
+
+[33mcommit 78708fc09f4346a7f8f0b062edae209a637c1950[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 8 22:53:50 2020 +0800
+
+    浏览器渲染
+
+[33mcommit 5dd3412b74ae374a4d83401b6a4d7b48a6f0a6ae[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 6 20:23:33 2020 +0800
+
+    数组图片上传
+
+[33mcommit a997fa6ad4670bba0c53d46021cf06c4fa1653ac[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jul 6 17:09:08 2020 +0800
+
+    finish array.js
+
+[33mcommit 672808c7801a3eeb5b30eb0d5fe4abff26a76e58[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jul 4 23:38:29 2020 +0800
+
+    完成浏览器工作原理
+
+[33mcommit 55b1d75d5d62ed806ec2c553447640ebd7946e33[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 1 20:49:44 2020 +0800
+
+    常见面试代码输出题
+
+[33mcommit 9fae0713c6f5c10f65ebaab8850032a03e7072ba[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Wed Jul 1 20:44:34 2020 +0800
+
+    深拷贝
+
+[33mcommit b33d2ddccf1e846a27964161b5f4e606a530c4ca[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Mon Jun 29 10:06:48 2020 +0800
+
+    update Closure
+
+[33mcommit fd99ceab3b96a343af47de6f82859e16650223d6[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jun 27 10:13:05 2020 +0800
+
+    update some images
+
+[33mcommit 46bec9b1cbc5e184dc0efaf520f5fca716639adc[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jun 27 09:33:20 2020 +0800
+
+    update news
+
+[33mcommit 09d0397b17034d836bd23d0772c6c20ab514e19e[m
+Author: daydaylee <1243437764@qq.com>
+Date:   Sat Jun 27 09:25:01 2020 +0800
+
+    first commit
