@@ -1,230 +1,185 @@
-<!DOCTYPE html>
-<html lang="">
+<DOCTYPE html>
+    <html lang="">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title Page</title>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        #box {
-            width: 500px;
-            height: 500px;
-            background: #ccc;
-            font-size: 40px;
-            text-align: center;
-            line-height: 500px;
-            margin: auto;
-        }
-    </style>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #box {
+                width: 500px;
+                height: 500px;
+                background: #ccc;
+                font-size: 40px;
+                text-align: center;
+                line-height: 500px;
+                margin: auto;
+            }
+        </style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-</head>
+    </head>
 
-<body>
-    <!-- <h1 class="text-center">Hello World</h1> -->
+    <body>
+        <!-- <h1 class="text-center">Hello World</h1> -->
 
-    <ul id="xxx">下面的内容是子元素1
-        <li>li内容>>> <span> 这是span内容123</span></li>
-        下面的内容是子元素2
-        <li>li内容>>> <span> 这是span内容123</span></li>
-        下面的内容是子元素3
-        <li>li内容>>> <span> 这是span内容123</span></li>
-    </ul>
+        <ul id="xxx">下面的内容是子元素1
+            <li>li内容>>> <span> 这是span内容123</span></li>
+            下面的内容是子元素2
+            <li>li内容>>> <span> 这是span内容123</span></li>
+            下面的内容是子元素3
+            <li>li内容>>> <span> 这是span内容123</span></li>
+        </ul>
 
-    <script>
-        class EventEmitter {
-            constructor() {
-                this._events = this._events || new Map();
-            }
-
-            addListener(type, fn) {
-                let handle = this._events.get(type);
-
-                if (!handle) {
-                    this._events.set(type, fn);
-                } else if (handle && typeof handle == 'function') {
-                    this._events.set(type, [handle, fn]);
-                } else {
-                    handle.push(fn);
+        <script>
+            class EventEmitter {
+                constructor() {
+                    this._events = this._events || new Map();
                 }
-            }
 
-            emit(type, ...args) {
-                let handle = this._events.get(type);
+                addListener(type, fn) {
+                    let handle = this._events.get(type);
 
-                if (Array.isArray(handle)) {
-                    for (let i = 0; i < handle.length; i++) {
-                        handle[i].apply(this, args);
+                    if (!handle) {
+                        this._events.set(type, fn);
+                    } else if (handle && typeof handle == 'function') {
+                        this._events.set(type, [handle, fn]);
+                    } else {
+                        handle.push(fn);
                     }
-                } else {
-                    handle.apply(this, args);
                 }
-            }
 
-            removeListener(type, fn) {
-                let handle = this._events.get(type);
+                emit(type, ...args) {
+                    let handle = this._events.get(type);
 
-                if (handle && typeof handle == 'function') {
-                    this._events.delete(type);
-                } else {
-                    let position = -1;
+                    if (Array.isArray(handle)) {
+                        for (let i = 0; i < handle.length; i++) {
+                            handle[i].apply(this, args);
+                        }
+                    } else {
+                        handle.apply(this, args);
+                    }
+                }
 
-                    for (let i = 0; i < handle.length; i++) {
-                        if (handle[i] == fn) {
-                            position = i;
+                removeListener(type, fn) {
+                    let handle = this._events.get(type);
+
+                    if (handle && typeof handle == 'function') {
+                        this._events.delete(type);
+                    } else {
+                        let position = -1;
+
+                        for (let i = 0; i < handle.length; i++) {
+                            if (handle[i] == fn) {
+                                position = i;
+                            }
+                        }
+
+                        if (position != -1) {
+                            handle.splice(i, 1);
                         }
                     }
+                }
 
-                    if (position != -1) {
-                        handle.splice(i, 1);
+                once(type, fn) {
+                    function G() {
+                        this.removeListener(type, G);
+                        fn.apply(this, [...arguments]);
                     }
+
+                    this.addListener(type, G);
                 }
             }
-
-            once(type, fn) {
-                function G() {
-                    this.removeListener(type, G);
-                    fn.apply(this, [...arguments]);
+            // 模拟new 的实现
+            function _new() {
+                let obj = {};
+                const [constructor, ...args] = [...arguments];
+                obj.__proto__ = constructor.prototype;
+                let result = constructor.apply(obj, args);
+                if (result && typeof result === 'function' || typeof result === 'object') {
+                    return result;
                 }
 
-                this.addListener(type, G);
+                return obj;
             }
-        }
+            // function debounce(fn, delay) {
+            //     let timer = null
+            //     return function (...args) {
+            //         let context = this
+            //         if (timer) clearTimeout(timer)
+            //         timer = setTimeout(function () {
+            //             fn.apply(context, args)
+            //         }, delay)
+            //     }
+            // }
+            // const box = document.getElementById('box')
+            // let debounceShow = throttle(function ff(e) {
+            //     box.innerHTML = `${e.clientX}, ${e.clientY}`
+            // }, 1000)
+            // box.onmousedown = debounceShow;
+            // // box.onmousemove = function (e) {
+            // //     box.innerHTML = `${e.clientX}, ${e.clientY}`
+            // // }
 
-        Promise.myall = function (arr) {
-            return new Promise((resolve, reject) => {
-                if (arr.length === 0) {
-                    return resolve([])
-                } else {
-                    let res = [],
-                        count = 0
-                    for (let i = 0; i < arr.length; i++) {
-                        // 同时也能处理arr数组中非Promise对象
-                        Promise.resolve(arr[i]).then(data => {
-                            res[i] = data
-                            if (++count === arr.length)
-                                resolve(res)
-                        }, err => {
-                            reject(err)
-                        })
-                    }
-                }
-            })
-        }
-
-        Promise.myrace = function (arr) {
-            return new Promise((resolve, reject) => {
-                for (let i = 0; i < arr.length; i++) {
-                    // 同时也能处理arr数组中非Promise对象
-                    Promise.resolve(arr[i]).then(resolve, reject)
-                }
-            })
-        }
-
-        // 测试用例
-        let p1 = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(1)
-            }, 2000);
-        });
-        let p2 = new Promise((resolve) => {
-            resolve(2);
-        });
-        let p3 = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(3);
-            },4);
-        });
-
-        Promise.myall([p3, p1, p2, 3,4]).then(data => {
-            // 按传入数组的顺序打印
-            console.log(data); // [3, 1, 2]
-        });
-
-        Promise.myrace([p1,p2, p3, 3, 5]).then(data => {
-            // 谁快就是谁
-            console.log(data); // 2
-        })
+            // function demo1(...arg) {
+            //     console.log(arg)
+            // }
+            // window.onresize = debounce(() => {
+            //     console.log(222)
+            // }, 500)
 
 
-        // function debounce(fn, delay) {
-        //     let timer = null
-        //     return function (...args) {
-        //         let context = this
-        //         if (timer) clearTimeout(timer)
-        //         timer = setTimeout(function () {
-        //             fn.apply(context, args)
-        //         }, delay)
-        //     }
-        // }
-        // const box = document.getElementById('box')
-        // let debounceShow = throttle(function ff(e) {
-        //     box.innerHTML = `${e.clientX}, ${e.clientY}`
-        // }, 1000)
-        // box.onmousedown = debounceShow;
-        // // box.onmousemove = function (e) {
-        // //     box.innerHTML = `${e.clientX}, ${e.clientY}`
-        // // }
+            // function throttle(fn, delay) {
+            //     let last = 0,
+            //         timer = null;
+            //     return function (...args) {
+            //         let context = this,
+            //             now = new Date();
+            //         if (now - last < delay) {
+            //             clearTimeout(timer)
+            //             timer = setTimeout(() => {
+            //                 last = now
+            //                 fn.apply(context, args)
+            //             }, delay);
+            //         } else {
+            //             last = now
+            //             fn.apply(context, args)
+            //         }
+            //     }
+            // }
 
-        // function demo1(...arg) {
-        //     console.log(arg)
-        // }
-        // window.onresize = debounce(() => {
-        //     console.log(222)
-        // }, 500)
+            // var END = Math.pow(2, 53);
+            // var START = END - 100;
+            // var count = 0;
+            // for (var i = START; i <= END; i++) {
+            //     count++;
+            // }
+            // console.log(count);
 
-
-        // function throttle(fn, delay) {
-        //     let last = 0,
-        //         timer = null;
-        //     return function (...args) {
-        //         let context = this,
-        //             now = new Date();
-        //         if (now - last < delay) {
-        //             clearTimeout(timer)
-        //             timer = setTimeout(() => {
-        //                 last = now
-        //                 fn.apply(context, args)
-        //             }, delay);
-        //         } else {
-        //             last = now
-        //             fn.apply(context, args)
-        //         }
-        //     }
-        // }
-
-        // var END = Math.pow(2, 53);
-        // var START = END - 100;
-        // var count = 0;
-        // for (var i = START; i <= END; i++) {
-        //     count++;
-        // }
-        // console.log(count);
-
-        // function throttle(fn, delay) {
-        //     let flag = true,
-        //         timer = null;
-        //     return function (...args) {
-        //         let context = this;
-        //         if (!flag) return;
-        //         flag = false;
-        //         clearTimeout(timer)
-        //         timer = setTimeout(() => {
-        //             fn.apply(context, args);
-        //             flag = true;
-        //         }, delay);
-        //     };
-        // };
-    </script>
-    <!-- <script>
+            // function throttle(fn, delay) {
+            //     let flag = true,
+            //         timer = null;
+            //     return function (...args) {
+            //         let context = this;
+            //         if (!flag) return;
+            //         flag = false;
+            //         clearTimeout(timer)
+            //         timer = setTimeout(() => {
+            //             fn.apply(context, args);
+            //             flag = true;
+            //         }, delay);
+            //     };
+            // };
+        </script>
+        <!-- <script>
         class ListNode {
             constructor(val) {
                 this.val = val;
@@ -330,6 +285,6 @@
         console.log(demo.findByIndex(1))
         console.log((demo.disPlay()))
     </script> -->
-</body>
+    </body>
 
-</html>
+    </html>
