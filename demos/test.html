@@ -1,4 +1,5 @@
-zuih<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="">
 
 <head>
@@ -31,19 +32,19 @@ zuih<!DOCTYPE html>
 <body>
     <!-- <h1 class="text-center">Hello World</h1> -->
 
-    <div id="box">
-        <audio src="" controls></audio>
-    </div>
+    <ul id="xxx">下面的内容是子元素1
+        <li>li内容>>> <span> 这是span内容123</span></li>
+        下面的内容是子元素2
+        <li>li内容>>> <span> 这是span内容123</span></li>
+        下面的内容是子元素3
+        <li>li内容>>> <span> 这是span内容123</span></li>
+    </ul>
+
     <script>
-        
-        let a = {n : 1};
-        let b = a;
-        a.x = a = {n: 2};
-
-
-        console.log(a.x)
-        console.log(b.x)
-
+        let isType = (type) => (obj) => Object.prototype.toString.call(obj) === `[object ${type}]`
+        let isArray = isType('Array')
+        let isFunction = isType('Function')
+        console.log(isArray([1,2,3]),isFunction(Map))
         // function debounce(fn, delay) {
         //     let timer = null
         //     return function (...args) {
