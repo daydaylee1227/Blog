@@ -273,3 +273,36 @@ demo.apply(cc, [2, 3])
 demo.myapply(cc, [2, 3])
 demo.call(cc,33,44)
 demo.mycall(cc,33,44)
+
+
+// 实现bind
+Function.prototype.mybind = function(context, ...args){
+    return (...newArgs) => {
+        return this.call(context,...args, ...newArgs)
+    }
+}
+
+// 测试用例
+let cc = {
+    name : 'TianTian'
+}
+function say(something,other){
+    console.log(`I want to tell ${this.name} ${something}`);
+    console.log('This is some'+other)
+}
+let tmp = say.mybind(cc,'happy','you are kute')
+let tmp1 = say.bind(cc,'happy','you are kute')
+tmp()
+tmp1()
+
+
+// 数组扁平化 不传递参数
+let flatDeep = (arr) => {
+    return arr.reduce((res, cur) => {
+        if(Array.isArray(cur)){
+            return [...res, ...flatDep(cur)]
+        }else{
+            return [...res, cur]
+        }
+    },[])
+}

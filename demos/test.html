@@ -98,55 +98,28 @@
                     this.addListener(type, G);
                 }
             }
-            Function.prototype.MYcall = function (context, ...args) {
-                // 执行上下文都保证是对象类型，如果不是就是window
-                context = Object(context) || window;
-                // 创建一个额外的变量当做context的属性
-                const fn = Symbol();
-                // 给这个fn属性赋值为当前的函数
-                context[fn] = this;
-                // 执行函数把...args传入
-                const result = context[fn](...args);
-                // 删除使用过的fn属性
-                delete context[fn];
-                // 返回函数执行结果
-                return result;
-            };
 
-
-            // 实现call
-            Function.prototype.mycall = function () {
-                let [thisArg, ...args] = [...arguments]
-                thisArg = Object(thisArg) || window
-                let fn = Symbol()
-                thisArg[fn] = this
-                let result = thisArg[fn](...args)
-                delete thisArg[fn]
-                return result
+            // function flatDeep(arr, d = 1) {
+            //     return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val),
+            //             []) :
+            //         arr.slice();
+            // };
+            let flatDeep = (arr) => {
+                return arr.reduce((res, cur) => {
+                    if(Array.isArray(cur)){
+                        return [...res, ...flatDep(cur)]
+                    }else{
+                        return [...res, cur]
+                    }
+                },[])
             }
-            // 实现apply
-            Function.prototype.myapply = function () {
-                let [thisArg, args] = [...arguments];
-                thisArg = Object(thisArg)
-                let fn = Symbol()
-                thisArg[fn] = this;
-                let result = thisArg[fn](...args);
-                delete thisArg.fn;
-                return result;
-            }
-
-            let cc = {
-                a: 1
-            }
-
-            function demo(x1, x2) {
-                console.log(typeof this, this.a, this)
-                console.log(x1, x2)
-            }
-            demo.apply(cc, [2, 3])
-            demo.myapply(cc, [2, 3])
-            demo.call(cc,33,44)
-            demo.mycall(cc,33,44)
+            
+            
+            var arr1 = [1, 2, 3, [1, 2, 3, 4, [2, 3, 4]]];
+            let b = flatDeep(arr1, Infinity);
+            let b1 = flatDeep(arr1, 0);
+            let dd = flatDep(arr1)
+            //  [1, 2, 3, 1, 2, 3, 4, 2, 3, 4]
             // function debounce(fn, delay) {
             //     let timer = null
             //     return function (...args) {
