@@ -306,3 +306,53 @@ let flatDeep = (arr) => {
         }
     },[])
 }
+
+// 可以传递参数
+function flatDeep(arr, d = 1) {
+    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val),
+    []) :
+        arr.slice();
+};
+
+
+// 数组去重的几种方式
+
+var array = [1, 1, '1', '1', null, null, 
+                undefined, undefined, 
+                new String('1'), new String('1'), 
+                /a/, /a/,
+                NaN, NaN
+            ];
+
+// 使用Set
+let unique_1 = arr => [...new Set(arr)];
+
+// 使用filter
+function unique_2(array) {
+    var res = array.filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+    })
+    return res;
+}
+
+//Object 键值对
+
+function unique_3(array) {
+    var obj = {};
+    return array.filter(function (item, index, array) {
+        return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
+    })
+}
+
+// 使用Map
+
+function unique_4(arr) {
+    const tmp = new Map();
+    return arr.filter(item => {
+        return !tmp.has(item) && tmp.set(item, 1);
+    })
+}
+
+// 使用reduce
+
+let unique_5 = arr => arr.reduce((pre, cur) => pre.includes(cur) ? pre : [...pre, cur], []);
