@@ -1296,3 +1296,4 @@ singr-detail.vue
 ```
 
 该组件singer-detail.vue组件向子组件传递三个参数，一个是title，背景图，还有歌曲的列表
+

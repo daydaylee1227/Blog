@@ -121,6 +121,7 @@
           list: this.songs
         })
       },
+      // 使用vuex中映射问题
       ...mapActions([
         'selectPlay',
         'randomPlay'
