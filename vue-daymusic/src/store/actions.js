@@ -1,3 +1,6 @@
+
+// actions文件就是对一系列的mutations经行封装,同一提交给mutations去进行相应的操作
+
 import * as types from './mutation-types'
 import {playMode} from 'common/js/config'
 import {shuffle} from 'common/js/util'
@@ -9,7 +12,9 @@ function findIndex(list, song) {
   })
 }
 
+// 选择播放的功能
 export const selectPlay = function ({commit, state}, {list, index}) {
+  // 提交一个播放歌曲的list
   commit(types.SET_SEQUENCE_LIST, list)
   if (state.mode === playMode.random) {
     let randomList = shuffle(list)
@@ -18,7 +23,10 @@ export const selectPlay = function ({commit, state}, {list, index}) {
   } else {
     commit(types.SET_PLAYLIST, list)
   }
+  // 提交一个设置当前歌曲的currentIndex操作
   commit(types.SET_CURRENT_INDEX, index)
+  
+  // 提交一个播放歌曲的操作,
   commit(types.SET_FULL_SCREEN, true)
   commit(types.SET_PLAYING_STATE, true)
 }
