@@ -1302,3 +1302,62 @@ singr-detail.vue
 
 
 ## 播放器内置组件开发
+
+配置好vuex相应的state,接下来就是布局👇
+
+state.js文件配置
+
+```
+const state = {
+  singer: {},
+  playing: false,           // 控制播放状态
+  fullScreen: false,       // 播放器的展开缩小
+  playlist: [],           // 播放歌曲的list
+  sequenceList: [],      // 这个播放歌曲的随机列表
+  mode: playMode.sequence,    //  播放模式, 随机播放,顺序播放,循环播放
+  currentIndex: -1,     // 当前播放的索引
+  disc: {},
+  topList: {},
+  searchHistory: loadSearch(),
+  playHistory: loadPlay(),
+  favoriteList: loadFavorite()
+}
+
+```
+
+
+
+### Player组件
+
+因为player组件并不是某个功能所拥有的，所以将它放在APP.vue中，并引入注册，使用。
+
+
+
+
+
+### vuex提供语法糖mapActions
+
+可以在组件中使用Actions中设置的行为方法，如何使用呢？
+
+
+
+```
+
+import {mapActions} from 'vuex'
+
+methods: {
+      // 使用vuex中映射问题
+      selectItem(item, index) {
+        // 这样子的话就可以在当前的vue中拿到selectPlay方法
+        this.selectPlay({    
+          list: this.songs,
+          index
+        })
+      },
+      ...mapActions([
+        'selectPlay',
+        'randomPlay'
+      ])
+    },
+```
+
