@@ -104,39 +104,53 @@
             //             []) :
             //         arr.slice();
             // };
-            var array = [1, 1, '1', '1', null, null,
-                undefined, undefined,
-                new String('1'), new String('1'),
-                /a/, /a/,
-                NaN, NaN
-            ];
 
-            function unique_2(array) {
-                var res = array.filter(function (item, index, array) {
-                    return array.indexOf(item) === index;
-                })
-                return res;
-            }
-            let unique_1 = arr => [...new Set(arr)];
 
-            function unique_3(array) {
-                var obj = {};
-                return array.filter(function (item, index, array) {
-                    return obj.hasOwnProperty(typeof item + item) ? false : (obj[typeof item + item] = true)
-                })
-            }
-            
-            function unique_4(arr) {
-                const tmp = new Map();
-                return arr.filter(item => {
-                    return !tmp.has(item) && tmp.set(item, 1);
-                })
+            class Rectangle {
+                // constructor
+                constructor(height, width) {
+                    this.height = height;
+                    this.width = width;
+                }
+
+                // Getter
+                get area() {
+                    return this.calcArea()
+                }
+
+                // Method
+                calcArea() {
+                    return this.height * this.width;
+                }
             }
 
-            console.log(unique_1(array))
-            console.log(unique_2(array))
-            console.log(unique_3(array))
-            console.log(unique_4(array))
+            const rectangle = new Rectangle(40, 20);
+            console.log(rectangle.area);
+            // 输出 800
+
+            // 继承
+            class Square extends Rectangle {
+
+                constructor(len) {
+                    // 子类没有this,必须先调用super
+                    super(len, len);
+
+                    // 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()。
+                    this.name = 'SquareIng';
+                }
+
+                get area() {
+                    return this.height * this.width;
+                }
+            }
+
+            const square = new Square(20);
+            console.log(square.area);
+            // 输出 400
+
+
+            // demo1.colors.push('2131')
+            // demo2.colors.push('New cloro')
 
             //  [1, 2, 3, 1, 2, 3, 4, 2, 3, 4]
             // function debounce(fn, delay) {
