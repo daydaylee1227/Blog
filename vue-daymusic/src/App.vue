@@ -6,7 +6,7 @@
       <!-- 缓存组件,好处在于避免了组件的重新的渲染 -->
     <router-view></router-view>
     </keep-alive>
-    
+    <player></player>
   </div>
 </template>
 
@@ -15,10 +15,12 @@
 
 import MHeader from 'components/m-header/m-header'
 import Tab from 'components/tab/tab'
+import Player from 'components/player/player'
 export default {
   components: {
     MHeader,
-    Tab
+    Tab,
+    Player
   }
 }
 </script>
