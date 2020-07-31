@@ -475,9 +475,97 @@ https://www.baidu.com/s?tn=baidu&bar=&wd=TianTian
 
 ## 谈一谈HTTP数据传输
 
+大概遇到的情况就分为**定长数据** 与 **不定长数据**的处理吧。
+
+### 定长数据
+
+对于定长的数据包而言，发送端在发送数据的过程中，需要设置`Content-Length`,来指明发送数据的长度。
+
+当然了如果采用了Gzip压缩的话，Content-Length设置的就是压缩后的传输长度。
+
+我们还需要知道的是👇
+
+- Content-Length如果存在并且有效的话，则必须和消息内容的传输长度完全一致，也就是说，如果过短就会截断，过长的话，就会导致超时。
+- 如果采用短链接的话，直接可以通过服务器关闭连接来确定消息的传输长度。
+- 那么在HTTP/1.0之前的版本中，Content-Length字段可有可无,因为一旦服务器关闭连接，我们就可以获取到传输数据的长度了。
+- 在HTTP/1.1版本中，如果是Keep-alive的话，chunked优先级高于`Content-Length`,若是非Keep-alive，跟前面情况一样，Content-Length可有可无。
+
+那怎么来设置`Content-Length`
+
+举个例子来看看👇
+
+```
+
+const server = require('http').createServer();
+server.on('request', (req, res) => {
+  if(req.url === '/index') {
+  	// 设置数据类型
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Length', 10);
+    res.write("你好，使用的是Content-Length设置传输数据形式");
+  }
+})
+
+server.listen(3000, () => {
+  console.log("成功启动--TinaTian");
+})
+
+```
 
 
 
+
+
+### 不定长数据
+
+现在采用最多的就是HTTP/1.1版本，来完成传输数据，在保存Keep-alive状态下，当数据是不定长的时候，我们需要设置新的头部字段👇
+
+```
+Transfer-Encoding: chunked
+```
+
+通过chunked机制，可以完成对不定长数据的处理，当然了，你需要知道的是
+
+- 如果头部信息中有`Transfer-Encoding`,优先采用Transfer-Encoding里面的方法来找到对应的长度。
+- 如果设置了Transfer-Encoding，那么Content-Length将被忽视。
+- 使用长连接的话，会持续的推送动态内容。
+
+
+
+那我们来模拟一下吧👇
+
+
+
+```
+const server = require('http').createServer();
+server.on('request', (req, res) => {
+  if(req.url === '/index') {
+  	// 设置数据类型
+    res.setHeader('Content-Type', 'text/html; charset=utf8');
+    res.setHeader('Content-Length', 10);
+    res.setHeader('Transfer-Encoding', 'chunked');
+    
+    res.write("你好，使用的是Transfer-Encoding设置传输数据形式");
+    setTimeout(() => {
+      res.write("第一次传输数据给您<br/>");
+    }, 1000);
+    res.write("骚等一下");
+    setTimeout(() => {
+      res.write("第一次传输数据给您");
+      res.end()
+    }, 3000);
+  }
+})
+
+server.listen(3000, () => {
+  console.log("成功启动--TinaTian");
+})
+
+```
+
+
+
+上面使用的是nodejs中http模块，有兴趣的小伙伴可以去试一试，以上就是HTTP对**定长数据**和**不定长数据**传输过程中的处理手段。
 
 
 
