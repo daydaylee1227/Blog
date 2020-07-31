@@ -39,13 +39,44 @@
 
 
 
-## HTTP/1.0 与HTTP/1.1
+## HTTP版本之间的差异
+
+### HTTP 0.9
+
+- 1991年,原型版本，功能简陋，只有一个命令GET,只支持纯文本内容，该版本已过时。
+
+
+
+### HTTP 1.0
+
+- 任何格式的内容都可以发送，这使得互联网不仅可以传输文字，还能传输图像、视频、二进制等文件。
+- 除了GET命令，还引入了POST命令和HEAD命令。
+- http请求和回应的格式改变，除了数据部分，每次通信都必须包括头信息（HTTP header），用来描述一些元数据。
+- 只使用 header 中的 If-Modified-Since 和 Expires 作为缓存失效的标准。
+- 不支持断点续传，也就是说，每次都会传送全部的页面和数据。
+- 通常每台计算机只能绑定一个 IP，所以请求消息中的 URL 并没有传递主机名（hostname）
+
+### HTTP 1.1
+
+http1.1是目前最为主流的http协议版本，从1999年发布至今，仍是主流的http协议版本。
+
+- 引入了持久连接（ persistent connection），即TCP连接默认不关闭，可以被多个请求复用，不用声明Connection: keep-alive。长连接的连接时长可以通过请求头中的 `keep-alive` 来设置
+- 引入了管道机制（ pipelining），即在同一个TCP连接里，客户端可以同时发送多个
+  请求，进一步改进了HTTP协议的效率。
+- HTTP 1.1 中新增加了 E-tag，If-Unmodified-Since, If-Match, If-None-Match 等缓存控制标头来控制缓存失效。
+- 支持断点续传，通过使用请求头中的 `Range` 来实现。
+- 使用了虚拟网络，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。
+- 新增方法：PUT、 PATCH、 OPTIONS、 DELETE。
+
+
+
+### http1.x版本问题
 
 
 
 
 
-
+### HTTP 2.0
 
 
 
