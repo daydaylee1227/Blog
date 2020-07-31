@@ -332,6 +332,9 @@ ETag是服务器根据当前文件的内容，对文件生成唯一的标识，�
 
 ## 说一说HTTP 的请求方法？
 
+- HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法
+- HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT
+
 `http/1.1`规定了以下请求方法(注意，都是大写):
 
 - GET：                请求获取Request-URI所标识的资源
