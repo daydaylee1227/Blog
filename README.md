@@ -31,6 +31,7 @@
 - [v8源码浅析Js数组常见方法](https://github.com/daydaylee1227/Blog/blob/master/articles/JS/V8%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90JS%E6%95%B0%E7%BB%84%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95.md)
 - [Js代码选择输出题100+](https://github.com/daydaylee1227/Blog/blob/master/articles/JS/JS%E4%BB%A3%E7%A0%81%E9%80%89%E6%8B%A9%E8%BE%93%E5%87%BA%E9%A2%98.md)
 - [Js常见的面试题](https://github.com/daydaylee1227/Blog/blob/master/articles/JS/%E5%B8%A6%E4%BD%A0%E5%A1%AB%E4%B8%80%E4%BA%9BJS%E5%AE%B9%E6%98%93%E5%87%BA%E9%94%99%E7%9A%84%E5%9D%91.md)
+- [「一劳永逸」送你21道高频JavaScript手写面试题](https://github.com/daydaylee1227/Blog/issues/15)
 
 ## ES6专题系列1篇已完结
 
@@ -41,9 +42,14 @@
 ## 浏览器专题系列1篇已完结
 
 - [浏览器基础知识](https://github.com/daydaylee1227/Blog/blob/master/articles/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9.md)
+
 - [浏览器渲染篇](https://github.com/daydaylee1227/Blog/blob/master/articles/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%E7%AF%87.md)
+
 - [浏览器查缺补漏篇](https://github.com/daydaylee1227/Blog/blob/master/articles/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%9F%E7%90%86%E7%AF%87%E6%9F%A5%E7%BC%BA%E8%A1%A5%E6%BC%8F.md)
+
 - [带你重新人生Chrome开发者工具](https://github.com/daydaylee1227/Blog/blob/master/articles/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3/%E5%B8%A6%E4%BD%A0%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86Chrome%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7.md)
+
+  
 
 
 
@@ -59,7 +65,10 @@
 
 
 
+## Vue项目
 
+- [「Vue项目」我是如何解决滚动组件&联动效果](https://github.com/daydaylee1227/Blog/issues/14)
+- [仿QQ音乐播放器](https://github.com/daydaylee1227/Blog/tree/master/vue-daymusic)
 
 
 
