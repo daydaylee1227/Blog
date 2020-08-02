@@ -56,6 +56,7 @@
 ## 算法
 
 - [链表的9个基本操作](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8)
+- [6大排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
 
 
 
