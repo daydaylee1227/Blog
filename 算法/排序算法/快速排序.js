@@ -32,3 +32,6 @@ let quickSort = function (arr) {
     }
     return quickSort(left).concat([pivot], quickSort(right));
 }
+
+//let arr = [2, 9, 6, 7, 4, 3, 1, 7]
+// console.log(quickSort(arr))
