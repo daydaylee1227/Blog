@@ -94,6 +94,48 @@ axios#patch(url[, data[, config]])
 
 
 
+## axios.create(config)
+
+1. 通过指定配置创建一个新的axios，也就是每个axios有自己的配置
+2. 新axios只是没有取消请求和批量发请求的方法
+3. 为什么要设计这个语法
+   1. 需求：项目中有部分接口需要配置与另外一部分接口不一样的配置，如何处理
+   2. 解决：创建2个新axios，每个axios都有自己的配置信息，分别应用到不同的接口请求中去
+
+
+
+```
+const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+```
+
+以下是可用的实例方法。指定的配置将与实例的配置合并。
+
+
+
+```
+##### axios#request(config)
+
+##### axios#get(url[, config])
+
+##### axios#delete(url[, config])
+
+##### axios#head(url[, config])
+
+##### axios#options(url[, config])
+
+##### axios#post(url[, data[, config]])
+
+##### axios#put(url[, data[, config]])
+
+##### axios#patch(url[, data[, config]])
+
+
+```
+
 
 
 ## 请求拦截器 
@@ -156,9 +198,9 @@ instance.interceptors.request.use(function () {/*...*/});
 ```
 const CancelToken = axios.CancelToken;
 let cancel;
-
+// 这个就是执行的函数
 axios.get('/user/12345', {
-  cancelToken: new CancelToken(function executor(c) {
+  cancelToken: new axios.CancelToken(function executor(c) {
     // executor 函数接收一个 cancel 函数作为参数
     cancel = c;
   })
