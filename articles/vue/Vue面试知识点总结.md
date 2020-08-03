@@ -68,7 +68,104 @@
 
 ## Vue 如何实现组件间通信？
 
+1. props ★★ （父传子）
+2.  $emit/$on ★★ 事件总线 （跨层级通信）
+3.  vuex ★★★（状态管理 常用 皆可）
+4.  provide/inject ★★★ （高阶用法 = 推荐使用 ） 优点：使用简单 缺点：不是响应式
 
+
+
+常见使用场景可以分为三类：
+
+- 父子组件通信 
+
+- 兄弟组件通信 
+
+- 跨层组件通信
+
+
+
+### props
+
+父组件A通过 props 向子组件B传递值， B组件通过 $emit 向A组件派发一个事件，A组件通过 v-on/@ 触发
+
+
+
+### $emit/$on 事件总线 
+
+> vue 实例 作为事件总线（事件中心）用来触发事件和监听事件，可以通过此种方式进行组件间通信包括：父子组件、兄弟组件、跨级组件 
+
+例子👇
+
+创建Bus文件
+
+```
+// Bus.js 创建bus文件 
+import Vue from 'vue'
+export defult new Vue()
+```
+
+看看组件间怎么使用吧
+
+```
+	// gg组件
+    <template id="a">
+        <div>
+            <h3>gg组件</h3> <button @click="sendMsg">将数据发送给dd组件</button>
+        </div>
+    </template>
+    <script>
+        import bus from './bus'
+        export default {
+            methods: {
+                sendMsg() {
+                    bus.$emit('sendTitle', '传递的值')
+                    开课吧web全栈架构师
+                }
+            }
+        }
+    </script>
+```
+
+然后看看dd组件使用👇
+
+
+
+```
+	// dd组件
+	<template>
+        <div>接收gg传递过来的值：{{msg}} </div>
+    </template>
+    <script>
+        import bus from './bus'
+        export default {
+            data() {
+                return {
+                    mag: ''
+                }
+            }
+            mounted() {
+                bus.$on('sendTitle', (val) => {
+                    this.mag = val
+                })
+            }
+        }
+    </script>
+```
+
+
+
+### provide/inject
+
+主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。 
+
+> 需要注意的是：provide 和inject绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一 个可监听的对象，那么其对象的属性还是可响应的----vue官方文档,所以，上面 A.vue 的 name 如 果改变了，B.vue 的 this.name 是不会改变的。
+
+
+
+解决办法：
+
+**使用2.6最新API Vue.observable 优化响应式 provide(推荐)**
 
 
 
@@ -283,10 +380,4 @@ store.state.b // -> moduleB 的状态
 
 答👇
 
-Vue组件可能存在多个实例，如果使用对象形式定义data，则会导致它们共用一个data对象，那么状态 
-
-变更将会影响所有组件实例，这是不合理的；采用函数形式定义，在initData时会将其作为工厂函数返 
-
-回全新data对象，有效规避多实例之间状态污染问题。而在Vue根实例创建过程中则不存在该限制，也 
-
-是因为根实例只能有一个，不需要担心这种情况。
+> Vue组件可能存在多个实例，如果使用对象形式定义data，则会导致它们共用一个data对象，那么状态变更将会影响所有组件实例，这是不合理的；采用函数形式定义，在initData时会将其作为工厂函数返回全新data对象，有效规避多实例之间状态污染问题。而在Vue根实例创建过程中则不存在该限制，也 是因为根实例只能有一个，不需要担心这种情况。
