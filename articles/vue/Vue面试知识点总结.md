@@ -8,9 +8,47 @@
 
 ## 说一说Vue 生命周期钩子函数
 
+1. **beforeCreate：**在实例初始化之后，数据观测（data observe）和event/watcher事件配置之前被调 
+
+用，这时无法访问data及props等数据；
 
 
 
+2. **created：**在实例创建完成后被立即调用，此时实例已完成数据观测（data observer），属性和方法 
+
+的运算，watch/event事件回调，挂载阶段还没开始， $el 尚不可用。
+
+
+
+3. **beforemount:**在挂载开始之前被调用，相关的render函数首次被调用
+
+
+
+4. **mounted：**实例被挂载后调用，这时el被新创建的vm. $el 替换，若根实例挂载到了文档上的元素 
+
+上，当mounted被调用时vm.$el也在文档内。注意mounted不会保证所有子组件一起挂载。 
+
+
+
+5. **beforeupdata：**数据更新时调用，发生在虚拟dom打补丁前，这时适合在更新前访问现有dom，如 
+
+手动移除已添加的事件监听器。 
+
+
+
+6. **updated：**在数据变更导致的虚拟dom重新渲染和打补丁后，调用该钩子。当这个钩子被调用时，组 
+
+件dom已更新，可执行依赖于dom的操作。多数情况下应在此期间更改状态。 如需改变，最好使用watcher或计算属性取代。注意updated不会保证所有的子组件都能一起被重绘。 
+
+
+
+7. **beforedestory：**在实例销毁之前调用。在这时，实例仍可用。 
+
+   
+
+8. **destroyed：**实例销毁后调用，这时vue实例的所有指令都被解绑，所有事件监听器被移除，所有子实 
+
+例也被销毁
 
 
 
@@ -52,6 +90,40 @@ Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。实现了�
 
 可以将 getter 理解为计算属性， getter 的返回值根据他的依赖缓存起来，依赖发 生变化才会被重新计算。
 
+```js
+const store = new Vuex.Store({
+  state: {
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false }
+    ]
+  },
+  getters: {
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    }
+  }
+})
+store.getters.doneTodos // -> [{ id: 1, text: '...', done: true }]
+```
+
+
+
+使用mapGetters辅助函数, 利用对象展开运算符将getter混入computed 对象中
+
+
+
+```
+import {mapGetters} from 'vuex'
+export default{
+    computed:{
+        ...mapGetters(['total','discountTotal'])
+    }
+}
+```
+
+
+
 
 
 ### mutation
@@ -79,6 +151,21 @@ Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。实现了�
                 }
             }
 ```
+
+**组件中重复使用mutation**
+
+```
+import { mapMutations } from 'vuex'
+methods:{
+    ...mapMutations({
+        setPrice:'reducePrice',
+    })
+}
+```
+
+调用this.setPrice(10)相当调用this.$store.commit('reducePrice',10)
+
+
 
 ### action 
 
@@ -158,3 +245,8 @@ store.state.b // -> moduleB 的状态
 
 
 ## 路由守卫是什么？
+
+
+
+## 组件中 data 为什么是一个函数？
+
