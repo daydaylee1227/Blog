@@ -1,19 +1,116 @@
 <template>
-   <!-- 检测一下是否可行 playlist.length-->
+  <!-- 检测一下是否可行 playlist.length-->
   <div class="player" v-show="playlist.length>0">
+    
+    <!-- 唱片的div部分, -->
     <div class="normal-player" v-show="fullScreen">
-      播放器
-    </div>
-    <div class="mini-player" v-show="!fullScreen">
-      
-    </div>
-    <transition name="normal"
+        <div class="background">
+          <img width="100%" height="100%" :src="currentSong.image">
+        </div>
+        <div class="top">
+          <div class="back" @click="back">
+            <i class="icon-back"></i>
+          </div>
+          <h1 class="title" v-html="currentSong.name"></h1>
+          <h2 class="subtitle" v-html="currentSong.singer"></h2>
+        </div>
+
+        <div class="middle"
+        >
+          <div class="middle-l" ref="middleL">
+            <div class="cd-wrapper" ref="cdWrapper">
+              <div class="cd" :class="cdCls">
+                <img class="image" :src="currentSong.image">
+              </div>
+            </div>
+            <div class="playing-lyric-wrapper">
+              <div class="playing-lyric">{{playingLyric}}</div>
+            </div>
+          </div>
+
+          <!-- <scroll class="middle-r" ref="lyricList" >
+            <div class="lyric-wrapper">
+              <div v-if="currentLyric">
+                
+              </div>
+            </div>
+          </scroll> -->
+        </div>
+
+        <!-- 下面控制按钮 -->
+
+        <div class="bottom">
+          <div class="dot-wrapper">
+            <span class="dot" ></span>
+            <span class="dot" ></span>
+          </div>
+
+          <!-- 进度条 -->
+          <div class="progress-wrapper">
+            <span class="time time-l"></span>
+            <div class="progress-bar-wrapper">
+              <!-- <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar> -->
+            </div>
+            <span class="time time-r"></span>
+          </div>
+          
+          <!-- 五个操作符按钮 -->
+          <div class="operators">
+            <!-- 点击事件,每次换icon-loop icon-random icon-sequence -->
+            <div class="icon i-left" >
+              <i  class="icon-sequence"></i>
+            </div>
+            <div class="icon i-left" >
+              <i  class="icon-prev"></i>
+            </div>
+            <div class="icon i-center" >
+              <i  :class="playIcon"></i>
+            </div>
+            <div class="icon i-right" >
+              <i  class="icon-next"></i>
+            </div>
+            <div class="icon i-right">
+              <!-- 这个是不喜欢的按钮 icon-favorite -->
+              <i  class="icon icon-not-favorite" ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- 这个就是小型的播放器 -->
+
+
+    <div class="mini-player" v-show="!fullScreen" @click="open">
+        <div class="icon">
+          <img :class="cdCls" width="40" height="40" :src="currentSong.image">
+        </div>
+        <div class="text">
+          <h2 class="name" v-html="currentSong.name"></h2>
+          <p class="desc" v-html="currentSong.singer"></p>
+        </div>
+        <div class="control">
+          <!-- <progress-circle :radius="radius" :percent="percent">
+            <i  class="icon-mini" ></i>
+          </progress-circle> -->
+          
+          <i  class="icon-mini" ></i>
+        </div>
+        <div class="control" >
+          <i class="icon-playlist"></i>
+        </div>
+      </div>
+    
+    
+    
+
+    
+    <!-- <transition name="normal"
                 @enter="enter"
                 @after-enter="afterEnter"
                 @leave="leave"
                 @after-leave="afterLeave"
     >
-      <!-- <div class="normal-player" v-show="fullScreen">
+      <div class="normal-player" v-show="fullScreen">
         <div class="background">
           <img width="100%" height="100%" :src="currentSong.image">
         </div>
@@ -80,8 +177,10 @@
             </div>
           </div>
         </div>
-      </div> -->
-    </transition>
+      </div>
+    </transition> -->
+
+
     <!-- <transition name="mini">
       <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
@@ -157,18 +256,29 @@
         'currentIndex',
         'fullScreen',
         'playing',
-        'playlist'
+        'playlist',
+        'currentSong'
       ])
     },
     created() {
       this.touch = {}
     },
     methods:{
-      
-      
+      back(){
+         //放回上一步
+        this.setFullScreen(false)
+      },
+     
+      open(){
+         // 点击小播放按钮,跳转到播放界面
+        this.setFullScreen(true)
+      },
       ...mapActions([
         'selectPlay',
-      ])
+      ]),
+      ...mapMutations({
+        setFullScreen: 'SET_FULL_SCREEN'
+      })
     }
     // methods: {
     //   back() {
