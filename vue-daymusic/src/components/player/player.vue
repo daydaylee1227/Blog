@@ -2,6 +2,13 @@
   <!-- 检测一下是否可行 playlist.length-->
   <div class="player" v-show="playlist.length>0">
     
+    <!-- 绑定钩子函数 -->
+    <transition name="normal"
+                @enter="enter"
+                @after-enter="afterEnter"
+                @leave="leave"
+                @after-leave="afterLeave"
+    >
     <!-- 唱片的div部分, -->
     <div class="normal-player" v-show="fullScreen">
         <div class="background">
@@ -78,8 +85,10 @@
       </div>
     
     <!-- 这个就是小型的播放器 -->
+    </transition>
 
-
+    <!-- 设置name属性,完成动画效果 -->
+    <transition name="mini">
     <div class="mini-player" v-show="!fullScreen" @click="open">
         <div class="icon">
           <img :class="cdCls" width="40" height="40" :src="currentSong.image">
@@ -102,7 +111,13 @@
     
     
     
-
+    </transition>
+    
+    
+    
+    
+    
+    
     
     <!-- <transition name="normal"
                 @enter="enter"
@@ -210,7 +225,8 @@
 
 <script type="text/ecmascript-6">
   import {mapGetters, mapMutations, mapActions} from 'vuex'
-  // import animations from 'create-keyframe-animation'
+  // 第三方提供的js动画
+  import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
   // import ProgressBar from 'base/progress-bar/progress-bar'
   // import ProgressCircle from 'base/progress-circle/progress-circle'
@@ -268,11 +284,79 @@
          //放回上一步
         this.setFullScreen(false)
       },
-     
       open(){
          // 点击小播放按钮,跳转到播放界面
         this.setFullScreen(true)
       },
+
+      // enter afterEnter leave afterLeave 四个动画钩子函数
+      enter(el, done) {
+        // 获取到对于的初始化数据
+        const {x, y, scale} = this._getPosAndScale()
+
+        // 设置动画的配置信息
+        let animation = {
+          0: {
+            transform: `translate3d(${x}px,${y}px,0) scale(${scale})`
+          },
+          60: {
+            transform: `translate3d(0,0,0) scale(1.1)`
+          },
+          100: {
+            transform: `translate3d(0,0,0) scale(1)`
+          }
+        }
+        // 注册animate
+        animations.registerAnimation({
+          name: 'move',
+          animation,
+          presets: {
+            // 动画时间
+            duration: 400,
+            easing: 'linear'
+          }
+        })
+
+        // 运行animate
+
+        animations.runAnimation(this.$refs.cdWrapper, 'move', done)
+
+      },
+      afterEnter() {
+        // 消除move动画
+        animations.unregisterAnimation('move')
+        // 把样式都置为空
+        this.$refs.cdWrapper.style.animation = ''
+      },
+      leave(el, done) {  // 需要的效果就是将 唱片平移到左小角
+        this.$refs.cdWrapper.style.transition = 'all 0.4s'
+        const {x, y, scale} = this._getPosAndScale()
+        this.$refs.cdWrapper.style[transform] = `translate3d(${x}px,${y}px,0) scale(${scale})`
+        this.$refs.cdWrapper.addEventListener('transitionend', done)
+      },
+      afterLeave() {
+        // 清空样式 动画
+        this.$refs.cdWrapper.style.transition = ''
+        this.$refs.cdWrapper.style[transform] = ''
+      },
+
+      _getPosAndScale() {
+        // 缩放比例 动态的获取x,y,scale
+        const targetWidth = 40
+        const paddingLeft = 40
+        const paddingBottom = 30
+        const paddingTop = 80
+        const width = window.innerWidth * 0.8
+        const scale = targetWidth / width
+        const x = -(window.innerWidth / 2 - paddingLeft)
+        const y = window.innerHeight - paddingTop - width / 2 - paddingBottom
+        return {
+          x,
+          y,
+          scale
+        }
+      },
+
       ...mapActions([
         'selectPlay',
       ]),
@@ -281,52 +365,6 @@
       })
     }
     // methods: {
-    //   back() {
-    //     this.setFullScreen(false)
-    //   },
-    //   open() {
-    //     this.setFullScreen(true)
-    //   },
-    //   enter(el, done) {
-    //     const {x, y, scale} = this._getPosAndScale()
-
-    //     let animation = {
-    //       0: {
-    //         transform: `translate3d(${x}px,${y}px,0) scale(${scale})`
-    //       },
-    //       60: {
-    //         transform: `translate3d(0,0,0) scale(1.1)`
-    //       },
-    //       100: {
-    //         transform: `translate3d(0,0,0) scale(1)`
-    //       }
-    //     }
-
-    //     animations.registerAnimation({
-    //       name: 'move',
-    //       animation,
-    //       presets: {
-    //         duration: 400,
-    //         easing: 'linear'
-    //       }
-    //     })
-
-    //     animations.runAnimation(this.$refs.cdWrapper, 'move', done)
-    //   },
-    //   afterEnter() {
-    //     animations.unregisterAnimation('move')
-    //     this.$refs.cdWrapper.style.animation = ''
-    //   },
-    //   leave(el, done) {
-    //     this.$refs.cdWrapper.style.transition = 'all 0.4s'
-    //     const {x, y, scale} = this._getPosAndScale()
-    //     this.$refs.cdWrapper.style[transform] = `translate3d(${x}px,${y}px,0) scale(${scale})`
-    //     this.$refs.cdWrapper.addEventListener('transitionend', done)
-    //   },
-    //   afterLeave() {
-    //     this.$refs.cdWrapper.style.transition = ''
-    //     this.$refs.cdWrapper.style[transform] = ''
-    //   },
     //   togglePlaying() {
     //     if (!this.songReady) {
     //       return
