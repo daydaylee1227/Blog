@@ -8,7 +8,7 @@
         <title>Title Page</title>
 
         <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
         <style>
             #box {
                 width: 500px;
@@ -29,7 +29,6 @@
     </head>
 
     <body>
-        <!-- <h1 class="text-center">Hello World</h1> -->
 
         <ul id="xxx">下面的内容是子元素1
             <li>li内容>>> <span> 这是span内容123</span></li>
@@ -39,10 +38,10 @@
             <li>li内容>>> <span> 这是span内容123</span></li>
         </ul>
 
-        
+
 
         <script>
-            
+            console.log('12312')
             class Rectangle {
                 // constructor
                 constructor(height, width) {
@@ -59,6 +58,9 @@
                 calcArea() {
                     return this.height * this.width;
                 }
+                some(){
+                    console.log(this.height,this.width)
+                }
             }
 
             const rectangle = new Rectangle(40, 20);
@@ -71,7 +73,7 @@
                 constructor(len) {
                     // 子类没有this,必须先调用super
                     super(len, len);
-                    // 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()。
+                    // 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()
                     this.name = 'SquareIng';
                 }
 
@@ -82,6 +84,7 @@
 
             const square = new Square(20);
             console.log(square.area);
+            
             // 输出 400
 
 
