@@ -39,73 +39,10 @@
             <li>li内容>>> <span> 这是span内容123</span></li>
         </ul>
 
+        
+
         <script>
-            class EventEmitter {
-                constructor() {
-                    this._events = this._events || new Map();
-                }
-
-                addListener(type, fn) {
-                    let handle = this._events.get(type);
-
-                    if (!handle) {
-                        this._events.set(type, fn);
-                    } else if (handle && typeof handle == 'function') {
-                        this._events.set(type, [handle, fn]);
-                    } else {
-                        handle.push(fn);
-                    }
-                }
-
-                emit(type, ...args) {
-                    let handle = this._events.get(type);
-
-                    if (Array.isArray(handle)) {
-                        for (let i = 0; i < handle.length; i++) {
-                            handle[i].apply(this, args);
-                        }
-                    } else {
-                        handle.apply(this, args);
-                    }
-                }
-
-                removeListener(type, fn) {
-                    let handle = this._events.get(type);
-
-                    if (handle && typeof handle == 'function') {
-                        this._events.delete(type);
-                    } else {
-                        let position = -1;
-
-                        for (let i = 0; i < handle.length; i++) {
-                            if (handle[i] == fn) {
-                                position = i;
-                            }
-                        }
-
-                        if (position != -1) {
-                            handle.splice(i, 1);
-                        }
-                    }
-                }
-
-                once(type, fn) {
-                    function G() {
-                        this.removeListener(type, G);
-                        fn.apply(this, [...arguments]);
-                    }
-
-                    this.addListener(type, G);
-                }
-            }
-
-            // function flatDeep(arr, d = 1) {
-            //     return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val),
-            //             []) :
-            //         arr.slice();
-            // };
-
-
+            
             class Rectangle {
                 // constructor
                 constructor(height, width) {
@@ -134,7 +71,6 @@
                 constructor(len) {
                     // 子类没有this,必须先调用super
                     super(len, len);
-
                     // 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()。
                     this.name = 'SquareIng';
                 }
