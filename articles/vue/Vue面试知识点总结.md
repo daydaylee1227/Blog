@@ -567,3 +567,39 @@ delete data.age            // 删除的话,也是不行，所以需要Vue.delete
 - 对于监听对象很复杂，需要深度监听，需要递归到底，一次性计算大
 - 无法监听新增和删除属性(Vue.set() / Vue.delete())
 
+
+
+**如何监听数组呢**
+
+通过将数组的常用方法进行重写，通过包装之后的数组方法就能够去在调用的时候被监听到。
+
+```js
+const arrContext = Object.create(Array.prototype)
+const arrMethods = [
+    'push',
+    'pop',
+    'shift',
+    'unshift',
+    'splice',
+    'sort',
+    'reverse'
+]
+arrMethods.forEach(methodName => {
+    arrContext[methodName] = function(...args){
+        Array.prototype[methodName].apply(this,args)
+        console.log(`${methodName}方法被执行了`)
+    }
+})
+
+export default arrContext
+```
+
+然后再判断如果是数组的话，也就是
+
+```
+if(Array.isArray(target)){
+        target.__proto__ = arrContext
+}
+```
+
+这样子就可以检测数组的变化了。
