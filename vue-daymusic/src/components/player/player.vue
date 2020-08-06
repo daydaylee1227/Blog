@@ -68,13 +68,14 @@
               <i  class="icon-sequence"></i>
             </div>
             <div class="icon i-left" >
-              <i  class="icon-prev"></i>
+              <i  @click="prev" class="icon-prev"></i>
             </div>
+            <!-- 播放涨停按钮 -->
             <div class="icon i-center" >
-              <i  :class="playIcon"></i>
+              <i  @click="togglePlaying" :class="playIcon"></i>
             </div>
             <div class="icon i-right" >
-              <i  class="icon-next"></i>
+              <i  @click="next" class="icon-next"></i>
             </div>
             <div class="icon i-right">
               <!-- 这个是不喜欢的按钮 icon-favorite -->
@@ -98,21 +99,23 @@
           <p class="desc" v-html="currentSong.singer"></p>
         </div>
         <div class="control">
-          <!-- <progress-circle :radius="radius" :percent="percent">
-            <i  class="icon-mini" ></i>
-          </progress-circle> -->
+          <progress-circle :radius="radius" :percent="percent">
+            <!-- 取消冒泡以及点击事件 -->
+            <i @click.stop="togglePlaying" class="icon-mini" :class="miniIcon"></i>
+          </progress-circle>
           
-          <i  class="icon-mini" ></i>
+          
         </div>
         <div class="control" >
           <i class="icon-playlist"></i>
         </div>
       </div>
     
-    
+      
     
     </transition>
-    
+    <audio ref="audio" :src="currentSong.url" @play="ready" @error="error" 
+           ></audio>
     
     
     
@@ -229,7 +232,7 @@
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
   // import ProgressBar from 'base/progress-bar/progress-bar'
-  // import ProgressCircle from 'base/progress-circle/progress-circle'
+  import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   // import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
@@ -288,7 +291,39 @@
          // 点击小播放按钮,跳转到播放界面
         this.setFullScreen(true)
       },
+      // 前一首
+      prev(){
+          
+          let index = this.currentIndex - 1
+          if(index === -1) {
+            index = this.playlist.length - 1
+          }
+          this.setCurrentIndex(index)
 
+          if(!this.playing){
+            this.togglePlaying()
+          }
+          // this.songReady = false
+      },
+      // 后一首
+      next(){
+          let index = this.currentIndex - 1
+          if(index === this.playlist.length){
+            index = 0
+          }
+          this.setCurrentIndex(index)
+          if(!this.playing){
+            this.togglePlaying()
+          }
+          // this.songReady = false
+      },
+      togglePlaying(){
+        console.log(1)
+        // if (!this.songReady) {
+        //   return
+        // }
+        this.setPlayingState(!this.playing)
+      },
       // enter afterEnter leave afterLeave 四个动画钩子函数
       enter(el, done) {
         // 获取到对于的初始化数据
@@ -339,7 +374,12 @@
         this.$refs.cdWrapper.style.transition = ''
         this.$refs.cdWrapper.style[transform] = ''
       },
+      ready(){
+        this.songReady = true
+      },
+      error(){
 
+      },
       _getPosAndScale() {
         // 缩放比例 动态的获取x,y,scale
         const targetWidth = 40
@@ -356,13 +396,26 @@
           scale
         }
       },
-
+      
       ...mapActions([
         'selectPlay',
       ]),
       ...mapMutations({
-        setFullScreen: 'SET_FULL_SCREEN'
+        setFullScreen: 'SET_FULL_SCREEN',
+        setPlayingState : 'SET_PLAYING_STATE',
+        setCurrentIndex : 'SET_CURRENT_INDEX'
       })
+    },
+    watch : {
+      playing(newPlaying) {
+        const audio = this.$refs.audio
+        this.$nextTick(() => {
+          newPlaying ? audio.play() : audio.pause()
+        })
+      }
+    },
+    components : {
+      ProgressCircle
     }
     // methods: {
     //   togglePlaying() {
