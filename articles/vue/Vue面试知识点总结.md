@@ -421,6 +421,32 @@ store.state.b // -> moduleB 的状态
 
 
 
+除了使用 `<router-link>` 创建 a 标签来定义导航链接，我们还可以借助 router 的实例方法，通过编写代码来实现。
+
+**this.$router.push**
+
+```
+// 字符串
+router.push('home')
+
+// 对象
+router.push({ path: 'home' })
+
+// 命名的路由
+router.push({ name: 'user', params: { userId: '123' }})
+
+// 带查询参数，变成 /register?plan=private
+router.push({ path: 'register', query: { plan: 'private' }})
+```
+
+`router.go(n)`
+
+这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，类似 `window.history.go(n)`。
+
+
+
+
+
 ## 路由守卫是什么？
 
 
@@ -439,7 +465,16 @@ store.state.b // -> moduleB 的状态
 
 ## Vue常见的性能优化
 
+简答，你们可以试着回答详细一点
 
+- 合理使用v-show和v-if
+- 合理使用computed
+- v-for时加key，以及避免和v-if同时使用
+- 自定义事件，DOM事件，都要及时销毁
+- 使用异步组件
+- 使用keep-alive
+- data层级不要过深
+- SSR
 
 
 
