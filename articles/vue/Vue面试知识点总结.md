@@ -89,15 +89,25 @@ v-model本质上就是语法糖，即利用v-model绑定数据后，其实就是
 
 
 
-## Vue 数据响应式怎么做到的？
+
 
 
 
 ## Vue.set 是做什么用的？
 
+如果你想在实例化之后添加一个新的property,触发视图的更新，并且确保这个新的Property同样是响应式是的话，这样子的话，需要使用Vue.set()。
+
+简单来说，就是新增加一个属性的话，是不能保证是响应式的，也就不能触发视图更新。
 
 
 
+[Vue.set( target, propertyName/index, value )](https://cn.vuejs.org/v2/api/#Vue-set)
+
+- **参数**：
+  - `{Object | Array} target`
+  - `{string | number} propertyName/index`
+  - `{any} value`
+- **返回值**：设置的值。
 
 
 
@@ -424,6 +434,12 @@ store.state.b // -> moduleB 的状态
 答👇
 
 > Vue组件可能存在多个实例，如果使用对象形式定义data，则会导致它们共用一个data对象，那么状态变更将会影响所有组件实例，这是不合理的；采用函数形式定义，在initData时会将其作为工厂函数返回全新data对象，有效规避多实例之间状态污染问题。而在Vue根实例创建过程中则不存在该限制，也 是因为根实例只能有一个，不需要担心这种情况。
+
+
+
+## Vue常见的性能优化
+
+
 
 
 
