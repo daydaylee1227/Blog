@@ -4,6 +4,14 @@
 
 
 
+## v-if和v-show区别
+
+- v-show 是通过CSS display控制显示隐藏的
+- v-if是真正组件的渲染和销毁，而不是隐藏和显示
+- 频繁切换显示使用v-show，否则使用v-if
+
+
+
 ## 你知道v-for 中 key作用跟工作原理吗？
 
 源码中找答案：src\core\vdom\patch.js - updateChildren()
