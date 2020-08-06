@@ -387,3 +387,183 @@ store.state.b // -> moduleB 的状态
 答👇
 
 > Vue组件可能存在多个实例，如果使用对象形式定义data，则会导致它们共用一个data对象，那么状态变更将会影响所有组件实例，这是不合理的；采用函数形式定义，在initData时会将其作为工厂函数返回全新data对象，有效规避多实例之间状态污染问题。而在Vue根实例创建过程中则不存在该限制，也 是因为根实例只能有一个，不需要担心这种情况。
+
+
+
+
+
+## Vue原理面试题
+
+
+
+## 说一说MVVM
+
+传统组件，也就是web1.0，甚至是web2.0阶段，页面的渲染是静态的，也就是说更新需要依赖于操作Dom,而MVVM的提出，解决了这个问题。
+
+关键点，**数据驱动视图**，我们无需去操作DOM，只需要关心数据，视图会异步的去更新。
+
+MVVM可以拆分成三部分，Model，View，ViewModel。
+
+Model层:我立即的是data中的数据，或者是Vuex中的状态。
+
+View层:视图，我更多的是理解成Dom
+
+ViewModel层：按照通俗的话理解，更像是Vue提供的一种能力，建立起两者之间的连接，我把它看成是连接层。
+
+
+
+怎么来理解呢？我是这么想的👇
+
+- 当数据Model层数据发生改变的话，View视图层就会发生相应的变化，我们是不需要去操作Dom的，这个工作就是交给了ViewModel层，它来帮我们完成。
+- View层，比如你有点击事件，这些都是可以修改Model层中的数据的，所以说，ViewModel层更像是一个桥梁，提供了一种能力，让我们不在去关心如何去操作Dom。
+
+
+
+
+
+## Vue响应式原理
+
+什么是响应式，我的理解就是组件中的data数据一旦发生变化，会触发视图的更新。那么是如何监听数据发生改变，然后去通知视图View层改变的呢？👉**Object.defineProperty()**
+
+核心API就是**Object.defineProperty()**，那么它的用法是什么，以及优缺点是什么呢？
+
+- 可以检测对象中数据发生的修改
+- 对于复杂的对象，层级很深的话，是不友好的，需要经行深度监听，这样子就需要递归到底，这也是它的缺点。
+- 对于一个对象中，如果你新增加属性，删除属性，**Object.defineProperty()**是不能观测到的，那么应该如何解决呢？可以通过Vue.set()和Vue.delete()来实现。
+
+基于以上的点，Vue3.0版本也就是提出了Proxy，当然了Proxy对浏览器兼容性不是很好，比如IE11版本不兼容，也无法polyfill，嗯….，先看下**Object.defineProperty()**是如何使用的吧。
+
+写个简单的模拟拦截数据吧👇
+
+```
+// 模拟更新视图操作
+function update(){
+    console.log('数据发生改变')
+}
+
+// 从新去定义监听属性
+function defineVue(target, key, value) {
+
+    // 核心API
+    Object.defineProperty(target, key, {
+        get() {
+            return value
+        },
+        set(newValue) {
+            if(newValue !== value){
+
+                // value是存在闭包中的,通过get获取的也是最新的value
+                value = newValue
+
+                // 触发视图
+                update()
+            }
+        },
+    })
+}
+
+
+function observer(target) {
+    // 判断是不是对象
+    if(typeof target !== 'object' || target === null ) return target
+
+    for(let key in target) {
+        defineVue(target,key,target[key])
+    }
+}
+
+
+// 监听数据
+let data = {
+    name : "TianTian",
+    age : 18,
+    list : [1,2,3],
+    major : {
+        Math : 140
+    }
+}
+
+// 监听数据
+observer(data)
+
+// 测试数据
+data.name = 'newName'   // 这个触发了update
+data.major.Math = 150    // 这个就不会去触发视图更新 update
+```
+
+这样子来看，第53行是不会去触发，也就是说对于**引用类型，是监听不到的**，那么我们就需要去进行深度监听，
+
+加上几行代码就行
+
+```js
+// 模拟更新视图操作
+function update(){
+    console.log('数据发生改变')
+}
+
+// 从新去定义监听属性
+function defineVue(target, key, value) {
+
+    observer(value)  // 深度监听
+
+    // 核心API
+    Object.defineProperty(target, key, {
+        get() {
+            return value
+        },
+        set(newValue) {
+            if(newValue !== value){
+
+                observer(newValue)  // 设置新的值也是需要去监听的 比如data.age = {son : 123}  这样子的话,也可以避免问题
+
+                // value是存在闭包中的,通过get获取的也是最新的value
+                value = newValue
+
+                // 触发视图
+                update()
+            }
+        },
+    })
+}
+
+
+function observer(target) {
+
+    // 判断是不是对象
+    if(typeof target !== 'object' || target === null ) return target
+
+    for(let key in target) {
+        defineVue(target,key,target[key])
+    }
+}
+
+
+// 监听数据
+let data = {
+    name : "TianTian",
+    age : 18,
+    list : [1,2,3],
+    major : {
+        Math : 140   // 需要深度监听
+    }
+}
+
+// 监听数据
+observer(data)
+
+// 测试数据
+data.name = 'newName'   // 这个触发了update
+console.log(data.age)
+data.major.Math = 150    // 这个就不会去触发视图更新 update
+console.log(data.major.Math = 150)
+data.age = { so : '修改的数据是对象，也可以监听到'}     // 通过对newValue重新去监听
+
+data['some']= '新增加属性'   // 监听步到，所以需要 Vue.set()
+delete data.age            // 删除的话,也是不行，所以需要Vue.delete()
+```
+
+从上面代码来看，缺点也是有的👇
+
+- 对于监听对象很复杂，需要深度监听，需要递归到底，一次性计算大
+- 无法监听新增和删除属性(Vue.set() / Vue.delete())
+
