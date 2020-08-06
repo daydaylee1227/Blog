@@ -54,11 +54,12 @@
 
           <!-- 进度条 -->
           <div class="progress-wrapper">
-            <span class="time time-l"></span>
+
+            <span class="time time-l">{{format(this.currentTime)}}</span>
             <div class="progress-bar-wrapper">
               <!-- <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar> -->
             </div>
-            <span class="time time-r"></span>
+            <span class="time time-r">{{format(currentSong.duration)}}</span>
           </div>
           
           <!-- 五个操作符按钮 -->
@@ -379,6 +380,20 @@
       },
       error(){
 
+      },
+      _pad(num, n = 2) {  // 格式化时间
+        let len = num.toString().length
+        while (len < n) {
+          num = '0' + num
+          len++
+        }
+        return num
+      },
+      format(interval) { // 事件格式化
+        interval = interval | 0
+        const minute = interval / 60 | 0
+        const second = this._pad(interval % 60)
+        return `${minute}:${second}`
       },
       _getPosAndScale() {
         // 缩放比例 动态的获取x,y,scale
