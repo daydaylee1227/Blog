@@ -16,7 +16,30 @@
 
 源码中找答案：src\core\vdom\patch.js - updateChildren()
 
+- 必须使用key,且不能是index和random
+- diff算法中通过tag和key来判断，是否是sameNode
+- 这样子的话，就可以减少渲染次数，提升渲染性能。
 
+
+
+## 说一说v-model实现的原理
+
+v-model本质上就是语法糖，即利用v-model绑定数据后，其实就是**既绑定了数据，又添加了一个input事件监听**，如下：
+
+```
+<input v-model='searchData'>
+```
+
+等价于
+
+```
+<input 
+	v-bind:value = 'searchData'
+	v-on:input = 'searchData = $event.target.value'
+>
+```
+
+当在input元素中使用v-model实现双数据绑定，其实就是在输入的时候触发元素的input事件，通过这个语法糖，实现了数据的双向绑定。
 
 
 
@@ -81,7 +104,7 @@
 ## Vue 如何实现组件间通信？
 
 1. props ★★ （父传子）
-2.  $emit/$on ★★ 事件总线 （跨层级通信）
+2.  $emit/$on ★★ 自定义事件（跨层级通信）
 3.  vuex ★★★（状态管理 常用 皆可）
 4.  provide/inject ★★★ （高阶用法 = 推荐使用 ） 优点：使用简单 缺点：不是响应式
 
@@ -164,6 +187,12 @@ export defult new Vue()
         }
     </script>
 ```
+
+最后可以在钩子函数中，beforedestory中，通过bus.$off( [event, callback] )解绑该事件。
+
+
+
+
 
 
 
