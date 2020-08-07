@@ -1361,3 +1361,90 @@ methods: {
     },
 ```
 
+### 播放器展开收起动画
+
+**使用transition组件**
+
+需要使用到的就是JS钩子
+
+```
+<transition name="normal"
+                @enter="enter"
+                @after-enter="afterEnter"
+                @leave="leave"
+                @after-leave="afterLeave"
+>
+</transition>
+```
+
+对应的就是在method中定义transition中钩子函数enter,after,leave,after-leave
+
+
+
+create-keyframe-animation，因为要在JS中去完成CSS3的动画，所以呢，我去GitHub上面找到了一个用JS实现的动画库
+
+使用第三方库，方便通过JS操作动画
+
+
+
+
+
+### audio标签
+
+```
+<audio ref="audio" :src="currentSong.url" @play="ready" @error="error" @timeupdate="updateTime"
+           @ended="end"></audio>
+```
+
+audio 提供的事件
+
+error *请求数据时遇到错误*
+
+canplay *可以播放，但中途可能因为加载而暂停*
+
+timeupdate   *播放时间改变*
+
+ended  *播放结束*
+
+
+
+currentSong.duration 歌曲的时间长
+
+
+
+percent = this.currentTime / this.currentSong.duration
+
+传入百分比之后，就可以通过percent * this.$refs.progressBar.clientWidth计算出进度条的宽度
+
+
+
+### 播放器进度条组件
+
+**移动端事件绑定**
+
+```
+<div class="progress-btn-wrapper" ref="progressBtn"
+           @touchstart.prevent="progressTouchStart"
+           @touchmove.prevent="progressTouchMove"
+           @touchend="progressTouchEnd"
+>
+```
+
+点击或者是平移的话，怎么获取播放进度条呢
+
+- 获取当前进度条的clientWidth + 偏移量
+- 这个偏移量就是从touchstart开始记录水平方向位移，通过event.touches[0].pageX - this.touch.startX
+
+
+
+点击事件的话，该怎么实现呢
+
+**getBoundingClientRect()获取的是相对于视口的距离**
+
+
+
+- 通过progressBar.getBoundingClientRect() 获取视口距离
+
+- 然后 event.pageX - rect.left  也就是鼠标的位置减去progressBar组件left距离
+
+  

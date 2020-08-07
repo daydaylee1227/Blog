@@ -62,11 +62,12 @@
             <span class="time time-r">{{format(currentSong.duration)}}</span>
           </div>
           
+          
           <!-- 五个操作符按钮 -->
           <div class="operators">
             <!-- 点击事件,每次换icon-loop icon-random icon-sequence -->
-            <div class="icon i-left" >
-              <i  class="icon-sequence"></i>
+            <div class="icon i-left" @click="changeMode">
+              <i  :class="iconMode"></i>
             </div>
             <div class="icon i-left" >
               <i  @click="prev" class="icon-prev"></i>
@@ -239,7 +240,7 @@
   import Scroll from 'base/scroll/scroll'
   // import {playerMixin} from 'common/js/mixin'
   // import Playlist from 'components/playlist/playlist'
-
+  import {shuffle} from 'common/js/util'
   const transform = prefixStyle('transform')
   const transitionDuration = prefixStyle('transitionDuration')
 
@@ -272,13 +273,17 @@
       percent() {
         return this.currentTime / this.currentSong.duration
       },
-      
+      iconMode(){
+        return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+      },
       ...mapGetters([
         'currentIndex',
         'fullScreen',
         'playing',
         'playlist',
-        'currentSong'
+        'currentSong',
+        'mode',
+        'sequenceList'
       ])
     },
     created() {
@@ -320,7 +325,6 @@
           // this.songReady = false
       },
       togglePlaying(){
-        console.log(1)
         // if (!this.songReady) {
         //   return
         // }
@@ -403,6 +407,29 @@
           this.togglePlaying()
         }
       },
+      changeMode(){
+        console.log('this.currentSong.id',this.currentSong.id)
+        const mode = ( this.mode + 1)%3
+        this.setPlayMode(mode);
+        let arr_random = null
+        if(mode === playMode.random){
+          arr_random = shuffle(this.sequenceList)
+        }else{
+          arr_random = this.sequenceList
+        }
+        // 确保这个歌曲播放模式修改以后,当前歌曲为改变index
+        this.resetCurrentIndex(arr_random)
+
+        this.setPlayList(arr_random)
+      },
+      resetCurrentIndex(list){
+        // 当前歌曲为修改  保证
+        let index = list.findIndex((item)=>{
+          return item.id === this.currentSong.id
+        })
+        console.log("index",list[index].id)
+        this.setCurrentIndex(index)
+      },
       _getPosAndScale() {
         // 缩放比例 动态的获取x,y,scale
         const targetWidth = 40
@@ -426,11 +453,16 @@
       ...mapMutations({
         setFullScreen: 'SET_FULL_SCREEN',
         setPlayingState : 'SET_PLAYING_STATE',
-        setCurrentIndex : 'SET_CURRENT_INDEX'
+        setCurrentIndex : 'SET_CURRENT_INDEX',
+        setPlayMode : 'SET_PLAY_MODE',
+        setSequenctList :'SET_SEQUENCE_LIST',
+        setPlayList:'SET_PLAYLIST'
       })
     },
     watch : {
-      playing(newPlaying) {
+      playing(newPlaying,oldPlaying) {
+        // 保证的话,就是切换歌曲播放模式的情况下,方面不修改
+        if(newPlaying.id === oldPlaying.id) return 
         const audio = this.$refs.audio
         this.$nextTick(() => {
           newPlaying ? audio.play() : audio.pause()
