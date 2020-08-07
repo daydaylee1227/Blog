@@ -2,6 +2,7 @@ import {getLyric} from 'api/song'
 import {ERR_OK} from 'api/config'
 import {Base64} from 'js-base64'
 
+// 这个内容代表的就是song类
 export default class Song {
   // 歌曲id 歌曲的mid duration歌曲长度 
   constructor({id, mid, singer, name, album, duration, image, url}) {

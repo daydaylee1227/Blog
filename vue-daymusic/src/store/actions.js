@@ -16,9 +16,11 @@ function findIndex(list, song) {
 export const selectPlay = function ({commit, state}, {list, index}) {
   // 提交一个播放歌曲的list
   commit(types.SET_SEQUENCE_LIST, list)
+  // 判断当前的mode
   if (state.mode === playMode.random) {
     let randomList = shuffle(list)
     commit(types.SET_PLAYLIST, randomList)
+    // 获取当前歌曲的currentIndex
     index = findIndex(randomList, list[index])
   } else {
     commit(types.SET_PLAYLIST, list)
@@ -31,15 +33,19 @@ export const selectPlay = function ({commit, state}, {list, index}) {
   commit(types.SET_PLAYING_STATE, true)
 }
 
+
+// 随机播放
 export const randomPlay = function ({commit}, {list}) {
-  commit(types.SET_PLAY_MODE, playMode.random)
-  commit(types.SET_SEQUENCE_LIST, list)
+  commit(types.SET_PLAY_MODE, playMode.random)   // 设置随机播放
+  commit(types.SET_SEQUENCE_LIST, list)     // 设置一个sequencelist列表
   let randomList = shuffle(list)
-  commit(types.SET_PLAYLIST, randomList)
-  commit(types.SET_CURRENT_INDEX, 0)
-  commit(types.SET_FULL_SCREEN, true)
-  commit(types.SET_PLAYING_STATE, true)
+  commit(types.SET_PLAYLIST, randomList)        // playlist 随机
+  commit(types.SET_CURRENT_INDEX, 0)          // currentIndex 从0开始播放
+  commit(types.SET_FULL_SCREEN, true)          // 全屏播放
+  commit(types.SET_PLAYING_STATE, true)      // 设置播放的状态
 }
+
+
 
 export const insertSong = function ({commit, state}, song) {
   let playlist = state.playlist.slice()

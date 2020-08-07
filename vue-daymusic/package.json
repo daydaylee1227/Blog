@@ -22,7 +22,8 @@
     "vuex": "^2.3.1",
     "good-storage": "^1.0.1",
     "js-base64": "^2.1.9",
-    "create-keyframe-animation": "^0.1.0"
+    "create-keyframe-animation": "^0.1.0",
+    "lyric-parser": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

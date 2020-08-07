@@ -1439,7 +1439,7 @@ percent = this.currentTime / this.currentSong.duration
 
 点击事件的话，该怎么实现呢
 
-**getBoundingClientRect()获取的是相对于视口的距离**
+### **getBoundingClientRect()获取的是相对于视口的距离**
 
 
 
@@ -1448,3 +1448,38 @@ percent = this.currentTime / this.currentSong.duration
 - 然后 event.pageX - rect.left  也就是鼠标的位置减去progressBar组件left距离
 
   
+
+### 随机播放，顺序播放，循环播放
+
+打乱歌曲算法
+
+```js
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+export function shuffle(arr) {
+  let _arr = arr.slice()
+  for (let i = 0; i < _arr.length; i++) {
+    let j = getRandomInt(0, i)
+    let t = _arr[i]
+    _arr[i] = _arr[j]
+    _arr[j] = t
+  }
+  return _arr
+}
+
+```
+
+
+
+### 抓取歌词数据信息
+
+歌词数据的Base64解码  "js-base64": "^2.1.9"
+
+首先需要做的内容是Base64.decode(res.lyric)  需要解码
+
+**lyric-parser **这个库的作用就是解析这个歌词语法，生成一个有规矩的数据结构。
+
+
+

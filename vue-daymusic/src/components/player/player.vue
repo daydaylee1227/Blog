@@ -117,7 +117,7 @@
     
     </transition>
     <audio ref="audio" :src="currentSong.url" @play="ready" @error="error" 
-           ></audio>
+           @ended="end"></audio>
     
     
     
@@ -236,7 +236,7 @@
   import ProgressBar from 'base/progress-bar/progress-bar'
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
-  // import Lyric from 'lyric-parser'
+  import Lyric from 'lyric-parser'
   import Scroll from 'base/scroll/scroll'
   // import {playerMixin} from 'common/js/mixin'
   // import Playlist from 'components/playlist/playlist'
@@ -300,7 +300,10 @@
       },
       // 前一首
       prev(){
-          
+          if(this.mode === playMode.loop) {
+            this.loop()
+            return 
+          }
           let index = this.currentIndex - 1
           if(index === -1) {
             index = this.playlist.length - 1
@@ -314,6 +317,10 @@
       },
       // 后一首
       next(){
+          if(this.mode === playMode.loop){
+            this.loop()
+            return 
+          }
           let index = this.currentIndex - 1
           if(index === this.playlist.length){
             index = 0
@@ -408,7 +415,6 @@
         }
       },
       changeMode(){
-        console.log('this.currentSong.id',this.currentSong.id)
         const mode = ( this.mode + 1)%3
         this.setPlayMode(mode);
         let arr_random = null
@@ -427,8 +433,40 @@
         let index = list.findIndex((item)=>{
           return item.id === this.currentSong.id
         })
-        console.log("index",list[index].id)
         this.setCurrentIndex(index)
+      },
+      end() {
+        if (this.mode === playMode.loop) {
+          this.loop()
+        } else {
+          this.next()
+        }
+      },
+      // 循环播放
+      loop() {
+        this.$refs.audio.currentTime = 0
+        this.$refs.audio.play()
+        this.setPlayingState(true)
+        // if (this.currentLyric) {
+        //   this.currentLyric.seek(0)
+        // }
+      },
+      getLyric() {
+        console.log(2)
+        this.currentSong.getLyric().then((lyric) => {
+          if (this.currentSong.lyric !== lyric) {
+            return
+          }
+          this.currentLyric = new Lyric(lyric, this.handleLyric)
+          console.log(this.currentLyric)
+          if (this.playing) {
+            this.currentLyric.play()
+          }
+        }).catch(() => {
+          this.currentLyric = null
+          this.playingLyric = ''
+          this.currentLineNum = 0
+        })
       },
       _getPosAndScale() {
         // 缩放比例 动态的获取x,y,scale
@@ -460,12 +498,21 @@
       })
     },
     watch : {
-      playing(newPlaying,oldPlaying) {
+      currentSong(newSong,oldSong){
+        if(newSong.id === oldSong.id) return 
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.$refs.audio.play()
+          this.getLyric()
+        },1000)
+      },
+      playing(newPlaying) {
         // 保证的话,就是切换歌曲播放模式的情况下,方面不修改
-        if(newPlaying.id === oldPlaying.id) return 
+        // if(newPlaying.id === oldPlaying.id) return 
         const audio = this.$refs.audio
         this.$nextTick(() => {
           newPlaying ? audio.play() : audio.pause()
+          
         })
       }
     },
