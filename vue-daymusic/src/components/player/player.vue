@@ -57,7 +57,7 @@
 
             <span class="time time-l">{{format(this.currentTime)}}</span>
             <div class="progress-bar-wrapper">
-              <!-- <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar> -->
+              <progress-bar :percent="percent" @percentChange="onProgressBarChange"></progress-bar>
             </div>
             <span class="time time-r">{{format(currentSong.duration)}}</span>
           </div>
@@ -232,7 +232,7 @@
   // 第三方提供的js动画
   import animations from 'create-keyframe-animation'
   import {prefixStyle} from 'common/js/dom'
-  // import ProgressBar from 'base/progress-bar/progress-bar'
+  import ProgressBar from 'base/progress-bar/progress-bar'
   import ProgressCircle from 'base/progress-circle/progress-circle'
   import {playMode} from 'common/js/config'
   // import Lyric from 'lyric-parser'
@@ -272,6 +272,7 @@
       percent() {
         return this.currentTime / this.currentSong.duration
       },
+      
       ...mapGetters([
         'currentIndex',
         'fullScreen',
@@ -395,6 +396,13 @@
         const second = this._pad(interval % 60)
         return `${minute}:${second}`
       },
+      onProgressBarChange(percent){
+        const currentTime = this.currentSong.duration * percent
+        this.$refs.audio.currentTime = currentTime
+        if (!this.playing) {
+          this.togglePlaying()
+        }
+      },
       _getPosAndScale() {
         // 缩放比例 动态的获取x,y,scale
         const targetWidth = 40
@@ -430,7 +438,8 @@
       }
     },
     components : {
-      ProgressCircle
+      ProgressCircle,
+      ProgressBar,
     }
     // methods: {
     //   togglePlaying() {
