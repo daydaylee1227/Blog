@@ -2,6 +2,8 @@ import {mapGetters, mapMutations, mapActions} from 'vuex'
 import {playMode} from 'common/js/config'
 import {shuffle} from 'common/js/util'
 
+// 为了解决的问题就是播放器底部的适配问题
+
 export const playlistMixin = {
   computed: {
     ...mapGetters([

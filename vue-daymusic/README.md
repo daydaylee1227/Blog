@@ -1483,3 +1483,27 @@ export function shuffle(arr) {
 
 
 
+### 播放器底部适配问题
+
+因为每个页面都会遇到这个问题，比如热门歌曲页面，比如歌手页面，歌手详情页面等，都会出现歌手播放器底部遮住部分信息的问题，解决的办法就是使用mixin,抽离公共的逻辑代码部分。
+
+
+
+```
+import {playerMixin} from 'common/js/mixin'
+
+mixins: [playerMixin]
+```
+
+然后再去重写这个handlePlaylist方法,这样子的话，就会去调用基础组件的refresh()方法
+
+```
+// 给具体的DOM修改样式
+handlePlaylist(playlist) {
+        const bottom = playlist.length > 0 ? '60px' : ''
+        this.$refs.singer.style.bottom = bottom
+        this.$refs.list.refresh()
+      },
+```
+
+// 给具体的DOM修改样式，比如选中singer组件的DOM元素，给它设置一个bottom，然后调用scroll组件中的refresh()方法，这样子的话，就可以重新高度，也就是重新计算。

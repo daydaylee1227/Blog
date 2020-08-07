@@ -41,7 +41,7 @@
   import Loading from 'base/loading/loading'
   import SongList from 'base/song-list/song-list'
   import {prefixStyle} from 'common/js/dom'
-  // import {playlistMixin} from 'common/js/mixin'
+  import {playlistMixin} from 'common/js/mixin'
   import {mapActions} from 'vuex'
 
   const RESERVED_HEIGHT = 40
@@ -50,7 +50,7 @@
   const backdrop = prefixStyle('backdrop-filter')
 
   export default {
-    // mixins: [playlistMixin],
+    mixins: [playlistMixin],
     props: {
       bgImage: {
         type: String,
@@ -94,7 +94,7 @@
     },
     methods: {
 
-      // 自动播放音乐信息
+      // 这个方法就是完成的解决播放器底部的适配
       handlePlaylist(playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
         this.$refs.list.$el.style.bottom = bottom
