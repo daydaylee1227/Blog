@@ -276,6 +276,26 @@ if (env === 'development') {
 
 
 
+上面对于图片的模块打包，我们同样可以去使用url-loader，那么它与file-loader区别是什么呢？
+
+```js
+			{
+                loader: 'url-loader',
+                options: {
+                    name: '[name]_[hash].[ext]',
+                    outputPath: 'images/',
+                    limit : 102400  //100KB
+                }
+            }
+```
+
+唯一的区别就在于，要打包的图片是否会打包到images目录下，还是以Base64格式打包到bundle.js文件中，这个就看limit配置项了。
+
+- 当你打包的图片大小比limit配置的参数大，那么跟file-loader一样。
+- 当图片较小时，那么就会以Base64打包到bundle.js文件中。
+
+更多的url-loader[看官网](https://www.webpackjs.com/loaders/url-loader/)
+
 
 
 **总结**
