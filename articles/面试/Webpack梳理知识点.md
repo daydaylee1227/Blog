@@ -220,6 +220,15 @@ console.log(acator)
 
 
 
+**总结**
+
+webpack无法识别非js结尾的模块，所以需要loader让webpack识别出来，这样子就可以完成打包。
+
+- 遇到非js结尾的模块，webpack会去module中找相应的规则，匹配到了对于的规则，然后去求助于对应的loader
+- 对应的loader就会将该模块打包到相应的目录下，上面的例子就是dist目录，并且呢，**返回的是该模块的路径**,拿上面的例子来说，就是`acator` 变量的值就是路径。
+
+
+
 ### 如何配置file-loader
 
 当然就是看webpack官网了，这里面文档很详细，[点这里](https://www.webpackjs.com/loaders/file-loader/)
@@ -298,9 +307,131 @@ if (env === 'development') {
 
 
 
-**总结**
+### 如何配置css-loader
 
-webpack无法识别非js结尾的模块，所以需要loader让webpack识别出来，这样子就可以完成打包。
+比如你引入了一个css模块，这个时候，就需要去下载相应的模块loader。
 
-- 遇到非js结尾的模块，webpack会去module中找相应的规则，匹配到了对于的规则，然后去求助于对应的loader
-- 对应的loader就会将该模块打包到相应的目录下，上面的例子就是dist目录，并且呢，**返回的是该模块的路径**,拿上面的例子来说，就是`acator` 变量的值就是路径。
+```
+cnpm install css-loader style-loader -D   // 下载对应的模块
+```
+
+然后就是配置module👇
+
+```
+		{
+            test: /\.css$/,
+            use: ['style-loader','css-loader']
+        }
+```
+
+这样子的话，你在index.js 导入样式就可以生效啦，我们看看是如何导入的👇
+
+```
+import acator from './头像.jpg'
+import './index.css'
+const img = new Image()
+img.src = acator
+img.classList.add('imgtitle')
+document.body.appendChild(img)
+```
+
+这个imgtitle就是样式，如下👇
+
+```
+.imgtitle{
+    width: 100px;
+    height: 100px;
+}
+```
+
+通过两个loader，就实现了webpack打包css文件，那我们分析以下两个loader功能。
+
+- css-loader主要作用就是将多个css文件整合到一起，形成一个css文件。
+- style-loader会把整合的css部分挂载到head标签中。
+
+
+
+那么如果你使用scss预编译css的话，webpack是无法打包该文件的，所以又需要安装新的loader👇
+
+### 如何配置sass-loader
+
+我们看官网scss-loader需要下载哪些，[点这里](https://www.webpackjs.com/loaders/sass-loader/) 
+
+```
+npm install sass-loader node-sass --save-dev
+```
+
+上面是安装sass-loader，需要同时安装node-sass，然后就去配置对应的module
+
+```js
+		{
+            test: /\.scss$/,
+            use: ['style-loader','css-loader','sass-loader']
+        }
+```
+
+这样子的话，你像下面去导入scss样式文件，是可以打包完成的👇
+
+```
+// index.js 
+import acator from './头像.jpg'
+// console.log(acator)
+import './index.scss'   // 导入scss文件
+
+const img = new Image()
+img.src = acator
+img.classList.add('imgtitle')
+document.body.appendChild(img)
+```
+
+模块的加载就是从右像左来的，所以先加载sass-loader翻译成css文件，然后使用css-loader打包成一个css文件，在通过style-loader挂载到页面上去。
+
+接下来又有新的问题了，如果在scss文件中使用css3新特新的话，是不是需要加上厂商前缀呢？这个时候，我们需要怎么去呢？应该加上一个什么loader呢？看下面
+
+
+
+### 如何配置postcss-loader
+
+这个loader解决的就是加上厂商前缀，我们看webpack官网是怎么做的👉[点这里](https://www.webpackjs.com/loaders/postcss-loader/)
+
+```
+npm i -D postcss-loader autoprefixer
+```
+
+然后呢，还需要建一个**postcss.config.js**，这个配置文件(**位置跟webpack.config.js一个位置**)配置如下信息👇
+
+```
+// postcss.config.js
+// 需要配置这个插件信息
+module.exports = {
+    plugins: [
+        require('autoprefixer')({
+            overrideBrowserslist: [
+                "Android 4.1",
+                "iOS 7.1",
+                "Chrome > 31",
+                "ff > 31",
+                "ie >= 8"
+            ]
+        })
+    ]
+};
+```
+
+一开始我设置的话，是不生效的，原因就是**没有设置支持的浏览器**，然后看看下面👇
+
+```js
+		{
+            test: /\.scss$/,
+            use: ['style-loader','css-loader','sass-loader','postcss-loader']
+        }
+```
+
+最后就可以看见比如css3会加上厂商前缀了👇
+
+```
+-webkit-transform: translate(100px, 100px);
+-ms-transform: translate(100px, 100px);
+transform: translate(100px, 100px);
+```
+
