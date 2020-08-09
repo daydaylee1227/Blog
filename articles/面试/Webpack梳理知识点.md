@@ -435,3 +435,101 @@ module.exports = {
 transform: translate(100px, 100px);
 ```
 
+
+
+一些其他问题，有时候，你会遇到这样子的一个问题，你不在某个scss文件中又导入新的scss文件，这个时候，打包的话，它就不会帮你重新安装postcss-loader开始打包，这个时候，我们应该如何去设置呢，我们先来看例子👇
+
+```scss
+// index.scss
+@import './creare.scss';
+body {
+    .imgtitle {
+        width: 100px;
+        height: 100px;
+        transform: translate(100px, 100px);
+    }
+}
+```
+
+- 我们知道，我们配置的loader规则中，是符合这样子的预期
+- 当js代码中引入scss模块的话，会按照这样子的规则去做
+- 那么如何在scss文件中引入scss文件，那么规则肯定不会从postcss-loader开始打包，所以我们需要配置一些信息。
+
+```js
+		{
+            test: /\.scss$/,
+            use: ['style-loader',
+                {
+                    loader: 'css-loader',
+                    options:{
+                        importLoaders:2,
+                        modules : true
+                    }
+                },
+                'sass-loader',
+                'postcss-loader'
+            ]
+        }
+```
+
+我们需要在css-loader中配置options，加入**importLoaders :2**， 这样子就会走postcss-loader，和sass-loader，这样子的语法，**无论你是在js中引入scss文件，还是在scss中引入scss文件，都会重新依次从下往上执行所以loader。**
+
+那么`modules:true`这个配置是什么作用呢？有时候，你希望你的css样式作用的是当前的模块中，而不是全局的话，就需要加上这个配置了，看下案例👇
+
+```js
+// index.js
+import acator from './头像.jpg'
+import create from './create'
+
+import style from './index.scss'  // 通过modules:true 避免了css作用域create中的模块
+const img = new Image()
+img.src = acator
+img.classList.add(style.imgtitle)
+document.body.appendChild(img)
+create()
+```
+
+那么create模块是什么呢👇
+
+```js
+import acator from './头像.jpg'
+import style from './index.scss'
+function create() {
+    const img = new Image()
+    img.src = acator
+    img.classList.add(style.imgtitle)
+    document.body.appendChild(img)
+}
+
+export default create;
+```
+
+可以看出来，这个create模块，就是创建一个img标签，并且设置单独的样式。给`modules : true`后，我们需要接着往下做的就是import语法上有些改变。
+
+```js
+import style from './index.scss'
+```
+
+然后通过style这个对象变量中去找，找到scss中设置的名称即可。
+
+**总结**
+
+- `importLoaders:2`该配置信息解决的就是在scss文件中又引入scss文件，会重新从postcss-loader开始打包
+- `modules:true`会作用域当前的css环境中，样式不会全局引入，语法上也需要使用如下引入
+- import style from './index.scss'
+
+
+
+比如字体图标怎么配置信息呢？对于字体图标大打包，可以使用file-loader完成👇
+
+```js
+		{
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+                'file-loader'
+            ]
+        }
+```
+
+更多的静态资源的打包配置，可以看官网是如何使用的，👉（[静态loader管理资源]()）
+
