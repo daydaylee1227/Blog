@@ -652,3 +652,26 @@ devtool:'inline-cheap-source-map'
 // production  devtool:'cheap-module-source-map'
 ```
 
+### 如何使用webpack-dev-server
+
+webpack-dev-server 能够用于快速开发应用程序。很多的配置都在webpack官网有,[点击这里](https://www.webpackjs.com/configuration/dev-server/)
+
+首先先下载它
+
+```java
+cnpm i clean-webpack-plugin -D
+```
+
+它的作用很多,可以开启一个服务器,而且可以实时去监听打包文件是否改变,改变的话,就会出现去更新.
+
+```
+devServer: {
+        contentBase: path.join(__dirname, "dist"),   // dist目录开启服务器
+        compress: true,    // 是否使用gzip压缩
+        port: 9000,    // 端口号
+        open : true   // 自动打开网页
+    },
+```
+
+很多的配置项,可以去官方文档查看,比如proxy代理等配置项,更多文档[点击这里](https://www.webpackjs.com/configuration/dev-server/)
+
