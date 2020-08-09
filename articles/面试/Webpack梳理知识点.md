@@ -165,7 +165,7 @@ module.exports = {
 
 
 
-## webpack核心概念
+## webpack核心概念loader
 
 ### 什么是loader
 
@@ -532,4 +532,75 @@ import style from './index.scss'
 ```
 
 更多的静态资源的打包配置，可以看官网是如何使用的，👉（[静态loader管理资源]()）
+
+
+
+## webpack核心概念plugins
+
+如何使用plugins让打包更加便捷呢，plugins意思就是插件意思，很大程度上方便了我们，那我们来看看吧。
+
+plugins: **可以在webpack运行到某个时刻的时候,帮你做一些事情.**
+
+### 如何使用HtmlWebpackPlugin
+
+**这个插件的作用，就是为你生成一个HTML文件，然后将打包好的js文件自动引入到这个html文件中。**
+
+如何配置呢？可以看[webpack官网](https://www.webpackjs.com/plugins/html-webpack-plugin/)
+
+首先第一步下载HtmlWebpackPlugin
+
+```bash
+cnpm install --save-dev html-webpack-plugin
+```
+
+然后在webpack.config.js中配置如下信息👇
+
+```js
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+
+var webpackConfig = {
+  entry: 'index.js',
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'index_bundle.js'
+  },
+  plugins: [new HtmlWebpackPlugin({
+            template: 'src/index.html'  // 以src/目录下的index.html为模板打包
+        }
+    )],
+};
+```
+
+然后运行npm run dev，就会发现在dist目录下，自动帮你生成一个HTML模块，并且引入bundle.js文件。
+
+`template: 'src/index.html'` 这个配置信息的作用就是告诉你，以具体哪个index.html为模板去打包
+
+
+
+### 如何使用CleanWebpackPlugin
+
+这个插件的作用就是会帮你删除某个目录的文件,是在打包前删除所有上一次打包好的文件。
+
+```
+cnpm i clean-webpack-plugin -D
+//"clean-webpack-plugin": "^3.0.0",我的是这个版本
+```
+
+然后配置clean-webpack-plugin的话,需要去对于网站上查看如何配置的,可以点这里👉 [npm上](https://www.npmjs.com/package/clean-webpack-plugin)
+
+配置信息如下👇
+
+```js
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
+// plugins新增加这一项
+plugins: [ new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ['dist']
+        })]
+```
+
+然后运行命令,这样子的话,就可以在打包前,把dist目录下的文件删除
+
+
 
