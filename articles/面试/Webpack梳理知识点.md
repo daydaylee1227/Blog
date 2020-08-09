@@ -721,7 +721,7 @@ devServer: {
 
 然后加入两个插件,这个插件时webpack自带的,所以不需要下载👇
 
-```
+```js
 const webpack = require('webpack')
 plugins: [
         new webpack.NamedModulesPlugin(),  // 可配置也可不配置
@@ -733,11 +733,104 @@ plugins: [
 
 配置完上述的信息之后,重新去运行命令的话,就会发现启动了`模块热替换`,不同模块的文件更新,只会下载当前模块文件
 
+唯一需要注意的内容是,对于css的内容修改,css-loader底层会帮我们做好实时热更新,对于JS模块的话,我们需要手动的去配置👇
+
+
+
+```js
+if(module.hot){
+    module.hot.accept('./print',()=>{
+        print()
+    })
+}
+```
+
+这个官方也给出了语法,module.hot.accept(module1,callback) 表示的就是接受一个需要实时热更新的模块,当内容发生变化时,会帮你检测到,然后执行回调函数
+
+
+
 **总结**
 
 - HMR模块热替换解决的问题就是,它允许在运行时更新各种模块，而无需进行完全刷新。
 - 意思就是不需要重新去本地服务器重新去加载其他为修改的资源
+- 需要注意的就是,对于js文件的热更新的话,需要手动的去检测更新内容,也就是module.hot.accept语法
 
 
 
 更多的配置信息去webpack官网查看,[点这里查看HMR](https://www.webpackjs.com/guides/hot-module-replacement/)
+
+
+
+### Babel处理ES6语法
+
+
+
+接下来我们就来配置它👇
+
+```js
+npm install --save-dev babel-loader @babel/core
+// @babel/core 是babel中的一个核心库
+
+npm install --save-dev @babel/preset-env
+// preset-env 这个模块就是将语法翻译成es5语法,这个模块包括了所有翻译成es5语法规则
+
+npm install --save @babel/polyfill
+// 将Promise,map等低版本中没有实现的语法,用polyfill来实现.
+
+```
+
+配置module👇
+
+```js
+module: {
+  rules: [
+    {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: "babel-loader",
+            options: {
+                "presets": [
+                    [
+                        "@babel/preset-env",
+                        {
+                            "useBuiltIns": "usage"
+                        }
+                    ]
+                ]
+            }
+        }
+  ]
+}
+// exclude参数: node_modules目录下的js文件不需要做转es5语法,也就是排除一些目录
+// "useBuiltIns"参数:
+```
+
+- 有了`preset-env`这个模块后,我们就会发现我们写的**const语法被翻译成成var**
+
+- 但是细心的会发现,对于Promise以及map这些语法,低版本浏览器是不支持的,
+- 所以我们需要`@babel/polyfill`模块,对Promise,map进行补充,完成该功能,也就是前面说的`polyfill`
+
+然后我们怎么使用呢?就是在js文件最开始导入👇
+
+```js
+import "@babel/polyfill";
+```
+
+但是细心的同学,会发现问题,用完这个以后,打包的文件体积瞬间增加了10多倍之多,这是为什么呢?
+
+这是因为,`@babel/polyfill`为了弥补Promise,map等语法的功能,该模块就需要**自己去实现Promise,map等语法**的功能,这也就是为什么打包后的文件很大的原因.
+
+那我们需要对`@babel/polyfill`参数做一些配置即可,如下👇
+
+```
+"useBuiltIns": "usage"
+```
+
+这个语法作用就是: 只会对我们index.js当前要打包的文件中使用过的语法,比如Promise,map做polyfill,其他es6未出现的语法,我们暂时不去做polyfill,这样子,打包后的文件就减少体积了
+
+**总结**
+
+- 需要按照babel-loader @babel/core这些库,@babel/core是它的核心库
+- @babel/preset-env 它包含了es6翻译成es5的语法规则
+- @babel/polyfill 解决了低版本浏览器无法实现的一些es6语法,使用polyfill自己来实现
+- 通过`import "@babel/polyfill";` 在js文件开头引入,完成对es6语法的polyfill
