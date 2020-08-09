@@ -589,18 +589,66 @@ cnpm i clean-webpack-plugin -D
 
 然后配置clean-webpack-plugin的话,需要去对于网站上查看如何配置的,可以点这里👉 [npm上](https://www.npmjs.com/package/clean-webpack-plugin)
 
-配置信息如下👇
+配置信息如下👇,这个是最新的clean-webpack-plugin配置
 
 ```js
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 // plugins新增加这一项
 plugins: [ new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['dist']
+        cleanAfterEveryBuildPatterns: ['dist']
         })]
 ```
 
 然后运行命令,这样子的话,就可以在打包前,把dist目录下的文件删除
 
 
+
+### entry和output基本配置
+
+有时候,你需要多个入口文件,那么我们又是怎么去完成的呢?这个时候,就需要来看一看entry和output配置项
+
+当然了,webpack官网也是有文档的,[out点这里](https://www.webpackjs.com/configuration/output/)以及[entry点这里](https://www.webpackjs.com/configuration/entry-context/)
+
+```js
+entry: {
+        index :'./src/index.js',
+        bundle : './src/create.js',
+    },
+output: {
+        filename: '[name].js',
+        publicPath: "https://cdn.example.com/assets/",
+        path: path.join(__dirname, 'dist')
+    }    
+```
+
+**总结**
+
+- entry这样子配置就可以接受多个打包的文件入口,同时的话,output输出文件的filename需要使用占位符name
+- 这样子就会生成两个文件,不会报错,对于的名字就是entry名称对应
+- 如果后台已经将资源挂载到了cdn上,那么你的publicPath就会把路径前做修改加上publicPath值
+
+
+
+### 如何使用devtool配置source-map
+
+devtool配置source-map,解决的问题就是,当你代码出现问题时,会映射到你的原文件目录下的错误,并非是打包好的错误,这点也很显然,如果不设置的话,只会显示打包后bundle.js文件中报错,对应查找错误而言,是很不利的
+
+```js
+devtool:'inline-cheap-source-map'
+```
+
+对应不同的环境,设置devtool是很有必要的,开发环境中,我们需要看我们代码是哪里报错误,所以需要配置
+
+[webpack官网有文档介绍](https://www.webpackjs.com/configuration/devtool/)
+
+那我们给出结论👇
+
+- development环境下,配置 `devtool:'cheap-module-eval-source-map'`
+- production环境下,配置 `devtool:'cheap-module-source-map'`
+
+```
+// development devtool:'cheap-module-eval-source-map'
+// production  devtool:'cheap-module-source-map'
+```
 
