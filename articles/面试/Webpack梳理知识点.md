@@ -834,3 +834,43 @@ import "@babel/polyfill";
 - @babel/preset-env 它包含了es6翻译成es5的语法规则
 - @babel/polyfill 解决了低版本浏览器无法实现的一些es6语法,使用polyfill自己来实现
 - 通过`import "@babel/polyfill";` 在js文件开头引入,完成对es6语法的polyfill
+- 以上的场景都是解决的问题是业务中遇到babel的问题
+
+
+
+更多的配置看官方文档,[点这里](https://www.babeljs.cn/)
+
+
+
+当你生成第三方模块时,或者是生成UI组件库时,使用polyfill解决问题,就会出现问题了,上面的场景使用babel会污染环境,这个时候,我们需要换一种方案来解决👇
+
+**@babel/plugin-transform-runtime**这个库就能解决我们的问题,那我们先安装需要的库
+
+```
+npm install --save-dev @babel/plugin-transform-runtime
+
+npm install --save @babel/runtime
+
+// 当你的 "corejs": 2,
+npm install --save @babel/runtime-corejs2
+```
+
+我们这个时候可以在根目录下建一个`.babelrc`文件,配置如下信息👇
+
+```
+{
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "absoluteRuntime": false,
+          "corejs": 2,
+          "helpers": true,
+          "regenerator": true,
+          "useESModules": false
+        }
+      ]
+    ]
+  }
+```
+
