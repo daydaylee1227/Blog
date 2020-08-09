@@ -604,6 +604,10 @@ plugins: [ new CleanWebpackPlugin({
 
 
 
+## webpack核心概念
+
+
+
 ### entry和output基本配置
 
 有时候,你需要多个入口文件,那么我们又是怎么去完成的呢?这个时候,就需要来看一看entry和output配置项
@@ -675,3 +679,65 @@ devServer: {
 
 很多的配置项,可以去官方文档查看,比如proxy代理等配置项,更多文档[点击这里](https://www.webpackjs.com/configuration/dev-server/)
 
+然后在package.json中scripts配置项如下
+
+```
+"start": "webpack-dev-server"
+```
+
+**这个devServer可以实时检测文件是否发生变化**
+
+同时你需要注意的内容就是使用webpack-dev-server打包的话,不会生成dist目录,而是将**你的文件打包到内存中**
+
+
+
+**总结**
+
+- devServer可以开启一个本地服务器,同时帮我们更新加载最新资源
+- 打包的文件会放在内存中,不会生成dist目录
+
+
+
+### 模块热替换(hot module replacement)
+
+模块热替换(HMR - Hot Module Replacement)功能会在应用程序运行过程中替换、添加或删除[模块](https://www.webpackjs.com/concepts/modules/)，而无需重新加载整个页面。
+
+顾名思义它说的就是,多个模块之前,当你修改一个模块,而不想重新加载整个页面时,就可以使用`hot module replacement`
+
+举个例子,当你修改了css代码中一些样式,不配置HMR模块热替换的话,整个页面都会重新去渲染,这样子是没有必要的,那么我们接下来就去配置👇
+
+```
+devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000,
+        open: true,
+        hot: true,   // 开启热更新
+        // hotOnly: true,
+    },
+```
+
+这个hotOnly可以设置,最主要的是设置`hot:true`
+
+然后加入两个插件,这个插件时webpack自带的,所以不需要下载👇
+
+```
+const webpack = require('webpack')
+plugins: [
+        new webpack.NamedModulesPlugin(),  // 可配置也可不配置
+        new webpack.HotModuleReplacementPlugin() // 这个是必须配置的插件
+    ],
+```
+
+添加了 `NamedModulesPlugin`，以便更容易查看要修补(patch)的依赖。
+
+配置完上述的信息之后,重新去运行命令的话,就会发现启动了`模块热替换`,不同模块的文件更新,只会下载当前模块文件
+
+**总结**
+
+- HMR模块热替换解决的问题就是,它允许在运行时更新各种模块，而无需进行完全刷新。
+- 意思就是不需要重新去本地服务器重新去加载其他为修改的资源
+
+
+
+更多的配置信息去webpack官网查看,[点这里查看HMR](https://www.webpackjs.com/guides/hot-module-replacement/)
