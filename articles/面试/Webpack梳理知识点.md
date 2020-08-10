@@ -1,4 +1,4 @@
-
+`
 
 
 
@@ -1140,3 +1140,65 @@ module.exports = merge(commomConfig, prodConfig)
 ```
 
 最新的`clean-webpack-plugin`，不需要设置清除目录，自动清除打包路径，也就是dist目录。
+
+
+
+### SplitChunksPlugin代码分隔
+
+当你有多个入口文件，或者是打包文件需要做一个划分，举个例子，比如第三方库lodash，jquery等库需要打包到一个目录下，自己的业务逻辑代码需要打包到一个文件下，这个时候，就需要提取公共模块了，也就需要SplitChunksPlugin这个插件登场了。
+
+这个是webpack4新增加的插件，我们需要手动去配置optimization.splitChunks。接下来，我们就来看看它的基本配置吧👇
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+        chunks: "async",
+        minSize: 30000,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+            vendors: { 
+                test: /[\\/]node_modules[\\/]/,  //匹配node_modules中的模块
+                priority: -10   //优先级,当模块同时命中多个缓存组的规则时，分配到优先级高的缓存组
+            },
+        default: {
+                minChunks: 2, //覆盖外层的全局属性
+                priority: -20,
+                reuseExistingChunk: true  //是否复用已经从原代码块中分割出来的模块
+            }
+        }
+    }
+  },
+};
+
+```
+
+那我们从每个参数开始说起👇
+
+- 在cacheGroups外层的属性设置适用于所有的缓存组，不过每个缓存组内部都可以**重新**设置它们的值
+- `chunks: "async"` 这个属性设置的是以**什么类型**的代码经行分隔，有三个值
+  - `initial` 入口代码块
+  - `all` 全部
+  - `async` 按需加载的代码块
+- `minSize: 30000` 模块大小超过30kb的模块才会提取
+- `minChunks: 1`, 当某个模块至少被多少个模块引用时，才会被提取成新的chunk
+- `maxAsyncRequests: 5`,分割后，按需加载的代码块最多允许的并行请求数
+- `maxInitialRequests: 3·` 分割后，入口代码块最多允许的并行请求数
+- `automaticNameDelimiter: "~"`代码块命名分割符
+- `name: true,  `每个缓存组打包得到的代码块的名称
+- `cacheGroups` 缓存组，定制相应的规则。
+
+
+
+自己根据实际情况去设置相应的规则，每个缓存组根据规则将匹配的模块会分配到代码块（chunk）中，每个缓存组的打包结果可以是单一 chunk，也可以是多个 chunk。
+
+
+
+
+
+[SplitChunk代码实例](https://juejin.im/post/6844904183917871117#comment)
