@@ -594,13 +594,11 @@ cnpm i clean-webpack-plugin -D
 ```js
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-// plugins新增加这一项
-plugins: [ new CleanWebpackPlugin({
-        cleanAfterEveryBuildPatterns: ['dist']
-        })]
+// plugins新增加这一项，webpack4版本不需要配置路径
+plugins: [ new CleanWebpackPlugin()]
 ```
 
-然后运行命令,这样子的话,就可以在打包前,把dist目录下的文件删除
+最新的webpack4版本是不需要去配置路径的，自动帮我们清除打包好的dist目录下文件。
 
 
 
@@ -1056,7 +1054,7 @@ const commonConfig = {
             template: 'src/index.html' // 以src/目录下的index.html为模板打包
         }),
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['dist']
+            // 不需要做任何的配置
         }),
     ],
     output: {
@@ -1133,5 +1131,12 @@ module.exports = merge(commomConfig, prodConfig)
 
 需要注意的是，我将三个文件放在了build目录下，当然了，在根目录情况下，我们就把`--config`后面的指令路径修改即可。
 
+还有一个需要注意的就是`clean-webpack-plugin`这个插件的配置，当你把它都放进build目录下，此时的相对该插件的根目录就是build，所以我们需要做修改👇
 
+```js
+		new CleanWebpackPlugin({
+            // 不需要做任何的配置
+        }),
+```
 
+最新的`clean-webpack-plugin`，不需要设置清除目录，自动清除打包路径，也就是dist目录。
