@@ -856,11 +856,11 @@ npm install --save @babel/runtime
 
 ```
 {
+    
     "plugins": [
       [
         "@babel/plugin-transform-runtime",
         {
-          "absoluteRuntime": false,
           "corejs": 2,
           "helpers": true,
           "regenerator": true,
@@ -884,3 +884,13 @@ npm install --save @babel/runtime-corejs2
 
 - 从业务场景来看,可以使用`@babel/preset-env`
 - 从自己生成第三方库或者时UI时,使用`@babel/plugin-transform-runtime`,它作用是将 helper 和 polyfill 都改为从一个统一的地方引入，并且引入的对象和全局变量是完全隔离的,避免了全局的污染
+
+
+
+## webpack高级概念
+
+### 如何使用tree shaking
+
+tree树，shaking摇动，那么你可以把程序想成一颗树。绿色表示实际用到的源码和 library，是树上活的树叶。灰色表示无用的代码，是秋天树上枯萎的树叶。为了除去死去的树叶，你必须摇动这棵树，使它们落下。
+
+通俗意义而言，当你引入一个模块时，你可能用到的只是其中的某些功能，这个时候，我们不希望这些`无用`的代码打包到项目中去。通过tree-shaking，就能将没有使用的模块摇掉，这样达到了删除无用代码的目的。
