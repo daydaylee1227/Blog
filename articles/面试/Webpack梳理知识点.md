@@ -894,3 +894,244 @@ npm install --save @babel/runtime-corejs2
 tree树，shaking摇动，那么你可以把程序想成一颗树。绿色表示实际用到的源码和 library，是树上活的树叶。灰色表示无用的代码，是秋天树上枯萎的树叶。为了除去死去的树叶，你必须摇动这棵树，使它们落下。
 
 通俗意义而言，当你引入一个模块时，你可能用到的只是其中的某些功能，这个时候，我们不希望这些`无用`的代码打包到项目中去。通过tree-shaking，就能将没有使用的模块摇掉，这样达到了删除无用代码的目的。
+
+
+
+需要注意的时webpack4默认的production下是会进行tree-shaking的，
+
+
+
+`optimization.usedExports`
+
+使webpack确定每个模块导出项（exports）的使用情况。依赖于`optimization.providedExports`的配置。`optimization.usedExports`收集到的信息会被其他优化项或产出代码使用到（模块未用到的导出项不会被导出，在语法完全兼容的情况下会把导出名称混淆为单个char）。为了最小化代码体积，未用到的的导出项目（exports）会被删除。生产环境(production)默认开启。
+
+```
+module.exports = {
+  //...
+  optimization: {
+    usedExports: true
+  }
+};
+```
+
+这个时候，再去看看自己的打包bundle.js文件，就会发现，它会有相应的提升功能。
+
+
+
+#### **将文件标记为无副作用(side-effect-free)**
+
+有时候，当我们的模块不是达到很纯粹，这个时候，webpack就无法识别出哪些代码需要删除，所以，此时有必要向 webpack 的 compiler 提供提示哪些代码是“纯粹部分”。
+
+这种方式是通过 package.json 的 `"sideEffects"` 属性来实现的。
+
+```json
+{
+  "name": "webpack-demo",
+  "sideEffects": false
+}
+```
+
+如同上面提到的，如果所有代码都不包含副作用，我们就可以简单地将该属性标记为 `false`，来告知 webpack，它可以安全地删除未用到的 export 导出。
+
+> *注意，任何导入的文件都会受到 tree shaking 的影响。这意味着，如果在项目中使用类似* `css-loader` *并导入 CSS 文件，则需要将其添加到 side effect 列表中，以免在生产模式中无意中将它删除：*
+
+```
+{
+  "name": "webpack-demo",
+  "sideEffects": [
+    "*.css"
+  ]
+}
+```
+
+#### **压缩输出**
+
+> 通过如上方式，我们已经可以通过 `import` 和 `export` 语法，找出那些需要删除的“未使用代码(dead code)”，然而，我们不只是要找出，还需要在 bundle 中删除它们。为此，我们将使用 `-p`(production) 这个 webpack 编译标记，来启用 uglifyjs 压缩插件。
+
+**从 webpack 4 开始，也可以通过 `"mode"` 配置选项轻松切换到压缩输出，只需设置为 `"production"`。**
+
+
+
+#### **总结**
+
+- 为了使用tree-shaking的话，需要使用ES Module语法，也就是使用 ES2015 模块语法（即 `import` 和 `export`）。
+- 在项目 `package.json` 文件中，添加一个 "sideEffects" 入口。
+- 引入一个能够删除未引用代码(dead code)的压缩工具(minifier)（例如 `UglifyJSPlugin`），当然了，webpack4开始，以及支持压缩输出了。
+
+
+
+对于原理篇，可以看看这篇[Tree-Shaking性能优化实践 - 原理篇](https://juejin.im/post/6844903544756109319)
+
+
+
+### *development)*和*production*环境构建
+
+在开发环境和生成环境中，我们依赖的功能是不一样的，举个例子👇
+
+- *开发环境*中，我们需要具有强大的、具有实时重新加载(live reloading)或热模块替换(hot module replacement)能力的 source map 和 localhost server。
+- *生产环境*中，我们的目标则转向于关注更小的 bundle，更轻量的 source map，以及更优化的资源，以改善加载时间。
+
+基于以上两点的话，我们需要为每个环境搭建彼此独立的webpack配置。
+
+其实，写过vue，React都会发现，有一个`webpack.common.js`的配置文件，它的作用就是不必在配置中配置重复的代码。
+
+#### webpack-merge安装
+
+那么首先需要安装的就是`webpack-merge`,之后再整合一起。
+
+```bash
+cnpm install --save-dev webpack-merge
+```
+
+那么我们的目录就是这样子的👇
+
+```diff
+ webpack-demo
+  |- build
+    |- webpack.common.js  //三个新webpack配置文件
+    |- webpack.dev.js    //三个新webpack配置文件
+    |- webpack.prod.js  //三个新webpack配置文件
+  |- package.json
+  |-postcss.config.js
+  |-.babelrc
+  |- /dist
+  |- /src
+    |- index.js
+    |- math.js
+  |- /node_modules
+```
+
+那么学到现在，看看配置了哪些信息👇
+
+**webpack.common.js**
+
+```js
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const commonConfig = {
+    entry: {
+        main: './src/index.js',
+    },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: "babel-loader"
+        }, {
+            test: /\.(jpg|gif|png)$/,
+            use: {
+                loader: 'url-loader',
+                options: {
+                    name: '[name]_[hash].[ext]',
+                    outputPath: 'images/',
+                    limit: 1024 //100KB
+                }
+            }
+        }, {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader']
+        }, {
+            test: /\.scss$/,
+            use: ['style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        importLoaders: 2,
+                        modules: true
+                    }
+                },
+                'sass-loader',
+                'postcss-loader'
+            ]
+        }, {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+                'file-loader'
+            ]
+        }]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: 'src/index.html' // 以src/目录下的index.html为模板打包
+        }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: ['dist']
+        }),
+    ],
+    output: {
+        filename: '[name].js',
+        // publicPath: "https://cdn.example.com/assets/",
+        path: path.join(__dirname, '../dist')
+    }
+}
+
+module.exports = commonConfig
+```
+
+**webpack.dev.js**
+
+```js
+
+const path = require('path')
+const webpack = require('webpack')
+const {merge} = require('webpack-merge')
+const commonConfig = require('./webpack.common')
+
+const devConfig = {
+    mode: 'development',
+    devtool: 'cheap-module-eval-source-map',
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 9000,
+        open: true,
+        hot: true,
+        // hotOnly: true,
+    },
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
+    optimization:{
+        usedExports: true
+    }
+}
+
+module.exports = merge(commonConfig, devConfig)
+```
+
+**webpack.prod.js**
+
+```js
+const {merge} = require('webpack-merge')
+const commomConfig = require('./webpack.common')
+const prodConfig = {
+    mode: 'production',
+    devtool: 'cheap-module-source-map',
+}
+
+module.exports = merge(commomConfig, prodConfig)
+```
+
+注意，在环境特定的配置中使用 `merge()` 很容易地包含我们在 `dev` 和 `prod` 中的常见配置。`webpack-merge` 工具提供了多种合并(merge)的高级功能，但是在我们的用例中，无需用到这些功能。
+
+#### NPM Scripts
+
+现在，我们把 `scripts` 重新指向到新配置。我们将 `npm run dev` 定义为*开发环境*脚本，并在其中使用 `webpack-dev-server`，将 `npm run build` 定义为*生产环境*脚本：
+
+```
+  {
+    "name": "webpack-demo",
+    "scripts": {
+    "dev": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --config ./build/webpack.prod.js",
+    "start": "npx webpack --config ./build/webpack.dev.js"
+  	},
+  }
+```
+
+需要注意的是，我将三个文件放在了build目录下，当然了，在根目录情况下，我们就把`--config`后面的指令路径修改即可。
+
+
+
