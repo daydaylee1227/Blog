@@ -962,7 +962,7 @@ module.exports = {
 
 
 
-### *development)*和*production*环境构建
+### *development*和*production*环境构建
 
 在开发环境和生成环境中，我们依赖的功能是不一样的，举个例子👇
 
@@ -1197,8 +1197,69 @@ module.exports = {
 
 自己根据实际情况去设置相应的规则，每个缓存组根据规则将匹配的模块会分配到代码块（chunk）中，每个缓存组的打包结果可以是单一 chunk，也可以是多个 chunk。
 
+这里有篇实际项目中如何代码分隔的，有兴趣的可以看看[SplitChunk代码实例](https://juejin.im/post/6844904183917871117#comment)
 
 
 
+### Lazy-loding懒加载和Chunk
 
-[SplitChunk代码实例](https://juejin.im/post/6844904183917871117#comment)
+#### import异步加载模块
+
+在webpack中，什么是懒加载，举个例子，当我需要按需引入某个模块时，这个时候，我们就可以使用懒加载，其实实现的方案就是import语法，在达到某个条件时，我们才会去请求资源。
+
+那么我们来看看，如何实现懒加载👇
+
+在讲这个之前，我们的先借助一个插件，完成对import语法的识别。
+
+```bash
+cnpm install --save-dev @babel/plugin-syntax-dynamic-import
+```
+
+然后再`.babelrc`文件下配置，增加一个插件
+
+```json
+{
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]
+}
+```
+
+这样子的话，我们就可以项目中自由的使用import按需加载模块了。
+
+```js
+// create.js
+async function create() {
+    const {
+        default: _
+    } = await import(/*webpackChunkName:"lodash"*/'lodash')
+    let element = document.createElement('div')
+    element.innerHTML = _.join(['TianTian', 'lee'], '-')
+    return element
+}
+
+function demo() {
+    document.addEventListener('click', function () {
+        create().then(element => {
+            document.body.appendChild(element)
+        })
+    })
+}
+
+export default demo;
+```
+
+我这个模块的功能，就是当你点击页面后，会触发create函数，然后加载loadsh库，最后再页面中懒加载lodash，打包是正常打包，但是呢，有些资源，可以当你触发某些条件，再去加载，这也算是优化手段吧。
+
+#### Chunk
+
+Chunk在Webpack里指一个代码块，那具体是指什么样的代码块呢？👇
+
+Chunk是Webpack打包过程中，一堆module的集合。Webpack通过引用关系逐个打包模块，这些module就形成了一个Chunk。
+
+**产生Chunk的三种途径**
+
+- entry入口
+- 异步加载模块
+- 代码分割（code spliting）
+
+Chunk只是一个概念，理解了Chunk概念，更有利于对webpack有一定的认识。
+
