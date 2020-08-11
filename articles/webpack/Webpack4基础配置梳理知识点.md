@@ -1,6 +1,28 @@
 ## 前言
 
+webpack在前端化过程中十分重要，所以花了一段时间学习webpack，以及webpack4新特性，本文是按照从易到难的过程，梳理部分webpack概念，常见的loader，plugins，webpack4新特新，还有部分高级概念。
 
+
+
+
+
+webpack需要掌握的核心概念👇
+
+- `Entry`:webpack开始构建的入口模块
+- `Output`: 如何命名输出文件，以及输出目录，比如常见的dist目录。
+- `Loaders`:作用在于解析文件，将无法处理的非js文件，处理成webpack能够处理的模块。
+- `Plugins`:更多的是优化，提取精华(公共模块去重)，压缩处理(css/js/html)等，对webpack功能的扩展。
+- `Chunk`: 个人觉得这个是webpack 4 的`Code Splitting` 产物，抛弃了webpack3的`CommonsChunkPlugin`,它最大的特点就是配置简单，当你设置 `mode` 是 `production`，那么 webpack 4 就会自动开启 `Code Splitting`，可以完成将某些公共模块去重，打包成一个单独的`chunk`。
+
+
+
+此次学习webpack4新特性，基本上按照[官网](https://www.webpackjs.com/)来配置的。
+
+-------
+
+
+
+如果你跟我一样，在配置自己的webpack中遇到问题，可以来这里找一找思路，**希望本文对你更多的是抛砖引玉**，对你学习webpack4新特性有所帮助。
 
 
 
@@ -164,6 +186,12 @@ module.exports = {
 ```
 
 这个时候，再去看的话，就会发现，**bundle.js文件没有压缩代码**。
+
+
+
+
+
+-----------
 
 
 
@@ -537,6 +565,10 @@ import style from './index.scss'
 
 
 
+-------------------
+
+
+
 ## webpack核心概念plugins
 
 如何使用plugins让打包更加便捷呢，plugins意思就是插件意思，很大程度上方便了我们，那我们来看看吧。
@@ -601,6 +633,10 @@ plugins: [ new CleanWebpackPlugin()]
 ```
 
 最新的webpack4版本是不需要去配置路径的，自动帮我们清除打包好的dist目录下文件。
+
+
+
+---------------
 
 
 
@@ -884,6 +920,10 @@ npm install --save @babel/runtime-corejs2
 
 - 从业务场景来看,可以使用`@babel/preset-env`
 - 从自己生成第三方库或者时UI时,使用`@babel/plugin-transform-runtime`,它作用是将 helper 和 polyfill 都改为从一个统一的地方引入，并且引入的对象和全局变量是完全隔离的,避免了全局的污染
+
+---------------
+
+
 
 
 
@@ -1402,7 +1442,7 @@ module.exports = merge(commomConfig, prodConfig)
 
 
 
-### uglifyjs-webpack-plugin  js代码压缩
+### uglifyjs-webpack-plugin代码压缩
 
 这个插件解决的问题，就是当你需要去optimization.minimizer中设置，这样子会覆盖**webpack基本配置**，原本JS代码压缩的功能就会被覆盖，所以我们需要下载它。
 
@@ -1564,3 +1604,39 @@ export const Arr_add = arr=>{
 
 
 更多的用法可以查看[shimming垫片](https://www.webpackjs.com/guides/shimming/#shimming-全局变量)
+
+
+
+
+
+## 加餐
+
+- [Webpack揭秘——走向高阶前端的必经之路](https://juejin.im/post/6844903685407916039)
+- [import、require、export、module.exports 混合使用详解](https://juejin.im/post/6844903520865386510)
+- [webpack详解](https://juejin.im/post/6844903573675835400)
+- [webpack4配置详解之慢嚼细咽](https://juejin.im/post/6844903711643271182#heading-14)
+- [「吐血整理」再来一打Webpack面试题](https://juejin.im/post/6844904094281236487)
+
+
+
+
+
+## ❤️ 感谢大家
+
+如果你觉得这篇内容对你挺有有帮助的话：
+
+1. 点赞支持下吧，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）
+2. 关注公众号`前端UpUp`，定期为你推送好文。
+3. 觉得不错的话，也可以阅读TianTian近期梳理的文章（感谢掘友的鼓励与支持🌹🌹🌹）： 
+   - [「查缺补漏」巩固你的HTTP知识体系](https://juejin.im/post/6857287743966281736)(780+👍)
+   - [「一劳永逸」送你21道高频JavaScript手写面试题](https://juejin.im/post/6854573215830933512)(560+👍)
+   - [「查缺补漏」送你18道浏览器面试题](https://juejin.im/post/6854573215830933512)(740+👍)
+   - [「查缺补漏」送你 54 道 JavaScript 面试题](https://juejin.im/post/6854573211443544078)(610+👍)
+   - [「Vue项目」我是如何解决滚动组件&联动效果](https://juejin.im/post/6854573219911827470)(220+👍)
+   - [「小技巧」写给男同胞的Chrome DevTools调试小技巧，效率🚀🚀🚀](https://juejin.im/post/6850037261518684167)(210+👍)
+   - [「浏览器工作原理」写给女友的秘籍-渲染流程篇（1.1W+字）](https://juejin.im/post/6847902222349500430)(230+👍)
+   - [「数组方法」从详细操作js数组到浅析v8中array.js](https://juejin.im/post/6846687601806557192)(220+👍)
+   - [「浏览器工作原理」写给女友的秘籍-浏览器组成&网络请求篇（1.2W字)](https://juejin.im/post/6846687590540640263)(240+👍)
+
+
+
