@@ -1605,7 +1605,11 @@ export const Arr_add = arr=>{
 
 更多的用法可以查看[shimming垫片](https://www.webpackjs.com/guides/shimming/#shimming-全局变量)
 
+-----
 
+
+
+梳理总结有限，反而更多的是自己配置过程中遇到的一些问题梳理总结，webpack4新特性值得你去学习，下面是一些加餐文章👇
 
 
 
