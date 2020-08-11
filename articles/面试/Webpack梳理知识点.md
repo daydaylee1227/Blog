@@ -1263,3 +1263,144 @@ Chunk是Webpack打包过程中，一堆module的集合。Webpack通过引用关�
 
 Chunk只是一个概念，理解了Chunk概念，更有利于对webpack有一定的认识。
 
+
+
+### CSS文件代码分隔
+
+在线上的环境中，我们需要去将我们的CSS文件单独的打包到一个Chunk下，所以需要借助一定的插件，完成这个工作。
+
+#### [mini-css-extract-plugin](https://github.com/webpack-contrib/mini-css-extract-plugin) css代码提取
+
+将css提取为独立的文件插件，支持按需加载的css和sourceMap,我们可以查看GitHub官方，来看看它的[文档](https://github.com/webpack-contrib/mini-css-extract-plugin)
+
+**目前缺失功能，HMR。**所以，我们可以把它运用到生成环境中去，开始安装👇
+
+
+
+```bash
+npm install --save-dev mini-css-extract-plugin
+```
+
+对着这个插件的使用，还是建议在webpack.prod.js中(生产环境)配置，这个插件暂时暂时不支持HMR，而且在开发环境中development，是需要用到HMR的，所以我们这次配置只在webpack.prod.js配置。
+
+需要注意的一点是，当你的webpack版本是4版本的时候，需要去package.json中配置`sideEffects`属性，这样子就**避免了把css文件作为Tree-shaking**。
+
+```
+{
+  "name": "webpack-demo",
+  "sideEffects": [
+  	"*.css"
+  ]
+}
+```
+
+然后的话，我们看看webpack.prod.js是如何配置参数的。
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {
+    merge
+} = require('webpack-merge')
+const commomConfig = require('./webpack.common')
+
+const prodConfig = {
+    mode: 'production',
+    devtool: 'cheap-module-source-map',
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename:'[name].[hash].css',
+            chunkFilename: '[id].[hash].css',
+        })
+    ],
+    module: {
+        rules: [{
+            test: /\.(sa|sc|c)ss$/,
+            use: [
+                MiniCssExtractPlugin.loader,
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+            ],
+        }]
+    }
+}
+
+module.exports = merge(commomConfig, prodConfig)
+```
+
+当你在js中引入css模块时，最后在dist目录下，看到了css单独的Chunk的话，说明css代码提取成功了，接下来就是对**css代码的压缩**。
+
+webpack4默认在生产环境下，是不会去压缩css代码的，所以我们需要下载对于的plugin
+
+#### [optimize-css-assets-webpack-plugin](https://github.com/NMFR/optimize-css-assets-webpack-plugin) css代码压缩
+
+[optimize-css-assets-webpack-plugin](https://github.com/NMFR/optimize-css-assets-webpack-plugin) GitHub官方文档
+
+这个会对打包后的css代码经行代码压缩，我们下载这个包👇
+
+```
+npm install --save-dev optimize-css-assets-webpack-plugin
+```
+
+接下来就是设置 **optimization.minimizer** ，这里需要注意的就是，此时设置optimization.minimizer会覆盖webpack默认提供的规则，比如**JS代码就不会再去压缩了**。
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const {
+    merge
+} = require('webpack-merge')
+const commomConfig = require('./webpack.common')
+
+const prodConfig = {
+    mode: 'production',
+    devtool: 'cheap-module-source-map',
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                sourceMap: true,
+                parallel: true, // 启用多线程并行运行提高编译速度
+            }),
+            new OptimizeCSSAssetsPlugin({}),
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // 类似 webpackOptions.output里面的配置 可以忽略
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css'
+        })
+    ],
+    module: {
+        rules: [{
+            test: /\.(sa|sc|c)ss$/,
+            use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // 这里可以指定一个 publicPath
+                        // 默认使用 webpackOptions.output中的publicPathcss
+                        // 举个例子,后台支持把css代码块放入cdn
+                        publicPath: "https://cdn.example.com/css/"
+                    },
+                },
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+            ],
+        }]
+    },
+
+}
+
+module.exports = merge(commomConfig, prodConfig)
+```
+
+但是呢，此时就会发现在生产环境下，JS压缩也会存在问题，所以为了解决问题，我们统一在下面梳理👇
+
+
+
+### uglifyjs-webpack-plugin  js代码压缩
+
+上面提到了当你使用css压缩插件的话，需要去optimization.minimizer中设置，这样子会覆盖webpack基本配置，所以统一，我们在webpack.common.js配置**optimization.minimizer**
+
