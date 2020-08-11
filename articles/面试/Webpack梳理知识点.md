@@ -1536,12 +1536,30 @@ output: {
 
 使用 [`ProvidePlugin`](https://www.webpackjs.com/plugins/provide-plugin) 后，能够在通过 webpack 编译的每个模块中，通过访问一个变量来获取到 package 包。
 
+增加一个Plugin配置👇
 
+```js
+new webpack.ProvidePlugin({
+			// 这里设置的就是你相应的规则了
+			// 等价于在你使用lodash模块中语句👇
+			// import _ from 'lodash'
+            _: 'lodash'
+})
+```
 
+举个例子👇
 
+```js
+// array_add.js
+export const Arr_add = arr=>{
+    let str = _.join(arr,'++');
+    return str;
+}
+```
 
-
+这样子没有正常导入lodash库的话，是会报错的，但是我们使用了ProvidePlugin插件，使得它会提供相应的lodash包，注意到的就是，避免多个lodash包被打包多次，可以使用`CommonsChunkPlugin`插件，webpack4已经抛弃它了，使用的是`splitChunksPlugin`插件取代它，我在之前的地方已经梳理过了。
 
 
 
 更多的用法可以查看[shimming垫片](https://www.webpackjs.com/guides/shimming/#shimming-全局变量)
+
