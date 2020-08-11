@@ -1526,3 +1526,22 @@ output: {
 
 对于的webpack.dev.js中只需要将contenthash改为hash就行，这样子开发的时候，提高开发效率。
 
+
+
+### shimming 全局变量
+
+简单翻译就是`垫片`，它解决的场景有哪些呢，举个例子，当你再使用第三方库，此时需要引入它，又或者是你有很多的第三方库或者是自己写的库，每个js文件都需要依赖它，让人很繁琐，这个时候，shimming就派上用场了。
+
+我们需要使用 `ProvidePlugin` 插件，这个webpack是内置的，shimming依赖的就是这个插件。
+
+使用 [`ProvidePlugin`](https://www.webpackjs.com/plugins/provide-plugin) 后，能够在通过 webpack 编译的每个模块中，通过访问一个变量来获取到 package 包。
+
+
+
+
+
+
+
+
+
+更多的用法可以查看[shimming垫片](https://www.webpackjs.com/guides/shimming/#shimming-全局变量)
