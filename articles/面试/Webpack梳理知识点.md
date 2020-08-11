@@ -1402,5 +1402,11 @@ module.exports = merge(commomConfig, prodConfig)
 
 ### uglifyjs-webpack-plugin  js代码压缩
 
-上面提到了当你使用css压缩插件的话，需要去optimization.minimizer中设置，这样子会覆盖**webpack基本配置**，原本JS代码压缩的功能就会被覆盖，所以我们在webpack.common.js配置**optimization.minimizer**
+这个插件解决的问题，就是当你需要去optimization.minimizer中设置，这样子会覆盖**webpack基本配置**，原本JS代码压缩的功能就会被覆盖，所以我们需要下载它。
+
+```
+npm install -D uglifyjs-webpack-plugin
+```
+
+然后在webpack.prod.js配置如上信息即可，它的更多配置看[官网文档](https://github.com/webpack-contrib/uglifyjs-webpack-plugin)
 
