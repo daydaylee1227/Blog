@@ -1265,7 +1265,7 @@ Chunk只是一个概念，理解了Chunk概念，更有利于对webpack有一定
 
 
 
-### CSS文件代码分隔
+### CSS代码压缩提取
 
 在线上的环境中，我们需要去将我们的CSS文件单独的打包到一个Chunk下，所以需要借助一定的插件，完成这个工作。
 
@@ -1402,5 +1402,5 @@ module.exports = merge(commomConfig, prodConfig)
 
 ### uglifyjs-webpack-plugin  js代码压缩
 
-上面提到了当你使用css压缩插件的话，需要去optimization.minimizer中设置，这样子会覆盖webpack基本配置，所以统一，我们在webpack.common.js配置**optimization.minimizer**
+上面提到了当你使用css压缩插件的话，需要去optimization.minimizer中设置，这样子会覆盖**webpack基本配置**，原本JS代码压缩的功能就会被覆盖，所以我们在webpack.common.js配置**optimization.minimizer**
 
