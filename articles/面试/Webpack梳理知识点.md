@@ -1410,3 +1410,119 @@ npm install -D uglifyjs-webpack-plugin
 
 然后在webpack.prod.js配置如上信息即可，它的更多配置看[官网文档](https://github.com/webpack-contrib/uglifyjs-webpack-plugin)
 
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const {
+    merge
+} = require('webpack-merge')
+const commonConfig = require('./webpack.common')
+
+const prodConfig = {
+    mode: 'production',
+    devtool: 'cheap-module-source-map',
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                sourceMap: true,
+                parallel: true,  // 启用多线程并行运行提高编译速度
+            }),
+            new OptimizeCSSAssetsPlugin({}),
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            // 类似 webpackOptions.output里面的配置 可以忽略
+            filename: '[name].[hash].css',
+            chunkFilename: '[id].[hash].css'
+        })
+    ],
+    module: {
+        rules: [{
+            test: /\.(sa|sc|c)ss$/,
+            use: [{
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        // 这里可以指定一个 publicPath
+                        // 默认使用 webpackOptions.output中的publicPathcss
+                        // 举个例子,后台支持把css代码块放入cdn
+                        publicPath: "https://cdn.example.com/css/"
+                    },
+                },
+                'css-loader',
+                'postcss-loader',
+                'sass-loader',
+            ],
+        }]
+    },
+
+}
+
+module.exports = merge(commonConfig, prodConfig)
+```
+
+对于开发者环境而言，对css代码提取，以及打包是没有意义的，统一对于js代码压缩，也会降低效率，也是不推荐这么去做的，所以我们就跳过在开发环境中对它们的配置。
+
+
+
+### contenthash解决浏览器缓存
+
+当你打包一个项目即将上线时，有一个需求，你只是修改了部分的文件，只希望用户对于其他的文件，依旧去采用浏览器缓存中的文件，所以这个时候，我们需要用到`contenthash`。
+
+webpack中关于hash，有三种，分别是👇
+
+#### hash
+
+hash，主要用于开发环境中，在构建的过程中，当你的项目有一个文件发现了改变，整个项目的hash值就会做修改(整个项目的hash值是一样的)，这样子，每次更新，文件都不会让浏览器缓存文件，保证了文件的更新率，提高开发效率。
+
+
+
+#### chunkhash
+
+跟打包的chunk有关，具体来说`webpack`是根据入口`entry`配置文件来分析其依赖项并由此来构建该`entry的chunk`，并生成对应的`hash`值。不同的`chunk`会有不同的`hash`值。
+
+在生产环境中，我们会把第三方或者公用类库进行单独打包，所以不改动公共库的代码，该`chunk`的`hash`就不会变，可以合理的使用浏览器缓存了。
+
+但是这个中hash的方法其实是存在问题的，生产环境中我们会用`webpack`的插件，将`css`代码打单独提取出来打包。这时候`chunkhash`的方式就不够灵活，因为只要同一个`chunk`里面的js修改后，`css`的`chunk`的`hash`也会跟随着改动。因此我们需要`contenthash`。
+
+#### contenthash
+
+`contenthash`表示由文件内容产生的`hash`值，内容不同产生的`contenthash`值也不一样。生产环境中，通常做法是把项目中`css`都抽离出对应的`css`文件来加以引用。
+
+对于webpack，旧版本而言，即便每次你npm run build，**内容不做修改的话，contenthash值还是会有所改变**，这个是因为，当你在模块之间存在相互之间的引用关系，有一个**manifest文件**。
+
+> manifest文件是用来引导所以模块的交互，manifest文件包含了加载和处理模块的逻辑，举个例子，你的第三方库打包后的文件，我们称之为vendors，你的逻辑代码称为main，当你webpack生成一个bundle时，它同时会去维护一个manifest文件，你可以理解成每个bundle文件存在这里信息，所以每个bundle之间的manifest信息有不同，这样子我们就需要将manifest文件给提取出来。
+
+
+
+这个时候，需要在**optimization**中增加一个配置👇
+
+```js
+module.exports = {
+  optimization: {
+    splitChunks: {
+      // ...
+    },
+    runtimeChunk: {// 解决的问题是老版本中内容不发生改变的话,contenthash依旧会发生改变
+      name: 'manifest'
+    }
+  }
+}
+```
+
+当然了，要是还没来理解的话，可以去webpack官方网站，看看manifest定义以及它的含义。
+
+说完了这个，我们看看我们应该如何去配置output吧，我们先看下webpack.prod.js配置
+
+```js
+output: {
+        filename: '[name].[contenthash].js',
+        chunkFilename:'[vendors].[contenthash].js',
+        // publicPath: "https://cdn.example.com/assets/",
+        path: path.join(__dirname, '../dist')
+    }
+```
+
+对于的webpack.dev.js中只需要将contenthash改为hash就行，这样子开发的时候，提高开发效率。
+
