@@ -29,7 +29,7 @@
 
 时间复杂度如下图👇
 
-![排序算法复杂度分析](C:\Users\DayDay\Desktop\Blog\images\算法\排序算法复杂度分析.png)
+![排序算法复杂度分析](https://user-images.githubusercontent.com/34484322/89124140-33df9700-d507-11ea-8c67-05d51e8103d6.png)
 
 
 
@@ -54,7 +54,7 @@
 
 ### 动画
 
-![冒泡排序](C:\Users\DayDay\Desktop\Blog\images\算法\冒泡排序.gif)
+![冒泡排序](https://user-images.githubusercontent.com/34484322/89124183-9e90d280-d507-11ea-9f3b-b486f792aa2d.gif)
 
 
 
@@ -106,7 +106,7 @@ console.log(BubbleSort(arr, 1))
 
 ### 动画
 
-![计数排序](C:\Users\DayDay\Desktop\Blog\images\算法\计数排序.gif)
+![计数排序](https://user-images.githubusercontent.com/34484322/89124171-815c0400-d507-11ea-9b77-e45ea157a96d.gif)
 
 
 
@@ -180,7 +180,7 @@ console.log(countingSort(arr))
 
 ### 动画
 
-![快速排序](C:\Users\DayDay\Desktop\Blog\images\算法\快速排序.gif)
+![快速排序](https://user-images.githubusercontent.com/34484322/89124218-e0ba1400-d507-11ea-87f1-d14ae3aadfb0.gif)
 
 
 
@@ -238,7 +238,7 @@ let quickSort = function (arr) {
 
 ### 动画
 
-![归并排序](C:\Users\DayDay\Desktop\Blog\images\算法\归并排序.webp)
+![归并排序](https://camo.githubusercontent.com/4087941af1ad827c4878739509716df32168e1fb/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d63646461336631316336656662633031353737663563323961393036363737325f622e77656270)
 
 
 
@@ -308,7 +308,7 @@ console.log(mergeSort(arr))
 
 ### 动画
 
-![插入排序](C:\Users\DayDay\Desktop\Blog\images\算法\插入排序.gif)
+![插入排序](https://user-images.githubusercontent.com/34484322/89124203-c2541880-d507-11ea-9859-e964f5463a86.gif)
 
 
 
@@ -357,7 +357,7 @@ console.log(insertionSort(arr))
 
 ### 动画
 
-![选择排序](C:\Users\DayDay\Desktop\Blog\images\算法\选择排序.gif)
+![选择排序](https://user-images.githubusercontent.com/34484322/89124365-0398f800-d509-11ea-9573-6a24820cfd81.gif)
 
 
 

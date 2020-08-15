@@ -44,7 +44,7 @@
 
 链表通常可以衍生出循环链表，静态链表，双链表等。对于链表使用，需要注意**头结点**的使用。
 
-![单链表](C:\Users\DayDay\Desktop\Blog\images\算法\单链表.png)
+![单链表](https://user-images.githubusercontent.com/34484322/90314571-4e723100-df47-11ea-8afa-8e9a7921fa4e.png)
 
 
 
@@ -170,7 +170,7 @@
 
 让我们看一个例子：
 
-![双链表](C:\Users\DayDay\Desktop\Blog\images\算法\双链表.png)
+![双链表](https://user-images.githubusercontent.com/34484322/90314608-86797400-df47-11ea-9bb1-83012d8b325a.png)
 
 绿色箭头表示我们的“prev”字段是如何工作的。
 
@@ -196,17 +196,17 @@ class doubleLinkNode {
 
 举个例子吧，当然了，最好的形式就是画图来解决。
 
-![](C:\Users\DayDay\Desktop\Blog\images\算法\demo-doubleNode1.png)
+![](https://user-images.githubusercontent.com/34484322/90314599-7c577580-df47-11ea-9e51-10caf9a2e173.png)
 
 让我们在现有结点 6 之后添加一个新结点 9：
 
 第一步：链接 `cur`（结点 9）与 `prev`（结点 6）和 `next`（结点 15）
 
-![](C:\Users\DayDay\Desktop\Blog\images\算法\demo-doubleNode2.png)
+![](https://user-images.githubusercontent.com/34484322/90314613-8da08200-df47-11ea-8914-4078e320b9f8.png)
 
 第二步：用 `cur`（结点 9）重新链接 `prev`（结点 6）和 `next`（结点 15）
 
-![](C:\Users\DayDay\Desktop\Blog\images\算法\demo-doubleNode3.png)
+![](https://user-images.githubusercontent.com/34484322/90314617-909b7280-df47-11ea-90db-e6a86c853b49.png)
 
 **所以说，做链表题，画图最重要了，画完图，代码也就出来了**
 
@@ -444,7 +444,7 @@ var reverseList = function(head) {
 
 需要记录两个节点,tail和front节点
 
-![](C:\Users\DayDay\Desktop\Blog\images\算法\区间反转.png)
+![](https://user-images.githubusercontent.com/34484322/90314636-b294f500-df47-11ea-89b5-fc8d63d24ec1.png)
 
 两个节点作用就是为了最后区间反转后，好重新连接成一个新的链表。
 
@@ -568,11 +568,11 @@ var reverseBetween = function (head, m, n) {
 - 此时还需要将翻转后的分组中最后一个节点指向下一个分组，也就是`front.next = cur`
 - 也就是图中值为1节点指向end
 
-![K 个一组翻转链表](C:\Users\DayDay\Desktop\Blog\images\算法\K 个一组翻转链表1.png)
+![K 个一组翻转链表](https://user-images.githubusercontent.com/34484322/90314636-b294f500-df47-11ea-89b5-fc8d63d24ec1.png)
 
 在来举个例子，`head=[1,2,3,4,5,6,7,8], k = 3`
 
-![K 个一组翻转链表](C:\Users\DayDay\Desktop\Blog\images\算法\K 个一组翻转链表2.png)
+![K 个一组翻转链表](![K 个一组翻转链表2](https://user-images.githubusercontent.com/34484322/90314709-58486400-df48-11ea-953b-d499ae782751.png))
 
 看不到就自己画个图，然后结合代码多看几遍吧，难题就要多看着写几遍，自然就有感觉了。
 
@@ -711,7 +711,7 @@ while(head !== null && head.next !== null) {
 }
 ```
 
-![快慢指针](C:\Users\DayDay\Desktop\Blog\images\算法\链表求中间节点.jpg)
+![](C:\Users\DayDay\Desktop\Blog\images\算法\链表求中间节点.jpg)
 
 
 
