@@ -59,8 +59,6 @@ BFS-DFS题目将收入GitHub中，思路和代码都有，有兴趣的小伙伴�
 
 题目如下👇
 
-
-
 ```
 const tree = {
 	name: 'root',
@@ -145,6 +143,9 @@ function solve(root) {
 
 返回它的最大深度 3 。
 
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+
 
 
 **递归思路：**
@@ -215,6 +216,11 @@ var maxDepth = function (root) {
 ```
 
 返回它的最小深度  2
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
+
+
 
 **递归思路：**
 
@@ -300,6 +306,9 @@ var minDepth = function (root) {
 ]
 ```
 
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/reverse-linked-list/
+
 
 
 **思路：**
@@ -333,6 +342,8 @@ var levelOrder = function (root) {
 
 
 [代码点这里☑️]([https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E6%A0%91/leetcode102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.js](https://github.com/daydaylee1227/Blog/blob/master/算法/树/leetcode102-二叉树的层序遍历.js))
+
+
 
 ------
 
@@ -368,6 +379,11 @@ var levelOrder = function (root) {
   [15,7]
 ]
 ```
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/
+
+
 
 **BFS套路题**
 
@@ -407,20 +423,48 @@ var zigzagLevelOrder = function (root) {
 
 [点这里代码🤭]([https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E6%A0%91/leetcode103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86.js](https://github.com/daydaylee1227/Blog/blob/master/算法/树/leetcode103-二叉树的锯齿形层次遍历.js))
 
+
+
 ------
 
 
 
-### [两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)⭐⭐
+### [矩阵中的最长递增路径⭐⭐⭐](https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/)
 
 题目描述：给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。**你不能只是单纯的改变节点内部的值**，而是需要实际的进行节点交换。
 
-> 链接：[leetcode两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+> 链接：[矩阵中的最长递增路径](https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix/)
 
-**示例:**
+给定一个整数矩阵，找出最长递增路径的长度。
+
+对于每个单元格，你可以往上，下，左，右四个方向移动。 你不能在对角线方向上移动或移动到边界外（即不允许环绕）。
+
+示例 1:
 
 ```
-给定 1->2->3->4, 你应该返回 2->1->4->3.
+输入: nums = 
+[
+  [9,9,4],
+  [6,6,8],
+  [2,1,1]
+] 
 ```
 
-迭代思路，套路，加个tmp哨兵节点就行哒，还不懂的话，画图解决一切，实在看不懂的话，看这个图
+输出: 4 
+解释: 最长递增路径为 [1, 2, 6, 9]。
+示例 2:
+
+```
+输入: nums = 
+[
+  [3,4,5],
+  [3,2,6],
+  [2,2,1]
+] 
+```
+
+输出: 4 
+解释: 最长递增路径是 [3, 4, 5, 6]。注意不允许在对角线方向上移动。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/longest-increasing-path-in-a-matrix
