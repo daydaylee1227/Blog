@@ -26,5 +26,11 @@ cd my-app
 npm start
 ```
 
+然后通过运行相应的命令，出现了react经典的logo，那么你的环境说明至少安装成功啦。
 
+
+
+
+
+React Fiber是个什么东西呢？官方的一句话解释是“**React Fiber是对核心算法的一次重新实现”**。
 
