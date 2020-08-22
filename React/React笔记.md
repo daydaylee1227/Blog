@@ -141,3 +141,78 @@ class TodoList extends Component {
 }
 ```
 
+
+
+### JSX回调中的this
+
+需改的就是函数作用域中的this。
+
+在JavaScript中，class的方法不会绑定this,举个例子的话，当你忘记绑定 `this.handleClick` 并把它传入了 `onClick`，当你调用这个函数的时候 `this` 的值为 `undefined`。
+
+
+
+
+
+这并不是 React 特有的行为；这其实与 [JavaScript 函数工作原理]()有关。通常情况下，如果你没有在方法后面添加 `()`，例如 `onClick={this.handleClick}`，你应该为这个方法绑定 `this`。
+
+```react
+onClick = {this.handleDelete.bind(this, index)}
+```
+
+或者是在class方法中的constructor定义👇
+
+
+
+
+
+### State
+
+这个我们可以理解成就是数据存储的地方，类似于vue中的data,它有一个核心的概念，也就是immutable，也就是说，react不允许我们对state做任何的改变，如果你需要做修改的话，你应该这么做👇
+
+```js
+		const list = [...this.state.list];
+        list.splice(index, 1)
+        this.setState({
+            list : list
+        })
+```
+
+而不是这里写👇
+
+```js
+        this.state.list.splice(index,1)
+```
+
+这个是不推荐，我觉得提出这个的一个主要原因就是，也会消耗一些性能上的问题。
+
+
+
+### className
+
+当你给一个元素设置样式时，我们更多的应该使用的是`className = “wrapper”`通过这个方式来设置，因为react会默认的认为这个class是类声明，所以我们需要使用className
+
+
+
+### dangerouslySetInnerHTML
+
+- `dangerouslySetInnerHTML` 是 React 为浏览器 DOM 提供 `innerHTML` 的替换方案。通常来讲，使用代码直接设置 HTML 存在风险，因为很容易无意中使用户暴露于[跨站脚本（XSS）](https://en.wikipedia.org/wiki/Cross-site_scripting)的攻击。
+- 当你想设置 `dangerouslySetInnerHTML` 时，需要向其传递包含 key 为 `__html` 的对象，以此来警示你。例如👇
+
+```react
+function createMarkup() {
+  return {__html: 'First &middot; Second'};
+}
+
+function MyComponent() {
+  return <div dangerouslySetInnerHTML={createMarkup()} />;
+}
+```
+
+
+
+### htmlFor
+
+由于 `for` 在 JavaScript 中是保留字，所以 React 元素中使用了 `htmlFor` 来代替。
+
+
+
