@@ -161,7 +161,12 @@ onClick = {this.handleDelete.bind(this, index)}
 
 或者是在class方法中的constructor定义👇
 
-
+```js
+constructor(props) {
+  super(props)
+  this.handleDelete = this.handleDelete.bind(this)
+}
+```
 
 
 
@@ -213,6 +218,56 @@ function MyComponent() {
 ### htmlFor
 
 由于 `for` 在 JavaScript 中是保留字，所以 React 元素中使用了 `htmlFor` 来代替。
+
+
+
+
+
+### 父子组件传值
+
+父组件向子组件传值
+
+```react
+   <TodoItem  itemValue = {item} key={index}/>
+```
+
+子组件如何拿到值呢👇
+
+```
+    this.props.itemValue
+```
+
+通过这个this.props对象获取，然后通过对应设置的值去获取
+
+
+
+当你想调用父组件中的方法，或者是想传值时，应该怎么操作呢👇
+
+其实也是通过这个属性传值的方式进行
+
+```react
+handleItem = {this.handleDelete.bind(this)}
+
+handleDelete(index) {
+  // 对数据的拷贝
+  const list = [...this.state.list];
+  list.splice(index, 1)
+  this.setState({
+      list : list
+  })
+  // console.log(index)
+}
+```
+
+这个需要注意的是，当你传递的是一个函数的时候，需要注意的内容就是需要修改这个this指向问题。
+
+那么子组件，该怎么去调用呢？👇
+
+```
+        this.props.handleItem(index)
+```
+
+
 
 
 
