@@ -269,5 +269,17 @@ handleDelete(index) {
 
 
 
+-------
+
+
+
+## React高级概念
+
+
+
+### React Developer Tools插件安装
+
+打开Chrome设置-->>更多工具-->>扩展插件-->>Chrome商店，然后下载这个React Developer Tools调试工具，这个调试工具对于React项目中，比如State状态的调试还是很友好的。
+
 
 
