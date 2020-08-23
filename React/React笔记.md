@@ -340,5 +340,9 @@ ReactDOM.render(
 
 
 
+### props state render关系
+
+当一个组件中的state或者是props发生改变的时候，render函数就会重新被执行一遍，render函数被执行后，对应页面中的内容也是会更新的。
+
 
 
