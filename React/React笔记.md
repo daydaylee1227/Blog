@@ -1,7 +1,3 @@
-
-
-
-
 ## React简介
 
 一个函数式编程框架，官网👉https://reactjs.org/
@@ -280,6 +276,69 @@ handleDelete(index) {
 ### React Developer Tools插件安装
 
 打开Chrome设置-->>更多工具-->>扩展插件-->>Chrome商店，然后下载这个React Developer Tools调试工具，这个调试工具对于React项目中，比如State状态的调试还是很友好的。
+
+
+
+### PropTypes和 defaultProps
+
+更多的查看[中文文档](https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html)
+
+React内置了一些类型检查的功能，要在组件中props上进行类型检测的话，只需要配置特定的`propTypes`属性👇
+
+
+
+```react
+import PropTypes from 'prop-types';
+
+class Greeting extends React.Component {
+  render() {
+    return (
+      <h1>Hello, {this.props.name}</h1>
+    );
+  }
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+```
+
+这样子的话，从父组件中向子组件传入的name时，规定的是string类型。
+
+当传入的 `prop` 值类型不正确时，JavaScript 控制台将会显示警告。出于性能方面的考虑，`propTypes` 仅在开发模式下进行检查。
+
+
+
+**默认的Prop值**
+
+有些时候，你可以通过defaultProps属性来设置定义props的默认值👇
+
+```react
+class Greeting extends React.Component {
+  render() {
+    return (
+      <h1>Hello, {this.props.name}</h1>
+    );
+  }
+}
+
+// 指定 props 的默认值：
+Greeting.defaultProps = {
+  name: 'Stranger'
+};
+
+// 渲染出 "Hello, Stranger"：
+ReactDOM.render(
+  <Greeting />,
+  document.getElementById('example')
+);
+```
+
+
+
+更多的使用规则查看官网的使用规范👉[中文文档](https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html)
+
+
 
 
 
