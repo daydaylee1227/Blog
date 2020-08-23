@@ -346,3 +346,46 @@ ReactDOM.render(
 
 
 
+
+
+### 虚拟DOM
+
+
+
+将这个之前，我们可以看看react数据驱动视图更新原理大致流程👇
+
+有这么一个dom片段，`<div id = 'wrapper'><span>hello world</span></div>`
+
+1. state数据的定义，收集
+2. JSX模板的定义，初始化
+3. `数据` + `模板` 生成虚拟的DOM，类似于`['div',{id : wrapper},['span',{},'hello world']]`
+4. 根据这个虚拟的DOM结构生成真实的DOM结构👉`<div id = 'wrapper'><span>hello world</span></div>`
+5. 当state数据发生改变的时候
+6. `数据` + `模板` 生成新的虚拟DOM(性能极大的提升)👉`['div',{id : wrapper},['span',{},'My name is TianTian']]`
+7. 比较原始虚拟DOM和新的虚拟DOM的区别，找到区别后，发现是span中的内容(极大提高性能)
+8. 直接操作DOM，改变span中的内容
+
+
+
+上面就是一个类似react数据驱动视图的一个过程，那么我们现在就知道，这里说的虚拟DOM，`应该就是一个JS对象，用来描述真实的DOM`。
+
+
+
+JSX -->> 虚拟DOM -->> 真实DOM
+
+```react
+return (
+    <div >
+      hello world
+    </div>
+  );
+```
+
+我们通过是这么去写的，其实呢，我们更加偏向底层的话，应该这么去写👇
+
+```react
+return React.createElement('div',{},'hello world')
+```
+
+为了我们开发的遍历，我们实际的开发中，使用的更多是JSX语法吧。
+
