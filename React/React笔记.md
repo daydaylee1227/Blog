@@ -434,7 +434,7 @@ return React.createElement('div',{},'hello world')
 你需要知道的是，当DOM节点出现跨层级操作时，diff算法只考虑同层级，如果是跨层级时，那么只有**只有创建节点和删除节点的操作。**
 
 
-  
+
 
 
 
@@ -545,3 +545,84 @@ const node = this.myRef.current;
 #### componentDidUpdate
 
 // 组件更新完成之后,它会被自动执行
+
+
+
+
+
+
+
+## React性能优化
+
+### 函数改变this
+
+有些时候，你需要频繁的改变this指向当前这个组件的话，从而达到目的，那么我们可以尝试在constructor中显示的调用`.bind(this)`👇
+
+```json
+constructor(props) {
+    super(props);
+    this.state = {message: 'Hello!'};
+    // 这一行很重要！
+    this.handleClick = this.handleClick.bind(this);
+  }
+```
+
+很大程度上，当你的项目很大的时候，这样子的写法是会提升运行效率的。
+
+你可以理解成，改变this指向问题，写在constructor中的话，只需要执行一次，而且可以避免子组件的一些不必要的渲染问题。
+
+
+
+### setState(State,callback)
+
+它是一个异步的处理函数，它会将多次的数据处理整合成一个，这样子的话，降低了频率，从而渲染次数也减少了。
+
+
+
+
+
+### `shouldComponentUpdate` 
+
+如果你知道在什么情况下你的组件不需要更新的话，你可以在`shouldComponentUpdate` 中放回false来跳过整个渲染过程。其包括该组件的`render`调用以及之后的操作。
+
+通常情况下，我们会对比当前与之前的props和state，然后看是否需要跳过整个渲染过程。举个例子👇
+
+如果你的组件只有当 `props.color` 或者 `state.count` 的值改变才需要更新时，你可以使用 `shouldComponentUpdate` 来进行检查：
+
+```react
+class CounterButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 1};
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.props.color !== nextProps.color) {
+      return true;
+    }
+    if (this.state.count !== nextState.count) {
+      return true;
+    }
+    return false;
+  }
+
+  render() {
+    return (
+      <button
+        color={this.props.color}
+        onClick={() => this.setState(state => ({count: state.count + 1}))}>
+        Count: {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+从上面代码来看，我们通过检查`props.color` 或 `state.count` 是否改变，如果这些值没有改变，那么这个组件就不会更新，如果你的组件更复杂一些的话，可以用类似的办法'浅比较'的模式来检查 `props` 和 `state` 中所有的字段，以此来决定是否组件需要更新。
+
+
+
+
+
+### 虚拟化长列表
+
