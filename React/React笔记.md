@@ -494,7 +494,54 @@ const node = this.myRef.current;
 
 ### React生命周期函数
 
+[点这里](https://www.jianshu.com/p/b331d0e4b398) 这个写得不错
+
 生命周期函数指的就是在某一时刻组件会自动执行的函数。
 
+- 在v16.3版本中，新增加了两个新的生命周期函数，`getDerivedStateFromProps`，`getSnapshotBeforeUpdate` 
+- 以及在未来 v17.0 版本中即将被移除的三个生命周期函数 `componentWillMount`，`componentWillReceiveProps`，`componentWillUpdate`
 
 
+
+
+#### componentWillMount
+
+// 在组件即将被挂载到页面的时刻自动执行
+
+#### componentDidMount
+
+// 发生在所有的子组件render完成之后,才会自动执行componentDidMount函数
+
+#### componentWillUnmount
+
+// 当这个组件即将被从页面中剔除的时候,该组件会被自动执行
+
+
+
+接下来就是更新的生命周期函数👇
+
+#### shouldComponentUpdate(nextProps,nextState)
+
+- 主要用于性能优化(部分更新)
+
+- 唯一用于控制组件重新渲染的生命周期，由于在react中，setState以后，state发生变化，组件会进入重新渲染的流程，在这里return false可以阻止组件的更新
+
+- 因为react父组件的重新渲染会导致其所有子组件的重新渲染，这个时候其实我们是不需要所有子组件都跟着重新渲染的，因此需要在子组件的该生命周期中做判断
+
+
+
+#### componentWillUpdate
+
+在组件更新前的时候，就会自动去执行，但是呢，有以下的规则👇
+
+```
+// 组件被更新时,它会自动的执行,但是它是在shouldComponentUpdate之后执行
+// 如果这个shouldComponentUpdate返回true,它才会执行
+// 如果返回false,这个函数就不会被执行
+```
+
+
+
+#### componentDidUpdate
+
+// 组件更新完成之后,它会被自动执行
