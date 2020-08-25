@@ -564,7 +564,56 @@ const node = this.myRef.current;
 
 
 
+首先我们需要做的就是下载这个库👇
 
+```bash
+cnpm install react-transition-group -S
+```
+
+接下来，我们导入这个模块即可👇
+
+```react
+				<CSSTransition
+					classNames="fade"
+					in={this.state.show}
+					timeout={300}
+                    unmountOnExit
+				>
+					<div>hello world</div>
+				</CSSTransition>
+```
+
+`classNames`表示的是一个进场出场的过渡动画的前缀，我们需要设置对应的前缀信息👇
+
+入场动画三个状态
+
+`fade-enter`, `fade-enter-active`, `fade-enter-done`
+
+- `fade-enter` 表示的就是入场动画还没有开始时，也就是出场动画的第一个时刻。
+- `fade-enter-active`  表示的就是从入场动画开始到入场动画结束前的这个过程
+- `fade-enter-done` 表示的就是入场动画，结束以后的状态样式由什么来决定
+
+
+
+`fade-exit`, `fade-exit-active`, `fade-exit-done`
+
+同理的话，这个表示的内容就是跟入场动画的效果差不多，也就是出场动画的一些效果。
+
+
+
+
+
+
+
+`fade-appear`, `fade-appear-active`, `fade-appear-done`
+
+
+
+
+
+`unmountOnExit`
+
+这个属性的作用:整个DOM元素的消失，也就是display:none
 
 
 
