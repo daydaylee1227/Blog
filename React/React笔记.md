@@ -578,6 +578,10 @@ cnpm install react-transition-group -S
 					in={this.state.show}
 					timeout={300}
                     unmountOnExit
+                    appear = {true}
+                    onEnter = { (el) => {
+						el.style.color = 'blue'
+					}}
 				>
 					<div>hello world</div>
 				</CSSTransition>
@@ -603,17 +607,45 @@ cnpm install react-transition-group -S
 
 
 
-
+`appear = {true}`
 
 `fade-appear`, `fade-appear-active`, `fade-appear-done`
 
+```
+appear = {true}
+```
 
+这个表示的涵义，就是告诉这个这个组件，当我使用它的时候，一面一开始刷新的过程，我们也需要动画的效果，那么实现这个效果的话，是上面三个样式会自动的添加到对应的DOM元素上，所以需要我们去设置一下。
+
+- `fade-appear` 表示刷新的时候，也就是第一次展示的时候，对应会增加的className
+- `fade-appear-active` 这个表示的就是第一次页面开始展示，到页面展示结束的时候，会增加的类名。
+- `fade-appear-done` 表示的就是第一次刷新页面时，也就是动画最后一刻时，展示的动画。
 
 
 
 `unmountOnExit`
 
 这个属性的作用:整个DOM元素的消失，也就是display:none
+
+
+
+`onEnter`
+
+这个表达的就是钩子函数，它的作用是什么呢👇
+
+我们都知道这个钩子函数的作用就是当执行到某个时刻的时候，它会自动的去触发并且执行，那么`onEnter`这个钩子的话，它的触发时机就是当这个入场动画结束的时候，我们就会触发。
+
+
+
+对于其他的钩子而言，这里就不展开梳理了，聪明的小伙伴，肯定以及全部掌握啦。
+
+
+
+**多个组件动画效果**
+
+同样的情况下，这个组件`TransitionGroup`完美的提供给我们了这个方案，我们需要把整个需要动画的元素给包裹起来，然后对于每个不同的DOM而言的话，我们需要做的就是还是跟上面的方案一致，对每个不同的组件经行不同的`CSSTransition`。
+
+
 
 
 
