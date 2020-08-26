@@ -1,0 +1,195 @@
+<DOCTYPE html>
+    <html lang="">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
+
+        <!-- Bootstrap CSS -->
+        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+        <style>
+            #box {
+                width: 500px;
+                height: 500px;
+                background: #ccc;
+                font-size: 40px;
+                text-align: center;
+                line-height: 500px;
+                margin: auto;
+            }
+        </style>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <ul id="xxx">下面的内容是子元素1
+            <li>li内容>>> <span> 这是span内容123</span></li>
+            下面的内容是子元素2
+            <li>li内容>>> <span> 这是span内容123</span></li>
+            下面的内容是子元素3
+            <li>li内容>>> <span> 这是span内容123</span></li>
+        </ul>
+
+
+
+        <script>
+
+            // 0和1、1和0、0和-1、-1和0，四个方向
+
+            const dx = [0, 1, 0, -1];
+            const dy = [1, 0, -1, 0]; 
+            const longestIncreasingPath = (matrix) => {
+                if (matrix.length == 0) return 0; 
+                const m = matrix.length;
+                const n = matrix[0].length;
+                const memo = new Array(m);
+                for (let i = 0; i < m; i++) memo[i] = new Array(n);
+                // 每次长度至少长度为1
+                let res = 1; 
+
+                //// 对坐标(i,j)进行dfs
+                for (let i = 0; i < m; i++) {
+                    for (let j = 0; j < n; j++) { 
+                        res = Math.max(res, dfs(matrix, i, j, m, n, memo));
+                    }
+                }
+                return res;
+            };
+
+            const dfs = (matrix, i, j, m, n, memo) => {
+                // 记忆化搜索
+                if (memo[i][j]) return memo[i][j];
+                let max = 1; 
+
+                // 以(i,j)为起点的路径，长度保底是1
+                for (let k = 0; k < 4; k++) {   //循环四次 就是有上下左右四个方向可以走
+                    const x = i + dx[k];
+                    const y = j + dy[k]; 
+                    // 判断接下来的坐标是否合法
+                    //  0<=x && x < m
+                    //  0 <= y <= n
+                    if (x >= 0 && x < m && y >= 0 && y < n && matrix[x][y] > matrix[i][j]) {
+                        max = Math.max(max, 1 + dfs(matrix, x, y, m, n, memo));
+                    }
+                }
+                // 当前情况下, 需要求的就是(i,j)方格的最大值
+                return memo[i][j] = max;
+            };
+        </script>
+        <!-- <script>
+        class ListNode {
+            constructor(val) {
+                this.val = val;
+                this.next = null;
+            }
+        }
+        //单链表插入、删除、查找
+        class LinkedList {
+            constructor(val) {
+                val = val === undefined ? 'head' : val;
+                this.head = new ListNode(val)
+            }
+
+            // 找val值节点，没有找到返回-1
+            findByVal(val) {
+                let current = this.head
+                while (current !== null && current.val !== val) {
+                    current = current.next
+                }
+                return current ? current : -1
+            }
+
+            // 插入节点,在值为val后面插入
+            insert(newVal, val) {
+                let current = this.findByVal(val)
+                if (current === -1) return false
+                let newNode = new ListNode(newVal)
+                newNode.next = current.next
+                current.next = newNode
+            }
+
+            // 获取值为nodeVal的前一个节点,找不到为-1,参数是val
+            // 适用于链表中无重复节点
+            findNodePreByVal(nodeVal) {
+                let current = this.head;
+                while (current.next !== null && current.next.val !== nodeVal)
+                    current = current.next
+                return current !== null ? current : -1
+            }
+
+            // 根据index查找当前节点, 参数为index
+            // 可以作为比较链表是否有重复节点
+
+            findByIndex(index) {
+                let current = this.head,
+                    pos = 1
+                while (current.next !== null && pos !== index) {
+                    current = current.next
+                    pos++
+                }
+
+                return (current && pos === index) ? current : -1
+            }
+
+            // 删除某一个节点,删除失败放回false
+            remove(nodeVal) {
+                if (nodeVal === 'head') return false
+                let needRemoveNode = this.findByVal(nodeVal)
+                if (needRemoveNode === -1) return false
+                let preveNode = this.findNodePreByVal(nodeVal)
+
+                preveNode.next = needRemoveNode.next
+            }
+
+
+            //遍历节点
+
+            disPlay() {
+                let res = new Array()
+                let current = this.head
+                while (current !== null) {
+                    res.push(current.val)
+                    current = current.next
+                }
+                return res
+            }
+
+            // 在链表末尾插入一个新的节点
+            push(nodeVal) {
+                let current = this.head
+                let node = new ListNode(nodeVal)
+                while (current.next !== null)
+                    current = current.next
+                current.next = node
+            }
+            // 在头部插入
+            frontPush(nodeVal) {
+                let newNode = new ListNode(nodeVal)
+                this.insert(nodeVal, 'head')
+            }
+        }
+        let demo = new LinkedList() // LinkedList {head: ListNode}
+        // console.log((demo.disPlay())) 
+        demo.push('1232')
+        demo.insert(123, 'head');
+        demo.push('last value')
+        demo.frontPush('start')
+        demo.remove('head')
+        // demo.remove('last value')
+        // console.log(demo.remove('head'))
+        // demo.push('2132')
+        // demo.insert('不存在的值', '插入失败') //return -1
+        console.log(demo.findByIndex(1))
+        console.log((demo.disPlay()))
+    </script> -->
+    </body>
+
+    </html>
