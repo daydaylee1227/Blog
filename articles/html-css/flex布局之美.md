@@ -177,3 +177,232 @@ flex-direction: column-reverse
 
 ### 容器
 
+
+
+这里就分为**父容器**和**子容器**，我们先来看看父容器👇
+
+#### 父容器
+
+- justify-content:  **设置子元素在主轴方向上的对齐方式**
+- align-items： **设置子元素在交叉轴方向上的对齐方式**
+
+![父容器常见属性](..\..\images\html-css\flex\父容器常见属性.png)
+
+
+
+----------
+
+
+
+#### justify-content
+
+这个属性设置在父容器上，**决定子元素在主轴方向上的对齐方式**，我们看看它们具体表现吧👇
+
+
+
+----------
+
+
+
+#### justify-content: flex-start
+
+```
+当你给父盒子(wrapper)设置属性
+justify-content: flex-start
+```
+
+效果👇
+
+![justify-content-flex-start](..\..\images\html-css\flex\justify-content-flex-start.png)
+
+**结论**，子元素沿着主轴方向开始对齐。
+
+
+
+-----
+
+
+
+#### justify-content: flex-end
+
+```
+当你给父盒子(wrapper)设置属性
+justify-content: flex-end
+```
+
+效果👇
+
+![justify-content-flex-end](..\..\images\html-css\flex\justify-content-flex-end.png)
+
+**结论**，子元素沿着主轴方向终点对齐。
+
+
+
+---------
+
+
+
+#### justify-content: center
+
+```
+当你给父盒子(wrapper)设置属性
+justify-content: center
+```
+
+效果👇
+
+![justify-content-center](..\..\images\html-css\flex\justify-content-center.png)
+
+**结论**，子元素在主轴方向上水平居中。
+
+
+
+--------------
+
+
+
+#### justify-content: space-between
+
+```
+当你给父盒子(wrapper)设置属性
+justify-content: space-between
+```
+
+效果👇
+
+![justify-content-space-between](..\..\images\html-css\flex\justify-content-space-between.png)
+
+**结论**，子元素在主轴方向上**两端对齐，项目之间间隔相等**。
+
+
+
+-----------
+
+
+
+
+
+#### justify-content: space-around
+
+```
+当你给父盒子(wrapper)设置属性
+justify-content: space-around
+```
+
+效果👇
+
+![justify-content-space-around](..\..\images\html-css\flex\justify-content-space-around.png)
+
+**结论**，子元素在主轴方向上**均匀排列每个元素，每个元素周围分配相同的空间**。
+
+
+
+----------
+
+
+
+#### align-items
+
+这个属性设置在父容器上，**决定子元素在交叉轴方向上的对齐方式**，我们看看它们具体表现吧👇
+
+
+
+---------
+
+
+
+#### align-items: flex-start
+
+```
+当你给父盒子(wrapper)设置属性
+align-items: flex-start
+```
+
+![align-items-flex-start](..\..\images\html-css\flex\align-items-flex-start.png)
+
+**结论**，子元素在交叉轴方向上起点对齐。
+
+
+
+---------
+
+
+
+#### align-items: flex-end
+
+```
+当你给父盒子(wrapper)设置属性
+align-items: flex-end
+```
+
+
+
+![](..\..\\images\html-css\flex\align-items-flexend.png)
+
+
+
+**结论**，子元素在交叉轴方向上终点对齐。
+
+
+
+----------
+
+
+
+#### align-items: center
+
+```
+当你给父盒子(wrapper)设置属性
+align-items: center
+```
+
+
+
+![align-items-center](..\..\\images\html-css\flex\align-items-center.png)
+
+
+
+**结论**，子元素在交叉轴方向上居中对齐。
+
+
+
+-----------
+
+
+
+#### align-items: baseline
+
+```
+当你给父盒子(wrapper)设置属性
+align-items: baseline
+```
+
+![align-items--baseline](C:\Users\litiantian03\Desktop\Blog\images\html-css\flex\align-items--baseline.png)
+
+**结论**，子元素在交叉轴方向上以文字基线对齐，具体不清楚的，可以自行百度。
+
+
+
+-------
+
+
+
+#### align-items: stretch
+
+```
+当你给父盒子(wrapper)设置属性
+align-items: stretch
+```
+
+![align-items--stretch](..\..\images\html-css\flex\align-items-stretch.png)
+
+**结论**，这个属性是默认的，如果项目未设置高度或者设为 auto，将占满整个容器的高度。
+
+
+
+------------
+
+
+
+#### 子容器
+
