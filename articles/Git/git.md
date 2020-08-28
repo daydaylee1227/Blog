@@ -57,6 +57,10 @@
 
   - git branch <name>
 
+- 切换分支
+
+  - git checkout <name>
+
 - 创建分支并切换
 
   - git checkout -b <name>
