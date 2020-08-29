@@ -588,6 +588,47 @@ flex-wrap : wrap-reverse
 
 
 
+#### flex-flow
+
+先来一张图
+
+![flex-flow取值](..\..\images\html-css\flex\flex-flow取值.png)
+
+
+
+`更多取值信息请查看` [`flex-direction`](https://developer.mozilla.org/zh-CN/docs/CSS/flex-direction) 和 [`flex-wrap`](https://developer.mozilla.org/zh-CN/docs/CSS/flex-wrap)
+
+可以查看MDN上，或者把之前的`flex-direction` 和 `flex-wrap` 两者取值看过一遍，那么使用这个属性就没有问题啦，这里也就不过多的举例子了，取值有三种情况👇
+
+
+
+- 单独设置flex-direction取值，比如
+
+  - ```css
+    flex-flow: row | column
+    ```
+
+- 单独设置flex-wrap取值
+
+  - ```css
+    flex-flow: wrap | nowrap | wrap-reverse
+    ```
+
+- 同时设置两者取值
+
+  - ```css
+    flex-flow: row wrap
+    flex-flow: column nowrap
+    ```
+
+    
+
+
+
+
+
+------------------
+
 
 
 
