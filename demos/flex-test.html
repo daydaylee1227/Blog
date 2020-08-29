@@ -24,30 +24,30 @@
             background-image: linear-gradient(#7ae78c,#7bf6d8);
             box-shadow: 2px 2px 6px #7bf6d8;
             /* flex-direction: column-reverse; */
-            align-items: center;
+            flex-wrap: wrap-reverse;
             
         }
         .flex1{
-            flex: 1;
-            /* height: 100px; */
+            /* flex: 1; */
+            width: 200px;
+            height: 100px;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 1px solid #7bf6d8;
             text-align: center;
             line-height: 100px;
             box-shadow: 10px 10px 10px #c5c5c5;
             margin: 80px;
-            align-self: stretch;
         }
         .flex2{
-            flex: 1;
+            /* flex: 1; */
             height: 100px;
+            width: 200px;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 1px solid #7bf6d8;
             text-align: center;
-            /* line-height: 100px; */
+            line-height: 100px;
             box-shadow: 10px 10px 10px #c5c5c5;
             margin: 80px;
-            align-self: flex-end;
             /* align-self: flex-start; */
         }
     </style>
@@ -55,12 +55,13 @@
 <body>
     
     <div class="guide">
-        父盒子align-items: center;
+        父盒子flex-wrap: wrap-reverse
     </div>
 
     <div class="wrapper">
-        <div class="flex1">子盒子align-self: stretch </div>
-        <div class="flex2">子盒子align-self: flex-end </div>
+        <div class="flex1">子盒子 </div>
+        <div class="flex2">子盒子</div>
+        <div class="flex2">子盒子</div>
     </div>
 </body>
 </html>
