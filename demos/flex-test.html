@@ -23,18 +23,20 @@
             margin: 50px auto;
             background-image: linear-gradient(#7ae78c,#7bf6d8);
             box-shadow: 2px 2px 6px #7bf6d8;
-            flex-direction: column-reverse;
+            /* flex-direction: column-reverse; */
+            align-items: center;
             
         }
         .flex1{
             flex: 1;
-            height: 100px;
+            /* height: 100px; */
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 1px solid #7bf6d8;
             text-align: center;
             line-height: 100px;
             box-shadow: 10px 10px 10px #c5c5c5;
             margin: 80px;
+            align-self: stretch;
         }
         .flex2{
             flex: 1;
@@ -42,21 +44,23 @@
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 1px solid #7bf6d8;
             text-align: center;
-            line-height: 100px;
+            /* line-height: 100px; */
             box-shadow: 10px 10px 10px #c5c5c5;
             margin: 80px;
+            align-self: flex-end;
+            /* align-self: flex-start; */
         }
     </style>
 </head>
 <body>
     
     <div class="guide">
-        父盒子flex-direction: column-reverse
+        父盒子align-items: center;
     </div>
 
     <div class="wrapper">
-        <div class="flex1">子盒子#flex1: 1 </div>
-        <div class="flex2">子盒子#flex2: 1 </div>
+        <div class="flex1">子盒子align-self: stretch </div>
+        <div class="flex2">子盒子align-self: flex-end </div>
     </div>
 </body>
 </html>

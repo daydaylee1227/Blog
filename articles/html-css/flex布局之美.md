@@ -377,7 +377,7 @@ align-items: center
 align-items: baseline
 ```
 
-![align-items--baseline](C:\Users\litiantian03\Desktop\Blog\images\html-css\flex\align-items--baseline.png)
+![align-items--baseline](..\..\images\html-css\flex\align-items--baseline.png)
 
 **结论**，子元素在交叉轴方向上以文字基线对齐，具体不清楚的，可以自行百度。
 
@@ -418,4 +418,86 @@ align-items: stretch
 - `align-self`属性 **单独设置子容器如何沿交叉轴排列**
   - 每个子容器都可以单独定义沿交叉轴排列方式。
   - 该属性的取值跟父容器中的align-items属性一致，如果两者相同的话，则以子容器`align-self`属性为主。
+
+
+
+#### flex作用规则
+
+- 三个属性的简写，是flex-grow  flex-shrink flex-basis的简写
+- 常用简化写法👇
+  - flex:1 —>  flex:1 1 0%;
+  - flex:3 —> flex:3 1 0%;
+  - 注意:flexbox布局和原来的布局是两个概念，部分css属性在flexbox盒子里面不起作用，eg：float， clear， column,vertical-align 等等
+
+```
+注意👉flex-grow  flex-shrink flex-basis 这三个属性会在后续介绍
+```
+
+具体的flex取值问题，可以参照下面的图👇
+
+![](..\..\images\html-css\flex\flex取值问题.png)
+
+
+
+-------
+
+
+
+
+
+#### **align-self作用规则**
+
+
+
+```
+// 起始端对齐
+align-self : flex-start;
+```
+
+![align-self-flexStart](..\..\images\html-css\flex\align-self-flexStart.png)
+
+
+
+--------
+
+
+
+```
+// 末尾段对齐
+align-self : flex-end;
+```
+
+![align-self-flex-end](..\..\images\html-css\flex\align-self-flex-end.png)
+
+
+
+-----------
+
+
+
+```
+基线对齐// 末尾段对齐
+align-self : baseline;
+```
+
+![align-self-baseline](..\..\images\html-css\flex\align-self-baseline.png)
+
+可以看到的话，它们对齐的方式是第一行文字的基线。
+
+
+
+------------
+
+
+
+```
+拉伸对齐
+align-self : stretch;
+```
+
+![align-items-stretch](..\..\images\html-css\flex\align-items-stretch.png)
+
+
+
+-----------
 
