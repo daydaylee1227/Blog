@@ -541,6 +541,12 @@ flex-wrap: wrap | nowrap | wrap-reverse
 
 三种情况👇
 
+
+
+-------
+
+
+
 ```
 // 允许换行
 flex-wrap : wrap
@@ -590,7 +596,7 @@ flex-wrap : wrap-reverse
 
 #### flex-flow
 
-先来一张图
+先来一张图👇
 
 ![flex-flow取值](..\..\images\html-css\flex\flex-flow取值.png)
 
@@ -628,6 +634,141 @@ flex-wrap : wrap-reverse
 
 
 ------------------
+
+
+
+#### align-content
+
+这个属性是定义子容器在交叉轴的排列方式，也就是对齐方式。
+
+首先上一张图👇
+
+![align-content取值](..\..\images\html-css\flex\align-content取值.png)
+
+
+
+
+
+根据这些取值，我们来看看布局效果吧👇
+
+
+
+----------
+
+
+
+```
+// 起始端对齐
+align-content: flex-start
+```
+
+效果👇
+
+![align-content-flex-start](..\..\images\html-css\flex\align-content-flex-start.png)
+
+
+
+------------
+
+
+
+```
+// 末尾段对齐
+align-content: flex-end
+```
+
+效果👇
+
+![align-content-flex-end](..\..\images\html-css\flex\align-content-flex-end.png)
+
+
+
+------------
+
+
+
+
+
+```
+// 居中对齐
+align-content: center
+```
+
+效果👇
+
+![align-content-center](..\..\images\html-css\flex\align-content-center.png)
+
+
+
+----------
+
+
+
+
+
+```css
+// 等间距均匀分布
+align-content: space-between
+```
+
+效果👇
+
+![align-content-space-around](..\..\images\html-css\flex\align-content-space-between.png)
+
+
+
+----------
+
+
+
+```css
+// 等边距均匀分布
+align-content: space-around
+```
+
+效果👇
+
+![align-content-space-around](..\..\images\html-css\flex\align-content-space-around.png)
+
+
+
+----------
+
+
+
+
+
+```css
+// 拉伸对齐
+align-content: stretch
+```
+
+效果👇
+
+![align-content-stretch](..\..\images\html-css\flex\align-content-stretch.png)
+
+
+
+----------
+
+
+
+
+
+
+
+```css
+// 基线对齐
+align-content: baseline
+```
+
+效果👇
+
+![align-content-baseline](..\..\images\html-css\flex\align-content-baseline.png)
+
+
+
+----------
 
 
 
