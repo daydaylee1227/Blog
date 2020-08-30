@@ -40,20 +40,19 @@
             box-shadow: 2px 2px 6px #7bf6d8;
             /* flex-direction: column-reverse; */
             /* align-items: center; */
-            justify-content: center;
             
-            align-items: center;
-            /* align-content: center; */
-            flex-direction: column;
-            /* flex-wrap: wrap; */
+            
+           
 
             
         }
         .flex1{
             /* flex: 1; */
-            width: 50px;
-            height: 50px;
-            flex-basis: 180px;
+            width: 500px;
+            height: 100px;
+            flex-basis:500px;
+            flex: 0 0 auto;
+            flex-shrink: 8;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 0px solid #7bf6d8;
             border-radius: 20px;
@@ -63,10 +62,13 @@
             /* margin: 80px; */
         }
         .flex2{
-            /* flex: 1; */
-            height: 120px;
-            width: 200px;
+            /* flex-shrink: 2; */
+            height: 100px;
+            width: 500px;
+            flex-basis:500px;
             border-radius: 20px;
+            flex: 0 0 auto;
+            flex-shrink: 1;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 0px solid #7bf6d8;
             text-align: center;
@@ -84,9 +86,9 @@
     </div>
 
     <div class="wrapper">
-        <div class="flex1">子盒子 width:50px;height:50px </div>
-        <!-- <div class="flex2">子盒子2</div>
-        <div class="flex2">子盒子3</div>
+        <div class="flex1">子盒子 flex-basis:500px;<br>flex-shrink: 8;</div>
+        <div class="flex2">子盒子 flex-basis:500px;<br>flex-shrink: 1;</div>
+        <!-- <div class="flex2">子盒子3</div>
         <div class="flex2">子盒子4</div>
         <div class="flex2">子盒子5</div>
         <div class="flex2">子盒子6</div>
