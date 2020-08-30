@@ -39,15 +39,21 @@
             background-image: linear-gradient(#7ae78c,#7bf6d8);
             box-shadow: 2px 2px 6px #7bf6d8;
             /* flex-direction: column-reverse; */
-            align-content: baseline;
-            flex-wrap: wrap;
+            /* align-items: center; */
+            justify-content: center;
+            
+            align-items: center;
+            /* align-content: center; */
+            flex-direction: column;
+            /* flex-wrap: wrap; */
 
             
         }
         .flex1{
             /* flex: 1; */
-            width: 200px;
+            width: 50px;
             height: 50px;
+            flex-basis: 180px;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 0px solid #7bf6d8;
             border-radius: 20px;
@@ -58,7 +64,7 @@
         }
         .flex2{
             /* flex: 1; */
-            height: 80px;
+            height: 120px;
             width: 200px;
             border-radius: 20px;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
@@ -74,18 +80,18 @@
 <body>
     
     <div class="guide">
-        父盒子align-content: baseline
+        父盒子flex-direction: column
     </div>
 
     <div class="wrapper">
-        <div class="flex1">子盒子1 </div>
-        <div class="flex2">子盒子2</div>
+        <div class="flex1">子盒子 width:50px;height:50px </div>
+        <!-- <div class="flex2">子盒子2</div>
         <div class="flex2">子盒子3</div>
         <div class="flex2">子盒子4</div>
         <div class="flex2">子盒子5</div>
         <div class="flex2">子盒子6</div>
         <div class="flex1">子盒子7</div>
-        <div class="flex1">子盒子8</div>
+        <div class="flex1">子盒子8</div> -->
     </div>
 </body>
 </html>
