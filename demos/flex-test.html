@@ -51,12 +51,13 @@
             width: 500px;
             height: 100px;
             flex-basis:500px;
-            flex: 0 0 auto;
-            flex-shrink: 8;
+            flex: 1 1 auto;
+            /* flex-shrink: 8; */
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 0px solid #7bf6d8;
             border-radius: 20px;
             text-align: center;
+            order: 10;
             line-height: 50px;
             box-shadow: 10px 10px 10px #c5c5c5;
             /* margin: 80px; */
@@ -67,7 +68,24 @@
             width: 500px;
             flex-basis:500px;
             border-radius: 20px;
-            flex: 0 0 auto;
+            flex: 1 1 auto;
+            flex-shrink: 1;
+            background-image: linear-gradient(#bdf5d0,#bdfae8);
+            border: 0px solid #7bf6d8;
+            text-align: center;
+            line-height: 50px;
+            box-shadow: 10px 10px 10px #c5c5c5;
+            order: 8;
+            /* margin: 80px; */
+            /* align-self: flex-start; */
+        }
+        .flex3{
+            /* flex-shrink: 2; */
+            height: 100px;
+            width: 500px;
+            flex-basis:500px;
+            border-radius: 20px;
+            flex: 1 1 auto;
             flex-shrink: 1;
             background-image: linear-gradient(#bdf5d0,#bdfae8);
             border: 0px solid #7bf6d8;
@@ -76,6 +94,21 @@
             box-shadow: 10px 10px 10px #c5c5c5;
             /* margin: 80px; */
             /* align-self: flex-start; */
+            order: -2;
+        }
+        .flex4{
+            /* flex-shrink: 2; */
+            height: 100px;
+            width: 500px;
+            flex-basis:500px;
+            border-radius: 20px;
+            flex: 8 1 auto;
+            flex-shrink: 1;
+            background-image: linear-gradient(#bdf5d0,#bdfae8);
+            border: 0px solid #7bf6d8;
+            text-align: center;
+            line-height: 50px;
+            box-shadow: 10px 10px 10px #c5c5c5;
         }
     </style>
 </head>
@@ -86,11 +119,11 @@
     </div>
 
     <div class="wrapper">
-        <div class="flex1">子盒子 flex-basis:500px;<br>flex-shrink: 8;</div>
-        <div class="flex2">子盒子 flex-basis:500px;<br>flex-shrink: 1;</div>
-        <!-- <div class="flex2">子盒子3</div>
-        <div class="flex2">子盒子4</div>
-        <div class="flex2">子盒子5</div>
+        <div class="flex1">子盒子 order 10</div>
+        <div class="flex2">子盒子  order 8</div>
+        <div class="flex3">子盒子 order -2</div>
+        <div class="flex4">子盒子 order 0</div>
+        <!-- <div class="flex2">子盒子5</div>
         <div class="flex2">子盒子6</div>
         <div class="flex1">子盒子7</div>
         <div class="flex1">子盒子8</div> -->

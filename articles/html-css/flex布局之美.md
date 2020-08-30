@@ -906,3 +906,10 @@ flex-direction：column | column-reverse
 
 
 #### order
+
+- 每个子容器的`order`属性默认为0
+- 通过设置`order`属性值，改变子容器的排列顺序。 
+- 可以是负值，数值越小的话，排的越靠前。
+
+直接看效果图👇
+
