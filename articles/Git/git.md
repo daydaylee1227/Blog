@@ -199,3 +199,15 @@
   - git stash clear
 - 恢复改动
   - git stash pop <stash@{ID}>
+
+
+
+
+
+## 参考
+
+- [git基本操作，一篇文章就够了！](https://juejin.im/post/6844903598522908686#heading-5)
+- [Git 常用操作总结](https://juejin.im/post/6844903586120335367)
+- [您必须知道的 Git 分支开发规范](https://juejin.im/post/6844903635533594632#heading-3)
+- [如何优雅地使用 Git](https://juejin.im/post/6844903546104135694#heading-5)
+- [优雅的提交你的 Git Commit Message](https://juejin.im/post/6844903606815064077)
