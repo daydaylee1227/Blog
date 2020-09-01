@@ -44,6 +44,40 @@
 
 
 
+## 常见命令
+
+### git配置命令
+
+- 列出当前配置
+
+```bash
+git config --list	
+```
+
+- 列出Repository配置
+
+```bash
+git config --local --list
+```
+
+- 列出全局配置
+
+```bash
+git config --global --list
+```
+
+- 列出系统配置
+
+```bash
+git config --system --list
+```
+
+
+
+
+
+
+
 #### 基本操作
 
 - 创建本地仓库 git init
