@@ -74,6 +74,22 @@ git config --system --list
 
 
 
+通过上述的命令，发现你并没有配置用户信息的话，接下来配置一下👇
+
+- 配置用户名
+
+```bash
+git config --global user.name "your name"
+```
+
+- 配置用户邮箱
+
+```bash
+git config --global user.email "youremail@github.com"
+```
+
+
+
 
 
 
