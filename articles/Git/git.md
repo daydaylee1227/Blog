@@ -40,7 +40,19 @@
 
 
 
+Git文件状态
 
+- 通常我们需要查看一个文件的状态
+
+```bash
+git status
+```
+
+- `Changes not staged for commit` 
+  - 表示得大概就是工作区有该内容，但是缓存区没有，需要我们`git add`
+- `Changes to be committed` 
+  - 一般而言，这个时候，文件放在缓存区了，我们需要`git commit`
+- 
 
 
 
