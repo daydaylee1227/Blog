@@ -182,8 +182,18 @@ git branch -v
 - 删除远程分支
 
 ```bash
-git push origin --d <branch-name>
+git push origin -d <branch-name>
 ```
+
+
+
+- 重命名分支
+
+```bash
+git branch -m <oldbranch-name> <newbranch-name>
+```
+
+
 
 
 
@@ -274,9 +284,13 @@ git push origin --d <branch-name>
 
 
 
+
+
 ### 分支命名
 
 **master分支**
+
+
 
 
 
@@ -364,3 +378,4 @@ git push origin --d <branch-name>
 - [您必须知道的 Git 分支开发规范](https://juejin.im/post/6844903635533594632#heading-3)
 - [如何优雅地使用 Git](https://juejin.im/post/6844903546104135694#heading-5)
 - [优雅的提交你的 Git Commit Message](https://juejin.im/post/6844903606815064077)
+- [详解git pull和git fetch的区别](https://blog.csdn.net/weixin_41975655/article/details/82887273?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.channel_param)
