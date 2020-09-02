@@ -40,7 +40,7 @@
 
 
 
-Git文件状态
+## Git文件状态
 
 - 通常我们需要查看一个文件的状态
 
@@ -52,11 +52,12 @@ git status
   - 表示得大概就是工作区有该内容，但是缓存区没有，需要我们`git add`
 - `Changes to be committed` 
   - 一般而言，这个时候，文件放在缓存区了，我们需要`git commit`
-- 
-
-
+- `nothing to commit, working tree clean`
+  - 这个时候，我们将本地的代码推送到远端即可
 
 ## 常见命令
+
+
 
 ### git配置命令
 
@@ -86,6 +87,62 @@ git config --system --list
 
 
 
+### 分支管理
+
+- 查看本地分支
+
+```bash
+git branch
+```
+
+- 查看远程分支
+
+```bash
+git branch -r
+```
+
+- 查看本地和远程分支
+
+```bash
+git branch -a
+```
+
+- 从当前分支，切换到其他分支
+
+```bash
+git checkout <branch-name>
+// 举个例子
+git checkout feature/tiantian
+```
+
+- 创建并切换到新建分支
+
+```bash
+git checkout -b <branch-name>
+// 举个例子👇
+git checkout -b feature/tiantian
+```
+
+- 删除分支
+
+```
+git branch -d <branch-name>
+// 举个例子👇
+git branch -d feature/tiantian
+```
+
+- 当前分支与指定分支合并
+
+```
+git merge <branch-name>
+// 举个例子👇
+git merge feature/tiantian
+```
+
+
+
+
+
 通过上述的命令，发现你并没有配置用户信息的话，接下来配置一下👇
 
 - 配置用户名
@@ -101,6 +158,8 @@ git config --global user.email "youremail@github.com"
 ```
 
 
+
+### 工作区命令
 
 
 
@@ -261,6 +320,8 @@ git config --global user.email "youremail@github.com"
   - git stash clear
 - 恢复改动
   - git stash pop <stash@{ID}>
+
+
 
 
 
