@@ -87,6 +87,26 @@ git config --system --list
 
 
 
+
+
+通过上述的命令，发现你并没有配置用户信息的话，接下来配置一下👇
+
+- 配置用户名
+
+```bash
+git config --global user.name "your name"
+```
+
+- 配置用户邮箱
+
+```bash
+git config --global user.email "youremail@github.com"
+```
+
+
+
+
+
 ### 分支管理
 
 - 查看本地分支
@@ -125,7 +145,7 @@ git checkout -b feature/tiantian
 
 - 删除分支
 
-```
+```bash
 git branch -d <branch-name>
 // 举个例子👇
 git branch -d feature/tiantian
@@ -133,29 +153,39 @@ git branch -d feature/tiantian
 
 - 当前分支与指定分支合并
 
-```
+```bash
 git merge <branch-name>
 // 举个例子👇
 git merge feature/tiantian
 ```
 
-
-
-
-
-通过上述的命令，发现你并没有配置用户信息的话，接下来配置一下👇
-
-- 配置用户名
+- 查看哪些分支已经合并到当前分支
 
 ```bash
-git config --global user.name "your name"
+git branch --merged
 ```
 
-- 配置用户邮箱
+- 查看哪些分支没有合并到当前分支
 
 ```bash
-git config --global user.email "youremail@github.com"
+git branch --no-merged
 ```
+
+- 查看各个分支最后一个提交对象的信息
+
+```bash
+git branch -v
+```
+
+
+
+- 删除远程分支
+
+```bash
+git push origin --d <branch-name>
+```
+
+
 
 
 
