@@ -195,6 +195,73 @@ git branch -m <oldbranch-name> <newbranch-name>
 
 
 
+- 拉取远程分支并创建本地分支
+
+```bash
+git checkout -b 本地分支名x origin/远程分支名x
+
+// 另外一种方式,也可以完成这个操作。
+git fetch origin <branch-name>:<local-branch-name>
+// fetch这个指令的话,后续会梳理
+```
+
+
+
+### fetch指令
+
+我理解的就是将远程仓库内容更新到本地，最近与师姐开发项目过程中，使用的就是这个命令。
+
+具体是这样子的👇
+
+#### fetch推荐写法
+
+```bash
+git fetch origin <branch-name>:<local-branch-name>
+```
+
+- 一般而言，这个origin是远程主机名，一般默认就是origin。
+- `branch-name` 你要拉取的分支
+- `local-branch-name` 通常而言，就是你本地新建一个新分支，将origin下的某个分支代码下载到本地分支。
+
+举个例子👇
+
+```bash
+git fetch origin feature/template_excellent:feature/template_layout
+// 你的工作目录下，就会有feature/template_layout
+// 一般情况下,我们需要做的就是在这个分支上开发新需求
+// 完成代码后,我们需要做的就是上传我们的分支
+```
+
+
+
+#### fetch其他写法
+
+
+
+- 将某个远程主机的更新，全部取回本地。
+
+```bash
+git fetch <远程主机名> 
+```
+
+- 这样子的话，取回的是所有的分支更新，如果想取回特定分支，可以指定分支名👇
+
+```bash
+git fetch <远程主机名> <分支名>
+```
+
+- 当你想将某个分支的内容取回到本地下某个分支的话，如下👇
+
+```
+git fetch origin :<local-branch-name>
+// 等价于👇
+git fetch origin master:<local-branch-name>
+```
+
+
+
+
+
 
 
 
