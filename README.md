@@ -18,6 +18,12 @@
 
 
 
+## 前端交流群
+
+<img src="\..\images\其他\前端交流群.jpg" alt="交流群" style="zoom:150%;" />
+
+
+
 ## 进度
 
 ## JavaScript专题系列
@@ -78,6 +84,10 @@
 
 - [掘金主页](https://juejin.im/user/5ef326ab6fb9a07ebe237664)
 - [CSDN主页(算法为主)](https://blog.csdn.net/qq_43127921)
+
+
+
+
 
 
 
