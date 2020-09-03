@@ -20,7 +20,7 @@
 
 ## 前端交流群
 
-<img src="\..\images\其他\前端交流群.jpg" alt="交流群" style="zoom:150%;" />
+<img src="https://uploadfiles.nowcoder.com/images/20200903/169409631_1599095424934_965A717D38455F7D074A527954D3EBEE" />
 
 
 
