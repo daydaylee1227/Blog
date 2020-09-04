@@ -361,6 +361,39 @@ git fetch origin master:<local-branch-name>
 
 
 
+## 忽略文件 .gitignore
+
+这个文件的作用，会去忽略一些不需要纳入Git管理这种，我们也不希望出现在未跟踪文件列表。
+
+那么我们来看看如何配置该文件信息。
+
+```
+# 此行为注释 会被Git忽略
+
+# 忽略 node_modules/ 目录下所有的文件
+node_modules
+
+
+# 忽略所有.vscode结尾的文件
+.vscode
+
+# 忽略所有.md结尾的文件
+*.md
+
+# 但README.md 除外
+!README.md
+
+# 会忽略 doc/something.txt 但不会忽略doc/images/arch.txt
+doc/*.txt
+
+# 忽略 doc/ 目录下所有扩展名为txt文件
+
+doc/**/*.txt
+
+```
+
+
+
 
 
 
