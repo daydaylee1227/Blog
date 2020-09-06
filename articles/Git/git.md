@@ -6,9 +6,33 @@
 
 ## 前言
 
-最近在`网易`工作之余，遇到Git上面一些问题，趁这次的机会，就好好的补一补基础，一些概念性的内容，这里就不描述了，直接开门见山，梳理有用的点。
+最近在`网易`工作之余，遇到Git上面一些问题，趁这次的机会，补一补Git基础知识。
 
 
+
+
+
+公众号**前端UpUp**，回复Git，即可获取脑图。
+
+脑图👇
+
+![Git命令](C:\Users\litiantian03\Desktop\Blog\images\Git\Git.png)
+
+
+
+**本文更多梳理的是Git常用命令，非原理篇，需要这部分知识的可以往下看。**
+
+
+
+
+
+
+
+----------
+
+
+
+一图解天下👇
 
 首先我们的了解Git通常的操作流程，网上流行的不错一张图👇
 
@@ -22,7 +46,11 @@
 
 
 
+
+
 ## 基本概念
+
+
 
 
 
@@ -346,12 +374,6 @@ git fetch origin master:<local-branch-name>
 
 
 
--------------------
-
-
-
-### 工作区命令
-
 
 
 ---------
@@ -381,6 +403,8 @@ git fetch origin master:<local-branch-name>
 
 ### 文档查询
 
+
+
 - 展示Git命令大纲
   - git help (--help)
 - 展示Git命令大纲全部列表
@@ -396,7 +420,7 @@ git fetch origin master:<local-branch-name>
 
 
 
-#### 文件暂存
+### 文件暂存
 
 
 
@@ -424,21 +448,96 @@ git fetch origin master:<local-branch-name>
 
 
 
+### 差异比较
+
+![Git文件比较](..\..\images\Git\Git文件比较.png)
+
+
+
+- 比较工作区与缓存区
+  - git diff
+- 比较缓存区与本地库最近一次commit内容
+  - git diff -- cached
+- 比较工作区与本地最近一次commit内容
+  - git diff HEAD 
+- 比较两个commit之间差异
+  - git diff <commit ID> <commit ID>
+
+
+
+
+
+---------
+
+
+
 
 
 
 
 ## 分支命名
 
+
+
+![Git分支管理规范](..\..\images\Git\Git分支管理规范.png)
+
+
+
+
+
 **master分支**
 
+1. 主分支，用于部署生产环境的分支，确保稳定性。
+2. master分支一般由develop以及hotfix分支合并，任何情况下都不能直接修改代码。
 
 
 
+**develop 分支**
+
+1. develop为开发分支，通常情况下，保存最新完成以及bug修复后的代码。
+2. 开发新功能时，feature分支都是基于develop分支下创建的。
+
+
+
+**feature分支**
+
+1. 开发新功能，基本上以develop为基础创建feature分支。
+2. 分支命名：feature/ 开头的为特性分支， 命名规则: feature/user_module、 feature/cart_module。
+
+
+
+**这点我深有体会，我在网易，mentor就是这么教我的，**通常建一个feature分支。
+
+
+
+**release分支**
+
+1. release 为预上线分支，发布提测阶段，会release分支代码为基准提测。
+
+
+
+**hotfix分支**
+
+1. 分支命名：hotfix/ 开头的为修复分支，它的命名规则与 feature 分支类似。
+2. 线上出现紧急问题时，需要及时修复，以master分支为基线，创建hotfix分支，修复完成后，需要合并到master分支和develop分支。
+
+
+
+
+
+参考来着：[稻草叔叔](https://juejin.im/post/6844903635533594632)
+
+
+
+------------
 
 
 
 ## 基本操作
+
+有了上述的基本了解后，那么我们就来看看整体的一个流程吧。
+
+
 
 - 创建本地仓库 git init
 
@@ -554,30 +653,7 @@ doc/**/*.txt
 
 
 
-
-
-
-
-#### 差异比较
-
-- 比较工作区与缓存区
-  - git diff
-- 比较缓存区与本地库最近一次commit内容
-  - git diff -- cached
-- 比较工作区与本地最近一次commit内容
-  - git diff HEAD 
-- 比较两个commit之间差异
-  - git diff <commit ID> <commit ID>
-
-
-
-
-
-
-
-
-
-
+-----------
 
 
 
@@ -589,3 +665,24 @@ doc/**/*.txt
 - [如何优雅地使用 Git](https://juejin.im/post/6844903546104135694#heading-5)
 - [优雅的提交你的 Git Commit Message](https://juejin.im/post/6844903606815064077)
 - [详解git pull和git fetch的区别](https://blog.csdn.net/weixin_41975655/article/details/82887273?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-6.channel_param)
+- [十分钟的时间，武装你的代码库](https://juejin.im/post/6861769180736126983)
+- [「备忘录」60+Git常用命令行](https://juejin.im/post/6844904149465710599)
+
+
+
+## ❤️ 感谢大家
+
+如果你觉得这篇内容对你挺有有帮助的话：
+
+1. 点赞支持下吧，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）
+2. 关注公众号**前端UpUp**，定期为你推送好文。
+3. 觉得不错的话，也可以阅读TianTian近期梳理的文章（感谢掘友的鼓励与支持🌹🌹🌹）： 
+   - [「一劳永逸」48张小图带你领略flex布局之美](https://juejin.im/post/6866914148387651592)(690+👍)
+   - [「查缺补漏」我的2020前端面试秘籍，为你秋招保驾护航](https://juejin.im/post/6864398060702760968)(460+👍)
+   - [「面经」你可能需要的三轮网易面经](https://juejin.im/post/6862855292577644552)(320+👍)
+   - [「一劳永逸」由浅入深配置webpack4](https://juejin.im/post/6859888538004783118)(930+👍)
+   - [「查缺补漏」巩固你的HTTP知识体系](https://juejin.im/post/6857287743966281736)(1010+👍)
+   - [「一劳永逸」送你21道高频JavaScript手写面试题](https://juejin.im/post/6854573215830933512)(620+👍)
+   - [「查缺补漏」送你18道浏览器面试题](https://juejin.im/post/6854573215830933512)(820+👍)
+   - [「查缺补漏」送你 54 道 JavaScript 面试题](https://juejin.im/post/6854573211443544078)(660+👍)
+
