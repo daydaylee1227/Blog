@@ -18,7 +18,17 @@
 
 
 
+----------
+
+
+
 ## 基本概念
+
+
+
+![](..\..\images\Git\Git基本命令.png)
+
+
 
 基于上面的图，我们就有接下来一些概念👇
 
@@ -40,7 +50,15 @@
 
 
 
+
+
+---------------
+
+
+
 ## Git文件状态
+
+
 
 - 通常我们需要查看一个文件的状态
 
@@ -55,11 +73,23 @@ git status
 - `nothing to commit, working tree clean`
   - 这个时候，我们将本地的代码推送到远端即可
 
+
+
+---------
+
+
+
 ## 常见命令
 
 
 
 ### git配置命令
+
+![Git配置命令](..\..\images\Git\Git配置命令.png)
+
+
+
+
 
 - 列出当前配置
 
@@ -105,9 +135,21 @@ git config --global user.email "youremail@github.com"
 
 
 
+-----------
+
+
+
 
 
 ### 分支管理
+
+
+
+![](..\..\images\Git\Git分支管理.png)
+
+
+
+
 
 - 查看本地分支
 
@@ -177,23 +219,17 @@ git branch --no-merged
 git branch -v
 ```
 
-
-
 - 删除远程分支
 
 ```bash
 git push origin -d <branch-name>
 ```
 
-
-
 - 重命名分支
 
 ```bash
 git branch -m <oldbranch-name> <newbranch-name>
 ```
-
-
 
 - 拉取远程分支并创建本地分支
 
@@ -207,7 +243,21 @@ git fetch origin <branch-name>:<local-branch-name>
 
 
 
+
+
+-----------
+
+
+
+
+
 ### fetch指令
+
+
+
+![Git命令fetch](..\..\images\Git\Git命令fetch.png)
+
+
 
 我理解的就是将远程仓库内容更新到本地，最近与师姐开发项目过程中，使用的就是这个命令。
 
@@ -260,9 +310,43 @@ git fetch origin master:<local-branch-name>
 
 
 
+----------
 
 
 
+
+
+### 花式撤销
+
+
+
+![Git花式撤销](..\..\images\Git\Git花式撤销.png)
+
+
+
+- 撤销**工作区**修改
+
+  - git checkout --  <file>
+
+- 暂存区文件撤销 (不覆盖工作区)
+
+  - git reset HEAD <file>
+
+- 版本回退
+
+  - git reset --(soft | mixed | hard )  < HEAD ~(num) > |  <commit ID>
+
+  - | 指令    | 作用范围                                |
+    | ------- | --------------------------------------- |
+    | --hard  | 回退全部，包括HEAD，index，working tree |
+    | --mixed | 回退部分,包括HEAD，index                |
+    | --soft  | 只回退HEAD                              |
+
+
+
+
+
+-------------------
 
 
 
@@ -270,9 +354,91 @@ git fetch origin master:<local-branch-name>
 
 
 
+---------
 
 
-#### 基本操作
+
+### 状态查询
+
+
+
+- 查看状态
+  - git status
+- 查看历史操作记录
+  - git reflog
+- 查看日志
+  - git log <fileName>
+
+
+
+
+
+-------------
+
+
+
+
+
+### 文档查询
+
+- 展示Git命令大纲
+  - git help (--help)
+- 展示Git命令大纲全部列表
+  - git help -a
+- 展示具体命令说明手册
+  - git help <command>
+
+
+
+
+
+-----------
+
+
+
+#### 文件暂存
+
+
+
+![](..\..\images\Git\Git命令文件暂存.png)
+
+
+
+- 添加改动到stash
+  - git stash save -a “message”
+- 删除暂存
+  - git stash drop <stash@{ID}>
+
+- 查看stash列表
+  - git stash list
+- 删除全部缓存
+  - git stash clear
+- 恢复改动
+  - git stash pop <stash@{ID}>
+
+
+
+
+
+----------
+
+
+
+
+
+
+
+## 分支命名
+
+**master分支**
+
+
+
+
+
+
+
+## 基本操作
 
 - 创建本地仓库 git init
 
@@ -323,7 +489,7 @@ git fetch origin master:<local-branch-name>
   
 - 查看分支
 
-  - git	branch
+  - git  branch
 
 - 创建新分支
 
@@ -350,12 +516,6 @@ git fetch origin master:<local-branch-name>
   - git checkout <name>
 
 
-
-
-
-### 分支命名
-
-**master分支**
 
 
 
@@ -398,28 +558,6 @@ doc/**/*.txt
 
 
 
-####  花式撤销 本地版本库回退
-
-- 撤销**工作区**修改
-
-  - git checkout --  <file>
-
-- 暂存区文件撤销 (不覆盖工作区)
-
-  - git reset HEAD <file>
-
-- 版本回退
-
-  - git reset --(soft | mixed | hard )  < HEAD ~(num) > |  <commit ID>
-
-  - | 指令    | 作用范围                                |
-    | ------- | --------------------------------------- |
-    | --hard  | 回退全部，包括HEAD，index，working tree |
-    | --mixed | 回退部分,包括HEAD，index                |
-    | --soft  | 只回退HEAD                              |
-
-    
-
 #### 差异比较
 
 - 比较工作区与缓存区
@@ -431,39 +569,11 @@ doc/**/*.txt
 - 比较两个commit之间差异
   - git diff <commit ID> <commit ID>
 
-#### 状态查询
-
-- 查看状态
-  - git status
-- 查看历史操作记录
-  - git reflog
-- 查看日志
-  - git log <fileName>
-
-#### 文档查询
-
-- 展示Git命令大纲
-  - git help (--help)
-- 展示Git命令大纲全部列表
-  - git help -a
-- 展示具体命令说明手册
-  - git help <command>
 
 
 
-#### 文件暂存
 
-- 添加改动到stash
-  - git stash save -a “message”
-- 删除暂存
-  - git stash drop <stash@{ID}>
 
-- 查看stash列表
-  - git stash list
-- 删除全部缓存
-  - git stash clear
-- 恢复改动
-  - git stash pop <stash@{ID}>
 
 
 
