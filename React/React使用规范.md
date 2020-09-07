@@ -23,11 +23,73 @@
 
 ### 首字母频繁大写❌
 
+这个问题，应该就是常用的小驼峰式写法，举个例子👇
 
+```markdown
+AnimationNumber --->>>animationNumber
+Max --->>> max
+Min --->>> min
+Arr --->>> arr
+Count --->>> count
+```
+
+简单来说，就是需要更加符合小驼峰式规范。
 
 
 
 ### 变量命名不合理❌
+
+这个某种程度上，还是有点要求的，举个例子👇
+
+下面这个代码，我们在this挂载一个气球的样式
+
+```react
+this._BalloonStyle = {
+    position: 'absolute',
+    width: 62 * scale,
+    height: 123 * scale,
+    backgroundImage: `url(${BALLOON_BG})`,
+    backgroundSize: '100% 100%',
+    zIndex: 41
+}
+```
+
+我们可以看到，气球的单词是**balloon**, 如果你写成`bolloon`或者是`ballon`这样子的单词，都是不行的，mentor会严格要求你，那么假设你的英文水平，跟我一样，那该怎么办呢👇
+
+这里我推荐一个vscode插件，**code spell checker** 这个插件就可以帮你解决 `中文-->>英文`命名不合理问题。
+
+
+
+第二个场景👇
+
+
+
+```react
+import STORE from './images/store.svg'
+import HOME from './images/home.svg'
+// 省略一部分
+const schoolList = [SCHOOL_BG,CAFE_BG,CINEMA,STORE,HOME,HOSPITAL,BOOKSTORE,RESTAURANT]
+```
+
+
+
+我们知道`schoolList`这个变量存放的不仅是school的图片，还有cafe等；这个时候我们需要做的就是**避免使用通用名**。
+
+比如👇
+
+```react
+const buildingNameList = [SCHOOL_BG,CAFE_BG,CINEMA,STORE,HOME,HOSPITAL,BOOKSTORE,RESTAURANT]
+```
+
+
+
+
+
+
+
+
+
+---------
 
 
 
