@@ -83,7 +83,27 @@ const buildingNameList = [SCHOOL_BG,CAFE_BG,CINEMA,STORE,HOME,HOSPITAL,BOOKSTORE
 
 
 
+这样子的例子还有很多，就是不能通用名称。
 
+**避免使用通用名**
+
+比如你设置的一个点击事件，你不应该取这样子的名称👇
+
+```react
+ <Droppable onClick = {this._handleClick.bind(this, index)} > </Droppable>
+```
+
+
+
+这样子写的话，有个小问题，大概就是会出现通用名，所以我们怎么解决呢👇
+
+```react
+ <Droppable onClick = {this._handleOptionClick.bind(this, index)} > </Droppable>
+```
+
+
+
+一个好的名称很大的程度上可以帮助我们区别我们的逻辑代码是干嘛的。
 
 
 
