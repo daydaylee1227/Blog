@@ -25,7 +25,7 @@
 
 
 
-![]()![数组](C:\Users\DayDay\Desktop\前端-笔记\images\数组.png)
+![](..\..\images\js\array.png)
 
 ----
 
