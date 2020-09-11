@@ -107,9 +107,15 @@ const buildingNameList = [SCHOOL_BG,CAFE_BG,CINEMA,STORE,HOME,HOSPITAL,BOOKSTORE
 
 
 
+### React中规范命名
+
+
+
 
 
 ---------
+
+
 
 
 
@@ -242,4 +248,8 @@ _renderBorderBg() {
 我个人的经验，我使用的是vscode，通常情况下，使用 `ctrl + F`快捷键，然后搜关键字let，然后在逐个对比，嗯~ o(*￣▽￣*)o，我的经验。
 
 
+
+
+
+## 无用/重复代码问题
 
