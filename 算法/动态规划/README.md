@@ -1,4 +1,4 @@
-## 前言
+前言
 
 最近面网易某部门的时候，其中一道算法题考点就是DFS，深度优先遍历，所以这次准备梳理一遍，练练手，下次再找的话，也比较方便。
 
@@ -74,9 +74,9 @@ BFS-DFS题目将收入GitHub中，思路和代码都有，有兴趣的小伙伴�
 
 解题思路，三大步骤👇
 
-1. 定义数组的含义
-2. 列出状态转移方程
-3. 初始化数组
+1. **状态定义**
+2. **列出状态转移方程**
+3. **初始化状态**
 
 
 
@@ -84,7 +84,7 @@ BFS-DFS题目将收入GitHub中，思路和代码都有，有兴趣的小伙伴�
 
 
 
-**定义数组的含义**
+**状态定义**
 
 - 我们需要借助数组来保存之前计算的结果，所以一般采用的就是数组来维护我们的结果，一般dp数组。
 - dp数组的含义一定要明确，也就是说，dp[i]表达是啥意思，举个例子，dp[i]表达到达第i个阶梯时的方案数。
@@ -120,7 +120,7 @@ dp[i] = dp[i-1] + dp[i-2]
 
 
 
-**初始化数组**
+**初始化状态**
 
 - 我们会发现，dp数组的第n项结果，是由状态转移方程求解而言的，所以我们需要的是第n-1项，n-2项，或者n-3项的值。
 - 这个时候，我们就需要初始话dp数组的值，一般而言，比如`dp[1],dp[2]`,`dp[1][1]`,`dp[1][2]`。
@@ -328,72 +328,54 @@ dp[i] = dp[i-1] + dp[i-2]
 
 
 
-我们按照解题思路走一遍👇
+**我们按照解题思路走一遍👇**
 
 
 
+**第一步：状态定义**
+
+dp[i] 表示的含义:到第i阶方案数
 
 
 
+**第二步： 确定状态转移方程**
+
+根据实际的情况，我们很容易想到👇
+
+- 到第i阶梯有两种方式
+- 第一种, 从i-1向上走一步即可
+- 第二中，从i-2向上走二步即可
+- 所以 dp[i] = dp[i-1] + dp[i-2]
 
 
+
+**第三步,初始化状态，dp数组**
+
+```
+dp[1] = 1,dp[2] = 2
+```
+
+
+
+按照这个三步走的话，我们就可以写出完整的解题代码
 
 代码👇
 
+![](C:\Users\litiantian03\Desktop\Blog\images\算法\动态规划题目1.png)
 
 
 
 
-**递归思路：**
 
-- 每次分别遍历左节点,以及右节点,然后对比两者,取最大值
-- 这样子，每次递归的话，深度都加1
-
-```
-
-var maxDepth = function (root) {
-    if (!root) return 0;
-    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
-};
-```
-
-
-
-**非递归思路:**
-
-- BFS，广度优先遍历
-- 每一次用一个数组temp保存上一层的所有节点，每次计数器count+1
-- 当temp为空的时候，也就是此时都是叶子节点情况
-
-```js
-var maxDepth = function (root) {
-    if(!root) return 0
-    let queue = [root],
-        res = 0;
-    while(queue.length) {
-        let temp = []
-        for(let i = 0; i < queue.length; i++) {
-            if(queue[i].left) temp.push(queue[i].left)
-            if(queue[i].right) temp.push(queue[i].right)
-        }
-        res += 1
-        queue = temp
-    }
-    return res
-};
-```
-
-
-
-[代码点这里☑️]([https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E6%A0%91/%E5%89%91%E6%8C%87offer55-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6.js](https://github.com/daydaylee1227/Blog/blob/master/算法/树/剑指offer55-二叉树的深度.js))
+[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF.js)
 
 ------
 
 
 
+
+
 ### [打家劫🐍⭐⭐](https://leetcode-cn.com/problems/house-robber-ii/?utm_source=LCUS&utm_medium=ip_redirect_q_uns&utm_campaign=transfer2china)
-
-
 
 
 
@@ -431,58 +413,53 @@ var maxDepth = function (root) {
 
 
 
+------------
 
 
 
+**我们按照解题思路走一遍👇**
 
-**递归思路：**
 
-1. 判断当前节点是否是根，并且为空,是的话,返回0
-2. 当前节点的左右节点都是null,也就是叶子节点时,此时就是目标节点,最小深度,返回1
-3. 当前节点的左节点不为null,找左子树的深度
-4. 当前节点的右节点不为null,找右子树的深度
-5. 比较两者,返回的就是3和4条件的最小值,并且加1
 
-一遍看代码一遍思路👇
+**第一步：状态定义**
 
-```js
-var minDepth = function (root) {
-    if (root == null) return 0
-    if (root.left == null && root.right == null) return 1
-    let max = 10000;
-    if (root.left) max = Math.min(max, minDepth(root.left))
-    if (root.right) max = Math.min(max, minDepth(root.right))
-    return max + 1
-};
+```
+// 这里就利用二维状态,既然可以选择偷或者是不偷
+
+// dp[i][0] 表示不偷当前第i个房间,获取最高金币数
+
+// dp[i][1] 表示的是偷第i房间,获取最高金币数
 ```
 
+**第二步： 确定状态转移方程**
 
-
-**非递归思路:**
-
-- 遍历这个树的每一层,当这个一层级的节点都没有左右节点时,直接返回结果
-- 遍历每一层的节点,当这个stack种,某个节点的左右节点都是空时,即找到目标节点。
-
-做多的BFS，就会发现，原来都是套路题👇
-
-```js
-var minDepth = function (root) {
-    if (!root) return 0
-    let stack = [root],
-        ans = 0
-    while (stack.length) {
-        let temp = []
-        ans++
-        for (let i = 0; i < stack.length; i++) {
-            if (stack[i].left == null && stack[i].right == null) return ans;
-            if (stack[i].left) temp.push(stack[i].left)
-            if (stack[i].right) temp.push(stack[i].right)
-        }
-        stack = temp;
-    }
-    return ans
-};
 ```
+// 第i个房间偷的话,dp[i][1] = nums[i] + dp[i-1][0]
+// 第i个房间不偷的话, dp[i][0] = Math.max(dp[i-1][0],dp[i-1][1])
+```
+
+**第三步,初始化状态，dp数组**
+
+```
+// dp[0][0] = 0
+// dp[0][1] = nums[0]
+```
+
+但是这个题目的难点在于👇
+
+第一个房子跟最后一个房子是挨着的，意味着我们需要做些改变，这个我也是在提示下完成的，写法很巧妙，我们具体看下代码下👇
+
+
+
+
+
+按照这个三步走的话，我们就可以写出完整的解题代码👇
+
+
+
+![](..\..\images\算法\动态规划题目2.png)
+
+
 
 
 
