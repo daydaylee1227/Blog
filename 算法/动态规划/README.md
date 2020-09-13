@@ -174,7 +174,7 @@ dp[i] = dp[i-1] + dp[i-2]
 #### 线性dp
 
 - 顾名思义，线性DP就是在一条线上进行DP。
-- 或者我的理解是，
+- 或者我的理解是，就是在线性空间上的递推。
 
 
 
@@ -227,11 +227,11 @@ dp[i] = dp[i-1] + dp[i-2]
 
 这里推荐几道题👇
 
-- [**树上染色**](https://www.luogu.org/problemnew/show/P3177)
+- [打家劫舍 III](https://leetcode-cn.com/problems/house-robber-iii/)
 - [**时态同步**](https://www.luogu.org/problemnew/show/P1131)
 - [**选课**](https://www.luogu.org/problemnew/show/P2014)
-- [**没有上司的舞会**](https://www.luogu.org/problemnew/show/P1352)
-- [**访问美术馆**](https://www.luogu.org/problemnew/show/P1270)
+- [二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+- [二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)
 - [**战略游戏**](https://www.luogu.org/problemnew/show/P2016)
 
 
@@ -264,22 +264,19 @@ dp[i] = dp[i-1] + dp[i-2]
 
 
 
+------------
+
+**状态压缩DP** **计数型DP** **递推型DP** **概率型DP** **博弈型DP**，嗯太多了，只当是抛砖引玉吧。
+
 
 
 
 
 ## 3个例子
 
-接下来的题型梳理是按照个人刷题顺序的，难易程度，也会做个划分，可以参考一下。
-
-主要做题网站👇
-
-- [剑指offer](https://www.nowcoder.com/ta/coding-interviews)
-- [力扣leetcode](https://leetcode-cn.com/problemset/all/)
+接下来，我们就以三题为例子，来强化我们解题思路的三大步骤吧👇
 
 
-
-接下来，我们通过三道习题为例，来看看DP动态规划问题解题思路。
 
 
 
@@ -326,6 +323,22 @@ dp[i] = dp[i-1] + dp[i-2]
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 
+
+---------
+
+
+
+我们按照解题思路走一遍👇
+
+
+
+
+
+
+
+
+
+代码👇
 
 
 
