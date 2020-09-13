@@ -38,15 +38,29 @@ BFS-DFS题目将收入GitHub中，思路和代码都有，有兴趣的小伙伴�
 
 
 
+什么是重复计算，那怎么样可以利用历史记录来减少我们不必要的运算呢👇
 
 
 
+我们拿**斐波那契数列**这题来看👇
 
-你做过动态规划的话，肯定会经常遇到一些类似与dp数组，数组的作用是什么呢?我想它的作用就是将计算过的结果保存起来，这样子就避免了重复的计算。
-
-为了更清楚的讲述的话，我将会在后续以一个例子展开👇
+![](..\..\images\算法\动态规划-状态转移斐波那契.png)
 
 
+
+如果我们按照这个递归的写法来看，那么它的过程如下👇
+
+
+
+<img src="..\..\images\算法\动态规划-斐波那契数列.jpg" alt="斐波那契数列" style="zoom: 33%;" />
+
+
+
+它会多次计算结果，这个符合动态规划的点，**动态规划在寻找有很多重叠子问题的情况的最佳解时有效。**而且对于这个问题而言，它可以继续去拆分，变成更小的子问题去解决，它也符合动态规划的预期。
+
+
+
+那么这里只是举个例子，后续会将做题思路👇
 
 
 
@@ -58,15 +72,11 @@ BFS-DFS题目将收入GitHub中，思路和代码都有，有兴趣的小伙伴�
 
 
 
-
-
 解题思路，三大步骤👇
 
 1. 定义数组的含义
 2. 列出状态转移方程
 3. 初始化数组
-
-
 
 
 
@@ -129,21 +139,136 @@ dp[i] = dp[i-1] + dp[i-2]
 
 ## 动态规划分类
 
-
-
-常见的有以下几种👇
-
+这么久以来，随着动态规划这种算法思路被很多牛人去探索，动态规划这类问题，被分为了很多种，参考网上的资料，列举了几个常见的dp，我们接下来看看吧。
 
 
 
-
+我的经验之谈，按照不同dp专题来刷，效果很明显，当然了，具体看你自己掌握情况，以及刷题速度了。
 
 
 
 
 
+#### 背包dp
 
-## 基本题型
+这算是状态规划中比较经典的题目了，对于理解dp的话，我个人觉得很有帮助，也是我入门dp最开始看的专题👇
+
+[dd大牛的《背包九讲》](https://zhuanlan.zhihu.com/p/139368825) 👈，可以看看这篇，这里就不展开了。
+
+
+
+这里推荐几道题👇
+
+- [分割等和子集- 01背包](https://leetcode-cn.com/problems/partition-equal-subset-sum/) 
+- [目标和 - 01背包-求方案数](https://leetcode-cn.com/problems/target-sum/)
+- [零钱兑换 - 完全背包](https://leetcode-cn.com/problems/coin-change/)
+- [零钱兑换- II (完全背包-求方案数)](https://leetcode-cn.com/problems/coin-change-2/) 
+- [一和零 -  (二维费用背包)](https://leetcode-cn.com/problems/ones-and-zeroes/)
+
+
+
+----
+
+
+
+#### 线性dp
+
+- 顾名思义，线性DP就是在一条线上进行DP。
+- 或者我的理解是，
+
+
+
+这里推荐几道题👇
+
+- [最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
+
+- [三角形最小路径和](https://leetcode-cn.com/problems/triangle/)
+- [最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+- [最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+- [俄罗斯套娃信封问题](https://leetcode-cn.com/problems/russian-doll-envelopes/)
+
+
+
+------
+
+
+
+#### 区间dp
+
+- 顾名思义，在一段区间上dp，类似于`dp[l][r]`构成的，我们也是将大问题拆分成小问题来处理，这里就是拆分成小区间来处理。
+
+- 然后对小区间处理后，再回溯的求出大区间的值。
+- 主要的方法有两种，记忆化搜索和递推。
+
+
+
+这里推荐几道题👇
+
+- [最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/)
+- [统计不同回文子序列](https://leetcode-cn.com/problems/count-different-palindromic-subsequences/)
+- [多边形三角剖分的最低得分](https://leetcode-cn.com/problems/minimum-score-triangulation-of-polygon/)
+- [戳气球](https://leetcode-cn.com/problems/burst-balloons/)
+- [奇怪的打印机](https://leetcode-cn.com/problems/strange-printer/)
+
+
+
+
+
+-------
+
+
+
+#### 树形dp
+
+- 准确的来说，树形dp准确的说是一种dp的思想，将dp建立在树状结构的基础上。
+- 你可以理解成，在一颗树上定义dp方程式，完成相应的操作。
+
+
+
+这里推荐几道题👇
+
+- [**树上染色**](https://www.luogu.org/problemnew/show/P3177)
+- [**时态同步**](https://www.luogu.org/problemnew/show/P1131)
+- [**选课**](https://www.luogu.org/problemnew/show/P2014)
+- [**没有上司的舞会**](https://www.luogu.org/problemnew/show/P1352)
+- [**访问美术馆**](https://www.luogu.org/problemnew/show/P1270)
+- [**战略游戏**](https://www.luogu.org/problemnew/show/P2016)
+
+
+
+----------
+
+
+
+#### 数位dp
+
+
+
+- 数位dp是一种计数用的dp，一般就是要统计一个区间[le,ri]内满足一些条件数的个数。
+- 所谓数位dp，字面意思就是在数位上进行dp咯。
+- 数位还算是比较好听的名字，数位的含义：一个数有个位、十位、百位、千位......数的每一位就是数位啦！
+
+
+
+这里推荐几道题👇
+
+- [数字 1 的个数](https://leetcode-cn.com/problems/number-of-digit-one/)
+- [最大为 N 的数字组合](https://leetcode-cn.com/problems/numbers-at-most-n-given-digit-set/)
+- [可被 K 整除的最小整数](https://leetcode-cn.com/problems/smallest-integer-divisible-by-k/)
+
+
+
+
+
+我印象中，这个是模板，自己写很难，但是这是个板子题，哈哈哈，打过Acm都知道，这里就不展开了。
+
+
+
+
+
+
+
+## 3个例子
 
 接下来的题型梳理是按照个人刷题顺序的，难易程度，也会做个划分，可以参考一下。
 
@@ -677,6 +802,8 @@ const dfs = (matrix, i, j, m, n, dp) => {
 - [告别动态规划，连刷 40 道题，我总结了这些套路](https://zhuanlan.zhihu.com/p/91582909)
 - [如何理解动态规划？](https://www.zhihu.com/question/39948290)
 - [动态规划之背包问题系列](https://zhuanlan.zhihu.com/p/93857890)
+- [dd大牛的《背包九讲》](https://zhuanlan.zhihu.com/p/139368825)
+- [[力扣] DP问题分类汇总](https://zhuanlan.zhihu.com/p/126546914)
 
 
 
