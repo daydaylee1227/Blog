@@ -130,31 +130,27 @@
 链接：https://leetcode-cn.com/problems/two-sum
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
+--------
+
 
 
 这题最简单做法就是O(n*n)复杂度，在这里，我们有考虑使用Map来降低时间复杂度，题目要求答案返回的是下标，所以我们Map可以做一个映射，将当前的值，与下标index做映射。
 
+<img src="..\..\images\算法\哈希表\哈希表-题目1.png" style="zoom:80%;" />
 
 
 
 
 
-
----------
-
-
-
-
-
-[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF.js)
+[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8/leetcode-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.js)
 
 ------
 
 
 
-
-
 ### [有效的字母异位词⭐](https://leetcode-cn.com/problems/valid-anagram/)
+
+
 
 
 
