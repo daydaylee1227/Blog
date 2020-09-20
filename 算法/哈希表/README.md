@@ -337,94 +337,65 @@ dp[i] = dp[i-1] + dp[i-2]
 
 ## 3个例子
 
-接下来，我们就以三题为例子，来强化我们解题思路的三大步骤吧👇
+对哈希表数据结构有了一定的认识后，接下来，通过一定的题量来练习，下午准备了5道leetcode题目关于哈希表的，难度从简单到困难👇
+
+
+
+- [两数之和⭐](https://leetcode-cn.com/problems/two-sum/)
+- [有效的字母异位词⭐](https://leetcode-cn.com/problems/valid-anagram/)
+- [无重复字符的最长子串⭐⭐](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)
+- [前K个高频单词⭐⭐](https://leetcode-cn.com/problems/top-k-frequent-words/)
+- [原子的数量⭐⭐⭐](https://leetcode-cn.com/problems/number-of-atoms/)
 
 
 
 
 
-### [爬楼梯⭐](https://leetcode-cn.com/problems/climbing-stairs/)
+----------------
 
 
 
-> 链接：[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+接下来，我们就以三题为例子，来看看哈希表在题目中该这么应用👇
 
 
 
-假设你正在爬楼梯。需要 *n* 阶你才能到达楼顶。
-
-每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
-
-**注意：**给定 *n* 是一个正整数。
-
-示例 1：
-
-1. ```
-   输入： 2
-   输出： 2
-   解释： 有两种方法可以爬到楼顶。
-   
-   1.  1 阶 + 1 阶
-   2.  2 阶
-   ```
 
 
-   示例 2：
 
-1. ```
-   输入： 3
-   输出： 3
-   解释： 有三种方法可以爬到楼顶。
-   
-   1.  1 阶 + 1 阶 + 1 阶
-   2.  1 阶 + 2 阶
-   3.  2 阶 + 1 阶
-   ```
+
+### [ 两数之和⭐](https://leetcode-cn.com/problems/two-sum/)
+
+
+
+
+
+> 链接：[ 两数之和](https://leetcode-cn.com/problems/two-sum/)
+
+
+
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
+
+ 
+
+示例:
+
+> 给定 nums = [2, 7, 11, 15], target = 9
+>
+> 因为 nums[0] + nums[1] = 2 + 7 = 9
+> 所以返回 [0, 1]
+> 通过次数1,390,938提交次数2,815,292
 
 来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/climbing-stairs
+链接：https://leetcode-cn.com/problems/two-sum
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 
 
+
+
 ---------
-
-
-
-**我们按照解题思路走一遍👇**
-
-
-
-**第一步：状态定义**
-
-dp[i] 表示的含义:到第i阶方案数
-
-
-
-**第二步： 确定状态转移方程**
-
-根据实际的情况，我们很容易想到👇
-
-- 到第i阶梯有两种方式
-- 第一种, 从i-1向上走一步即可
-- 第二中，从i-2向上走二步即可
-- 所以 dp[i] = dp[i-1] + dp[i-2]
-
-
-
-**第三步,初始化状态，dp数组**
-
-```
-dp[1] = 1,dp[2] = 2
-```
-
-
-
-按照这个三步走的话，我们就可以写出完整的解题代码
-
-代码👇
-
-![](C:\Users\litiantian03\Desktop\Blog\images\算法\动态规划题目1.png)
 
 
 
@@ -438,7 +409,7 @@ dp[1] = 1,dp[2] = 2
 
 
 
-### [打家劫🐍⭐⭐](https://leetcode-cn.com/problems/house-robber-ii/?utm_source=LCUS&utm_medium=ip_redirect_q_uns&utm_campaign=transfer2china)
+### [有效的字母异位词⭐](https://leetcode-cn.com/problems/valid-anagram/)
 
 
 
