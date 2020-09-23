@@ -26,7 +26,7 @@
 
 
 
-![图片说明](https://uploadfiles.nowcoder.com/images/20200916/169409631_1600260604476_24CAD3C93AE86892781FBBA4D7D35D98 ) 
+<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Voibl9R35rqpibfGM2SdS4If8pAVrufnaQRNlphXugKlNKjFazcrmEevXBWQ14aX3t9vRhBFhCLfwejUrPWMEvcA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片说明" style="zoom: 50%;" /> 
 
 
 
@@ -37,6 +37,8 @@
 ## HTML & CSS
 
 - [「一劳永逸」48张小图带你领略flex布局之美](https://juejin.im/post/6866914148387651592)
+
+
 
 
 
@@ -77,6 +79,8 @@
 
 - [链表的9个基本操作](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8)
 - [6大排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
+- [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)
+- [「算法与数据结构」带你看哈希算法之美](https://juejin.im/post/6874708801208254478)
 
 
 
@@ -91,10 +95,28 @@
 - [「查缺补漏」我的2020前端面试秘籍，为你秋招保驾护航](https://github.com/daydaylee1227/Blog/issues/21) 
 - [「面经」你可能需要的三轮网易面经](https://github.com/daydaylee1227/Blog/blob/master/articles/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E7%BB%8F.md)
 
+
+
+## 其他必备
+
+- [「一劳永逸」一张脑图带你掌握Git命令](https://juejin.im/post/6869519303864123399)
+- [「一劳永逸」48张小图带你领略flex布局之美](https://juejin.im/post/6866914148387651592)
+- [「一劳永逸」由浅入深配置webpack4](https://juejin.im/post/6859888538004783118)
+
+
+
+
+
+
+
+
+
 ## Vue项目
 
 - [「Vue项目」我是如何解决滚动组件&联动效果](https://github.com/daydaylee1227/Blog/issues/14)
 - [仿QQ音乐播放器](https://github.com/daydaylee1227/Blog/tree/master/vue-daymusic)
+
+
 
 
 

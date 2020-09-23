@@ -38,7 +38,9 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 比如常见的就是切换主题了
 
-![theme](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\theme.gif)
+
+
+![](..\..\images\浏览器相关\Chrome骚操作\theme.gif)
 
 -----
 
@@ -48,7 +50,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 有时候，你看身边的人使用快捷键的时候，是不是特别帅，你也可以跟他一样潇洒，一样🚀🚀🚀
 
-![Command-use-setting](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Command-use-setting.gif)
+![Command-use-setting](..\..\images\浏览器相关\Chrome骚操作\Command-use-setting.gif)
 
 ----
 
@@ -58,7 +60,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 通过 `Capture full size screenshot` 命令。请注意，这里说的是全屏，并不是嵌入页面的一部分。
 
-![Command-use-Capture](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Command-use-Capture.gif)
+![Command-use-Capture](..\..\images\浏览器相关\Chrome骚操作\Command-use-Capture.gif)
 
 
 
@@ -72,7 +74,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 ### 获取某个HTML片段代码
 
-![copy-html-element-clipboard](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\copy-html-element-clipboard.gif)
+![copy-html-element-clipboard](..\..\images\浏览器相关\Chrome骚操作\copy-html-element-clipboard.gif)
 
 ----
 
@@ -82,7 +84,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 - 选中你想要的dom元素，右键，选中copy中的Copy element
 
-![copy-element](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\copy-element.gif)
+![copy-element](..\..\images\浏览器相关\Chrome骚操作\copy-element.gif)
 
 
 
@@ -94,7 +96,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 你还在傻傻的一个个复制吗，这次一次就copy all styles
 
-![copy-element-style](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\copy-element-style.gif)
+![copy-element-style](..\..\images\浏览器相关\Chrome骚操作\copy-element-style.gif)
 
 -------
 
@@ -102,7 +104,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 ### 曾经还在为调伪类样式代码苦恼吗？
 
-![pseudo-trigger](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\pseudo-trigger.gif)
+![pseudo-trigger](..\..\images\浏览器相关\Chrome骚操作\pseudo-trigger.gif)
 
 
 
@@ -114,7 +116,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 有时候，想要看看某个DOM结点到底绑定了哪些事件，回调函数在哪里注册的，项目很大的话，找起来很不方便，那怎么提高效率呢，下面👇
 
-![addEvent-listener](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\addEvent-listener.gif)
+![addEvent-listener](..\..\images\浏览器相关\Chrome骚操作\addEvent-listener.gif)
 
 ----
 
@@ -124,7 +126,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 有时候，你看见某个网站配色挺好看的，于是你去用单独的取色软件去操作，那样子就太慢啦🚀
 
-![color-get](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\color-get.gif)
+![color-get](..\..\images\浏览器相关\Chrome骚操作\color-get.gif)
 
 
 
@@ -136,7 +138,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 有时候，你很想去查看DOM的层级关系，也就是子元素的包含关系，一个一个的去点击级联的 `▶` 按钮太慢了，不如使用右击节点后的 `expand recursively` 命令：
 
-![open-DOM](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\open-DOM.gif)
+![open-DOM](..\..\images\浏览器相关\Chrome骚操作\open-DOM.gif)
 
 
 
@@ -150,7 +152,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 ### 看dom层级的最直观的方式？
 
-![see-dom](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\see-dom.gif)
+![see-dom](..\..\images\浏览器相关\Chrome骚操作\see-dom.gif)
 
 
 
@@ -160,7 +162,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 有时候，你想要去修改dom结果，但是在Element控制面板上操作不方便，那怎么更高效的操作呢？
 
-![Console-Edit-element](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Console-Edit-element.gif)
+![Console-Edit-element](..\..\images\浏览器相关\Chrome骚操作\Console-Edit-element.gif)
 
 
 
@@ -178,7 +180,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 
 ### `$(selector, [startNode])`：单选择器
 
-![$内置命令](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\$内置命令.png)
+![$内置命令](..\..\images\浏览器相关\Chrome骚操作\$内置命令.png)
 
 ---------
 
@@ -192,7 +194,7 @@ Chrome DevTools 的各种骚操作你了解多少呢？
 $$('a')
 ```
 
-![$内置命令2](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\$内置命令2.png)
+![$内置命令2](..\..\images\浏览器相关\Chrome骚操作\$内置命令2.png)
 
 ---------
 
@@ -212,7 +214,7 @@ getEventListeners(document);
 
 理所当然，`$1` 是对上一次我们选择的节点的引用，`$2` 是对在那之前选择的节点的引用，等等。一直到 `$4`
 
-![Console-$](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Console-$.gif)
+![Console-$](..\..\images\浏览器相关\Chrome骚操作\Console-$.gif)
 
 -----
 
@@ -224,7 +226,7 @@ getEventListeners(document);
 
 这时候 `$_` 就派上了用场，`$_` 是对上次执行的结果的 **引用** ：
 
-![保存上一次的结果](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\保存上一次的结果.gif)
+![保存上一次的结果](..\..\images\浏览器相关\Chrome骚操作\保存上一次的结果.gif)
 
 
 
@@ -269,7 +271,7 @@ console.dir(document)
 
 看看上面的效果是上面吧🚀🚀🚀
 
-![Console-dir](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Console-dir.png)
+![Console-dir](..\..\images\浏览器相关\Chrome骚操作\Console-dir.png)
 
 
 
@@ -285,7 +287,7 @@ console.dir(document)
 
 你把项目的文件夹直接拖到 `Source` 面板，`DevTools` 会将你做出的修改同步到系统的文件中。
 
-![workpace](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\workpace.gif)
+![workpace](..\..\images\浏览器相关\Chrome骚操作\workpace.gif)
 
 
 
@@ -304,7 +306,7 @@ console.dir(document)
 
 - 快捷键 ctrl+shift+p ,打开 Command Menu,键入 Drawer: Show Animations。
 
-  ![Command-use-Animate](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Command-use-Animate.gif)
+  ![Command-use-Animate](..\..\images\浏览器相关\Chrome骚操作\Command-use-Animate.gif)
 
 
 
@@ -312,7 +314,7 @@ console.dir(document)
 
 ### `DOM`断点调试
 
-![Source-check](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Source-check.gif)
+![Source-check](..\..\images\浏览器相关\Chrome骚操作\Source-check.gif)
 
 
 
@@ -334,7 +336,7 @@ console.dir(document)
 
 以上问题等等，都是关于NetWork控制面板的，那我们可以使用过滤器
 
-![Network控制面板](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Network控制面板.png)
+![Network控制面板](..\..\images\浏览器相关\Chrome骚操作\Network控制面板.png)
 
 - 数字1箭头指向的就是过滤器，获取你想要的信息资源
 
@@ -342,13 +344,13 @@ console.dir(document)
 - 数字3表示的就是某个资源文件在哪里调用了，点进去就会跳转到对于位置
 - 数字4箭头Waterfall，可以更清楚的看请求一个资源每个阶段画的时间，比如DNS Lookup，建议DNS链接，SSL过程，Request sent发送时间，DownLoad下载某个特定资源时间如下👇
 
-![1594521107702](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\waterfall.png)
+![1594521107702](..\..\images\浏览器相关\Chrome骚操作\waterfall.png)
 
 ---------
 
 那我们看下怎么具体操作:
 
-![Network-all](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Network-all.gif)
+![Network-all](..\..\images\浏览器相关\Chrome骚操作\Network-all.gif)
 
 
 
@@ -360,7 +362,7 @@ console.dir(document)
 
 如果你通过自己源码去修改，就out了，这样子效率很明显很低，我们通过**Block request URL**
 
-![NetWork-block-request-url](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\NetWork-block-request-url.gif)
+![NetWork-block-request-url](..\..\images\浏览器相关\Chrome骚操作\NetWork-block-request-url.gif)
 
 
 
@@ -374,7 +376,7 @@ console.dir(document)
 
 有时候，你做移动端的时候，想试一试网络速度对你项目有啥波动，比如，3G的时候，你首屏加载有多块，需不需要引入骨架图来优化用户体验呢，那你怎么检测呢，看下面👇
 
-![change-wifi](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\change-wifi.gif)
+![change-wifi](..\..\images\浏览器相关\Chrome骚操作\change-wifi.gif)
 
 - 打开控制面板Network
 - 找到online字样按钮，选中你所需要的网络环境即可
@@ -389,7 +391,7 @@ console.dir(document)
 
 有时候，项目中会遇到很多问题，比如请求资源就是其中一个，你需要更加完善的信息，这样子才可以更加高效的取诊断出问题，那需要怎么操作呢👇
 
-![Network-add-someting](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Network-add-someting.gif)
+![Network-add-someting](..\..\images\浏览器相关\Chrome骚操作\Network-add-someting.gif)
 
 在此页面下，右键新增你想要查看的信息，会让你的效率🚀🚀🚀
 
@@ -405,11 +407,11 @@ console.dir(document)
 
 这个对于查看浏览器渲染阶段中的图层的分成，绘制，分块，光栅化，挺有帮助的，那接下来我带你们看看要怎么操作吧👇
 
-![Layers-make](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Layers-make.png)
+![Layers-make](..\..\images\浏览器相关\Chrome骚操作\Layers-make.png)
 
 接下来就是怎么查看了：
 
-![Layers-use](C:\Users\DayDay\Desktop\前端-笔记\images\Chrome骚操作\Layers-use.gif)
+![Layers-use](..\..\images\浏览器相关\Chrome骚操作\Layers-use.gif)
 
 -----------
 
