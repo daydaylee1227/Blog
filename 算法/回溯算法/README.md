@@ -59,7 +59,29 @@
 
 
 
+
+
+-------------
+
+
+
+
+
 ## 基本思路
+
+
+
+
+
+
+
+## 算法框架
+
+其实刷了一定的题量，你会发现，对于这种回溯思路而言，都是有一定的套路的，那么接下来就给出伪代码👇
+
+
+
+
 
 
 
@@ -289,11 +311,11 @@ dp[i] = dp[i-1] + dp[i-2]
 
 
 
-### [爬楼梯⭐](https://leetcode-cn.com/problems/climbing-stairs/)
+### [字母大小写全排列⭐](https://leetcode-cn.com/problems/letter-case-permutation/)
 
 
 
-> 链接：[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+> 链接：[字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
 
 
 
@@ -383,11 +405,11 @@ dp[1] = 1,dp[2] = 2
 
 
 
-### [打家劫🐍⭐⭐](https://leetcode-cn.com/problems/house-robber-ii/?utm_source=LCUS&utm_medium=ip_redirect_q_uns&utm_campaign=transfer2china)
+### [子集🐍⭐⭐](https://leetcode-cn.com/problems/subsets/)
 
 
 
-> 链接：[打家劫舍 II](https://leetcode-cn.com/problems/house-robber-ii/)
+> 链接：[子集](https://leetcode-cn.com/problems/subsets/)
 
 
 
@@ -475,11 +497,13 @@ dp[1] = 1,dp[2] = 2
 
 
 
-### [买卖股票的最佳时机 IV⭐⭐⭐](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
+### [N皇后⭐⭐⭐](https://leetcode-cn.com/problems/n-queens/)
 
-给你一个二叉树，请你返回其按 **层序遍历** 得到的节点值。 （即逐层地，从左到右访问所有节点）。
+*n* 皇后问题研究的是如何将 *n* 个皇后放置在 *n*×*n* 的棋盘上，并且使皇后彼此之间不能相互攻击。
 
-> 链接：[买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
+
+
+> 链接：[N 皇后](https://leetcode-cn.com/problems/n-queens/)
 
 
 
@@ -577,48 +601,13 @@ dp[1] = 1,dp[2] = 2
 
 以下是我收集的部分题目，希望对你们有帮助。
 
-#### 简单
+#### 
 
-
-
-- [爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
-- [打家劫舍](https://leetcode-cn.com/problems/house-robber/)
-- [使用最小花费爬楼梯](https://leetcode-cn.com/problems/min-cost-climbing-stairs/)
-- [连续数列](https://leetcode-cn.com/problems/contiguous-sequence-lcci/)
-- [三步问题](https://leetcode-cn.com/problems/three-steps-problem-lcci/)
-
-
-
-------
-
-
-
-#### 中等
-
-
-
-- [打家劫舍 II](https://leetcode-cn.com/problems/house-robber-ii/)
-- [最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
-- [打家劫舍 III](https://leetcode-cn.com/problems/house-robber-iii/)
-- [不同路径](https://leetcode-cn.com/problems/unique-paths/)
-- [不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/)
-- [最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/)
-
-
-
-------
-
-
-
-#### 困难
-
-
-
-- [买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/)
-- [买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/)
-- [青蛙过河](https://leetcode-cn.com/problems/frog-jump/)
-- [单词拆分 II](https://leetcode-cn.com/problems/word-break-ii/)
-- [最大子矩阵](https://leetcode-cn.com/problems/max-submatrix-lcci/)
+- [字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
+- [子集](https://leetcode-cn.com/problems/subsets/)
+- [全排列](https://leetcode-cn.com/problems/permutations/)
+- [组合](https://leetcode-cn.com/problems/combinations/)
+- [N 皇后](https://leetcode-cn.com/problems/n-queens/)
 
 
 
