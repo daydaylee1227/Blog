@@ -260,13 +260,13 @@ function backtrack(路径, 选择列表) {
 
 代码👇
 
-![](C:\Users\litiantian03\Desktop\Blog\images\算法\动态规划题目1.png)
+![回溯算法代码-1](..\..\images\算法\回溯算法\回溯算法代码-1.png)
 
 
 
 
 
-[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/leetcode-%E7%88%AC%E6%A5%BC%E6%A2%AF.js)
+[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/leetcode-%E5%AD%97%E6%AF%8D%E5%85%A8%E6%8E%92%E5%88%97.js)
 
 ------
 
