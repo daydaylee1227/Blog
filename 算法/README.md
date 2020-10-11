@@ -13,10 +13,10 @@
 
 
 - [排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
-
 - [链表](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8)
-
 - [dfs-bfs汇总](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/dfs-bfs%E6%B1%87%E6%80%BB)
+- [哈希表](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E5%93%88%E5%B8%8C%E8%A1%A8)
+- [回溯算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95)
 
 
 
