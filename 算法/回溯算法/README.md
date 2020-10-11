@@ -6,9 +6,15 @@
 
 
 
+> 我对回溯算法有一定理解：回溯算法建立在DFS基础之上的，但不同的是在搜索的过程中，达到结束条件后，恢复状态，回溯上一层，再次搜索，因此我们可以这样子理解，回溯算法与DFS的区别就是有无状态重置。
 
 
-如果你还不了解什么是回溯算法，或者知道一些，但是对于它具体是如何实现`回溯`，那么这篇文章可能适合你阅读。
+
+
+
+阅读完上述的话术，如果你还不了解什么是回溯算法，或者知道一些，但是对于它具体是如何实现`回溯`，那么这篇文章可能适合你阅读。
+
+
 
 
 
@@ -21,15 +27,15 @@
 
 
 
-
-
-
-
 联系👉TianTianUp，遇到问题的话，可以联系作者噢，愿意陪你一起学习一起探讨问题。
 
-脑图👇
 
 
+
+
+
+
+--------------------
 
 
 
@@ -110,6 +116,8 @@
 
 
 
+----------
+
 
 
 
@@ -175,11 +183,32 @@ function backtrack(路径, 选择列表) {
 
 
 
-## 动态规划解题三大步骤
+## 怎么样写回溯算法
+
+
+
+做一些题目后，对回溯算法有初步认识后，我觉得可以参考下面的步骤来刻意练习👇
+
+
+
+- 首先画出递归树，找到状态变量（这里可以理解成回溯函数参数）。
+- 确定递归出口，一般根据具体题目条件而言。
+- 找准选择列表（一般而言与函数参数有关）。
+- 剪枝，对于一些情况而言，可以适当剪枝。
+- 做出选择，递归调用，进入下一层。
+- 撤销选择。
+
+
+
+我觉得这个对回溯算法的总结，是挺不错的，可以借鉴下。
 
 
 
 
+
+
+
+---------------
 
 
 
@@ -317,6 +346,16 @@ function backtrack(路径, 选择列表) {
 
 其实把这个图画出来，你应该就成功一半了，从这个图来看，我们似乎又可以去遍历这颗树。
 
+首先我们得把我们思路整理一下👇
+
+- 这题肯定是求树的所有节点！
+- 对这颗树而言，我们可以遍历它的分支，选择其中一个分支，然后继续向下操作，不选这个分支的话，选择另外一个分支又是另外一个情况，所以每次枚举下一个数字的时候,也就是两种选择：选或不选。
+- 可以考虑使用一个index指针来记录**节点**的状态,即当前递归考察的数字`nums[index]`
+- 递归结束的条件： index === nums.length, 这个时候代表考察完所有的数字，把当前的子集加入题解，结束当前递归分支。
+- 每次结束一个分支，即结束递归，需要撤销当前的选择，（从list中删除），回到选择前的状态，做另外一个选择，即不选择当前的数字，往下递归，继续生成子集。
+
+
+
 
 
 
@@ -326,6 +365,8 @@ function backtrack(路径, 选择列表) {
 [代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/leetcode-%E5%81%B7%E6%88%BF%E5%AD%90.js)
 
 ------
+
+
 
 
 
@@ -439,25 +480,31 @@ function backtrack(路径, 选择列表) {
 
 
 
+题目是做不完的，做完这些题目后，希望你能找出回溯算法的规律，能对它有更加深入的理解~，接下来准备了些题集，希望对你们有帮助~
+
+
+
+
+
 
 
 ## 进阶题目汇总
 
-以下是我收集的部分题目，希望对你们有帮助。
+
+
+以下是我在网上看到一套不错的回溯算法题集，如果你还在刻意找的话，可以看看这里。
 
 
 
-- [字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
-- [子集](https://leetcode-cn.com/problems/subsets/)
-- [全排列](https://leetcode-cn.com/problems/permutations/)
-- [组合](https://leetcode-cn.com/problems/combinations/)
-- [N 皇后](https://leetcode-cn.com/problems/n-queens/)
-- [分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)
-- [组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/)
-- [子集 II](https://leetcode-cn.com/problems/subsets-ii/)
-- [剑指 Offer 38. 字符串的排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
-- [复原IP地址](https://leetcode-cn.com/problems/restore-ip-addresses/)
-- [串联字符串的最大长度](https://leetcode-cn.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/)
+| 类型       | 题目链接                                                     |
+| ---------- | ------------------------------------------------------------ |
+| 子集，组合 | [子集](https://leetcode-cn.com/problems/subsets/)、[子集 II](https://leetcode-cn.com/problems/subsets-ii/)、[组合](https://leetcode-cn.com/problems/combinations/)、[组合总和](https://leetcode-cn.com/problems/combination-sum/)、[组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) |
+| 全排列     | [全排列](https://leetcode-cn.com/problems/permutations/)、[全排列 II](https://leetcode-cn.com/problems/permutations-ii/)、[字符串的全排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)、[字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/) |
+| 搜索       | [解数独](https://leetcode-cn.com/problems/sudoku-solver/)、[单词搜索](https://leetcode-cn.com/problems/word-search/)、[N皇后](https://leetcode-cn.com/problems/eight-queens-lcci/)、[分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)、[二进制手表](https://leetcode-cn.com/problems/binary-watch/) |
+
+
+
+
 
 
 
