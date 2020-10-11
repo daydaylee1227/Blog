@@ -12,7 +12,7 @@
 
 
 
-阅读完上述的话术，如果你还不了解什么是回溯算法，或者知道一些，但是对于它具体是如何实现`回溯`，那么这篇文章可能适合你阅读。
+如果你还不了解什么是回溯算法，或者知道一些，但是对于它具体是如何实现`回溯`，那么这篇文章可能适合你阅读。
 
 
 
@@ -183,7 +183,7 @@ function backtrack(路径, 选择列表) {
 
 
 
-## 怎么样写回溯算法
+## 怎么样写回溯
 
 
 
@@ -201,8 +201,6 @@ function backtrack(路径, 选择列表) {
 
 
 我觉得这个对回溯算法的总结，是挺不错的，可以借鉴下。
-
-
 
 
 
@@ -397,6 +395,8 @@ function backtrack(路径, 选择列表) {
 | 子集，组合 | [子集](https://leetcode-cn.com/problems/subsets/)、[子集 II](https://leetcode-cn.com/problems/subsets-ii/)、[组合](https://leetcode-cn.com/problems/combinations/)、[组合总和](https://leetcode-cn.com/problems/combination-sum/)、[组合总和 II](https://leetcode-cn.com/problems/combination-sum-ii/) |
 | 全排列     | [全排列](https://leetcode-cn.com/problems/permutations/)、[全排列 II](https://leetcode-cn.com/problems/permutations-ii/)、[字符串的全排列](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)、[字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/) |
 | 搜索       | [解数独](https://leetcode-cn.com/problems/sudoku-solver/)、[单词搜索](https://leetcode-cn.com/problems/word-search/)、[N皇后](https://leetcode-cn.com/problems/eight-queens-lcci/)、[分割回文串](https://leetcode-cn.com/problems/palindrome-partitioning/)、[二进制手表](https://leetcode-cn.com/problems/binary-watch/) |
+
+
 
 
 
