@@ -1,20 +1,46 @@
 
 // https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
 
+const { min } = require("lodash")
+
 
 const searchMatrix = (matrix, target) => {
     if(matrix === null || matrix.length === 0 || matrix[0].length === 0) {
         return false
     }
-    let col = 0,row = matrix[0].length - 1
-    while(col < matrix.length && row >=0) {
-        if(matrix[col][row] < target) {
-            col++
-        }  else if(matrix[col][row] > target) {
-            row--
-        } else {
+    const shortLen = Math.min(matrix.length, matrix[0].length)
+    for(let i = 0; i < shortLen; i++) {
+        const verticalFound = binarySearch(matrix, target, i, true)
+        const horizontalFound = binarySearch(matrix, target, i, false)
+        if(verticalFound || horizontalFound) {
             return true
         }
     }
     return false
+}
+
+const binarySearch = (matrix, target, start, vertical) => {
+    let left = start,
+        right = vertical ? matrix[0].length - 1 : matrix.length - 1
+    while(right >= left) {
+        let mid = (left + right) / 2
+        if(vertical) {
+            if(matrix[start][mid] < target) {
+                left = mid + 1
+            } else if (matrix[start][mid] > target) {
+                right = mid - 1
+            } else {
+                return true
+            }
+        } else {
+            if(matrix[mid][start] < target) {
+                left = mid + 1
+            } else if (matrix[mid][start] > target) {
+                right = mid - 1
+            } else {
+                return true
+            }
+        }
+    } 
+    return false   
 }
