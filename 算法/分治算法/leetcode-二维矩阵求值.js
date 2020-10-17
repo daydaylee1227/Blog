@@ -4,7 +4,11 @@
 const { min } = require("lodash")
 
 
+// https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
+
+
 const searchMatrix = (matrix, target) => {
+    
     if(matrix === null || matrix.length === 0 || matrix[0].length === 0) {
         return false
     }
@@ -18,12 +22,11 @@ const searchMatrix = (matrix, target) => {
     }
     return false
 }
-
 const binarySearch = (matrix, target, start, vertical) => {
     let left = start,
         right = vertical ? matrix[0].length - 1 : matrix.length - 1
     while(right >= left) {
-        let mid = (left + right) / 2
+        let mid = parseInt((left + right) / 2)
         if(vertical) {
             if(matrix[start][mid] < target) {
                 left = mid + 1
@@ -44,3 +47,5 @@ const binarySearch = (matrix, target, start, vertical) => {
     } 
     return false   
 }
+
+
