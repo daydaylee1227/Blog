@@ -287,15 +287,12 @@ function backtrack(路径, 选择列表) {
 
 根据给定的数据，我们其实就明白，在一维数组中，我们可以利用二分的思路，去快速查找，那么我们其实可以利用二分的思路来完成这题。
 
-主要思路👉二分查找的思想是沿着对角线，行查找一下，列查找一下，如下图。
+当然了，我们有一个更加简单的思路下
 
-![矩阵中求某个值](..\..\images\算法\分治法\矩阵中求某个值.png)
-
-
-
-
-
-
+- 维护两个指针（row,col),找到目标元素时，我们就放回true
+- 当指向当前的元素值小于target时，我们就col++，向上移动一行。
+- 如果当前的值大于当前的target，我们就row--，向左移动一列。
+- 知道col > 矩阵的行，或者row < 0时，我们直接return false，表示不存在。
 
 
 
@@ -309,7 +306,7 @@ function backtrack(路径, 选择列表) {
 
 
 
-[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/leetcode-%E5%AD%90%E9%9B%86.js)
+[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/leetcode-%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%E6%B1%82%E5%80%BC.js)
 
 
 
