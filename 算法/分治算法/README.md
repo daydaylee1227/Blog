@@ -151,17 +151,11 @@
 
 
 
-
-
-对于归并排序的思路，是如何实现的，采用的正是分治法，通过代码，可以看看是如何实现的，这里就不具体展开了。
-
-
+对于归并排序的思路，是如何实现的，之前的排序一章以及提及过，采用的是分治思路，可以看看是如何实现的，这里就不具体展开了。
 
 
 
 ---------------
-
-
 
 
 
@@ -380,11 +374,11 @@
 
 
 
-- #### [最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+- [最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
 
-- #### [连续数列](https://leetcode-cn.com/problems/contiguous-sequence-lcci/)
+- [连续数列](https://leetcode-cn.com/problems/contiguous-sequence-lcci/)
 
-- #### [切分数组](https://leetcode-cn.com/problems/qie-fen-shu-zu/)
+- [切分数组](https://leetcode-cn.com/problems/qie-fen-shu-zu/)
 
 
 
@@ -397,7 +391,7 @@
 如果你觉得这篇内容对你挺有有帮助的话：
 
 1. 点赞支持下吧，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）
-2. 关注公众号**前端UpUp**，联系作者，我们一起学习一起进步。
+2. 关注公众号**前端UpUp**，联系作者👉 **DayDay2021** ，我们一起学习一起进步。
 3. 觉得不错的话，也可以阅读TianTian近期梳理的文章（感谢掘友的鼓励与支持🌹🌹🌹）： 
    - [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)（370+👍）
    - [「算法与数据结构」DFS和BFS算法之美](https://juejin.im/post/6861376131615227912)(240+👍)
