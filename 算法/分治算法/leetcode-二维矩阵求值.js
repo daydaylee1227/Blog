@@ -1,11 +1,7 @@
 
 // https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
 
-const { min } = require("lodash")
-
-
-// https://leetcode-cn.com/problems/search-a-2d-matrix-ii/
-
+// 思路, 每次分行和分列去二分答案
 
 const searchMatrix = (matrix, target) => {
     
