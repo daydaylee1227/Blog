@@ -14,3 +14,11 @@ const maxSubArray = function(nums) {
     }
     return ans
 }
+
+class Person {
+    constructor() {
+        this._locate = () => console.log('instance', this)
+    }
+    _locate = () => console.log('instance1', this)
+    static _locate = () => console.log('instance2', this)
+}
