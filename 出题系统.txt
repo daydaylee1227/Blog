@@ -19,6 +19,8 @@ const STYLES = {
 }
 
 // 增加注释的内容s
+// 如果的话，可以的湖啊，我单纯的撒打算的啊的
+
 export default class InterestEnumeration2Question extends Component {
     static propTypes = {
         questionData: PropTypes.array.isRequired,
