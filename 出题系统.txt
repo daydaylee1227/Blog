@@ -18,6 +18,7 @@ const STYLES = {
     }
 }
 
+// 增加注释的内容s
 export default class InterestEnumeration2Question extends Component {
     static propTypes = {
         questionData: PropTypes.array.isRequired,
