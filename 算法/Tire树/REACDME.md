@@ -220,11 +220,11 @@ function backtrack(路径, 选择列表) {
 
 
 
-### [字母大小写全排列⭐](https://leetcode-cn.com/problems/letter-case-permutation/)
+### [词典中最长的单词⭐](https://leetcode-cn.com/problems/longest-word-in-dictionary/)
 
 
 
-> 链接：[字母大小写全排列](https://leetcode-cn.com/problems/letter-case-permutation/)
+> 链接：[词典中最长的单词](https://leetcode-cn.com/problems/longest-word-in-dictionary/)
 
 
 
@@ -301,40 +301,36 @@ function backtrack(路径, 选择列表) {
 
 
 
-### [子集🐍⭐⭐](https://leetcode-cn.com/problems/subsets/)
+### [实现Trie（前缀树）⭐⭐](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
 
 
-> 链接：[子集](https://leetcode-cn.com/problems/subsets/)
+> 链接：[实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
 
 
-给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
-
-说明：解集不能包含重复的子集。
-
-
+实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
 
 示例:
 
-> 输入: nums = [1,2,3]
-> 输出:
-> [
-> [3],
-> [1],
-> [2],
-> [1,2,3],
-> [1,3],
-> [2,3],
-> [1,2],
-> []
-> ]
+
+
+Trie trie = new Trie();
+
+trie.insert("apple");
+trie.search("apple");   // 返回 true
+trie.search("app");     // 返回 false
+trie.startsWith("app"); // 返回 true
+trie.insert("app");   
+trie.search("app");     // 返回 true
+说明:
+
+你可以假设所有的输入都是由小写字母 a-z 构成的。
+保证所有输入均为非空字符串。
 
 来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/subsets
+链接：https://leetcode-cn.com/problems/implement-trie-prefix-tree
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
-
 
 ------
 
