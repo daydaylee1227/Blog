@@ -4,14 +4,6 @@
 
 
 
-我们来看下维基百科对它的描述吧⬇️
-
-
-
-在[计算机科学](https://zh.wikipedia.org/wiki/计算机科学)中，**trie**，又称**前缀树**或**字典树**，是一种有序[树](https://zh.wikipedia.org/wiki/树_(数据结构))，用于保存[关联数组](https://zh.wikipedia.org/wiki/关联数组)，其中的键通常是[字符串](https://zh.wikipedia.org/wiki/字符串)。与[二叉查找树](https://zh.wikipedia.org/wiki/二叉查找树)不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的[前缀](https://zh.wikipedia.org/wiki/前缀)，也就是这个节点对应的字符串，而根节点对应[空字符串](https://zh.wikipedia.org/wiki/空字符串)。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。
-
-
-
 
 
 > 我对Trie树的理解：把字符串都串接起来，消灭不必要的存储，利用的就是字符串的公共前缀。
@@ -54,7 +46,11 @@
 
 首先，我们对Trie树得做一些基本的了解。Trie树中文名叫字典树，前缀树等，接下来我就以字典树称呼。
 
+我们来看下维基百科对它的描述吧⬇️
 
+
+
+在[计算机科学](https://zh.wikipedia.org/wiki/计算机科学)中，**trie**，又称**前缀树**或**字典树**，是一种有序[树](https://zh.wikipedia.org/wiki/树_(数据结构))，用于保存[关联数组](https://zh.wikipedia.org/wiki/关联数组)，其中的键通常是[字符串](https://zh.wikipedia.org/wiki/字符串)。与[二叉查找树](https://zh.wikipedia.org/wiki/二叉查找树)不同，键不是直接保存在节点中，而是由节点在树中的位置决定。一个节点的所有子孙都有相同的[前缀](https://zh.wikipedia.org/wiki/前缀)，也就是这个节点对应的字符串，而根节点对应[空字符串](https://zh.wikipedia.org/wiki/空字符串)。一般情况下，不是所有的节点都有对应的值，只有叶子节点和部分内部节点所对应的键才有相关的值。
 
 
 
