@@ -26,8 +26,6 @@
 
 
 
-<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Voibl9R35rqpibfGM2SdS4If8pAVrufnaQRNlphXugKlNKjFazcrmEevXBWQ14aX3t9vRhBFhCLfwejUrPWMEvcA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片说明" style="zoom: 50%;" /> 
-
 
 
 ## 进度
@@ -129,8 +127,6 @@
 
 
 
-
-
 ## 勘误及提问
 
 如果有疑问或者发现错误,可以在相应issues提问或者提出错误。
@@ -143,4 +139,4 @@
 
 交流群👇
 
-<img src="https://uploadfiles.nowcoder.com/images/20200924/169409631_1600945176303_B1E110C61E0CD663A0B206E465449FB2" style="zoom: 33%;" />
+<img src="https://mmbiz.qpic.cn/sz_mmbiz_png/Voibl9R35rqpibfGM2SdS4If8pAVrufnaQRNlphXugKlNKjFazcrmEevXBWQ14aX3t9vRhBFhCLfwejUrPWMEvcA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片说明" style="zoom: 50%;" />
