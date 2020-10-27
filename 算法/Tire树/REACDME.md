@@ -1,6 +1,6 @@
 ## 前言
 
-这次分享的Trie树，是数据结构专题中的一个分支，认识了解Trie这种树型数据结构，对构建算法与数据结构知识体系有一定的帮助。
+这次分享的Trie字典树，是数据结构专题中的一个分支，认识了解Trie这种树型数据结构，对构建算法与数据结构知识体系有一定的帮助。
 
 
 
@@ -400,37 +400,17 @@ trie.search("app");     // 返回 true
 
 
 
-
-
-
-
-
-
-
-
-
-
 题目是做不完的，做完这些题目后，希望你能对Trie字典树有所认识，能对它有更加深入的理解~，接下来准备了四道题集，希望对你们有帮助~
 
 
 
+[词典中最长的单词](https://leetcode-cn.com/problems/longest-word-in-dictionary/)
 
+[实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
+[单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/)
 
-
-
-
-## 进阶题目汇总
-
-
-
-以下是我在网上看到一套不错的回溯算法题集，如果你还在刻意找的话，可以看看这里。
-
-
-
-
-
-
+[Loading question](https://leetcode-cn.com/problems/add-and-search-word-data-structure-design/)
 
 
 
@@ -441,12 +421,13 @@ trie.search("app");     // 返回 true
 如果你觉得这篇内容对你挺有有帮助的话：
 
 1. 点赞支持下吧，让更多的人也能看到这篇内容（收藏不点赞，都是耍流氓 -_-）
-2. 关注公众号**前端UpUp**，联系作者，我们一起学习一起进步。
+2. 关注公众号**前端UpUp**，联系作者，遇到问题的话，欢迎打扰我，我们一起探讨一起进步。
 3. 觉得不错的话，也可以阅读TianTian近期梳理的文章（感谢掘友的鼓励与支持🌹🌹🌹）： 
    - [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)（370+👍）
    - [「算法与数据结构」DFS和BFS算法之美](https://juejin.im/post/6861376131615227912)(240+👍)
    - [「算法与数据结构」梳理6大排序算法](https://juejin.im/post/6856546833025237006)(220+👍)
    - [「算法与数据结构」带你看哈希算法之美(210+👍)](https://juejin.im/post/6874708801208254478)
+   - [「算法与数据结构」分治之美(210+👍)](https://juejin.im/post/6885104477297344525)
 
 
 
