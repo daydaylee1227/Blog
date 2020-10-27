@@ -370,7 +370,7 @@ trie.search("app");     // 返回 true
 
 
 
-
+![](..\..\images\算法\Trie\leetcode-实现Trie树.png)
 
 
 
