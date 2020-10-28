@@ -55,6 +55,10 @@
 - [Js常见的面试题](https://github.com/daydaylee1227/Blog/blob/master/articles/JS/%E5%B8%A6%E4%BD%A0%E5%A1%AB%E4%B8%80%E4%BA%9BJS%E5%AE%B9%E6%98%93%E5%87%BA%E9%94%99%E7%9A%84%E5%9D%91.md)
 - [「一劳永逸」送你21道高频JavaScript手写面试题](https://github.com/daydaylee1227/Blog/issues/15)
 
+
+
+
+
 ## ES6专题系列1篇已完结
 
 - [手写Promise](https://github.com/daydaylee1227/Blog/blob/master/articles/ES6/Promise.md)
@@ -79,8 +83,9 @@
 - [6大排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
 - [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)
 - [「算法与数据结构」带你看哈希算法之美](https://juejin.im/post/6874708801208254478)
-
-
+- [「算法与数据结构」带你看回溯算法之美](https://juejin.im/post/6882394656148045838)
+- [「算法与数据结构」分治算法之美](https://juejin.im/post/6885104477297344525)
+- [「算法与数据结构」Trie树之美](https://juejin.im/post/6888451657504391181)
 
 ## 工具网站类
 
