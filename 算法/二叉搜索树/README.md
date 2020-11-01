@@ -398,6 +398,29 @@ const postorderTraversal  = (root, arr = []) => {
 
 
 
+```js
+const postorderTraversal = (root, arr = []) => {
+  const stack = [], res = []
+  let current = root, last = null  // last指针记录上一个节点
+  while(current || stack.length > 0) {
+    while (current) {
+      stack.push(current)
+      current = current.left
+    }
+    current = stack[stack.length - 1]
+    if (!current.right || current.right == last) {
+      current = stack.pop()
+      res.push(current.val)
+      last = current
+      current = null              // 继续弹栈
+    } else {
+      current = current.right
+    }
+  }
+  return res
+}
+```
+
 
 
 
