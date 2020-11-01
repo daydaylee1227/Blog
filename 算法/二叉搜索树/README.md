@@ -427,212 +427,91 @@ const postorderTraversal = (root, arr = []) => {
 
 
 
-## 2个例子
-
-接下来，我们通过三个题目作为例子，来看看怎么利用分治的思想来解决问题👇
+### [二叉树的层次遍历 ⭐⭐](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
 
 
-### [二叉树的层次遍历 II⭐](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
+> 链接：[二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
 
 
-> 链接：[二叉树的层次遍历 II](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
-
-给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+给你一个二叉树，请你返回其按 **层序遍历** 得到的节点值。 （即逐层地，从左到右访问所有节点）。
 
 
 
-例如：
-给定二叉树 [3,9,20,null,null,15,7],
+示例：
+二叉树：[3,9,20,null,null,15,7],
 
-> ​    3
+>    3
 >
 >    / \
 >   9  20
 >     /  \
 >    15   7
 
-
-
-返回其自底向上的层次遍历为：
-
-
+返回其层次遍历结果：
 
 > [
->   [15,7],
+>   [3],
 >   [9,20],
->   [3]
-> ]
-> 通过次数106,923提交次数157,993
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-
-
-
-------
-
-首先，我们看看能不能以O(n)复杂度解决这个问题，其实仔细想一想的话，我们可以通过一个简单
-
-
-
-
-
-更多得是，我们这题尝试一下用分治法来解决这题。对于一个数组的最大子序和，它对答案的贡献，只能是以下几种情况👇
-
-- 出现在左半边
-- 出现在右半边
-- 出现在中间，穿过中间。
-
-
-
-那么我们是不是可以递归处理呢，对于出现在左边和出现在右边的答案，我们可以把它们当作是一种情况，然后递归去处理，当然了递归的出口，很显然，当递归的数组的长度为1时，我们需要递归结束。
-
-
-
-对于出现在中间答案的情况，我们可以通过计算来算出答案，所以思路理清楚， 接下来，我们看如何写👇
-
-![分治法求最大和](..\..\images\算法\分治法\分治法连续最大和.png)
-
-
-
-当然了，这题用动态规划思路更好求解，也更加得好理解👇
-
-> //dp[i]表示nums中以nums[i]结尾的最大子序和
-
-
-
-![动态规划求连续和](..\..\images\算法\分治法\动态规划求连续和.png)
-
-
-
-
-
-
-
-
-
-[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B1%82%E8%A7%A3%E8%BF%9E%E7%BB%AD%E6%9C%80%E5%A4%A7%E5%92%8C.js)
-
-------
-
-
-
-
-
-### [搜索二维矩阵 II⭐⭐](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)
-
-
-
-> 链接：[搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)
-
-
-
-编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：
-
-每行的元素从左到右升序排列。
-每列的元素从上到下升序排列。
-示例:
-
-现有矩阵 matrix 如下：
-
-
-
-> [
->   [1,   4,  7, 11, 15],
->   [2,   5,  8, 12, 19],
->   [3,   6,  9, 16, 22],
->   [10, 13, 14, 17, 24],
->   [18, 21, 23, 26, 30]
+>   [15,7]
 > ]
 
 
 
-给定 target = `5`，返回 `true`。
-
-给定 target = `20`，返回 `false`。
-
 
 
 来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/search-a-2d-matrix-ii
+链接：https://leetcode-cn.com/problems/binary-tree-level-order-traversal
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 
 
-------
+---------
 
 
 
-这题的题目很清晰👉矩阵的每行从左到右是升序， 每列从上到下也是升序，在矩阵中查找某个数。
-
-
-
-当然了，我们有一个简单的思路👇
-
-- 维护两个指针（row,col),找到目标元素时，我们就放回true
-- 当指向当前的元素值小于target时，我们就col++，向上移动一行。
-- 如果当前的值大于当前的target，我们就row--，向左移动一列。
-- 知道col > 矩阵的行，或者row < 0时，我们直接return false，表示不存在。
-
-
-
-时间复杂度：O(n+m)
-
-- 时间复杂度分析的关键是注意到在每次迭代（我们不返回 true）时，行或列都会精确地递减/递增一次。
-- 由于行只能减少 m 次，而列只能增加 n次，因此在导致 while 循环终止之前，循环不能运行超过 n+m 次。
-- 因为所有其他的工作都是常数，所以总的时间复杂度在矩阵维数之和中是线性的。
-
-
-
-根据以上的伪代码，我们基本上就能解出这个题目👇
-
-![二维矩阵求值](..\..\images\算法\分治法\二位矩阵求值.png)
-
-
-
-这样子的解法，简单且容易理解，其实这并不是真正意义上的二分，只是根据数据的特殊性，使用特定的搜索方式完成对矩阵的查找。
+递归版本👇
 
 
 
 
 
-既然一维数组查某个值时，我们可以将复杂度降为`log`级别的时间复杂度，那么在二维的情况下，我们是不是也可以这么考虑呢?
+非递归版本👇
 
-这个思路，可以借鉴一下👇
+```js
+const levelOrder = (root) => {
+  let queue = [], res = []
+  if (root) queue.push(root);
+  while (queue.length) {
+      let next_queue = [],
+          now_res = []
+      while (queue.length) {
+          root = queue.shift()
+          now_res.push(root.val)
+          root.left && next_queue.push(root.left)
+          root.right && next_queue.push(root.right)
+      }
+      queue = next_queue
+      res.push(now_res)
+  }
+  return res
+}
+```
 
 
 
-- 我们可以迭代矩阵对角线，二分搜索这些行和列，对它们进行切片。
-- 在对角线上迭代，二分搜索行和列，知道对角线上的迭代元素用完为止（这个时候，就可以放回true或者是false）
-
-
-
-说得更加简单一些，二分查找的思想是沿着对角线，行查找一下，列查找一下。
-
-可以借鉴一下代码，就会明白如何利用矩阵的对角线去分治。
-
-
-
-![](..\..\images\算法\分治法\二分求解矩阵值.png)
 
 
 
 
 
-[代码点这里☑️](https://github.com/daydaylee1227/Blog/blob/master/%E7%AE%97%E6%B3%95/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/leetcode-%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%E6%B1%82%E5%80%BC.js)
 
 
 
 ------
 
 
-
-
-
-理清楚分治法思路，对它的特征有了一定的了解，明白何如利用它解决实际的问题，那或许这就是这篇文章的意义所在吧~
 
 
 
