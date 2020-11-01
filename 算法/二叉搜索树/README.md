@@ -201,9 +201,15 @@
 
 ### 前序遍历
 
+
+
+点击这里，练习[二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
+
+给你二叉树的根节点 `root` ，返回它节点值的 **前序** 遍历。
+
+
+
 假设我们mock一下假数据👇
-
-
 
 ```js
 输入: [1,null,2,3]
@@ -271,83 +277,128 @@ let preorderTraversal = (root, arr = []) => {
 
 
 
-点击这里，练习[二叉树的前序遍历](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/)
-
-
+--------
 
 
 
 ### 中序遍历
 
+给定一个二叉树，返回它的中序 遍历。
 
+示例:
 
-
-
-
-
------------
-
-
-
-
-
-## 二叉搜索树
-
-对`树`这个数据结构有了一定的理解后，接下来我们来看看二叉搜索树吧。
-
-关于它的概念，引用维基百科对它的解释：
-
-
-
-> **二叉查找树**（英语：Binary Search Tree），也称为**二叉搜索树**、**有序二叉树**（ordered binary tree）或**排序二叉树**（sorted binary tree），是指一棵空树或者具有下列性质的[二叉树](https://zh.wikipedia.org/wiki/二叉树)：
+> 输入: [1,null,2,3]
+>    1
+>     \
+>      2
+>     /
+>    3
 >
-> 1. 若任意节点的左子树不空，则左子树上所有节点的值均小于它的根节点的值；
-> 2. 若任意节点的右子树不空，则右子树上所有节点的值均大于或等于它的根节点的值；
-> 3. 任意节点的左、右子树也分别为二叉查找树；
+> 输出: [1,3,2]
+
+
+
+进阶: 递归算法很简单，你可以通过迭代算法完成吗？
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/binary-tree-inorder-traversal
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+
+-------------
+
+
+
+递归版本👇
+
+```js
+const inorderTraversal  = (root, arr = []) => {
+  if(root) {
+    inorderTraversal(root.left, arr)
+    arr.push(root.val)
+    inorderTraversal(root.right, arr)
+  }
+  return arr
+}
+```
+
+
+
+非递归版本，这里就不解释了，跟前序遍历一样，思路一样，用栈维护节点信息。
+
+```js
+const inorderTraversal = (root, arr = []) => {
+  const stack = [], res = []
+  let current = root
+  while(current || stack.length > 0) {
+    while (current) {
+      stack.push(current)
+      current = current.left
+    }
+    current = stack.pop()
+    res.push(current.val)
+    current = current.right
+  }
+  return res
+}
+```
+
+
+
+### 后续遍历
+
+
+
+给定一个二叉树，返回它的 后序 遍历。
+
+示例:
+
+> 输入: [1,null,2,3]  
+>    1
+>     \
+>      2
+>     /
+>    3 
+>
+> 输出: [3,2,1]
+
+进阶: 递归算法很简单，你可以通过迭代算法完成吗？
+
+
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/binary-tree-postorder-traversal
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+
+
+--------------
+
+
+
+递归版本👇
+
+```js
+const postorderTraversal  = (root, arr = []) => {
+  if(root) {
+    postorderTraversal(root.left, arr)
+    postorderTraversal(root.right, arr)
+    arr.push(root.val)
+  }
+  return arr
+}
+```
+
+
+
+非递归版本👇
+
+其实，嗯，做完前面两个后，会发现都是有套路滴~
 
 
 
 
-
-
-
-什么情况下，可以用该思路来求解呢，以下来自网上搜集的内容👇
-
-（1）二分搜索
-
-（2）大整数乘法
-
-（3）Strassen矩阵乘法
-
-（4）棋盘覆盖
-
-（5）合并排序
-
-（6）快速排序
-
-（7）线性时间选择
-
-（8）最接近点对问题
-
-（9）循环赛日程表
-
-（10）汉诺塔
-
-
-
-我想提起的是合并（归并）排序，它完成照应分治法的思想，`分解大问题，解决各个规模小问题，最后合并`，那我们来看看合并（归并）排序代码👇
-
-
-
-
-
-
-
-对于归并排序的思路，是如何实现的，之前的排序一章以及提及过，采用的是分治思路，可以看看是如何实现的，这里就不具体展开了。
-
-
-
----------------
 
 
 
