@@ -57,6 +57,20 @@
 
 
 
+## 算法
+
+- [链表的9个基本操作](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8)
+- [6大排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
+- [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)
+- [「算法与数据结构」带你看哈希算法之美](https://juejin.im/post/6874708801208254478)
+- [「算法与数据结构」带你看回溯算法之美](https://juejin.im/post/6882394656148045838)
+- [「算法与数据结构」分治算法之美](https://juejin.im/post/6885104477297344525)
+- [「算法与数据结构」Trie树之美](https://juejin.im/post/6888451657504391181)
+
+
+
+
+
 
 
 ## ES6专题系列1篇已完结
@@ -77,15 +91,9 @@
 
 
 
-## 算法
 
-- [链表的9个基本操作](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E9%93%BE%E8%A1%A8)
-- [6大排序算法](https://github.com/daydaylee1227/Blog/tree/master/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
-- [「算法与数据结构」一张脑图带你看动态规划算法之美](https://juejin.im/post/6872115031501340679)
-- [「算法与数据结构」带你看哈希算法之美](https://juejin.im/post/6874708801208254478)
-- [「算法与数据结构」带你看回溯算法之美](https://juejin.im/post/6882394656148045838)
-- [「算法与数据结构」分治算法之美](https://juejin.im/post/6885104477297344525)
-- [「算法与数据结构」Trie树之美](https://juejin.im/post/6888451657504391181)
+
+
 
 ## 工具网站类
 
@@ -105,10 +113,6 @@
 - [「一劳永逸」一张脑图带你掌握Git命令](https://juejin.im/post/6869519303864123399)
 - [「一劳永逸」48张小图带你领略flex布局之美](https://juejin.im/post/6866914148387651592)
 - [「一劳永逸」由浅入深配置webpack4](https://juejin.im/post/6859888538004783118)
-
-
-
-
 
 
 
