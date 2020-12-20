@@ -25,7 +25,7 @@
     if(len === 0) return 0;
     if(k >= len/2) return maxProfit2(prices);
     let dp = Array.from(new Array(len), () => new Array(k+1));
-    for (let i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {yarn
         for (let j = 0; j <= k; j++) {
             dp[i][j] = new Array(2).fill(0);
         }
