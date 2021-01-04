@@ -300,5 +300,33 @@ xmlToString = (new XMLSerializer()).serializeToString(xmlObject)
 
 
 
+## 快速取整数
+
+在JavaScript中去整数的话，最常见的是`Math.round()`进行四舍五入，`Math.floor() `以及` Math.ceil() `等方法取整数。接下来还有一种去整数的方法👇
+
+```
+const value = 12 / 5 ｜ 0
+// value = 2
+```
+
+
+
+## 将数组变成字符串
+
+有时候，需要将数组按照一定的顺序连接起来，并且构造成字符串的⬇️
+
+```
+const value = [1,2,3,4,5,6,7,8,9,0]
+value.join('')
+// '123456789'
+
+```
+
+
+
+## 删除数组第一项
+
+直接使用Array.prototype.shift() 删除第一项,并且返回该元素。
+
 
 
