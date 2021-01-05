@@ -135,9 +135,9 @@ ReactDOM.createRoot(rootNode).render(<App />)
 
 这个模式开启了*所有的*新功能。
 
-
-
 > concurrent模式下状态的更新都是异步的。
 
+关于React的concurrent 模式解读，有兴趣可以看看[官方文档](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html)。
 
+到这里的话，似乎我们对React中setState是同步的还是异步的就有所了解了。
 
