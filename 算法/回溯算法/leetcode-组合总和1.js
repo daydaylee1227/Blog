@@ -15,7 +15,6 @@ combinationSum = (candidates, target) => {
       // 减去枝叶
       if (sum > target) return 
       if (sum === target) {
-        console.log('lsit === ', list);
         result.push([...list])
         return 
       }
