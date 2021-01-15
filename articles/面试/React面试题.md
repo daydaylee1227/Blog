@@ -141,3 +141,15 @@ ReactDOM.createRoot(rootNode).render(<App />)
 
 到这里的话，似乎我们对React中setState是同步的还是异步的就有所了解了。
 
+
+
+## React性能优化
+
+主要优化的从实现组件的方式来看，基于以下两种方式。
+
+
+
+### Functional Component
+
+
+
