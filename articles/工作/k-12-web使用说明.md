@@ -834,3 +834,96 @@ const ANIMATION_OPTIONS_MAP = {
 
 
 // AddKnowledgeModal
+
+
+
+
+
+
+
+## ceramics下如何构建新项目的流程
+
+目前，我们采取的方案，是在k12中引入ceramics工程中的题班，接下来完成对应的出题系统。
+
+主要分为以下步骤
+
+- k12如何跑动一个新题班
+- ceramics如何在k12中正常展示
+- 出题系统的开发流程
+
+
+
+
+
+### k12如何跑动一个新题班
+
+首先，k12新建一个题班的步骤有以下几个步骤：
+
+首先，我们找到**src/isolations/playground**目录，里面有个mock.js文件
+
+```js
+// ....
+// 209  填空题 植树问题1                              PlantTrees1Question
+// 210  拖拽题 植树问题2                              PlantTrees2Question
+```
+
+接下来，我们需要新增加一个题班的话，可以这么写上备注
+
+```js
+// 题号  题班类型   题班名称                               组件名称
+// 211  填空题     植树问题3                              PlantTrees3Question
+```
+
+接下来，还是这个目录，我们需要找到**src/isolations/playground/questions/QuestionsMockData/**目录，找到v2.js文件，配置每个单独的题班的数据类型⬇️ 那么它的数据结构是怎么样的呢？
+
+```js
+// 旧的题班数据结构
+{
+        id: lUniqueId(),
+        data: [
+            {
+                type: 'PlantTrees3Question', // 组件名称
+                data: {                     // data为题班需要传递的数据
+                    species: 2, 
+                    direction: 'left',
+                    separateNumber: 4, 
+                    totalLength: 12
+                }
+            },
+          	{                  // 这个是小喇叭语音部分，看情况而定，是否需要配置
+                type: 'Voice',      
+                data: '帮助小青蛙跳到正确的荷叶上吧',
+            }
+        ]
+    },
+```
+
+那么我们来看看ceramics下的卓越新题班的数据结构该如何配置
+
+```
+// 旧的题班数据结构
+{
+        id: lUniqueId(),
+        data: [
+            {
+                type: 'PlantTrees3Question', // 组件名称
+                data: {                     // data为题班需要传递的数据
+                    species: 2, 
+                    direction: 'left',
+                    separateNumber: 4, 
+                    totalLength: 12
+                }
+            },
+          	{                  // 这个是小喇叭语音部分，看情况而定，是否需要配置
+                type: 'Voice',      
+                data: '帮助小青蛙跳到正确的荷叶上吧',
+            }
+        ]
+    },
+```
+
+
+
+配置好了题目的数据后，接下来题班组件应该写在哪里呢⬇️
+
+我们需要找到
