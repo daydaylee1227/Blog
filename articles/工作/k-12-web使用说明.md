@@ -15,7 +15,7 @@ import IMAGE_SPEAKER_SHADOW from '../../../widgets/FixedVoice/speakerShadow.svg'
 import { MODE } from '../../../../../../isolations/queman/constants'
 import IMAGE_BG from './bg.svg'
 
-const BG_NATURAL_WIDTH = 2340
+const BG_NATURAL_WIDTH = 2304
 const BG_NATURAL_HEIGHT = 694
 const TOP_BAR_HEIGHT = 74
 
@@ -900,30 +900,357 @@ const ANIMATION_OPTIONS_MAP = {
 
 那么我们来看看ceramics下的卓越新题班的数据结构该如何配置
 
-```
+```js
 // 旧的题班数据结构
 {
         id: lUniqueId(),
-        data: [
-            {
-                type: 'PlantTrees3Question', // 组件名称
-                data: {                     // data为题班需要传递的数据
-                    species: 2, 
-                    direction: 'left',
-                    separateNumber: 4, 
-                    totalLength: 12
-                }
+        data: {
+            ceramicsType: 'PlantTree3Question', // 组件名称
+            category: 'testing',  // 一定要配置, 可选参数output learning testing
+                // data里面的数据对应题板的数据
+            data: {
+                  separateNumber: 3,
+                  treeCount: 8,
+                  voice: {
+                    value: '围绕环形小路植树,每隔3米植一棵,一共植8棵树,小路总长多少米',
+                    type: 'tts',
+                  },
             },
-          	{                  // 这个是小喇叭语音部分，看情况而定，是否需要配置
-                type: 'Voice',      
-                data: '帮助小青蛙跳到正确的荷叶上吧',
-            }
-        ]
+        },
     },
 ```
+
+category选择不同的值，会对应渲染不同的PaintBoard，分别有OutputPaintBoard，LearningPaintBoard和TestingPaintBoard。
+
+
+
+--------
 
 
 
 配置好了题目的数据后，接下来题班组件应该写在哪里呢⬇️
 
-我们需要找到
+对于旧题板而言，也就是在k12中开发题板的话，可以参考下面步骤
+
+找到**src/common/components/Playground/blocks/blockClassFactory.js**文件，找到init方法，
+
+```js
+for (const options of [
+            require('./BackgroundImage'),
+            require('./Explain'),
+            require('./Image'),
+            LazyLoader = require('./LazyLoader').default,
+            require('./RichText'),
+            require('./RootBlock'),
+            require('./Table'),
+            require('./Text'),
+            require('./Voice'),
+            require('./SpecialPositionVoice'),
+            require('./CustomVoice'),
+            ...[
+                'AddWithImages2Question',
+                ....,
+                'PlantTrees1Question',
+                'PlantTrees2Question',
+                'PlantTrees3Question',  // 添加组件名称
+            ].map(type => ({
+                type,
+                [USE_LAZY_LOADER_SYMBOL]: true,
+            }))
+```
+
+然后紧接着，我们**src/common/components/Playground/blocks/LazyLoader.js**文件，然后新增加配置
+
+```js
+switch (type) {
+            case 'AddWithImages2Question':
+                return await import(/* webpackChunkName: "AddWithImages2Question" */ )
+        	......,
+            case 'PlantTrees1Question':
+                return await import(/* webpackChunkName: "PlantTrees1Question" */ './questionBlocksV2/PlantTrees1Question')
+            case 'PlantTrees3Question':
+                    return await import(/* webpackChunkName: "PlantTrees3Question" */ './questionBlocksV2/PlantTrees3Question')
+            default:
+                throw `can't find the BlockClass: ${type}`
+        }
+```
+
+配置完后，然后我们找到**src/common/components/Playground/blocks/questionBlocksV2/**目录，新建一个文件，名称就是组件名称，然后具体的组件业务就写在该组件目录下即可，这个index.jsx可以参考下面的模板下👇
+
+```js
+import React from 'react'
+import QuestionBlock from '../../../blocks/questionBlocks/QuestionBlock'
+import IMAGE_SPEAKER_SHADOW from '../../../widgets/FixedVoice/speakerShadow.svg'
+import { MODE } from '../../../../../../isolations/queman/constants'
+import IMAGE_BG from './bg.svg'
+
+const BG_NATURAL_WIDTH = 2304
+const BG_NATURAL_HEIGHT = 694
+const TOP_BAR_HEIGHT = 74
+
+export default class FrogJumpToLotusLeafQuestion extends QuestionBlock {
+    static type = 'FrogJumpToLotusLeafQuestion'
+    _bg = this._renderBlock({
+        type: 'BackgroundImage',
+        data: IMAGE_BG,
+    })
+    constructor(...args) {
+        super(...args)
+        const { 
+            props: {
+                context: {
+                    elBlocksContainer: {
+                        clientWidth,
+                        clientHeight,
+                    },
+                    widgets: {
+                        fixedVoice,
+                    },
+                },
+                config: {
+                    questionInVideo,
+                    mode
+                },
+            }
+        } = this 
+        this._mode = mode || MODE.NORMAL
+        let scale = clientHeight / BG_NATURAL_HEIGHT
+        if (questionInVideo) {
+            scale = (clientHeight - TOP_BAR_HEIGHT) / BG_NATURAL_HEIGHT
+        }
+        const leftCut = (BG_NATURAL_WIDTH * scale - clientWidth) / 2
+        fixedVoice.setShadow(IMAGE_SPEAKER_SHADOW, scale)
+        this._context = '1232'
+        this._contextStyle = {
+            position: 'absolute',
+            left: 1025 * scale - leftCut,
+            top: 286.8 * scale,
+            width: 264 * scale,
+            height: 76 * scale,
+            color: '#976222',
+            fontSize: 46 * scale,
+            borderRadius: 44 * scale,
+            textAlign: 'center',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            letterSpacing: 1.71 * scale,
+            zIndex: 10,
+        }
+        this.state = {
+            ...this.state,
+            leftCut,
+            scale
+        }
+    }
+
+    
+    render() {
+        const {
+            _bg,
+            state: {
+                scale,
+            },
+            props: {
+                config: {
+                    questionInVideo,
+                },
+            },
+        } = this
+        let style = {}
+        if (questionInVideo) {
+            style = {
+                position: 'relative',
+                top: TOP_BAR_HEIGHT * scale,
+            }
+        }
+        return (
+            <div style = {style}>
+                {_bg}
+                {this._renderContext()}
+               DirectionAndPositionQuestion222
+            </div>
+        )
+    }
+    _renderContext() {
+        const {
+            _contextStyle,
+            _context
+        } = this 
+        return (
+            <div style = {_contextStyle}>
+                {_context}
+            </div>
+        )
+    }
+}
+```
+
+当然了，可以看GitLab对应的history ，也能看到对比 [init a  new board](https://gitlab.corp.youdao.com/k12/k12-web/commit/9672d96e8bf3118af594ed476d30fc6d89bfc977)
+
+
+
+以上说得都是在k12中开发的流程，那么在ceramics中是怎么样的呢
+
+
+
+### ceramics如何在k12中正常展示
+
+在这里，我们假设在ceramics题板以及能正常的运行成功，我们看下如何在k12中嵌入。
+
+基于本地调试的功能，我们看下具体的流程
+
+首先，我们需要切到ceramics项目下，然后执行命令
+
+```cmd
+lerna exec yarn link
+// 没有安装 lerna 的话
+npx lerna exec yarn link
+```
+
+PS：link本身是软链接，yarn link是将资源存在yarn的内存中，相当于建立了一个通道。
+
+接着看下你需要的项目依赖的是哪些包，我们需要切换到 k12-web 目录中，然后执行下面命令
+
+```cmd
+// 执行以下 link 命令
+
+
+yarn link "@ceramics-math/hooks"
+yarn link "@ceramics-math/question-shared"
+yarn link "@ceramics-math/utils"
+yarn link "@ceramics-math/system"
+yarn link "@ceramics-math/feedback"
+yarn link "@ceramics-math/button"
+yarn link "@ceramics-math/components"
+yarn link "@ceramics-math/core"
+yarn link "@ceramics-ae/base"
+yarn link "@ceramics-math/plant-tree4-question"
+yarn link "@ceramics-math/combine-puzzle-question"
+yarn link "@ceramics-math/mind-circle-question"
+yarn link "@ceramics-math/mind-bridge-question"
+yarn link "@ceramics-math/plant-tree3-question"
+// 如果有新增组件，则需要再额外执行 yarn link @xx/xxx
+```
+
+当然了，你可以只link部分的依赖，理论上是行得通的，你需要找到对应新组件的package.json，需要依赖哪些即可。
+
+
+
+执行完毕后，k12-web 中依赖的 @ceramics-math/core 对应的组件就是我们 @ceramics-math/core 中的代码。
+
+
+
+当然了，这里有个小问题，也就是React版本不一致的问题，当你启动的时候，大概率会报错。因为 @ceramics-math/core 中开发依赖的 React 和 k12-web 所依赖的 React 大概率不相同。
+
+
+
+所以，我们还需要在 @ceramics-math 的目录下使用 k12-web 的 React。
+
+切换到 @ceramics-math 目录中： 
+
+```cmd
+npm link ../k12-web/node_modules/react // (当前目录相对于 k12-web 的路径)
+```
+
+
+
+接下来，然后你在 k12-web，运行下面命令
+
+```cmd
+yarn dev-playground
+
+// http://localhost:8088/#200 找到对应的题板，看是否能正常运行
+```
+
+启动后，然后就能看到正常运行了，接下来，我们需要做的工作就是完成出题系统对应的开发。
+
+
+
+### 出题系统的开发流程
+
+首先，我们需要配置QuestionGUI的入口文件配置，找到**src/isolations/queman/components/testQuestionsGUI/index.js**
+
+然后需要新增加以下配置下
+
+```jsx
+import PlantTree4Question from './PlantTree4Question'
+
+this._componentMap = {
+        'MoveMatchQuestion': MoveMatchQuestion,
+        ....,
+        'PlantTree3Question': PlantTree3Question,
+        'PlantTree4Question': PlantTree4Question,
+        // 新的组件
+      }
+```
+
+然后找到**k12-web\src\isolations\queman\constants\questionsByType\testQuestions**下的questionDefaultData.js文件，然后配置出题系统中默认的数据👇
+
+```js
+PlantTree4Question: { // 组件名称
+        id: lUniqueId(),
+        data: {
+            ceramicsType: 'PlantTree4Question',  // 可以参考上面的数据配置  
+            category: 'testing',
+            data: {
+                totalNumber: 56,
+                treeCount: 8,
+                separateNumber: 7,
+                voice: {
+                  value: '围绕在全长64米的环形小路上植树，每隔7米植一棵，一共要植多少棵',
+                  type: 'tts',
+                },
+              },
+        },
+    }
+```
+
+接下来，我们还需要配置一个信息👇，找到**\k12-web\src\isolations\queman\constants\questionsByType\testQuestions\index.js**文件，然后可以参考里面的配置选项，新增加配置信息
+
+```jsx
+// modes为该题版支持的出题模式，1为全手动，2为部分配置，3为全自动
+{
+                name: '植树问题',
+                templates: [
+                    {
+                        id: 'PlantTrees1Question',
+                        name: '植树问题L1',
+                        modes: [3],
+                    },
+                    {
+                        id: 'PlantTrees2Question',
+                        name: '植树问题L2',
+                        modes: [3],
+                    },
+                    {
+                        id: 'PlantTree3Question',
+                        name: '植树问题3',
+                        modes: [3],
+                    },
+                    {
+                        id: 'PlantTree4Question',
+                        name: '植树问题4',
+                        modes: [3],
+                    }
+                ]
+            },
+```
+
+接下来，也就是最后一步，组件应该写在哪里呢，我们需要找到**k12-web\src\isolations\queman\components\testQuestionsGUI**
+
+接着，新建一个文件夹，名称就是组件名称，然后的话，就可以参考之前的组件来写，当然了，不同的类型题板会在不同的目录下完成的，具体的话，比如还有outputQuestionsGUI，这里的话，就以卓越题板为例子。
+
+
+
+配置完后，接下来的操作就是在index中写相应的业务逻辑即可。
+
+```cmd
+yarn dev-queman 
+// 看是否能正常运行即可
+```
+
+
+
+到这里的话，基本的流程配置就完成了。
+
