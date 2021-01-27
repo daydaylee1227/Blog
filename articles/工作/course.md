@@ -163,6 +163,8 @@ Primary.args = {
  lerna add @ceramics-math/components --scope=@ceramics-math/remainder-division3-question
  enlighten-choose-fruit-question
  
+ // 
+ yarn pkg enlighten-choose-fruit-question build
 ```
 
 
@@ -215,6 +217,7 @@ yarn link "@ceramics-math/remainder-division2-question"
 yarn link "@ceramics-math/remainder-division3-question"
 yarn link "@ceramics-math/block-overlap-1-question"
 yarn link "@ceramics-math/block-overlap-2-question"
+yarn link "@ceramics-math/enlighten-choose-fruit-question"
 如果有新增组件，则需要再额外执行 yarn link @xx/xxx
 
 执行完毕后，k12-web 中依赖的 @ceramics-math/core 对应的组件就是我们 @ceramics-math/core 中的代码。
@@ -229,7 +232,8 @@ yarn link "@ceramics-math/block-overlap-2-question"
 切换到 @ceramics-math 目录中： 
 
 npm link ../k12-web/node_modules/react // (当前目录相对于 k12-web 的路径)
-yarn unlink ../k12-web/node_modules/react // (当前目录相对于 k12-web 的路径)
+npm unlink ../k12-web/node_modules/react // (当前目录相对于 k12-web 的路径)
+npm unlink ./k12-web/node_modules/react // (当前目录相对于 k12-web 的路径)
 ```
 
 
@@ -305,3 +309,16 @@ HelpMode.args = {
 
 
 npm config set registry https://nexus3.corp.youdao.com/repository/npm-all/
+
+
+
+
+
+## 版本回退
+
+
+
+\1. 查看所有的历史版本，获取你git的某个历史版本的id， git log
+\2. 回退本地代码库：git reset --hard ID
+\3. 推送到远程服务器：git push -f -u origin master
+\4. 重新拉代码：git pull
