@@ -153,3 +153,39 @@ ReactDOM.createRoot(rootNode).render(<App />)
 
 
 
+
+
+
+
+
+
+## React组件间通信方式 
+
+
+
+
+
+know-circle-question
+
+
+
+## JSX本质是什么
+
+
+
+- 首先解析出来的话，就是一个createElement函数
+- 然后这个函数执行完后，会返回一个vnode
+- 通过vdom的patch或者是其他的一个方法，最后渲染一个页面
+
+
+
+
+
+
+
+## Context是什么，如何使用？
+
+
+
+- 父组件
+
