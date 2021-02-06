@@ -340,5 +340,24 @@ value.join('')
 
 
 
-## 4000是我的目标ß
+
+
+## 字符串集锦
+
+
+
+### 字符串的反转
+
+借助的就是split reverse join 三个方法
+
+- 字符串变数组 split
+- 数组原型上reverse反转
+- join变成字符串
+
+```
+let name = 'daydaylee Up Up'
+const resultName = name.split('').reverse().join('')
+```
+
+
 
