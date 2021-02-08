@@ -289,3 +289,17 @@ DllReferencePlugin   使用dll文件
 
 
 ### babel-runtime和babel-polyfill的区别
+
+
+
+
+
+### ES6 Module 和  Commonjs区别
+
+- ES6 静态引用，编译时引入。
+- Commonjs动态引用，执行时引入
+
+Tree-shaking是在webpack打包时执行的，webpack打包只是静态分析，只是一个编译。
+
+webpack只适合于ES6,原因在于webpack只是编译打包，
+
