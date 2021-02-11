@@ -28,7 +28,7 @@ ReactDOM.render(<App />, rootNode)
 
 > 当在legacy模式下，命中batchedUpdates时，setState是异步的。
 >
-> 当在legacy模式下，为命中batchedUpdates时，setState是同步的。
+> 当在legacy模式下，命中batchedUpdates时，setState是同步的。
 
 
 
@@ -143,6 +143,18 @@ ReactDOM.createRoot(rootNode).render(<App />)
 
 
 
+
+
+### 哪些会命中batchUpdate机制
+
+- 生命周期(和它调用函数)
+- React中注册的事件
+- React可以'管理入口'
+
+
+
+
+
 ## React性能优化
 
 主要优化的从实现组件的方式来看，基于以下两种方式。
@@ -181,6 +193,23 @@ know-circle-question
 
 
 
+```
+React.createElement('div', null, [children1, children2])
+// 第一个是div, 对应tag标签名称, 组件的话，应该是Input
+// 第二个是一些属性，或者是null
+// 第三个是子组件
+```
+
+
+
+如何答这个题目呢⬇️
+
+首先，它是creatElement函数的语法糖，即h函数，返回的是一个vnode。
+
+它第一个参数，可能是组件，也可能是html tag。
+
+
+
 
 
 ## Context是什么，如何使用？
@@ -188,4 +217,104 @@ know-circle-question
 
 
 - 父组件
+
+
+
+
+
+
+
+## React原因
+
+函数式编程，何为函数式编程
+
+- 一种编程方式
+- 纯函数
+- 不可变式
+
+
+
+## 回顾vdom和diff
+
+- h函数
+- vnode数据结构
+- patch函数
+
+
+
+
+
+### diff算法
+
+- 只比较同一级，不跨级比较。
+- tag不相同的话, 则重新删掉重建，不再深度比较。
+- tag和key，两者相同的话，则认为是相同节点，不在深度比较。
+
+
+
+
+
+## React合成事件
+
+
+
+- 所有的事件挂在document上
+- event不是原生的，是SyntheticEvent合成事件对象
+- 和Vue事件不同,和DOM事件也不同
+
+
+
+
+
+### 为何要合成事件
+
+- 兼容性和跨平台
+- 挂在统一的document上，减少内存消耗，避免频繁解绑
+- 方便事件的统一管理（事务机制）
+- dispatchEvent事件机制
+
+
+
+
+
+
+
+## React-fiber
+
+最主要的思想就是将任务拆分。
+
+- DOM需要渲染时暂停，空闲时恢复。
+- window.requestIdleCallback
+- React内部实现的机制 
+
+
+
+
+
+## 组件渲染和更新
+
+- 更新的两个阶段reconciliation和commit
+
+
+
+
+
+
+
+## React和Vue区别
+
+- 组件化思想
+- 都是数据驱动视图
+- 都是用vdom操作DOM
+
+
+
+### 区别
+
+- React使用JSX拥抱JS，Vue使用模版拥抱html
+- Vue声明式编程，React函数式编程。
+  - Vue中data = 100，自动去更新状态
+  - React中用setState去触发数据做修改,做完修改后,返回一个视图或者是新视图。
+
+
 
