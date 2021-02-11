@@ -6,9 +6,9 @@
 
 // https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
 
-// 如果数组是有序的话，那么利用二分的话,实现起来就是很简答的了
+// 如果数组是有序的话，那么利用二分法
+// 回顾一下二分: 单调性,有固定范围的区间。
 // 现在问题是,对于一顿区间是有序的,我们如何去做呢
-
 // 思路
 // 通过 判断 nums[left] <= nums[mid]
 // 如果左侧区间单调, 判断判断这个target是不是在左侧
