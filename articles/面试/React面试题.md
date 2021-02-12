@@ -161,7 +161,35 @@ ReactDOM.createRoot(rootNode).render(<App />)
 
 
 
+
+
+### Class Component
+
+1、使用纯组件 `PureComponent` 作为基类。
+
+2、使用 `React.memo` 高阶函数包装组件。
+
+3、使用 `shouldComponentUpdate` 生命周期函数来自定义渲染逻辑。
+
+
+
 ### Functional Component
+
+1、使用 `useMemo`。
+
+2、使用 `useCallBack`。
+
+
+
+
+
+### 其他方式
+
+1、在列表需要频繁变动时，使用唯一 id 作为 key，而不是数组下标。
+
+2、必要时通过改变 CSS 样式隐藏显示组件，而不是通过条件判断显示隐藏组件。
+
+3、使用 `Suspense` 和 `lazy` 进行懒加载，例如
 
 
 
@@ -317,4 +345,18 @@ React.createElement('div', null, [children1, children2])
   - React中用setState去触发数据做修改,做完修改后,返回一个视图或者是新视图。
 
 
+
+
+
+
+
+## 进程与线程的区别
+
+**进程是资源分配的最小单位，线程是CPU调度的最小单位**
+
+做个简单的比喻：进程=火车，线程=车厢
+
+
+
+[点击这里](https://www.zhihu.com/question/25532384)
 
