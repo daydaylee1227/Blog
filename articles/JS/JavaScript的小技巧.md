@@ -371,12 +371,20 @@ Array(len).fill(0)
 
 我们类比一下，如果用上述的方式，创建一个二维数组的话,如下⬇️
 
-```
+```js
 Array(len).fill(Array(len).fill(0))
 // 如果你实践过的话,肯定会明白，这样子创建的话,会带来一些影响的
 // 这样子的话,数据的每一项其实存的都是引用类型，也就是说，他们指向的内存地址都是相同的
-// 所以我们推荐下面的方式
+
+Array.from(new Array(len, ()=> new Array(len).fill(0)))
+```
+
+所以我们推荐下面的方式⬇️
+
+```js
 Array.from(new Array(len, ()=> new Array(len).fill(0)))
 // 这样子的话，保证了数组的每一项都是不同的对象
 ```
+
+
 
