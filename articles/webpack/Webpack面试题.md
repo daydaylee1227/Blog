@@ -128,8 +128,6 @@ rules: [{
 
 
 
-
-
 #### happyPack多进程打包
 
 我们知道js是单线程的，所以我们如果可以开启多进程打包。
@@ -278,6 +276,21 @@ DllReferencePlugin   使用dll文件
 
 
 
+webpack mode为production默认开启（手动加入插件，防止代码压缩）
+
+es6语法,cjs不支持
+
+```javascript
+ plugins: [
+      // 开启 Scope Hoisting 功能
+      new webpack.optimize.ModuleConcatenationPlugin()
+  ]
+```
+
+简单理**scope hosting**就是把多个作用域用一个作用域取代，以减少内存消耗并减少包裹块代码，从每个模块有一个包裹函数变成只有一个包裹函数包裹所有的模块，但是有一个前提就是，当模块的引用次数大于1时，比如被引用了两次或以上，那么这个效果会无效，也就是被引用多次的模块在被webpack处理后，会被独立的包裹函数所包裹
+
+
+
 链接：https://blog.csdn.net/liuhua_2323/article/details/103433533
 
 
@@ -306,14 +319,6 @@ DllReferencePlugin   使用dll文件
 
 
 
-
-
-### babel-runtime和babel-polyfill的区别
-
-
-
-
-
 ### ES6 Module 和  Commonjs区别
 
 - ES6 静态引用，编译时引入。
@@ -322,4 +327,171 @@ DllReferencePlugin   使用dll文件
 Tree-shaking是在webpack打包时执行的，webpack打包只是静态分析，只是一个编译。
 
 webpack只适合于ES6,原因在于webpack只是编译打包，
+
+
+
+
+
+
+
+## bable面试题
+
+Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。下面列出的是 Babel 能为你做的事情：
+
+- 语法转换
+- 通过 Polyfill 方式在目标环境中添加缺失的特性 (通过 [@babel/polyfill](https://www.babeljs.cn/docs/babel-polyfill) 模块)
+- 源码转换 (codemods)
+
+
+
+
+
+更多的链接: https://www.babeljs.cn/docs/
+
+
+
+
+
+### core-js 和 regenerator
+
+core-js是标准的库，提供polyfill的集合，但是不支持generator函数语法，处理异步的函数。
+
+所以这个bable-polyfill就是两者的集合。
+
+Bable 7.4版本之后被弃用了。推荐直接使用bable/core-js 和bable/regenerator 
+
+
+
+### preset 和 plugin是什么
+
+- 代码转换功能以插件的形式出现，插件是小型的 JavaScript 程序，用于指导 Babel 如何对代码进行转换。
+
+- 你甚至可以编写自己的插件将你所需要的任何代码转换功能应用到你的代码上。
+
+- 例如将 ES2015+ 语法转换为 ES5 语法，我们可以使用诸如 `@babel/plugin-transform-arrow-functions` 之类的官方插件。
+
+
+
+**preset-env**， 我们可以使用一个 "preset" （即一组预先设定的插件）。
+
+
+
+
+
+### babel-runtime和babel-polyfill的区别
+
+[@babel/polyfill](https://www.babeljs.cn/docs/babel-polyfill) 模块包含 [core-js](https://github.com/zloirock/core-js) 和一个自定义的 [regenerator runtime](https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js) 来模拟完整的 ES2015+ 环境。
+
+这意味着你可以使用诸如 `Promise` 和 `WeakMap` 之类的新的内置组件。
+
+
+
+> 对于软件库/工具的作者来说，这可能太多了。如果你不需要类似 `Array.prototype.includes` 的实例方法，可以使用 [transform runtime](https://www.babeljs.cn/docs/babel-plugin-transform-runtime) 插件而不是对全局范围（global scope）造成污染的 `@babel/polyfill`。
+
+
+
+**按需引入**
+
+
+
+幸运的是，我们所使用的 `env` preset 提供了一个 `"useBuiltIns"` 参数，当此参数设置为 `"usage"` 时，就会加载上面所提到的最后一个优化措施，也就是只包含你所需要的 polyfill。使用此新参数后，修改配置如下：
+
+```json
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1",
+        },
+        "useBuiltIns": "usage",
+      }
+    ]
+  ]
+
+```
+
+
+
+我们使用 `@babel/cli` 从终端运行 Babel，利用 `@babel/polyfill` 来模拟所有新的 JavaScript 功能，而 `env` preset 只对我们所使用的并且目标浏览器中缺失的功能进行代码转换和加载 polyfill。
+
+
+
+**babel-runtime**为了解决polyfill全局污染的问题
+
+```json
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": false,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false,
+        "version": "7.0.0-beta.0"
+      }
+    ]
+  ]
+}
+```
+
+
+
+
+
+## 前端为何要进行打包和构建
+
+**代码方面**
+
+- 更快的构建速度，加载更快-->> 体积更小-->> Tree Sharking  压缩 合并
+- 可以使用更高级的语法或语言（TS， ES6+，模块化）
+- 兼容性和错误检查（postcss, Polyfill, eslint）
+
+**开发流程上**
+
+- 统一的开发流程，高效。
+- 统一的构建流程和产出代码更规范。
+- 构建规范，提测，上线。 
+
+
+
+
+
+## 常用的loader和plugin
+
+**https://webpack.docschina.org/loaders/**
+
+
+
+## babel和webpack区别
+
+- babel js新语法的编译工具，不关心模块化。
+- webpack 打包构建工具，是多个loader 和 plugin集合。 
+
+
+
+## 如何产出一个lib
+
+```
+output：{
+	 // lib名称
+	 filename: 'lodash',
+	 // 输出的目录
+	 path: distPath,
+	 // lib的全局变量
+	 library: 'lodash',
+}
+```
+
+
+
+
+
+## 为何Proxy不能被polyfill
 
