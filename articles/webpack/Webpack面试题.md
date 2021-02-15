@@ -264,6 +264,26 @@ DllReferencePlugin   使用dll文件
 
 
 
+
+
+
+
+### Scope Hosting
+
+作用域提升，在生产环境下。
+
+我们先来简单分析一下：（没有开启Scope Hoisting ）
+
+**现象**：构建后的代码存在大量的闭包代码
+
+
+
+链接：https://blog.csdn.net/liuhua_2323/article/details/103433533
+
+
+
+
+
 ### webpack常见的性能优化-优化产出代码
 
 - 体积更小
