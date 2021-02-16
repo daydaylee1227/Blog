@@ -330,7 +330,21 @@ value.join('')
 
 
 
+## 在数组开头添加几项
 
+首先，我们想到数组的unshift方法
+
+```js
+const demo = ['day','day','up','up']
+
+demo.unshift('you','should')
+```
+
+或者我们可以想到另外一个方法splice
+
+```js
+demo.splice(0,0, 'you','should')
+```
 
 
 
@@ -410,4 +424,8 @@ for(var key of Object.keys(student)){
     console.log(key+": "+student[key]);
 }
 ```
+
+[点击这里](https://segmentfault.com/q/1010000006658882)
+
+
 
