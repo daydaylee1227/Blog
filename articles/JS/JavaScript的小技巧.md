@@ -380,3 +380,34 @@ Array.from(new Array(len, ()=> new Array(len).fill(0)))
 
 
 
+
+
+## for of 和 for in的区别
+
+
+
+1. 推荐在循环对象属性的时候，使用`for...in`,在遍历数组的时候的时候使用`for...of`。
+2. `for...in`循环出的是key，`for...of`循环出的是value
+3. 注意，`for...of`是ES6新引入的特性。修复了ES5引入的`for...in`的不足
+4. `for...of`不能循环普通的对象，需要通过和`Object.keys()`搭配使用
+
+
+
+如果实在想用`for...of`来遍历普通对象的属性的话，可以通过和`Object.keys()`搭配使用，先获取对象的所有key的数组,然后遍历：
+
+```js
+const student={
+    name:'wujunchuan',
+    age:22,
+    locate:{
+    country:'china',
+    city:'xiamen',
+    school:'XMUT'
+    }
+}
+for(var key of Object.keys(student)){
+    //使用Object.keys()方法获取对象key的数组
+    console.log(key+": "+student[key]);
+}
+```
+
