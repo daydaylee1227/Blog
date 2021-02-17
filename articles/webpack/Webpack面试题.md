@@ -495,3 +495,32 @@ output：{
 
 ## 为何Proxy不能被polyfill
 
+
+
+
+
+## import最终被webpack编译打包成什么
+
+import modulename from 'xxxModule' 和import('moduleName') 区别。
+
+
+
+*我们都知道`webpack`的打包过程大概流程是这样的：*
+
+
+
+> - 合并`webpack.config.js`和命令行传递的参数，形成最终的配置
+> - 解析配置，得到`entry`入口
+> - 读取入口文件内容，通过`@babel/parse`将入口内容（code）转换成`ast`
+> - 通过`@babel/traverse`遍历`ast`得到模块的各个依赖
+> - 通过`@babel/core`（实际的转换工作是由`@babel/preset-env`来完成的）将`ast`转换成`es5 code`
+> - 通过循环伪递归的方式拿到所有模块的所有依赖并都转换成`es5`
+
+
+
+*求职者*，答：
+
+- import`经过`webpack`打包以后变成一些`Map`对象，`key`为模块路径，`value`为模块的可执行函数；
+- 代码加载到浏览器以后从入口模块开始执行，其中执行的过程中，最重要的就是`webpack`定义的`__webpack_require__`函数，负责实际的模块加载并执行这些模块内容，返回执行结果，其实就是读取`Map`对象，然后执行相应的函数；
+- 当然其中的异步方法（import('xxModule')）比较特殊一些，它会单独打成一个包，采用动态加载的方式，具体过程：当用户触发其加载的动作时，会动态的在`head`标签中创建一个`script`标签，然后发送一个`http`请求，加载模块，模块加载完成以后自动执行其中的代码，主要的工作有两个，更改缓存中模块的状态，另一个就是执行模块代码。
+
