@@ -298,6 +298,8 @@ React.createElement('div', null, [children1, children2])
 
 ### 为何要合成事件
 
+
+
 - 兼容性和跨平台
 - 挂在统一的document上，减少内存消耗，避免频繁解绑
 - 方便事件的统一管理（事务机制）
@@ -565,4 +567,103 @@ React16之后的用Forwarding Refs。
 
 
 ## 哪个生命周期发送ajax
+
+componentDidMount阶段发
+
+- componentWillMount,未来会废弃
+- SSR项目中，componentWillMount是要做服务端数据的获取，所有不能占用。 
+
+
+
+
+
+## SSR原理
+
+借助虚拟dom,服务器中没有dom概念的，react巧妙的借助虚拟dom，然后可以在服务器中nodejs可以运行起来react代码。
+
+
+
+
+
+## react-saga设计思想，sideEffects是什么     
+
+
+
+
+
+## 如何避免ajax数据请求重新获取
+
+   一般而言，ajax请求的数据都放在redux中存取。
+
+
+
+## react-router4的核心思想是什么，和3有啥区别
+
+react-router4的路由变成了一个组件，比如<Link/>,以及<Router/>
+
+hashRouter 
+
+
+
+## react-router原理，hashHistory和browerHistory区别
+
+
+
+browerHistory需要服务端做一些配置的吧，而hashHistory不需要。   
+
+
+
+
+
+## reselect库
+
+类似于computed计算属性，会对数据进行缓存处理。在重复调用时便可使用缓存快速加载，加强性能。
+
+
+
+
+
+
+
+## 什么时候使用异步组件
+
+Reloadable 库。
+
+异步组件是干嘛用的，什么情况会使用,这些都是我们需要知道的原因。 
+
+假设，我们在某些场景下，一个单页面的应用，最后打包的一个js文件在5MB，7MB时。
+
+这个时候，就需要使用异步组件，它的含义就是：
+
+当你访问首页时，我只引入首页的代码，我单独的打包首页的代码，我访问详情页，单独打包详情页代码。
+
+这样子，其实也就是我们说的路由懒加载。
+
+我们就可以将一个很大的包，拆分成很多的小包。
+
+
+
+import('./home/header').then()
+
+实现的原理跟webpack打包有关。
+
+
+
+##  xss攻击如何在React中防范
+
+使用了 `dangerouslySetInnerHTML` 属性，这是React中的一个特性，它的工作原理就像原生的 `innerHTML` 浏览器API一样，由于这个原因，一般认为使用这个属性是不安全的。
+
+React默认情况下会对渲染的内容进行转义处理，将所有的数据都视为文本字符串处理。
+
+**在这种情况下，您确实想解析HTML并将其呈现在页面上。那么，您如何安全地做到这一点？**
+
+
+
+> 答案是在渲染HTML之前对其进行清理。与完全转义HTML不同，在渲染之前，您将通过一个函数运行内容以去除任何潜在的恶意代码。
+>
+> 您可以使用许多不错的HTML清理库。
+
+
+
+[在React中防范XSS攻击](https://bbs.huaweicloud.com/blogs/217973)
 
