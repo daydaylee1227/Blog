@@ -1,5 +1,7 @@
 ## Webpack面试题
 
+[点击这里](https://zhuanlan.zhihu.com/p/44438844/)
+
 
 
 ### webpack基本配置
@@ -93,7 +95,7 @@ optimization: {
 
 ### webpack如何实现懒加载的
 
-
+import
 
 
 
@@ -321,8 +323,8 @@ es6语法,cjs不支持
 
 ### ES6 Module 和  Commonjs区别
 
-- ES6 静态引用，编译时引入。
-- Commonjs动态引用，执行时引入
+- ES6 静态引用，编译时引入。值引用
+- Commonjs动态引用，执行时引入，值拷贝。
 
 Tree-shaking是在webpack打包时执行的，webpack打包只是静态分析，只是一个编译。
 
@@ -524,3 +526,6 @@ import modulename from 'xxxModule' 和import('moduleName') 区别。
 - 代码加载到浏览器以后从入口模块开始执行，其中执行的过程中，最重要的就是`webpack`定义的`__webpack_require__`函数，负责实际的模块加载并执行这些模块内容，返回执行结果，其实就是读取`Map`对象，然后执行相应的函数；
 - 当然其中的异步方法（import('xxModule')）比较特殊一些，它会单独打成一个包，采用动态加载的方式，具体过程：当用户触发其加载的动作时，会动态的在`head`标签中创建一个`script`标签，然后发送一个`http`请求，加载模块，模块加载完成以后自动执行其中的代码，主要的工作有两个，更改缓存中模块的状态，另一个就是执行模块代码。
 
+
+
+### [bable](https://mp.weixin.qq.com/s/9kItjKBmnaYSpBGnGpFg1Q)

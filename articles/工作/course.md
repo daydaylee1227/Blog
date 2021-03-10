@@ -221,7 +221,7 @@ yarn link "@ceramics-math/enlighten-choose-fruit-question"
 yarn link "@ceramics-math/recognize-one-2-question"
 yarn link "@ceramics-math/meet-circle1-question"
 yarn link "@ceramics-math/meet-circle2-question"
-
+yarn link "@ceramics-math/recognize-circle-belt-question"
 
 如果有新增组件，则需要再额外执行 yarn link @xx/xxx
 
