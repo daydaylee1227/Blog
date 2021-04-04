@@ -40,18 +40,12 @@
 
 真的想明白了吗？
 
-<details><summary><b>答案</b></summary>
-<p>
 
 
-undefined 
-
------
-
-{ n : 2}
-
-</p>
-</details>
+> undefined 
+>
+> { n : 2}
+>
 
 ### 你真的了解作用域吗
 
@@ -97,7 +91,7 @@ undefined
 答案：Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
 ```
 
-![](C:\Users\DayDay\Desktop\Blog\images\js\类数组length.PNG)
+![](../../images/js/类数组length.PNG)
 
 ```
 解释就是第一次使用push,obj对象的push方法设置obj[2] = 1,obj.length++
@@ -838,8 +832,6 @@ var c = fun(0).fun(1);  c.fun(2);  c.fun(3);//undefined,?,?,?
 ```
 
 **留给你们思考**
-
-
 
 
 
