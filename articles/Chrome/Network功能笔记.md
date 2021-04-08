@@ -69,7 +69,43 @@
 
 有了请求的数据报告后，那么我们如何分析它呢，就需要借助这个HAR分析器了。可以参考：https://toolbox.googleapps.com/apps/har_analyzer/
 
+----
 
+
+
+#### 显示更多信息
+
+网络日志的列是可以配置的。您可以隐藏您不使用的列。还有许多默认情况下隐藏的列，您可能会发现它们很有用。
+
+![更多信息](/Users/lee/Desktop/Blog/images/Chrome/Network/show-more-things.png)
+
+右键单击 "网络日志 "表头，选择 "域"。现在会显示每个资源的域。
+
+
+
+#### 模拟较慢的网络连接
+
+你用来建站的电脑的网络连接可能比用户的移动设备的网络连接要快。通过节制页面，你可以更好地了解一个页面在移动设备上加载所需的时间。
+
+![选择网速](/Users/lee/Desktop/Blog/images/Chrome/Network/network-speed.png)
+
+下面的选项，可以选择Fast 3G，Slow 3G, Offline,或者自己来设置，如图
+
+![设置网络状态](/Users/lee/Desktop/Blog/images/Chrome/Network/set-network-speed.jpg)
+
+
+
+#### 过滤请求
+
+DevTools提供了许多工作流程，用于过滤掉与手头任务无关的资源。
+
+![过滤请求](/Users/lee/Desktop/Blog/images/Chrome/Network/fileter-resources.png)
+
+过滤文本框支持许多不同类型的过滤，可以按字符串，正则表达式或属性过滤。
+
+举个例子下
+
+![过滤特定文件的资源](/Users/lee/Desktop/Blog/images/Chrome/Network/过滤特定文件的资源.png)
 
 
 
