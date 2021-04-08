@@ -352,7 +352,7 @@ demo.splice(0,0, 'you','should')
 
 
 
-### 字符串的反转
+## 字符串的反转
 
 借助的就是split reverse join 三个方法
 
