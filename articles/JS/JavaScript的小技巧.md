@@ -33,6 +33,25 @@ console.log(num << 0); // 左移操作符
 
 
 
+## 优雅的向下取整
+
+向下取整有很多种方式，做常用的，是调用Math的方法，如下图的例子
+
+```js
+const num = 3.23
+const num1 = Math.floor(num);
+console.log(num1); //3
+```
+
+那么优雅的方式是什么呢
+
+```js
+const num2 = num | 0
+console.log(num2); //3
+```
+
+
+
 ## 方法验证参数
 
 JavaScript允许你设置默认参数并且进行验证。
@@ -92,11 +111,32 @@ myArray
 
 
 
+## 使用别名破坏
+
+解构赋值语法是一种JavaScript表达式，它可以将数组中的值，或者对象中的属性解包到不同的变量中。我们可以不拘泥于现有的对象变量，而是按照自己的喜好重新命名它们。
+
+```javascript
+const object = { number: 10 };
+// Grabbing number
+const { number } = object;
+// Grabbing number and renaming it as otherNumber
+const { number: otherNumber } = object;
+console.log(otherNumber); //10
+```
+
+
+
 ## 数组混淆
 
 ```javascript
 (arr) => arr.slice().sort(() => Math.random() - 0.5);
 ```
+
+
+
+
+
+
 
 ## 随机项
 
@@ -109,6 +149,8 @@ const getRandom = (min, max) => {
 console.log("Get random", getRandom(0, 10));
 ```
 
+
+
 ## 获取数组的最大最小值
 
 这是最近遇到的一个小问题，当然了，求解这个问题不是难点，我觉得这是一个小技巧，所以就分享出来 👇
@@ -120,6 +162,8 @@ const minNumber = Math.min.apply(Math, numbers);
 ```
 
 ---
+
+
 
 ## 特殊字符串的排序
 
@@ -161,6 +205,8 @@ console.log(strList)
 
 ---
 
+
+
 ## 在条件中使用逻辑与或
 
 最近项目中，学会得一个小技巧，就是逻辑与或去渲染对应的场景，通过 state 中的 isRight 来更新答错答错的效果。
@@ -190,6 +236,8 @@ render() {
 哈哈哈，get 一个小技巧 🤭
 
 ---
+
+
 
 ## 合理布局样式
 
@@ -291,6 +339,8 @@ Date.now().toString(36).substr(0, n) + Math.random().toString(36).substr(2, n);
 
 ---
 
+
+
 ## 字符串 xml 的转换
 
 你是不是遇到过在 JavaScript 中获取 XML，但是得到的东西又不是你想要的东西呢，那么有没有更加简单的方法呢？ 接下来我们看看下面所提到的 👇
@@ -309,6 +359,8 @@ stringToXML = new DOMParser().parseFromString(xmlString, "text/xml");
 
 ---
 
+
+
 ## 将数组变成字符串
 
 有时候，需要将数组按照一定的顺序连接起来，并且构造成字符串的 ⬇️
@@ -320,9 +372,13 @@ value.join('')
 
 ```
 
+
+
 ## 删除数组第一项
 
 直接使用 Array.prototype.shift() 删除第一项,并且返回该元素。
+
+
 
 ## 在数组开头添加几项
 
@@ -340,9 +396,20 @@ demo.unshift("you", "should");
 demo.splice(0, 0, "you", "should");
 ```
 
+
+
 ## 一行代码获取 url 参数
 
->
+```js
+const getParam = (url, param) => new URLSearchParams(new URL(url).search).get(param);
+
+// 例子
+getParam('http://domain.com?message=hello', 'message');     // 'hello'
+```
+
+
+
+
 
 ## 字符串集锦
 
@@ -412,3 +479,29 @@ for (var key of Object.keys(student)) {
 [点击这里](https://segmentfault.com/q/1010000006658882)
 
 ## 返回字符的 Unicode 编码
+
+
+
+
+
+## 合并多个对象
+
+我曾有过几次需要合并两个或多个类的情况，这是我常用的方法。
+
+```javascript
+const user = { 
+ name: 'John Ludwig', 
+ gender: 'Male' 
+ };
+const college = { 
+ primary: 'Mani Primary School', 
+ secondary: 'Lass Secondary School' 
+ };
+const skills = { 
+ programming: 'Extreme', 
+ swimming: 'Average', 
+ sleeping: 'Pro' 
+ };
+const summary = {...user, ...college, ...skills};
+```
+
