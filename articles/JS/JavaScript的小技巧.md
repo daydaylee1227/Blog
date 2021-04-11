@@ -126,7 +126,21 @@ console.log(otherNumber); //10
 
 
 
+## 随机生成一组字母数字字符
+
+```js
+function generateRandomAlphaNum(len) {
+    var rdmString = "";
+    for( ; rdmString.length < len; rdmString  += Math.random().toString(36).substr(2));
+    return  rdmString.substr(0, len);
+}
+```
+
+
+
 ## 数组混淆
+
+
 
 ```javascript
 (arr) => arr.slice().sort(() => Math.random() - 0.5);
