@@ -30,6 +30,14 @@ Lighthouse为我们本地开发提供了非常好的性能检测工具，对于�
 
 
 
+它是如何工作的呢？
+
+如果你跟我一样，翻过它的代码，看过它的介绍肯定很懵逼，它的代码依赖性如下:
+
+![](../../images/前端性能优化/lighthouse/lighthouse内部模块依赖.png)
+
+感兴趣的可以看看它的仓库，参考链接已经给出。
+
 
 
 
@@ -93,4 +101,6 @@ lighthouse --help
 [3] **What's New in Lighthouse 6.0**: https://web.dev/lighthouse-whats-new-6.0/
 
 [4] **Measure:** https://web.dev/measure/
+
+[5] **How does Lighthouse work?**: https://github.com/GoogleChrome/lighthouse/blob/master/docs/architecture.md
 
