@@ -1,0 +1,74 @@
+<svg width="914" height="165" viewBox="0 0 914 165" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <path d="M0 50h914v115H0V50z" fill="#F3F3F3"/>
+    <text fill="#5DA5F5" font-family="Helvetica-Bold, Helvetica" font-size="17" font-weight="bold" transform="translate(0 -1)">
+      <tspan x="24.5" y="103" fill="#000">Main Thread</tspan>
+    </text>
+    <path d="M148 73h69v44h-69V73z" stroke="#EAD46F" fill="#F8E799"/>
+    <path d="M738.5 85.5V29.49 85.5zm0-56.01l-3 10.8h6l-3-10.8zM182 31.11v38.578V31.11zm0 38.578l3-10.8h-6l3 10.8z" stroke="#282828" fill="#282828"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="158.259" y="92" fill="#000">Input event</tspan>
+    </text>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="163.82" y="105" fill="#000">handlers</tspan>
+    </text>
+    <path d="M219 73h69v44h-69V73z" stroke="#EAD46F" fill="#F8E799"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="224.266" y="92" fill="#000">requestAnim-</tspan>
+    </text>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="228.712" y="105" fill="#000">ationFrame</tspan>
+    </text>
+    <path d="M290 73h69v44h-69V73z" stroke="#69B1F5" fill="#8EC7F4"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="311.938" y="92" fill="#000">Parse</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="311.389" y="105" fill="#000">HTML</tspan>
+    </text>
+    <path d="M361 73h69v44h-69V73z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="380.217" y="92" fill="#000">Recalc</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="381.884" y="105" fill="#000">Styles</tspan>
+    </text>
+    <path d="M432 73h69v44h-69V73z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="451.488" y="99" fill="#000">Layout</tspan>
+    </text>
+    <path d="M503 73h69v44h-69V73z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="521.377" y="92" fill="#000">Update</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="513.594" y="105" fill="#000">Layer Tree</tspan>
+    </text>
+    <path d="M574 73h69v44h-69V73z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="597.104" y="99" fill="#000">Paint</tspan>
+    </text>
+    <path d="M645 73h69v44h-69V73z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="655.601" y="99" fill="#000">Composite</tspan>
+    </text>
+    <path d="M763 73h111v44H763V73z" stroke="#EAD46F" fill="#F8E799"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="774.086" y="97" fill="#000">requestIdleCallback</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="724" y="97" fill="#000">commit</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="130.225" y="25" fill="#000">input data from compositor</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="693.722" y="9" fill="#000">composite &amp; paint data</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="712.489" y="21" fill="#000">to compositor</tspan>
+    </text>
+    <path d="M254.5 153.5v-32.016m0 0l-3 10.8h6l-3-10.8z" stroke="#D0011B" stroke-linecap="square" fill="#D0021B"/>
+    <path d="M467.5 123.5v30m-72-30v30m72.002 0h-212.34" stroke="#D0011B" stroke-linecap="square"/>
+  </g>
+</svg>
