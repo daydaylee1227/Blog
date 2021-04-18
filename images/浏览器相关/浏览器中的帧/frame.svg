@@ -1,0 +1,122 @@
+<svg width="969" height="413" viewBox="0 0 969 413" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <path d="M0 290h969v123H0V290z" fill="#FFF"/>
+    <path d="M0 327h969v80H0v-80z" fill="#F3F3F3"/>
+    <path d="M0 43h969v217H0V43z" fill="#FFF"/>
+    <path d="M0 85h969v64H0V85zm0 68h969v31H0v-31zm0 37h969v64H0v-64z" fill="#F3F3F3"/>
+    <text fill="#606060" font-family="Helvetica" font-size="13" transform="translate(0 -1)">
+      <tspan x="10" y="70" fill="#000">Renderer Process</tspan>
+    </text>
+    <text fill="#5DA5F5" font-family="Helvetica-Bold, Helvetica" font-size="10" font-weight="bold" transform="translate(0 -1)">
+      <tspan x="10" y="105" fill="#000">Compositor Thread</tspan>
+    </text>
+    <text fill="#5DA5F5" font-family="Helvetica-Bold, Helvetica" font-size="10" font-weight="bold" transform="translate(0 -1)">
+      <tspan x="10" y="174" fill="#000">Compositor Tile Worker(s)</tspan>
+    </text>
+    <text fill="#5DA5F5" font-family="Helvetica-Bold, Helvetica" font-size="10" font-weight="bold" transform="translate(0 -1)">
+      <tspan x="10" y="212" fill="#000">Main Thread</tspan>
+    </text>
+    <text fill="#5DA5F5" font-family="Helvetica-Bold, Helvetica" font-size="10" font-weight="bold" transform="translate(0 -1)">
+      <tspan x="10" y="349" fill="#000">GPU Thread</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="13" transform="translate(0 -1)">
+      <tspan x="10" y="314" fill="#000">GPU Process</tspan>
+    </text>
+    <path d="M125 94h48v44h-48V94z" stroke="#84A859" fill="#A3C37D"/>
+    <path d="M148 199h69v44h-69v-44z" stroke="#EAD46F" fill="#F8E799"/>
+    <path d="M183.5 119.5v73.11-73.11zm0 73.11l3-10.8h-6l3 10.8zm555 18.89v-71 71zm0-71l-3 10.8h6l-3-10.8zm163-16v211.334V124.5zm0 211.334l3-10.8h-6l3 10.8z" stroke="#282828" fill="#282828"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="158.259" y="218" fill="#000">Input event</tspan>
+    </text>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="163.82" y="231" fill="#000">handlers</tspan>
+    </text>
+    <path d="M219 199h69v44h-69v-44z" stroke="#EAD46F" fill="#F8E799"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="224.266" y="218" fill="#000">requestAnim-</tspan>
+    </text>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="228.712" y="231" fill="#000">ationFrame</tspan>
+    </text>
+    <path d="M290 199h69v44h-69v-44z" stroke="#69B1F5" fill="#8EC7F4"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="311.938" y="218" fill="#000">Parse</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="311.389" y="231" fill="#000">HTML</tspan>
+    </text>
+    <path d="M361 199h69v44h-69v-44z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="380.217" y="218" fill="#000">Recalc</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="381.884" y="231" fill="#000">Styles</tspan>
+    </text>
+    <path d="M432 199h69v44h-69v-44z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="451.488" y="225" fill="#000">Layout</tspan>
+    </text>
+    <path d="M503 199h69v44h-69v-44z" stroke="#9589C6" fill="#B1A7D6"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="521.377" y="218" fill="#000">Update</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="513.594" y="231" fill="#000">Layer Tree</tspan>
+    </text>
+    <path d="M574 199h69v44h-69v-44z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="597.104" y="225" fill="#000">Paint</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="135.054" y="114" fill="#000">Frame</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="138.941" y="127" fill="#000">Start</tspan>
+    </text>
+    <path d="M645 199h69v44h-69v-44z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="655.601" y="225" fill="#000">Composite</tspan>
+    </text>
+    <path d="M705 93h69v44h-69V93z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="724.773" y="114" fill="#000">Raster</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="715.87" y="127" fill="#000">Scheduled</tspan>
+    </text>
+    <path d="M764 158h74v22h-74v-22z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="778.882" y="173" fill="#000">Rasterize</tspan>
+    </text>
+    <path d="M827 93h48v44h-48V93z" stroke="#84A859" fill="#A3C37D"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="837.054" y="113" fill="#000">Frame</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="842.604" y="126" fill="#000">End</tspan>
+    </text>
+    <path d="M763 199h111v44H763v-44z" stroke="#EAD46F" fill="#F8E799"/>
+    <text fill="#5C3817" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="774.086" y="223" fill="#000">requestIdleCallback</tspan>
+    </text>
+    <path d="M822 344h125v44H822v-44z" stroke="#69B1F5" fill="#8EC7F4"/>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="834.688" y="363" fill="#000">Layer tiles uploaded to</tspan>
+    </text>
+    <text fill="#FFF" font-family="Helvetica" font-size="10" transform="translate(0 -1)">
+      <tspan x="836.086" y="376" fill="#000">GPU and composited.</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="108.222" y="9" fill="#000">vsync and input data</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="724" y="223" fill="#000">commit</tspan>
+    </text>
+    <text fill="#606060" font-family="Helvetica" font-size="9" transform="translate(0 -1)">
+      <tspan x="887" y="120" fill="#000">commit</tspan>
+    </text>
+    <path d="M148.5 17.5v73.11V17.5zm0 73.11l3-10.8h-6l3 10.8zm684 54.39v11.5V145H830l2.5-6 2.5 6h-2.5zm-62 5v-11.5V150h2.5l-2.5 6-2.5-6h2.5z" stroke="#282828" fill="#282828"/>
+    <path d="M254.5 279.5v-32.016m0 0l-3 10.8h6l-3-10.8z" stroke="#D0011B" stroke-linecap="square" fill="#D0021B"/>
+    <path d="M467.5 249.5v30m-72-30v30m72.002 0h-212.34" stroke="#D0011B" stroke-linecap="square"/>
+  </g>
+</svg>
