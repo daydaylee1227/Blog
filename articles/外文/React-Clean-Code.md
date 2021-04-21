@@ -454,3 +454,9 @@ export const PreviousStateGood = () => {
 
 
 **我是TianTian，我们下一期见！！！**
+
+
+
+
+
+> 原文链接: https://dev.to/thawkin3/react-clean-code-simple-ways-to-write-better-and-cleaner-code-2loa
