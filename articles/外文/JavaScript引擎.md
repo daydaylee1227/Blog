@@ -1,6 +1,6 @@
 ## 前言
 
-这是一篇不错的文章，我强烈推荐的原因在于:
+这是一篇不错译文，我强烈推荐的原因在于:
 
 > 在用**动图的形式**生动形象的讲述了**JavaScript引擎基本原理**。
 
@@ -61,7 +61,7 @@ V8的内容太多了，篇幅有限，后续再出一篇文章聊一聊。
 
 细节很多，所以主要分析的是主要的流程，如图:
 
-![](../../images/外文/JavaScript引擎/V8执行的一段代码流程图.png)
+![V8执行的一段代码流程图](../../images/外文/JavaScript引擎/V8执行的一段代码流程图.png)
 
 从图上，我们可以总结一下几个点:
 
@@ -155,18 +155,89 @@ AST交给**解释器（interpreter）**，遍历整个AST，就会生成**字节
 
 
 
+------
+
+
+
 ### 代码执行
 
 我们有了字节码后，就可以进入执行阶段了。
 
 
 
+#### 即使编译
+
+虽然字节码的速度很快，但它还可以更快。当这个字节码运行时，信息就会被生成。
+
+它可以检测到某些行为是否经常发生，以及被使用的数据类型。也许你一直在调用一个函数几十次：是时候优化它了，这样它的运行速度会更快 。
+字节代码，连同生成的类型反馈，被发送到优化编译器。优化编译器接收字节码和类型反馈，并从中生成**高度优化**的机器代码。
+
+> 这种技术也被称为 **即时编译（JIT：Just In Time）**，而上面所说的 **优化编译器** 也叫 **JIT 编译器**。
+
+具体的话，可以参考下面的图:
+
+![](../../images/外文/JavaScript引擎/js引擎工作-5.gif)
+
+
+
+#### 内联缓存
+
+JavaScript是一种动态类型的语言，这意味着数据的类型可以不断变化。如果JavaScript引擎每次都要检查某个值的数据类型，那就会非常慢。
+
+> 处于上诉所说，引擎有了一种叫做**内联缓存 （inline caching）** 的技术。
+
+具体流程是这样子的:
+
+为了减少解释代码的时间，优化的机器代码只处理引擎在运行字节码时曾经见过的情况。如果我们反复使用某段代码，反复返回相同的数据类型，那么优化后的机器代码可以简单地重复使用，以加快速度。
+
+然而，由于JavaScript是动态类型的，可能会发生同一段代码突然返回不同类型的数据。如果发生这种情况，机器代码就会被取消优化，引擎就会退回到解释生成的字节码。
+假设某个函数被调用了100次，到目前为止总是返回相同的值。它将假设在你第101次调用它时，它也会返回这个值。
+
+
+
+假设我们有以下函数sum，（到目前为止）每次都是以数值作为参数来调用,如图:
+
+![函数sum](../../images/外文/JavaScript引擎/js引擎工作-7.png)
+
+这将返回数字3! 下次我们调用它时，它将假定我们是用两个数值再次调用它。
+如果这是真的，就不需要动态查找，它可以重新使用优化后的机器代码。否则，如果假设不正确，它就会恢复到原来的字节码，而不是优化后的机器码。
+例如，下一次我们调用它时，我们传递一个字符串而不是一个数字。由于JavaScript是动态类型的，我们可以这样做而不会有任何错误!
+
+如图:
+
+![](../../images/外文/JavaScript引擎/js引擎工作-赛后.png)
+
+这意味着数字2将被强制变成一个字符串，而函数将返回字符串 "12"。它回到执行解释的字节码并更新类型反馈。
+
+------
 
 
 
 
 
+## 总结
+
+篇幅不多，但或多或少对你有帮助，让你对JS引擎的执行流程有了解。你想了解更多的话，欢迎查原文V8官网的docs:
+
+> https://v8.dev/docs
+
+**我是TianTian，我们下一期见！！！**
 
 
 
 ## 参考链接
+
+[1] **Celebrating 10 years of V8:** https://v8.dev/blog/10-years
+
+[2] **Launching Ignition and TurboFan:** https://v8.dev/blog/launching-ignition-and-turbofan
+
+[3] **Understanding V8’s Bytecode:** https://medium.com/dailyjs/understanding-v8s-bytecode-317d46c94775
+
+[4] **An Introduction to Speculative Optimization in V8:** https://benediktmeurer.de/2017/12/13/an-introduction-to-speculative-optimization-in-v8/
+
+[5] **JavaScript Visualized: the JavaScript Engine:** https://dev.to/lydiahallie/javascript-visualized-the-javascript-engine-4cdf
+
+[6]  **The V8 JavaScript Engine:** https://nodejs.dev/learn/the-v8-javascript-engine
+
+
+
