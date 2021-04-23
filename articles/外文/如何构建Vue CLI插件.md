@@ -2,21 +2,13 @@
 
 如果你正在使用Vue框架，你可能已经知道什么是Vue CLI了。它是一个用于快速开发Vue.js的完整系统，提供项目脚手架和原型设计。
 
-
-
 CLI的一个重要部分是**cli-plugins**。它们可以修改内部的webpack配置并向vue-cli服务**注入**命令。
 
 一个很好的例子是**@vuecli-plugin-typescript**：当你调用它时，它会给你的项目添加一个**tsconfig.json**，并改变**App.vue**的类型，所以你不需要手动去做。
 
+插件是非常有用的，但如果你想有一个用于某些特定库的插件而它不存在呢？嗯，当我们是这样子的情况时......我们决定自己建立它。
 
-
-插件是非常有用的，现在有很多用于不同情况的插件--GraphQL + Apollo支持，Electron构建器，添加UI库，如Vuetify或ElementUI......但如果你想有一个用于某些特定库的插件而它不存在呢？嗯，这就是我的情况......我决定自己建立它。
-
-
-
-在这篇文章中，我们将建立一个**vue-cli-plugin-rx**。它允许我们将**vue-rx**库添加到我们的项目中，并在我们的Vue应用程序中获得RxJS支持。
-
-
+在这篇文章中，我们将建立一个**vue-cli-plugin-tiantian**。它允许我们将**vue-rx**库添加到我们的项目中，并在我们的Vue应用程序中获得RxJS支持。
 
 
 
@@ -182,10 +174,6 @@ api.onCreateComplete(() => {
   "version": "xxx.1.5",
   "description": "Vue-cli 3 plugin for adding RxJS support XXXX",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NataliaTepluhina/vue-cli-plugin-rx.git"
-  },
   "keywords": [
     "vue",
     "vue-cli",
@@ -194,7 +182,6 @@ api.onCreateComplete(() => {
   ],
   "author": "TianTian",
   "license": "MIT",
-  "homepage": "https://github.com/NataliaTepluhina/vue-cli-plugin-rx#readme"
 }
 ```
 
