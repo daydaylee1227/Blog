@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+"git-cz@^4.7.6":
+  "integrity" "sha512-WtQEXqetJSi9LKPI77bMdSQWvLGjE93egVbR0zjXd1KFKrFvo/YE/UuGNcMeBDiwzxfQBhjyV7Hn0YUZ8Q0BcQ=="
+  "resolved" "http://mirrors.tencent.com/npm/git-cz/-/git-cz-4.7.6.tgz"
+  "version" "4.7.6"

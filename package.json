@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "commit": "git-cz"
+    },
+    "dependencies": {
+        "git-cz": "^4.7.6"
+    }
+}
