@@ -154,3 +154,11 @@ React 360是一种有趣的方式来创建3D网络应用，给用户带来VR体�
 
 
 任何有React经验的开发者都可以轻松地学习这个框架，并立即开始构建VR应用。React VR应用程序支持广泛使用的设备和平台，包括iOS和Android。
+
+
+
+
+
+## 参考
+
+https://blog.bitsrc.io/creating-virtual-reality-experiences-with-react-360-9f354623731e
