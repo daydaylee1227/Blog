@@ -34,7 +34,7 @@ React使创建交互式UI变得不费力。为你的应用程序中的每个状�
 因为如果我们有一套好的**Linting规则**，你的代码编辑器将能够捕捉到任何有可能导致你的代码出现问题的东西。
 但不仅仅是捕捉问题，你的ES Lint设置将不断使你了解React的最佳实践。
 
-```react
+```react                                  
 import react from 'react';
 /* Other imports */
 
