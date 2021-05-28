@@ -9,9 +9,10 @@
         "husky": "^5.0.8"
     },
     "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-        }
+        "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+        "pre-commit": "lint-staged",
+        "pre-add": "lint-staged",
+        "pre-push": "lint-staged"
     },
     "devDependencies": {
         "babel-eslint": "^10.1.0",
