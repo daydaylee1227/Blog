@@ -3,6 +3,15 @@
         "commit": "git-cz"
     },
     "dependencies": {
-        "git-cz": "^4.7.6"
+        "@commitlint/cli": "^12.1.4",
+        "@commitlint/config-conventional": "^12.1.4",
+        "git-cz": "^4.7.6",
+        "husky": "^6.0.0"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "npm run lint"
+        }
     }
 }
