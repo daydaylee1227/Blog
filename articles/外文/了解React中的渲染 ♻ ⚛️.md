@@ -50,3 +50,43 @@
 ## 参考
 
 https://dev.to/teo_garcia/understanding-rendering-in-react-i5i
+
+
+
+
+
+
+
+
+
+自我介绍
+
+项目难点、深挖项目
+
+介绍进程和线程以及他们的区别
+
+TCP和UDP的区别
+
+DNS的解析过程
+
+img的alt和title的异同
+
+seo优化了解么、服务端渲染
+
+display：none visibility：hidden的区别 opacity：0
+
+什么是BFC
+
+盒子模型
+
+手写两栏布局
+
+js数据类型 深拷贝 浅拷贝
+
+栈、堆数据结构
+
+变量提升、原型原型链
+
+看代码说输出、函数的执行结果
+
+算法题求出现最大频率的数组元素
